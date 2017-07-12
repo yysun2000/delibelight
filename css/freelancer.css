@@ -1,0 +1,276 @@
+/*!
+ * 제작자 : 유영선 
+ * Copyright 2017-2017 Start Bootstrap
+ */
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+body {
+  font-family: 'Noto Sans KR', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+}
+#skipnav a {
+  padding: 6px;
+  position: absolute;
+  top: -40px;
+  left: 0px;
+  color: white;
+  border-right: 1px solid white;
+  border-bottom: 1px solid white;
+  border-bottom-right-radius: 8px;
+  background: transparent;
+  transition: top 1s ease-out, background 1s linear;
+  z-index: 2000;
+}
+#skipnav a:focus {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background: white;
+  outline: 0;
+  transition: top 0.1s ease-in, background 0.5s linear;
+}
+div#maincontent {
+  outline: none;
+}
+.subTitle {
+  color: black;
+  font-size: 18px;
+  font-weight: bold;
+  height: 65px;
+  width: 100%;
+  background-color: #f8f8f8;
+  margin-top: 9px;
+  text-align: center;
+  line-height: 58px;
+}
+.subInfo {
+  height: 170px;
+}
+.subInfo .pic {
+  width: 120px;
+  padding-left: 20px;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  height: inherit;
+}
+.subInfo .info {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: left;
+  height: inherit;
+  width: inherit;
+  padding-top: 30px;
+  padding-left: 10px;
+}
+.subInfo > div {
+  display: inline;
+  height: inherit;
+}
+.subInfo .right {
+  float: right;
+  display: inline;
+  vertical-align: middle;
+  text-align: left;
+  height: inherit;
+  padding-top: 35px;
+}
+.subInfo .right .followbutton {
+  float: right;
+  width: 90px;
+  height: 45px;
+  border: 1px #b4b4b4 solid;
+  text-align: center;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  line-height: 45px;
+  margin-right: 20px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #b4b4b4;
+}
+.subInfo .followbutton:hover {
+  border: 1px #252525 solid;
+  color: #252525;
+}
+.filterMainMenu,
+.filterMenu {
+  width: 100%;
+}
+.filterMainMenu .menu,
+.filterMenu .menu {
+  width: 100%;
+  display: block;
+  padding: 0px;
+  height: 54px;
+  line-height: 50px;
+  font-size: 15px;
+  color: #b4b4b4;
+}
+.filterMainMenu .menu > div,
+.filterMenu .menu > div {
+  display: inline;
+  text-align: center;
+  font-size: 15px;
+  color: #b4b4b4;
+}
+.filterMainMenu .menu > .horizontal > span,
+.filterMenu .menu > .horizontal > span {
+  padding-left: 20px;
+  padding-right: 20px;
+  display: inline-block;
+  font-size: 15px;
+  color: #b4b4b4;
+}
+.filterMainMenu .menu.menu-up,
+.filterMenu .menu.menu-up {
+  border-bottom: 2px #e4e4e4 solid;
+}
+.filterMainMenu .menu.menu-down,
+.filterMenu .menu.menu-down {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+.filterMainMenu .menu.menu-down .horizontal,
+.filterMenu .menu.menu-down .horizontal {
+  white-space: nowrap;
+}
+.filterMenu .menu.menu-up > div:active,
+.filterMenu .menu.menu-up > div:hover,
+.filterMenu .menu.menu-up > div:focus {
+  color: #252525;
+  border-bottom: 2px #fed664 solid;
+}
+.filterMenu .menu.menu-down > .horizontal > span:active,
+.filterMenu .menu.menu-down > .horizontal > span:hover,
+.filterMenu .menu.menu-down > .horizontal > span:focus {
+  color: #252525;
+}

@@ -1,0 +1,86 @@
+[
+  {
+  "menu":["HOT","BEST","NEW"],
+  "type" :"outer",
+  "name":"outer",
+  "link":"#",
+  "image":"./img/shoplist/1.jpg"
+  },
+  {
+  "menu":["HOT","NEW"],
+  "type" :"outer",
+  "name":"outer",
+  "link":"#",
+  "image":"./img/shoplist/2.jpg"
+  },
+  {
+  "menu":["BEST","NEW"],
+  "type" :"outer",
+  "name":"outer",
+  "link":"#",
+  "image":"./img/shoplist/3.jpg"
+  },
+  {
+  "menu":["NEW"],
+  "type" :"blouse",
+  "name":"blouse",
+  "link":"#",
+  "image":"./img/shoplist/4.jpg"
+  },
+  {
+  "menu":["NEW"],
+  "type" :"blouse",
+  "name":"blouse",
+  "link":"#",
+  "image":"./img/shoplist/5.jpg"
+  },
+  {
+  "menu":["BEST","NEW"],
+  "type" :"blouse",
+  "name":"blouse",
+  "link":"#",
+  "image":"./img/shoplist/6.jpg"
+  },
+  {
+  "menu":["HOT","NEW"],
+  "type" :"tshirt",
+  "name":"onepice",
+  "link":"#",
+  "image":"./img/shoplist/7.jpg"
+  },
+  {
+  "menu":["NEW"],
+  "type" :"tshirt",
+  "name":"onepice",
+  "link":"#",
+  "image":"./img/shoplist/8.jpg"
+  },
+  {
+  "menu":["NEW"],
+  "type" :"tshirt",
+  "name":"onepice",
+  "link":"#",
+  "image":"./img/shoplist/9.jpg"
+  },
+  {
+  "menu":["NEW"],
+  "type" :"onepiece",
+  "name":"onepice",
+  "link":"#",
+  "image":"./img/shoplist/10.jpg"
+  },
+  {
+  "menu":["HOT","NEW"],
+  "type" :"onepiece",
+  "name":"onepice",
+  "link":"#",
+  "image":"./img/shoplist/11.jpg"
+  },
+  {
+  "menu":["BEST","NEW"],
+  "type" :"onepiece",
+  "name":"onepice",
+  "link":"#",
+  "image":"./img/shoplist/12.jpg"
+  }
+]

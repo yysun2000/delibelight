@@ -1,0 +1,254 @@
+<script type="text/template" id="LeftMenu">
+  <style>
+  .wrapper{
+
+    transition: 0.5s;
+  }
+  .left-menu{
+    height: 100%;
+    width: 275px;
+    display: none;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #ffffff;
+    transition: 0.5s;
+    overflow-x: hidden;
+    clear:both;
+    padding:20px 0px 0px 0px;
+  }
+  .left-menu .logInfo{
+    padding:20px;
+  }
+  .left-menu .logInfo .title{
+    font-size:30px;
+    margin-bottom:20px;
+  }
+  .left-menu .logInfo .content{
+    font-size:15px;
+  }
+
+
+  .left-menu .logInfo .button-group div{
+    width:45%;
+    text-align: center;
+    margin: 15px 0px 5px 0px;
+    padding: 10px 0px 10px 0px;
+    display: inline-block;
+    background-color: red;
+    text-align:center;
+    font-size:15px;
+  }
+  .left-menu .logInfo .button-group div.yellow{
+    background-color: #fed664;
+  }
+  .left-menu .logInfo .button-group div.black{
+    background-color: #333333;
+    color:white;
+  }
+
+  .left-menu .submenu{
+    clear:both;
+  }
+  .left-menu .submenu div.group.title{
+    background-color:#eeeeee;
+  }
+  .left-menu .submenu div.group.title div{
+    padding:15px 0px 15px 15px;
+  }
+
+  .left-menu .submenu div.group.contents .follow{
+    display:inline-block;
+    width:32%;
+    text-align: center;
+  }
+
+  .left-menu .submenu div.group.contents .follow .face{
+
+  }
+  .left-menu .submenu div.group.contents .follow .name{
+
+  }
+
+  .left-menu .list{
+    clear:both;
+  }
+
+  .left-menu .list .list-mainmenu{
+    display:block;
+    margin:0px;
+    padding:0px;
+    background-color: #ffffff;
+  }
+
+  .left-menu .list .list-mainmenu.selected{
+    background-color: #333333;
+  }
+  .left-menu .list .list-mainmenu li div:hover{
+    background-color: #333333;
+    list-style-type:none;
+    padding:15px 15px 15px 15px;
+    color: #fed664;
+    margin:0px;
+  }
+
+  .left-menu .list .list-mainmenu li div{
+    background-color: #ffffff;
+    list-style-type:none;
+    padding:15px 15px 15px 15px;
+    margin:0px;
+  }
+
+
+  .left-menu .list .list-mainmenu li{
+    list-style-type:none;
+    border: 1px solid #eeeeee;
+    border-left-width:0px;
+    border-right-width:0px;
+    border-bottom-width:0px;
+    margin:0px;
+    color: #333333;
+  }
+
+  .left-menu .list .list-mainmenu .list-submenu{
+    display:none;
+    margin:0px;
+    padding:0px;
+    background-color: #ffffff;
+  }
+
+  .left-menu .list .list-mainmenu .list-submenu li{
+    list-style-type:none;
+    border: 1px solid #eeeeee;
+    border-left-width:0px;
+    border-right-width:0px;
+    border-bottom-width:0px;
+    margin:0px;
+    padding:15px 15px 15px 20px;
+    color: #333333;
+  }
+
+  </style>
+  <div class="left-menu">
+    <div class="logInfo">
+      <div class="group title"><span>#B</span><span  onclick="closeNav()"style="float:right;">X</span></div>
+      <div class="group content">
+        <div>안녕하세요, 인탑님. </div>
+        <div>#B에 오신걸 환영합니다.</div>
+      </div>
+      <div class="group button-group">
+        <div class="yellow">마이페이지</div>
+        <div class="black">위시리스트</div>
+      </div>
+    </div>
+    <div class="submenu">
+      <div class="group title">
+        <div>Folow</div>
+      </div>
+      <div class="group contents">
+        <div class="follow">
+          <div class="face" style="padding:20 20 10 20px;"><img src="img\subinfo\subInfoMockup.png" style="width:100%;"></div>
+          <div class="name" style="padding-bottom:20px;">chu</div>
+        </div>
+        <div class="follow">
+          <div class="face" style="padding:20 20 10 20px;"><img src="img\subinfo\subInfoMockup.png" style="width:100%;"></div>
+          <div class="name" style="padding-bottom:20px;">chu</div>
+        </div>
+        <div class="follow">
+          <div class="face" style="padding:20 20 10 20px;"><img src="img\subinfo\subInfoMockup.png" style="width:100%;"></div>
+          <div class="name" style="padding-bottom:20px;">chu</div>
+        </div>
+      </div>
+    </div>
+    <div class="list">
+      <div class="group tab">
+        <div style="background-color: #eeeeee;text-align:center;width:50%;float:left;padding:15px 0px 15px 0px;">
+          <div>Item</div>
+        </div>
+        <div style="border: 1px solid #eeeeee;border-left-width:0px;border-right-width:0px;border-bottom-width:0px;text-align:center;width:50%;float:left;padding:15px 0px 15px 0px;">
+          <div>Celeb</div>
+        </div>
+      </div>
+      <ul class="list-mainmenu" style="clear:both;">
+        <li>
+          <div>아우터</div>
+          <ul class="list-submenu">
+            <li>- 가디건</li>
+            <li>- 가디건</li>
+            <li>- 가디건</li>
+            <li>- 가디건</li>
+          </ul>
+        </li>
+        <li>
+          <div>상의</div>
+          <ul class="list-submenu">
+            <li>- 가디건</li>
+            <li>- 가디건</li>
+            <li>- 가디건</li>
+            <li>- 가디건</li>
+          </ul>
+        </li>
+        <li>
+          <div>하의</div>
+          <ul class="list-submenu">
+            <li>- 가디건</li>
+            <li>- 가디건</li>
+            <li>- 가디건</li>
+            <li>- 가디건</li>
+          </ul>
+        </li>
+        <li>
+          <div>원피스</div>
+          <ul class="list-submenu">
+            <li>- 가디건</li>
+            <li>- 가디건</li>
+            <li>- 가디건</li>
+            <li>- 가디건</li>
+          </ul>
+        </li>
+        <li>
+          <div>세트</div>
+          <ul class="list-submenu">
+            <li>- 가디건</li>
+            <li>- 가디건</li>
+            <li>- 가디건</li>
+            <li>- 가디건</li>
+          </ul>
+        </li>
+      </ul>
+	</div>
+      <div class="submenu">
+        <div class="group title">
+          <div>최근에 본 상품</div>
+        </div>
+        <div class="group contents">
+          <div class="follow">
+            <div class="face"><img src="./img/shoplist/1.jpg" style="padding:10px 0px 10px 10px;width:100%;"/></div>
+          </div>
+          <div class="follow">
+            <div class="face"><img src="./img/shoplist/1.jpg" style="padding:10px 0px 10px 10px;width:100%;"/></div>
+          </div>
+          <div class="follow">
+            <div class="face"><img src="./img/shoplist/1.jpg" style="padding:10px 0px 10px 10px;width:100%;"/></div>
+          </div>
+        </div>
+      </div>
+
+	<div class="footer" style="padding:15px;background-color: #333333;color:#888888;">
+	  <div class="group title">
+		<div style="display:block;text-align:center;">
+			<div style="display:inline-block;width:10%;text-align:left;vertical-align:middle;">ㅅ</div>
+			<div style="display:inline-block;width:40%;vertical-align:middle;text-align:left;font-size:8px;">
+				<div>고객센터</div>
+				<div>Weekdays 9:30 ~ 18:00</div>
+				<div>Sat,Sun,Holiday OFF</div>
+			</div>
+			<div style="display:inline-block;text-align:left;width:45%;font-size:20px;vertical-align:middle;">
+				<span style="margin:5px;">1522-6631</span>
+			</div>
+		</div>
+	  </div>
+	</div>
+  </div>
+</script>

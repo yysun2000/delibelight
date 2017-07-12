@@ -1,0 +1,29 @@
+[
+  {
+    "menu":["HOT","BEST","NEW"]
+  },
+  {
+    "type":"outer",
+    "name":"아우터"
+  },
+  {
+    "type":"blouse",
+    "name":"블라우스"
+  },
+  {
+    "type":"tshirt",
+    "name":"티셔츠"
+  },
+  {
+    "type":"onepiece",
+    "name":"원피스"
+  },
+  {
+    "type":"pants",
+    "name":"팬츠"
+  },
+  {
+    "type":"skirt",
+    "name":"스커트"
+  }
+]
