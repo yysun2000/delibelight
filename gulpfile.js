@@ -8,7 +8,6 @@ var uglify = require('gulp-uglify');
 var filter = require('gulp-filter');
 var concat = require('gulp-concat');
 var insert = require('gulp-insert');
-var clean = require('gulp-clean');
 var pkg = require('./package.json');
 
 // Set the banner content
@@ -64,7 +63,6 @@ gulp.task('unified-body',function(){
 
 gulp.task('unified-all',['unified-body'],function(){
     return gulp.src(["template/head.html","temp/body.html"])
-          .pipe(wait(1000))
           .pipe(concat("index.html"))
           .pipe(insert.wrap("<html>\n","\n</html>"))
           .pipe(gulp.dest("."));

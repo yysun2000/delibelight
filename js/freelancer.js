@@ -81,30 +81,38 @@ function openNav() {
   $('.left-menu').css("width",LeftMenuWidth);
   $(".wrapper").css("width",MainWidth);
   $(".wrapper").css("margin-left",LeftMenuWidth);
+  setTimeout(function(){
+    $(".wrapper").attr("onclick","closeNav()");    
+  },1000);
 //
 }
 
 function closeNav() {
-  console.log("close");
   $(".left-menu").css("margin-left","-"+LeftMenuWidth+"px");
   $(".wrapper").css("margin-left","0px");
+  $(".wrapper").attr("onclick","")
 }
 
-function detailTest(){
-  $("#subMan").css("display","none");
-  $(".itemlist").css("display","none");
-  $("#testDetail").css("display","block");
-  $("#back").css("display","block");
+function GoDetail(){
+  closeNav();
+  displayPage("none","none","block");
 }
 
-
-function backdetailTest(){
-  $("#subMan").css("display","block");
-  $(".itemlist").css("display","block");
-  $("#testDetail").css("display","none");
-  $("#back").css("display","none");
+function GoStore(){
+  closeNav();
+  displayPage("none","block","none");
 }
 
+function GoMain(){
+  closeNav();
+  displayPage("block","none","none");
+}
+
+function displayPage(main,store,detail){
+    $("#MainPage").css("display",main);
+    $("#StorePage").css("display",store);
+    $("#DetailPage").css("display",detail);
+}
 
 
 function filterMenu(menu){
@@ -118,8 +126,8 @@ function filterMenu(menu){
   })
   delibe.render.run(
     {
-      "selector": ".itemlist",
-      "template":$("#itemlist").html(),
+      "selector": ".StoreItemList",
+      "template":$("#StoreItemList").html(),
       "data":filteredList}
   );
 }
@@ -134,8 +142,8 @@ function filterItem(type){
   })
   delibe.render.run(
     {
-      "selector": ".itemlist",
-      "template":$("#itemlist").html(),
+      "selector": ".StoreItemList",
+      "template":$("#StoreItemList").html(),
       "data":filteredList}
   );
 }

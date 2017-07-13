@@ -6,59 +6,324 @@ var delibe = (function(){
   } // private
 
 
+
+
+
+
   var setting = [
+    /*
+    MainTopMenu
+    MainTopSubMenu
+    MainTopFollowList
+    MainTopSlider
+    MainMiddleListSlider
+    MainFocusOn
+    MainNewItem
+    MainMiddleBanner
+    MainBestItem
+    MainCategory
+    MainInstagram
+    MainFooter
+    */
+    {
+      DataURL : "./admin/json/topmenu.json",
+      templateSelector : '#MainTopMenu',
+      stateProcessor : function(data){
+        delibe.state.TopMenu.setList(data);
+      },
+      targetSelector : ".MainTopMenu",
+      afterEvent : function(){
+      }
+    },
+    {
+      DataURL : "./admin/json/topmenu.json",
+      templateSelector : '#MainTopSubMenu',
+      stateProcessor : function(data){
+        delibe.state.TopMenu.setList(data);
+      },
+      targetSelector : ".MainTopSubMenu",
+      afterEvent : function(){
+      }
+    },
+    {
+      DataURL : "./admin/json/topmenu.json",
+      templateSelector : '#MainTopFollowList',
+      stateProcessor : function(data){
+        delibe.state.TopMenu.setList(data);
+      },
+      targetSelector : ".MainTopFollowList",
+      afterEvent : function(){
+      }
+    },
+    {
+      DataURL : "./admin/json/topmenu.json",
+      templateSelector : '#MainTopSlider',
+      stateProcessor : function(data){
+        delibe.state.TopMenu.setList(data);
+      },
+      targetSelector : ".MainTopSlider",
+      afterEvent : function(){
+      }
+    },
+    {
+      DataURL : "./admin/json/topmenu.json",
+      templateSelector : '#MainMiddleListSlider',
+      stateProcessor : function(data){
+        delibe.state.TopMenu.setList(data);
+      },
+      targetSelector : ".MainMiddleListSlider",
+      afterEvent : function(){
+      }
+    },
+    {
+      DataURL : "./admin/json/topmenu.json",
+      templateSelector : '#MainFocusOn',
+      stateProcessor : function(data){
+        delibe.state.TopMenu.setList(data);
+      },
+      targetSelector : ".MainFocusOn",
+      afterEvent : function(){
+      }
+    },
+    {
+      DataURL : "./admin/json/topmenu.json",
+      templateSelector : '#MainNewItem',
+      stateProcessor : function(data){
+        delibe.state.TopMenu.setList(data);
+      },
+      targetSelector : ".MainNewItem",
+      afterEvent : function(){
+      }
+    },
+    {
+      DataURL : "./admin/json/topmenu.json",
+      templateSelector : '#MainMiddleBanner',
+      stateProcessor : function(data){
+        delibe.state.TopMenu.setList(data);
+      },
+      targetSelector : ".MainMiddleBanner",
+      afterEvent : function(){
+      }
+    },
+    {
+      DataURL : "./admin/json/topmenu.json",
+      templateSelector : '#MainBestItem',
+      stateProcessor : function(data){
+        delibe.state.TopMenu.setList(data);
+      },
+      targetSelector : ".MainBestItem",
+      afterEvent : function(){
+      }
+    },
+    {
+      DataURL : "./admin/json/topmenu.json",
+      templateSelector : '#MainCategory',
+      stateProcessor : function(data){
+        delibe.state.TopMenu.setList(data);
+      },
+      targetSelector : ".MainCategory",
+      afterEvent : function(){
+      }
+    },
+    {
+      DataURL : "./admin/json/topmenu.json",
+      templateSelector : '#MainInstagram',
+      stateProcessor : function(data){
+        delibe.state.TopMenu.setList(data);
+      },
+      targetSelector : ".MainInstagram",
+      afterEvent : function(){
+      }
+    },
+    {
+      DataURL : "./admin/json/topmenu.json",
+      templateSelector : '#MainFooter',
+      stateProcessor : function(data){
+        delibe.state.TopMenu.setList(data);
+      },
+      targetSelector : ".MainFooter",
+      afterEvent : function(){
+      }
+    },
+    /*
+      StoreTopMenuInfo
+      StoreSubInfo
+      StoreFilterMenu
+      StoreItemList
+    */
+
+
       {
         DataURL : "./admin/json/topmenu.json",
-        templateSelector : '#TopMenuTemplate',
+        templateSelector : '#StoreTopMenuInfo',
         stateProcessor : function(data){
           delibe.state.TopMenu.setList(data);
         },
-        targetSelector : "#topmenu",
+        targetSelector : ".StoreTopMenuInfo",
         afterEvent : function(){
         }
       },
       {
-        DataURL : "./admin/json/itemlist.json",
-        templateSelector : '#itemlist',
+        DataURL : "./admin/json/topmenu.json",
+        templateSelector : '#StoreSubInfo',
         stateProcessor : function(data){
-          delibe.state.ItemList.setList(data);
         },
-        targetSelector : ".itemlist",
+        targetSelector : ".StoreSubInfo",
         afterEvent : function(){
         }
       },
       {
         DataURL : "./admin/json/filter.json",
-        templateSelector : '#filterMenu',
+        templateSelector : '#StoreFilterMenu',
         stateProcessor : function(data){
           delibe.state.FilterList.setList(data);
         },
-        targetSelector : ".filterMainMenu",
+        targetSelector : ".StoreFilterMenu",
         afterEvent : function(){
         },
         },
         {
-          DataURL : "./admin/json/filter.json",
-          templateSelector : '#MainInfo',
+          DataURL : "./admin/json/itemlist.json",
+          templateSelector : '#StoreItemList',
           stateProcessor : function(data){
-            //delibe.state.FilterList.setList(data);
+            delibe.state.ItemList.setList(data);
           },
-          targetSelector : ".mainInfo",
+          targetSelector : ".StoreItemList",
           afterEvent : function(){
           }
         },
 
+
+
+
+
+
+
           // 좌측 메뉴
+          /*
+          LeftMenuTopMenuInfo
+          LeftMenuFollowList
+          LeftMenuMenuList
+          LeftMenuLatestList
+          LeftMenuFooter
+          */
           {
             DataURL : "./admin/json/filter.json",
-            templateSelector : '#LeftMenu',
+            templateSelector : '#LeftMenuTopMenuInfo',
             stateProcessor : function(data){
               //delibe.state.FilterList.setList(data);
             },
-            targetSelector : ".leftMenu",
+            targetSelector : ".LeftMenuTopMenuInfo",
             afterEvent : function(){
             }
-        }
+          },
+          {
+            DataURL : "./admin/json/filter.json",
+            templateSelector : '#LeftMenuFollowList',
+            stateProcessor : function(data){
+              //delibe.state.FilterList.setList(data);
+            },
+            targetSelector : ".LeftMenuFollowList",
+            afterEvent : function(){
+            }
+          },
+          {
+            DataURL : "./admin/json/filter.json",
+            templateSelector : '#LeftMenuMenuList',
+            stateProcessor : function(data){
+              //delibe.state.FilterList.setList(data);
+            },
+            targetSelector : ".LeftMenuMenuList",
+            afterEvent : function(){
+            }
+          },
+          {
+            DataURL : "./admin/json/filter.json",
+            templateSelector : '#LeftMenuLatestList',
+            stateProcessor : function(data){
+              //delibe.state.FilterList.setList(data);
+            },
+            targetSelector : ".LeftMenuLatestList",
+            afterEvent : function(){
+            }
+          },
+          {
+            DataURL : "./admin/json/filter.json",
+            templateSelector : '#LeftMenuFooter',
+            stateProcessor : function(data){
+              //delibe.state.FilterList.setList(data);
+            },
+            targetSelector : ".LeftMenuFooter",
+            afterEvent : function(){
+            }
+          },
+
+          //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+          // 디테일 페이지 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+          //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+          {
+            DataURL : "./admin/json/filter.json",
+            templateSelector : '#DetailTopMenu',
+            stateProcessor : function(data){
+              //delibe.state.FilterList.setList(data);
+            },
+            targetSelector : ".DetailTopMenu",
+            afterEvent : function(){
+            }
+          },
+          {
+            DataURL : "./admin/json/filter.json",
+            templateSelector : '#DetailSlider',
+            stateProcessor : function(data){
+              //delibe.state.FilterList.setList(data);
+            },
+            targetSelector : ".DetailSlider",
+            afterEvent : function(){
+            }
+          },
+          {
+            DataURL : "./admin/json/filter.json",
+            templateSelector : '#DetailPriceInfo',
+            stateProcessor : function(data){
+              //delibe.state.FilterList.setList(data);
+            },
+            targetSelector : ".DetailPriceInfo",
+            afterEvent : function(){
+            }
+          },
+          {
+            DataURL : "./admin/json/filter.json",
+            templateSelector : '#DetailContents',
+            stateProcessor : function(data){
+              //delibe.state.FilterList.setList(data);
+            },
+            targetSelector : ".DetailContents",
+            afterEvent : function(){
+            }
+          },
+          {
+            DataURL : "./admin/json/filter.json",
+            templateSelector : '#DetailBottomMenu',
+            stateProcessor : function(data){
+              //delibe.state.FilterList.setList(data);
+            },
+            targetSelector : ".DetailBottomMenu",
+            afterEvent : function(){
+            }
+          },
+          {
+            DataURL : "./admin/json/filter.json",
+            templateSelector : '#DetailBottomItems',
+            stateProcessor : function(data){
+              //delibe.state.FilterList.setList(data);
+            },
+            targetSelector : ".DetailBottomItems",
+            afterEvent : function(){
+            }
+          }
+
+
+
 
     ];
 
@@ -134,9 +399,6 @@ var delibe = (function(){
                 }
           });
         }else{
-          if(param.targetSelector == ".MainInfo"){
-            debugger;
-          }
           var templateHtml = $(param.templateSelector).html();
           $(param.targetSelector).append(_.template( templateHtml )(data));
         }

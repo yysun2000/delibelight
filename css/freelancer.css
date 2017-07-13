@@ -274,3 +274,138 @@ div#maincontent {
 .filterMenu .menu.menu-down > .horizontal > span:focus {
   color: #252525;
 }
+.filterMainMenu .menu.menu-up > div:active,
+.filterMainMenu .menu.menu-up > div:hover,
+.filterMainMenu .menu.menu-up > div:focus {
+  color: #252525;
+  border-bottom: 2px #fed664 solid;
+}
+.filterMainMenu .menu.menu-down > .horizontal > span:active,
+.filterMainMenu .menu.menu-down > .horizontal > span:hover,
+.filterMainMenu .menu.menu-down > .horizontal > span:focus {
+  color: #252525;
+}
+.wrapper {
+  transition: 0.5s;
+}
+.left-menu {
+  height: 100%;
+  width: 275px;
+  display: none;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  transition: 0.5s;
+  overflow-x: hidden;
+  clear: both;
+  padding: 20px 0px 0px 0px;
+}
+.left-menu .logInfo {
+  padding: 20px;
+}
+.left-menu .logInfo .title {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+.left-menu .logInfo .content {
+  font-size: 15px;
+}
+.left-menu .logInfo .button-group div {
+  width: 45%;
+  margin: 15px 0px 5px 0px;
+  padding: 10px 0px 10px 0px;
+  display: inline-block;
+  background-color: red;
+  text-align: center;
+  font-size: 15px;
+}
+.left-menu .logInfo .button-group div.yellow {
+  background-color: #fed664;
+}
+.left-menu .logInfo .button-group div.black {
+  background-color: #333333;
+  color: white;
+}
+.left-menu .submenu {
+  clear: both;
+}
+.left-menu .submenu div.group.title {
+  background-color: #eeeeee;
+}
+.left-menu .submenu div.group.title div {
+  padding: 15px 0px 15px 15px;
+}
+.left-menu .submenu div.group.contents .follow {
+  display: inline-block;
+  width: 32%;
+  text-align: center;
+}
+.left-menu .list {
+  clear: both;
+}
+.left-menu .list .list-mainmenu {
+  display: block;
+  margin: 0px;
+  padding: 0px;
+  background-color: #ffffff;
+}
+.left-menu .list .list-mainmenu.selected {
+  background-color: #333333;
+}
+.left-menu .list .list-mainmenu li div:hover {
+  background-color: #333333;
+  list-style-type: none;
+  padding: 15px 15px 15px 15px;
+  color: #fed664;
+  margin: 0px;
+}
+.left-menu .list .list-mainmenu li div {
+  background-color: #ffffff;
+  list-style-type: none;
+  padding: 15px 15px 15px 15px;
+  margin: 0px;
+}
+.left-menu .list .list-mainmenu li {
+  list-style-type: none;
+  border: 1px solid #eeeeee;
+  border-left-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  margin: 0px;
+  color: #333333;
+}
+.left-menu .list .list-mainmenu .list-submenu {
+  display: none;
+  margin: 0px;
+  padding: 0px;
+  background-color: #ffffff;
+}
+.left-menu .list .list-mainmenu .list-submenu li {
+  list-style-type: none;
+  border: 1px solid #eeeeee;
+  border-left-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  margin: 0px;
+  padding: 15px 15px 15px 20px;
+  color: #333333;
+}
+.MainTopSubMenu .subTitle .horizontal {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+.MainTopSubMenu .horizontal > span {
+  padding-left: 20px;
+  padding-right: 20px;
+  display: inline-block;
+  font-size: 15px;
+  color: #b4b4b4;
+}
+.MainTopFollowList .horizontal {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
