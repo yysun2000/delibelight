@@ -16,42 +16,27 @@
 	text-align:center;
 }
 </style>
+
+<% var itemlist = obj;%>
 <div class="focuson" style="margin-top:20px;padding-top:20px;overflow:hidden;">
-  <div class="bartitle" style="width:100%;margin:0 auto;text-align:center;">
+  <div class="bartitle" style="width:100%;margin:0 auto;text-align:center;margin-bottom:20px;">
     <div class="title">FOCUS ON</div>
   </div>
-	<div class="itemlist col-xs-12" style="padding-top:50px;">
-		<div class="col-xs-6" onclick="GoDetail();">
-			<img src="./img/focuson/MainFocusOn1.png" style="width:100%">
-			<div style="color:#0961f2;padding:12px;">[bba_na_na]</div>
-			<div>썸머홀릭 체크셔츠</div>
-			<div style="color:#999999;padding:5px;">34,000원</div>
-			<div style="color:#999999;padding:5px;"><img src="./img/focuson/hearton.png" style="margin-top:3px;width:25px;height:22px;"></div>
-		</div>
-		<div class="col-xs-6" onclick="GoDetail();">
-			<img src="./img/focuson/MainFocusOn1.png" style="width:100%">
-			<div style="color:#0961f2;padding:12px;">[bba_na_na]</div>
-			<div>플라이밍고 체크셔츠</div>
-			<div style="color:#999999;padding:5px;">34,000원</div>
-			<div style="color:#999999;padding:5px;"><img src="./img/focuson/heartoff.png" style="margin-top:3px;width:25px;height:22px;"></div>
-		</div>
-  </div>
-	<div class="itemlist col-xs-12" style="padding-top:30px;">
-		<div class="col-xs-6" onclick="GoDetail();">
-			<img src="./img/focuson/MainFocusOn1.png" style="width:100%">
-			<div style="color:#0961f2;padding:12px;">[bba_na_na]</div>
-			<div>썸머홀릭 체크셔츠</div>
-			<div style="color:#999999;padding:5px;">34,000원</div>
-			<div style="color:#999999;padding:5px;"><img src="./img/focuson/heartoff.png" style="margin-top:3px;width:25px;height:22px;"></div>
-		</div>
-		<div class="col-xs-6" onclick="GoDetail();">
-			<img src="./img/focuson/MainFocusOn1.png" style="width:100%">
-			<div style="color:#0961f2;padding:12px;">[bba_na_na]</div>
-			<div>플라이밍고 체크셔츠</div>
-			<div style="color:#999999;padding:5px;">34,000원</div>
-			<div style="color:#999999;padding:5px;"><img src="./img/focuson/heartoff.png" style="margin-top:3px;width:25px;height:22px;"></div>
-		</div>
-	</div>
+	<% for(var i=0;i<itemlist.length;i++){%>
+		<% if(i % 2 == 0){%>
+		<div class="itemlist col-xs-12" style="padding-top:30px;">
+		<%}%>
+			<div class="col-xs-6" onclick="GoDetail();">
+				<a href="detail.html#<%=itemlist[i].it_id%>"><img src="./yc/data/item/<%=itemlist[i].it_img1%>" style="width:100%"></a>
+				<div style="color:#0961f2;padding:12px;">[<%=itemlist[i].it_model%>]</div>
+				<div><%=itemlist[i].it_name%></div>
+				<div style="color:#999999;padding:5px;"><%=itemlist[i].it_price%></div>
+				<div style="color:#999999;padding:5px;"><img src="./img/focuson/hearton.png" style="margin-top:3px;width:25px;height:22px;"></div>
+			</div>
+		<% if(i % 2 == 1 || i == (itemlist.length - 1)){%>
+	  </div>
+		<%}%>
+	<%}%>
 	<div class="itemlist col-xs-12" style="padding-top:30px;text-align:center;">
 		<img src="./img/more.png" style="width:128px;height:35px;">
 	</div>

@@ -1,0 +1,15 @@
+git add admin
+git add css
+git add img
+git add js
+git add less
+git add mail
+git add template
+git add vendor
+git add commit.bat
+git add delibe.bat
+git add gulpfile.js
+git add package.json
+git add README.md
+git add test.sql
+git add yc

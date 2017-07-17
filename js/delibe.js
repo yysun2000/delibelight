@@ -1,10 +1,50 @@
+
+
 var delibe = (function(){
+
+  // UI
   var lists = {
     topmenu : [],
     filterlist : [],
     itemlist : []
   } // private
 
+
+  // DB
+  var dbprops = {
+    itemlist : []
+  }
+  var dbMethod = {};
+  var DataToTemplate = function(purl){
+    return function(cb,fuc){
+      $.ajax({
+            type:"GET",
+            url:purl,
+            dataType:"JSONP", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨,
+            contentType: "application/json;charset=utf-8",
+            callback : cb,
+            success : fuc
+          });
+    };
+  }
+  /*
+  $.ajax({
+        type:"GET",
+        url:"http://127.0.0.1:9988/yc/dbtojson/storelist.php",
+        dataType:"JSONP", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨,
+        contentType: "application/json;charset=utf-8",
+        callback : "setItemList",
+        success : function(data) {
+          dbprops.itemlist = data;
+          if(document.querySelector("#MainPage")){
+            delibe.DB.method.PrintNewItem(data);
+            delibe.DB.method.PrintBestItem(data);
+          }else if(document.querySelector("#DetailPage")){
+            delibe.DB.method.PrintSlider(data);
+            delibe.DB.method.PrintPriceInfo(data);
+          }
+        }
+  });*/
 
 
 
@@ -26,6 +66,7 @@ var delibe = (function(){
     MainFooter
     */
     {
+      Name : "Main",
       DataURL : "./admin/json/topmenu.json",
       templateSelector : '#MainTopMenu',
       stateProcessor : function(data){
@@ -36,110 +77,103 @@ var delibe = (function(){
       }
     },
     {
-      DataURL : "./admin/json/topmenu.json",
+      Name : "Main",
       templateSelector : '#MainTopSubMenu',
       stateProcessor : function(data){
-        delibe.state.TopMenu.setList(data);
       },
       targetSelector : ".MainTopSubMenu",
       afterEvent : function(){
       }
     },
     {
-      DataURL : "./admin/json/topmenu.json",
+      Name : "Main",
       templateSelector : '#MainTopFollowList',
       stateProcessor : function(data){
-        delibe.state.TopMenu.setList(data);
       },
       targetSelector : ".MainTopFollowList",
       afterEvent : function(){
       }
     },
     {
-      DataURL : "./admin/json/topmenu.json",
+      Name : "Main",
       templateSelector : '#MainTopSlider',
       stateProcessor : function(data){
-        delibe.state.TopMenu.setList(data);
       },
       targetSelector : ".MainTopSlider",
       afterEvent : function(){
       }
     },
     {
-      DataURL : "./admin/json/topmenu.json",
+      Name : "Main",
       templateSelector : '#MainMiddleListSlider',
       stateProcessor : function(data){
-        delibe.state.TopMenu.setList(data);
       },
       targetSelector : ".MainMiddleListSlider",
       afterEvent : function(){
+
       }
     },
     {
-      DataURL : "./admin/json/topmenu.json",
+      Name : "Main",
+      DataURL : "DB:PrintFocusOn",
       templateSelector : '#MainFocusOn',
       stateProcessor : function(data){
-        delibe.state.TopMenu.setList(data);
       },
       targetSelector : ".MainFocusOn",
       afterEvent : function(){
       }
     },
     {
-      DataURL : "./admin/json/topmenu.json",
+      Name : "Main",
+      DataURL : "DB:PrintNewItem",
       templateSelector : '#MainNewItem',
       stateProcessor : function(data){
-        delibe.state.TopMenu.setList(data);
       },
       targetSelector : ".MainNewItem",
       afterEvent : function(){
       }
     },
     {
-      DataURL : "./admin/json/topmenu.json",
+      Name : "Main",
       templateSelector : '#MainMiddleBanner',
       stateProcessor : function(data){
-        delibe.state.TopMenu.setList(data);
       },
       targetSelector : ".MainMiddleBanner",
       afterEvent : function(){
       }
     },
     {
-      DataURL : "./admin/json/topmenu.json",
+      Name : "Main",
+      DataURL : "DB:PrintBestItem",
       templateSelector : '#MainBestItem',
       stateProcessor : function(data){
-        delibe.state.TopMenu.setList(data);
       },
       targetSelector : ".MainBestItem",
       afterEvent : function(){
       }
     },
     {
-      DataURL : "./admin/json/topmenu.json",
+      Name : "Main",
       templateSelector : '#MainCategory',
       stateProcessor : function(data){
-        delibe.state.TopMenu.setList(data);
       },
       targetSelector : ".MainCategory",
       afterEvent : function(){
       }
     },
     {
-      DataURL : "./admin/json/topmenu.json",
+      Name : "Main",
       templateSelector : '#MainInstagram',
       stateProcessor : function(data){
-        delibe.state.TopMenu.setList(data);
       },
       targetSelector : ".MainInstagram",
       afterEvent : function(){
       }
     },
     {
-      DataURL : "./admin/json/topmenu.json",
+      Name : "Main",
       templateSelector : '#MainFooter',
       stateProcessor : function(data){
-        delibe.state.TopMenu.setList(data);
       },
       targetSelector : ".MainFooter",
       afterEvent : function(){
@@ -154,6 +188,7 @@ var delibe = (function(){
 
 
       {
+        Name : "Store",
         DataURL : "./admin/json/topmenu.json",
         templateSelector : '#StoreTopMenuInfo',
         stateProcessor : function(data){
@@ -164,6 +199,7 @@ var delibe = (function(){
         }
       },
       {
+        Name : "Store",
         DataURL : "./admin/json/topmenu.json",
         templateSelector : '#StoreSubInfo',
         stateProcessor : function(data){
@@ -173,6 +209,7 @@ var delibe = (function(){
         }
       },
       {
+        Name : "Store",
         DataURL : "./admin/json/filter.json",
         templateSelector : '#StoreFilterMenu',
         stateProcessor : function(data){
@@ -183,6 +220,7 @@ var delibe = (function(){
         },
         },
         {
+          Name : "Store",
           DataURL : "./admin/json/itemlist.json",
           templateSelector : '#StoreItemList',
           stateProcessor : function(data){
@@ -208,6 +246,7 @@ var delibe = (function(){
           LeftMenuFooter
           */
           {
+            Name : "LeftMenu",
             DataURL : "./admin/json/filter.json",
             templateSelector : '#LeftMenuTopMenuInfo',
             stateProcessor : function(data){
@@ -218,6 +257,7 @@ var delibe = (function(){
             }
           },
           {
+            Name : "LeftMenu",
             DataURL : "./admin/json/filter.json",
             templateSelector : '#LeftMenuFollowList',
             stateProcessor : function(data){
@@ -228,6 +268,7 @@ var delibe = (function(){
             }
           },
           {
+            Name : "LeftMenu",
             DataURL : "./admin/json/filter.json",
             templateSelector : '#LeftMenuMenuList',
             stateProcessor : function(data){
@@ -238,6 +279,7 @@ var delibe = (function(){
             }
           },
           {
+            Name : "LeftMenu",
             DataURL : "./admin/json/filter.json",
             templateSelector : '#LeftMenuLatestList',
             stateProcessor : function(data){
@@ -248,6 +290,7 @@ var delibe = (function(){
             }
           },
           {
+            Name : "LeftMenu",
             DataURL : "./admin/json/filter.json",
             templateSelector : '#LeftMenuFooter',
             stateProcessor : function(data){
@@ -262,6 +305,7 @@ var delibe = (function(){
           // 디테일 페이지 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
           //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
           {
+            Name : "Detail",
             DataURL : "./admin/json/filter.json",
             templateSelector : '#DetailTopMenu',
             stateProcessor : function(data){
@@ -272,7 +316,8 @@ var delibe = (function(){
             }
           },
           {
-            DataURL : "./admin/json/filter.json",
+            Name : "Detail",
+            DataURL : "DB:Slider",
             templateSelector : '#DetailSlider',
             stateProcessor : function(data){
               //delibe.state.FilterList.setList(data);
@@ -282,7 +327,8 @@ var delibe = (function(){
             }
           },
           {
-            DataURL : "./admin/json/filter.json",
+            Name : "Detail",
+            DataURL : "DB:PriceInfo",
             templateSelector : '#DetailPriceInfo',
             stateProcessor : function(data){
               //delibe.state.FilterList.setList(data);
@@ -292,6 +338,7 @@ var delibe = (function(){
             }
           },
           {
+            Name : "Detail",
             DataURL : "./admin/json/filter.json",
             templateSelector : '#DetailContents',
             stateProcessor : function(data){
@@ -302,6 +349,7 @@ var delibe = (function(){
             }
           },
           {
+            Name : "Detail",
             DataURL : "./admin/json/filter.json",
             templateSelector : '#DetailBottomMenu',
             stateProcessor : function(data){
@@ -312,6 +360,7 @@ var delibe = (function(){
             }
           },
           {
+            Name : "Detail",
             DataURL : "./admin/json/filter.json",
             templateSelector : '#DetailBottomItems',
             stateProcessor : function(data){
@@ -330,8 +379,14 @@ var delibe = (function(){
 
   return {
 
+    DB : {
+      method : dbMethod,
+      getItemList : function(){
+        return dbprops.itemlist;
+      },
+      dataTotemplate : DataToTemplate
+    },
     state : {
-
 
       TopMenu : {
         setList : function(_list){
@@ -374,7 +429,12 @@ var delibe = (function(){
         targetSelector : "#output"
         */
         if(param.DataURL){
-
+          if(param.DataURL.indexOf("DB:") > -1){
+            dbMethod[param.DataURL.split(":")[1]] = function(data){
+              var templateHtml = $(param.templateSelector).html();
+              $(param.targetSelector).append(_.template( templateHtml )(data));
+            }
+          }else{
           $.ajax({
                 type:"GET",
                 url:param.DataURL,
@@ -398,9 +458,10 @@ var delibe = (function(){
                       alert("에러발생"+status+error);
                 }
           });
+          }
         }else{
           var templateHtml = $(param.templateSelector).html();
-          $(param.targetSelector).append(_.template( templateHtml )(data));
+          $(param.targetSelector).append(_.template( templateHtml )());
         }
       },
       run : function(param){
@@ -412,7 +473,37 @@ var delibe = (function(){
       ,
       start : function(){
         for(var i=0;i<setting.length;i++){
-          delibe.render.json(setting[i])
+          try{
+            if($("#MainPage").length > 0){
+
+                if(setting[i].Name == "LeftMenu"){
+                  delibe.render.json(setting[i])
+                }
+
+                if(setting[i].Name == "Main")
+                  delibe.render.json(setting[i])
+            }else if($("#DetailPage").length > 0){
+
+                if(setting[i].Name == "LeftMenu"){
+                  delibe.render.json(setting[i])
+                }
+
+                if(setting[i].Name == "Detail")
+                  delibe.render.json(setting[i])
+            }else if($("#StorePage").length > 0){
+
+                if(setting[i].Name == "LeftMenu"){
+                  delibe.render.json(setting[i])
+                }
+
+                if(setting[i].Name == "Store")
+                  delibe.render.json(setting[i])
+
+            }
+
+          }catch(e){
+
+          }
         }
       }
 

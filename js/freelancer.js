@@ -75,14 +75,23 @@ window.onload = function(){
     LeftMenuWidth = MainWidth - 100;
     $(".left-menu").css("display","block")
     closeNav();
+
+
+
+    DataToTemplate();
+    //
 }
+
+
+
 function openNav() {
+  $(".left-menu").css("transition", "0.5s");
   $(".left-menu").css("margin-left","0px");
   $('.left-menu').css("width",LeftMenuWidth);
   $(".wrapper").css("width",MainWidth);
   $(".wrapper").css("margin-left",LeftMenuWidth);
   setTimeout(function(){
-    $(".wrapper").attr("onclick","closeNav()");    
+    $(".wrapper").attr("onclick","closeNav()");
   },1000);
 //
 }
@@ -94,18 +103,22 @@ function closeNav() {
 }
 
 function GoDetail(){
-  closeNav();
-  displayPage("none","none","block");
+  location.href="./detail.html";
+//  closeNav();
+//  displayPage("none","none","block");
 }
 
 function GoStore(){
-  closeNav();
-  displayPage("none","block","none");
+location.href="./store.html";
+//  closeNav();
+//  displayPage("none","block","none");
 }
 
 function GoMain(){
-  closeNav();
-  displayPage("block","none","none");
+  location.href="./index.html";
+//  closeNav();
+//  displayPage("block","none","none");
+
 }
 
 function displayPage(main,store,detail){
@@ -146,4 +159,33 @@ function filterItem(type){
       "template":$("#StoreItemList").html(),
       "data":filteredList}
   );
+}
+
+
+
+function DataToTemplate(){
+  var connect = delibe.DB.dataTotemplate;
+  var DataTo = delibe.DB.method;
+
+  if(document.querySelector("#MainPage")){
+    connect("http://127.0.0.1:9988/yc/api/item.php?q=/focus")("getFocus",function(data){
+      DataTo.PrintFocusOn(data);
+    });
+    connect("http://127.0.0.1:9988/yc/api/item.php")("getItem",function(data) {
+      DataTo.PrintNewItem(data);
+      DataTo.PrintBestItem(data);
+    })
+  }
+
+
+  if(document.querySelector("#DetailPage")){
+      var detailData = location.href.split("#")[1];
+      connect("http://127.0.0.1:9988/yc/api/item.php?q=/"+detailData)("getDetail",function(data){
+        console.log(data);
+        DataTo.PriceInfo(data);
+        DataTo.Slider(data);
+      });
+  }
+
+
 }
