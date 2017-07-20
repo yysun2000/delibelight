@@ -1,5 +1,6 @@
 <script type="text/template" id="MainTopFollowList">
-
+  <% var itemlist = obj;%>
+  <% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
 
   <div style="
     color:black;
@@ -15,11 +16,12 @@
       .MainTopFollow{
         display:inline-block;
       }
-      .MainTopFollow img{
+      .MainTopFollow > a >img{
         text-align: center;
         width:70px;
         display:inline-block;
         margin-top:15px;
+        border-radius:50%;
       }
       .MainTopFollow > div{
         display:block;
@@ -30,54 +32,14 @@
         margin-left:15px;
       }
       </style>
-      <div class="MainTopFollow" onclick="GoStore();">
-        <img src="./img/main/ud1nong.png">
-        <div><span>anong</span></div>
+      <% for(i=0;i<itemlist.length;i++){%>
+      <div class="MainTopFollow">
+        <a href="./store.html#<%=itemlist[i].name%>">
+        <img src="<%=url%>/yc/data/face/<%=itemlist[i].face%>">
+        </a>
+        <div><span><%=itemlist[i].name%></span></div>
       </div>
-
-      <div class="MainTopFollow" onclick="GoStore();">
-        <img src="./img/main/ud1nong.png">
-        <div><span>ud1nong</span></div>
-      </div>
-
-      <div class="MainTopFollow" onclick="GoStore();">
-        <img src="./img/main/ud1nong.png">
-        <div><span>ud1nong</span></div>
-      </div>
-
-      <div class="MainTopFollow" onclick="GoStore();">
-        <img src="./img/main/ud1nong.png">
-        <div><span>ud1nong</span></div>
-      </div>
-
-      <div class="MainTopFollow" onclick="GoStore();">
-        <img src="./img/main/ud1nong.png">
-        <div><span>ud1nong</span></div>
-      </div>
-
-
-      <div class="MainTopFollow" onclick="GoStore();">
-        <img src="./img/main/ud1nong.png">
-        <div><span>ud1nong</span></div>
-      </div>
-
-
-      <div class="MainTopFollow" onclick="GoStore();">
-        <img src="./img/main/ud1nong.png">
-        <div><span>ud1nong</span></div>
-      </div>
-
-
-      <div class="MainTopFollow" onclick="GoStore();">
-        <img src="./img/main/ud1nong.png">
-        <div><span>ud1nong</span></div>
-      </div>
-
-
-      <div class="MainTopFollow" onclick="GoStore();">
-        <img src="./img/main/ud1nong.png">
-        <div><span>ud1nong</span></div>
-      </div>
+      <%}%>
   </div>
 
 </script>

@@ -1,0 +1,37 @@
+<script type="text/template" id="JoinTopMenu">
+
+  <% var topmenulist = obj;%>
+  <nav style="background-color:#fed664;height:75px;padding-top:9px;margin-bottom:-9px;" class="navbar navbar-default" role="navigation">
+      <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+              <!--
+                1-1 셋삼 처리로직 (css)
+                .navbar-header > .navbar-toggle {
+                  float:left;
+                  margin-left:10px;
+                  border-color:transparent;
+                }
+              --->
+              <button onclick="openNav()" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" style="float:left;margin-left:13px;border-color:transparent;">
+                  <span class="sr-only" >Toggle navigation</span>
+                  <span class="icon-bar" style="background-color:#252525;"></span>
+                  <span class="icon-bar" style="background-color:#252525;"></span>
+                  <span class="icon-bar" style="background-color:#252525;"></span>
+              </button>
+              <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
+              <!--
+                1- 3 브랜드 중앙
+                .navbar-header > .navbar-brand{
+                  left: 50%;margin-left:-42px;position: absolute;
+                }
+              -->
+              <span class="navbar-brand" href="#" onclick="GoMain()" style="left: 50%;margin-left:-42px;position: absolute;font-size:30px;color:#252525;">#Be</span>
+
+          </div>
+          <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container -->
+  </nav>
+
+</script>

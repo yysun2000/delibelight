@@ -360,6 +360,13 @@ div#maincontent {
   color: #fed664;
   margin: 0px;
 }
+.left-menu .list .list-mainmenu li div.active {
+  background-color: #333333;
+  list-style-type: none;
+  padding: 15px 15px 15px 15px;
+  color: #fed664;
+  margin: 0px;
+}
 .left-menu .list .list-mainmenu li div {
   background-color: #ffffff;
   list-style-type: none;

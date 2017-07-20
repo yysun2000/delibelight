@@ -1,16 +1,18 @@
 <script type="text/template" id="StoreSubInfo">
-  <div class="subTitle">chuu_official</div>
+  <% var itemlist = obj;%>
+  <% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
+  <div class="subTitle"><%=itemlist[0].shopname%></div>
   <div id="subMan">
-    <div class="subInfo">
+    <div class="subInfo"> 
       <div style="display:inline;height:inherit">
         <div class="pic">
-        <img src="img\subinfo\subInfoMockup.png" style="width:100px;">
+        <img src="<%=url%>/yc/data/face/<%=itemlist[0].face%>" style="width:100px;border-radius: 50%;">
         </div>
       </div>
       <div style="display:inline">
         <div class="info">
-          <div style="font-size:15px;font-weight:bold;color:#555555">츄</div>
-          <div style="font-size:15px;font-weight:500;color:#999999">#큐티 #러블리</div>
+          <div style="font-size:15px;font-weight:bold;color:#555555"><%=itemlist[0].name%></div>
+          <div style="font-size:15px;font-weight:500;color:#999999"><%=itemlist[0].keyword%></div>
         </div>
       </div>
 

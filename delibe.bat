@@ -1,1 +1,1 @@
-Atom ./ | gulp dev
+Atom ./

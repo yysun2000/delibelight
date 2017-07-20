@@ -3,11 +3,14 @@ Itemlist 관련
 --->
 <script type="text/template" id="StoreItemList">
 <% var itemlist = obj;%>
+<% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
 <% for(var i=0;i<itemlist.length;i++){%>
 <% if((i%3) == 0){%>
   <div class="col-xs-12" style="padding:0;margin:0">
 <% } %>
-    <div onclick="GoDetail()" class="col-xs-4" style="width:33.33333333%;height:33.33333333%;padding:0px;margin:0px;"><img src="<%=itemlist[i].image%>" class="responsive" style="width:100%;height:100%;"/></div>
+  <a href="./detail.html#<%=itemlist[i].it_id%>">
+    <div class="col-xs-4" style="width:33.33333333%;height:33.33333333%;padding:0px;margin:0px;"><img src="<%=url%>/yc/data/item/<%=itemlist[i].it_img1%>" class="responsive" style="width:100%;height:100%;"/></div>
+  </a>
 <% if((i%3) == 2 || (i%3) == itemlist.length){%>
 </div>
 <% } %>

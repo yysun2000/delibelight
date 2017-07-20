@@ -1,4 +1,8 @@
-<html>
+<?php
+include_once('./yc/common.php');
+define('_SHOP_', true);
+?>
+<!DOCTYPE html><html>
 <head>
 
     <meta charset="utf-8">
@@ -8,18 +12,23 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Freelancer - Start Bootstrap Theme</title>
+    <title>Delibe Light</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Theme CSS -->
-    <link href="css/freelancer.min.css" rel="stylesheet">
+    <link href="css/common.min.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="http://0sun.net/pub/intop/yc/theme/basic/css/mobile_shop.css?ver=161020">
+    <link rel="stylesheet" href="http://0sun.net/pub/intop/yc/mobile/skin/member/delibe/style.css?ver=161020">
+
+
+    <link rel="stylesheet" href="css/swiper.css"/>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -29,8 +38,12 @@
     <![endif]-->
 
 </head>
-
 <body>
+<?php
+if ($is_member)
+  echo "<div id='loginsuccess' style='display:none'></div>";
+?>
+
 <div id="skipnav"><a href="#maincontent">Skip to main content</a></div>
     <!-- Navigation -->
 
@@ -60,25 +73,6 @@
         <div class="MainFooter"></div>
       </div>
 
-
-      <div id="DetailPage" style="display:none">
-        <div class="DetailTopMenu"></div>
-        <div class="DetailSlider"></div>
-        <div class="DetailPriceInfo"></div>
-        <div class="DetailContents"></div>
-        <div class="DetailBottomMenu"></div>
-        <div class="DetailBottomItems"></div>
-      </div>
-
-
-      <div id="StorePage" style="display:none">
-        <div style="background-color:black;" class="StoreTopMenuInfo"></div>
-        <div class="StoreSubInfo"></div>
-        <div class="StoreFilterMenu filterMenu"></div>
-        <div class="StoreItemList"></div>
-      </div>
-
-
       <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
       <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
           <a class="btn btn-primary" href="#page-top">
@@ -86,371 +80,6 @@
           </a>
       </div>
   </div>
-
-    <!-- jQuery -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    <!-- Plugin JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-    <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
-    <!-- Theme JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-    <script src="js/delibe.js"></script>
-
-<head>
-
-    <meta charset="utf-8">
-    <META http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Freelancer - Start Bootstrap Theme</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Theme CSS -->
-    <link href="css/freelancer.min.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
-<script src="js/freelancer.min.js"></script>
-
-<script type="text/template" id="DetailTopMenu">
-<% var topmenulist = obj;%>
-<nav style="background-color:#fed664;height:75px;padding-top:9px;margin-bottom:-9px;" class="navbar navbar-default" role="navigation">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <!--
-              1-1 셋삼 처리로직 (css)
-              .navbar-header > .navbar-toggle {
-                float:left;
-                margin-left:10px;
-                border-color:transparent;
-              }
-            --->
-            <button onclick="openNav()" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" style="float:left;margin-left:13px;border-color:transparent;">
-                <span class="sr-only" >Toggle navigation</span>
-                <span class="icon-bar" style="background-color:#252525;"></span>
-                <span class="icon-bar" style="background-color:#252525;"></span>
-                <span class="icon-bar" style="background-color:#252525;"></span>
-            </button>
-            <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-            <!--
-              1- 3 브랜드 중앙
-              .navbar-header > .navbar-brand{
-                left: 50%;margin-left:-42px;position: absolute;
-              }
-            -->
-            <a class="navbar-brand"  href="#" onclick="GoMain()" style="left: 50%;margin-left:-42px;position: absolute;font-size:30px;color:#252525;">#Be</a>
-
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
-</nav>
-<div class="subTitle">chuu_official</div>
-
-</script>
-
-<script type="text/template" id="DetailSlider">
-  <div class="col-xs-12" style="padding:0px;margin:0px;">
-    <img src="./img/detailMock.png" style="width:100%;">
-  </div>
-</script>
-
-<script type="text/template" id="DetailPriceInfo">
-  <div class="col-xs-12" style="padding:20px 0px 10px 0px;">
-    <div class="col-xs-2">
-      <div style="text-align:left">상품명</div>
-      <div style="text-align:left;">가격</div>
-    </div>
-    <div class="col-xs-8">
-      <div style="text-align:left;color:#bbbbbb">썸머홀릭 체크셔츠</div>
-      <div style="text-align:left;color:#bbbbbb">12,000원</div>
-    </div>
-  </div>
-</script>
-
-<script type="text/template" id="DetailContents">
-
-  <div class="filterMenu">
-    <div class="menu menu-up col-xs-12" style="border-top:2px #e4e4e4 solid">
-        <div class="col-xs-3">
-          <span>디테일</span>
-        </div>
-        <div class="col-xs-3">
-          <span>상품정보</span>
-        </div>
-        <div class="col-xs-3">
-          <span>상품후기</span>
-        </div>
-        <div class="col-xs-3">
-          <span>상품문의</span>
-        </div>
-    </div>
-  </div>
-
-
-  <!--- 임시데이터 ---->
-  <style>
-    .contentt > div{
-      margin:5px 0px 5px 0px;
-    }
-
-
-      .contentt .tablec > div{
-        margin:10px 0px 10px 0px;
-        clear:both;
-      }
-      .tablec > div > div {
-        border:1px #eeeeee solid;
-        padding:10px;
-        text-align:center;
-      }
-      .tablec > div > div:first-child{
-        background-color: #eeeeee;
-      }
-  </style>
-
-  <div class="contentt col-xs-12" style="margin-top:20px;margin-bottom:20px;">
-    <div>소재 : 레이온 100% </div>
-    <div>색상 : 아이보리,블랙 </div>
-    <div>사이즈 : S,M,L </div>
-
-    <div class="tablec" style="display:inline-block;width:100%;">
-      <div>
-        <div class="col-xs-3">사이즈</div>
-        <div class="col-xs-3">S</div>
-        <div class="col-xs-3">M</div>
-        <div class="col-xs-3">L</div>
-      </div>
-
-      <div>
-        <div class="col-xs-3">허리단면</div>
-        <div class="col-xs-3">32</div>
-        <div class="col-xs-3">32</div>
-        <div class="col-xs-3">32</div>
-      </div>
-
-
-      <div>
-        <div class="col-xs-3">힙단면</div>
-        <div class="col-xs-3">32</div>
-        <div class="col-xs-3">32</div>
-        <div class="col-xs-3">32</div>
-      </div>
-
-
-      <div>
-        <div class="col-xs-3">밑위단면</div>
-        <div class="col-xs-3">32</div>
-        <div class="col-xs-3">32</div>
-        <div class="col-xs-3">32</div>
-      </div>
-
-      <div>
-        <div class="col-xs-3">허벅지단면</div>
-        <div class="col-xs-3">32</div>
-        <div class="col-xs-3">32</div>
-        <div class="col-xs-3">32</div>
-      </div>
-
-      <div>
-        <div class="col-xs-3">총장</div>
-        <div class="col-xs-3">32</div>
-        <div class="col-xs-3">32</div>
-        <div class="col-xs-3">32</div>
-      </div>
-    </div>
-      <div style="padding-top:10px;">신축성 : 있음 </div>
-      <div>계절감 : 여름 </div>
-      <div>안감 : 없음 </div>
-      <div>세탁방법 : 소재에 맞는 드라이크리닝 권장 </div>
-      <div>제조국 : 대한민국 </div>
-
-      <div style="color:#cccccc;padding:0px;margin-top:20px;margin-bottom:20px;font-size:15px;line-height:10px;">
-      　<div>- 위의 실측사이즈는 '단면의 길이'입니다.</div>
-      　<div>- 사이즈는 측정방법에 따라 1~3cm 정도 오차가 있을 수 있습니다.</div>
-      　<div>- 모니터 해상도에 따라 제품 실제 색상과 다소 차이가 있을 수 있습니다.</div>
-      　<div> - 제품컷의 색상이 실제 제품 색상과 가장 비슷합니다.</div>
-      　<div>- 품질보증기준 : 소비자 분쟁해결</div>
-      　<div> - A/S 책임자 : 럭키페이스 (1522-1631)</div>
-      </div>
-
-  </div>
-
-</script>
-
-<script type="text/template" id="DetailBottomMenu">
-      <div class="filterMenu">
-        <div class="menu menu-up col-xs-12">
-            <div class="col-xs-6">
-              <span>함께 코디한 상품</span>
-            </div>
-            <div class="col-xs-6">
-              <span>당신을 위한 추천상품</span>
-            </div>
-        </div>
-      </div>
-</script>
-
-<script type="text/template" id="DetailBottomItems">
-
-
-</script>
-
-<script type="text/template" id="LeftMenuTopMenuInfo">
-  <div class="logInfo">
-    <div class="group title"><span>#B</span><span  onclick="closeNav()"style="float:right;">X</span></div>
-    <div class="group content">
-      <div>안녕하세요, 인탑님. </div>
-      <div>#B에 오신걸 환영합니다.</div>
-    </div>
-    <div class="group button-group">
-      <div class="yellow">마이페이지</div>
-      <div class="black">위시리스트</div>
-    </div>
-  </div>
-</script>
-
-<script type="text/template" id="LeftMenuFollowList">
-  <div class="submenu">
-    <div class="group title">
-      <div>Folow</div>
-    </div>
-    <div class="group contents">
-      <div class="follow" onclick="GoStore();">
-        <div class="face" style="padding:20 20 10 20px;"><img src="img\subinfo\subInfoMockup.png" style="width:100%;"></div>
-        <div class="name" style="padding-bottom:20px;">chu</div>
-      </div>
-      <div class="follow" onclick="GoStore();">
-        <div class="face" style="padding:20 20 10 20px;"><img src="img\subinfo\subInfoMockup.png" style="width:100%;"></div>
-        <div class="name" style="padding-bottom:20px;">chu</div>
-      </div>
-      <div class="follow" onclick="GoStore();">
-        <div class="face" style="padding:20 20 10 20px;"><img src="img\subinfo\subInfoMockup.png" style="width:100%;"></div>
-        <div class="name" style="padding-bottom:20px;">chu</div>
-      </div>
-    </div>
-  </div>
-</script>
-
-<script type="text/template" id="LeftMenuMenuList">
-  <div class="list">
-    <div class="group tab">
-      <div style="background-color: #eeeeee;text-align:center;width:50%;float:left;padding:15px 0px 15px 0px;">
-        <div>Item</div>
-      </div>
-      <div style="border: 1px solid #eeeeee;border-left-width:0px;border-right-width:0px;border-bottom-width:0px;text-align:center;width:50%;float:left;padding:15px 0px 15px 0px;">
-        <div>Celeb</div>
-      </div>
-    </div>
-    <ul class="list-mainmenu" style="clear:both;">
-      <li>
-        <div>아우터</div>
-        <ul class="list-submenu">
-          <li>- 가디건</li>
-          <li>- 가디건</li>
-          <li>- 가디건</li>
-          <li>- 가디건</li>
-        </ul>
-      </li>
-      <li>
-        <div>상의</div>
-        <ul class="list-submenu">
-          <li>- 가디건</li>
-          <li>- 가디건</li>
-          <li>- 가디건</li>
-          <li>- 가디건</li>
-        </ul>
-      </li>
-      <li>
-        <div>하의</div>
-        <ul class="list-submenu">
-          <li>- 가디건</li>
-          <li>- 가디건</li>
-          <li>- 가디건</li>
-          <li>- 가디건</li>
-        </ul>
-      </li>
-      <li>
-        <div>원피스</div>
-        <ul class="list-submenu">
-          <li>- 가디건</li>
-          <li>- 가디건</li>
-          <li>- 가디건</li>
-          <li>- 가디건</li>
-        </ul>
-      </li>
-      <li>
-        <div>세트</div>
-        <ul class="list-submenu">
-          <li>- 가디건</li>
-          <li>- 가디건</li>
-          <li>- 가디건</li>
-          <li>- 가디건</li>
-        </ul>
-      </li>
-    </ul>
-</div>
-</script>
-
-
-<script type="text/template" id="LeftMenuLatestList">
-  <div class="submenu">
-    <div class="group title">
-      <div>최근에 본 상품</div>
-    </div>
-    <div class="group contents">
-      <div class="follow" onclick="GoDetail();">
-        <div class="face"><img src="./img/shoplist/1.jpg" style="padding:10px 0px 10px 10px;width:100%;"/></div>
-      </div>
-      <div class="follow" onclick="GoDetail();">
-        <div class="face"><img src="./img/shoplist/1.jpg" style="padding:10px 0px 10px 10px;width:100%;"/></div>
-      </div>
-      <div class="follow" onclick="GoDetail();">
-        <div class="face"><img src="./img/shoplist/1.jpg" style="padding:10px 0px 10px 10px;width:100%;"/></div>
-      </div>
-    </div>
-  </div>
-</script>
-
-<script type="text/template" id="LeftMenuFooter">
-  <div class="footer" style="padding:15px;background-color: #333333;color:#888888;">
-    <div class="group title">
-    <div style="display:block;text-align:center;">
-      <div style="display:inline-block;width:10%;text-align:left;vertical-align:middle;">ㅅ</div>
-      <div style="display:inline-block;width:40%;vertical-align:middle;text-align:left;font-size:8px;">
-        <div>고객센터</div>
-        <div>Weekdays 9:30 ~ 18:00</div>
-        <div>Sat,Sun,Holiday OFF</div>
-      </div>
-      <div style="display:inline-block;text-align:left;width:45%;font-size:20px;vertical-align:middle;">
-        <span style="margin:5px;">1522-6631</span>
-      </div>
-    </div>
-    </div>
-  </div>
-</script>
 
 <script type="text/template" id="MainCategory">
 
@@ -472,8 +101,9 @@
   <div class="bartitle" style="width:100%;margin:0 auto;text-align:center;">
     <div class="title">CATEGORY</div>
   </div>
-  <div style="background-color:#ffffff;margin-top: 30px;overflow:hidden;">
-    <div class="col-xs-12" style="margin:0px;padding:0px;">
+  <div class="swiper-container blackgray-pagination" style="background-color:#ffffff;margin-top: 30px;overflow:hidden;">
+		<div class="swiper-wrapper">
+		<div class="col-xs-12 swiper-slide" style="margin:0px;padding:0px;">
       <div class="col-xs-6">
         <img src="./img/category/MainCategory1.png" style="width:100%;">
       </div>
@@ -481,12 +111,18 @@
         <img src="./img/category/MainCategory2.png" style="width:100%;">
       </div>
     </div>
-
-  <div style="width:100%;text-align:center;width:100%;">
-    <div style="margin-top:0px;background-color:black;width:15px;height:2px;display:inline-block;"></div>
-    <div style="margin-top:0px;background-color:#999999;width:15px;height:2px;display:inline-block;"></div>
-    <div style="margin-top:0px;background-color:#999999;width:15px;height:2px;display:inline-block;"></div>
-  </div>
+		<div class="col-xs-12 swiper-slide" style="margin:0px;padding:0px;">
+			<div class="col-xs-6">
+				<img src="./img/category/MainCategory1.png" style="width:100%;">
+			</div>
+			<div class="col-xs-6">
+				<img src="./img/category/MainCategory2.png" style="width:100%;">
+			</div>
+		</div>
+	</div>
+		<div class="mmls-pagination" style="text-align:center;">
+		</div>
+	</div>
 
 </script>
 
@@ -543,6 +179,15 @@
 <script type="text/template" id="MainFooter">
 
 
+    <script>
+    var swiper = new Swiper('.swiper-container', {
+       pagination: '.mmls-pagination',
+       paginationClickable: true,
+       autoplay:5000
+    });
+    $(".mmls-pagination").css("text-align","center");
+    $(".mmls-pagination").css("margin","2px");
+    </script>
 </script>
 
 <script type="text/template" id="MainTopMenu">
@@ -599,7 +244,8 @@
 </script>
 
 <script type="text/template" id="MainTopFollowList">
-
+  <% var itemlist = obj;%>
+  <% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
 
   <div style="
     color:black;
@@ -615,11 +261,12 @@
       .MainTopFollow{
         display:inline-block;
       }
-      .MainTopFollow img{
+      .MainTopFollow > a >img{
         text-align: center;
         width:70px;
         display:inline-block;
         margin-top:15px;
+        border-radius:50%;
       }
       .MainTopFollow > div{
         display:block;
@@ -630,54 +277,14 @@
         margin-left:15px;
       }
       </style>
-      <div class="MainTopFollow" onclick="GoStore();">
-        <img src="./img/main/ud1nong.png">
-        <div><span>ud1nong</span></div>
+      <% for(i=0;i<itemlist.length;i++){%>
+      <div class="MainTopFollow">
+        <a href="./store.html#<%=itemlist[i].name%>">
+        <img src="<%=url%>/yc/data/face/<%=itemlist[i].face%>">
+        </a>
+        <div><span><%=itemlist[i].name%></span></div>
       </div>
-
-      <div class="MainTopFollow" onclick="GoStore();">
-        <img src="./img/main/ud1nong.png">
-        <div><span>ud1nong</span></div>
-      </div>
-
-      <div class="MainTopFollow" onclick="GoStore();">
-        <img src="./img/main/ud1nong.png">
-        <div><span>ud1nong</span></div>
-      </div>
-
-      <div class="MainTopFollow" onclick="GoStore();">
-        <img src="./img/main/ud1nong.png">
-        <div><span>ud1nong</span></div>
-      </div>
-
-      <div class="MainTopFollow" onclick="GoStore();">
-        <img src="./img/main/ud1nong.png">
-        <div><span>ud1nong</span></div>
-      </div>
-
-
-      <div class="MainTopFollow" onclick="GoStore();">
-        <img src="./img/main/ud1nong.png">
-        <div><span>ud1nong</span></div>
-      </div>
-
-
-      <div class="MainTopFollow" onclick="GoStore();">
-        <img src="./img/main/ud1nong.png">
-        <div><span>ud1nong</span></div>
-      </div>
-
-
-      <div class="MainTopFollow" onclick="GoStore();">
-        <img src="./img/main/ud1nong.png">
-        <div><span>ud1nong</span></div>
-      </div>
-
-
-      <div class="MainTopFollow" onclick="GoStore();">
-        <img src="./img/main/ud1nong.png">
-        <div><span>ud1nong</span></div>
-      </div>
+      <%}%>
   </div>
 
 </script>
@@ -691,31 +298,52 @@
 </script>
 
 <script type="text/template" id="MainMiddleListSlider">
-  <div style="background-color:#ffffff;margin-top: 50px;overflow:hidden;">
-    <div class="col-xs-12" style="margin:0px;padding:0px;">
-      <div class="col-xs-6" style="margin:0px;padding:0px;">
-        <img src="./img/main/MainMiddleListSlider1.png" style="width:100%;">
-      </div>
-      <div class="col-xs-6" style="margin:0px;padding:0px;">
-        <img src="./img/main/MainMiddleListSlider2.png" style="width:100%;">
-      </div>
-    </div>
-    <div class="col-xs-12" style="margin-top:5px;padding:0px;">
-      <div class="col-xs-6" style="margin:0px;padding:0px;">
-        <img src="./img/main/MainMiddleListSlider3.png" style="width:100%;">
-      </div>
-      <div class="col-xs-6" style="margin:0px;padding:0px;">
-        <img src="./img/main/MainMiddleListSlider4.png" style="width:100%;">
-      </div>
-    </div>
-  </div>
+      <div style="background-color:#ffffff;margin-top: 50px;overflow:hidden;">
 
-  <div style="width:100%;text-align:center;width:100%;">
-    <div style="margin-top:0px;background-color:black;width:15px;height:2px;display:inline-block;"></div>
-    <div style="margin-top:0px;background-color:#999999;width:15px;height:2px;display:inline-block;"></div>
-    <div style="margin-top:0px;background-color:#999999;width:15px;height:2px;display:inline-block;"></div>
-  </div>
+        <div class="MainMiddleListSlider-main blackgray-pagination swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="col-xs-12" style="margin:0px;padding:0px;">
+                <div class="col-xs-6" style="margin:0px;padding:0px;">
+                  <img src="./img/main/MainMiddleListSlider1.png" style="width:100%;">
+                </div>
+                <div class="col-xs-6" style="margin:0px;padding:0px;">
+                  <img src="./img/main/MainMiddleListSlider2.png" style="width:100%;">
+                </div>
+              </div>
+              <div class="col-xs-12" style="margin-top:5px;padding:0px;">
+                <div class="col-xs-6" style="margin:0px;padding:0px;">
+                  <img src="./img/main/MainMiddleListSlider3.png" style="width:100%;">
+                </div>
+                <div class="col-xs-6" style="margin:0px;padding:0px;">
+                  <img src="./img/main/MainMiddleListSlider4.png" style="width:100%;">
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="col-xs-12" style="margin:0px;padding:0px;">
+                <div class="col-xs-6" style="margin:0px;padding:0px;">
+                  <img src="./img/main/MainMiddleListSlider1.png" style="width:100%;">
+                </div>
+                <div class="col-xs-6" style="margin:0px;padding:0px;">
+                  <img src="./img/main/MainMiddleListSlider2.png" style="width:100%;">
+                </div>
+              </div>
+              <div class="col-xs-12" style="margin-top:5px;padding:0px;">
+                <div class="col-xs-6" style="margin:0px;padding:0px;">
+                  <img src="./img/main/MainMiddleListSlider3.png" style="width:100%;">
+                </div>
+                <div class="col-xs-6" style="margin:0px;padding:0px;">
+                  <img src="./img/main/MainMiddleListSlider4.png" style="width:100%;">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mmls-pagination">
+          </div>
 
+  </div>
+  </div>
 
 </script>
 
@@ -737,48 +365,35 @@
 	text-align:center;
 }
 </style>
+
+<% var itemlist = obj;%>
+<% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
+
 <div class="focuson" style="margin-top:20px;padding-top:20px;overflow:hidden;">
-  <div class="bartitle" style="width:100%;margin:0 auto;text-align:center;">
+  <div class="bartitle" style="width:100%;margin:0 auto;text-align:center;margin-bottom:20px;">
     <div class="title">FOCUS ON</div>
   </div>
-	<div class="itemlist col-xs-12" style="padding-top:50px;">
-		<div class="col-xs-6" onclick="GoDetail();">
-			<img src="./img/focuson/MainFocusOn1.png" style="width:100%">
-			<div style="color:#0961f2;padding:12px;">[bba_na_na]</div>
-			<div>썸머홀릭 체크셔츠</div>
-			<div style="color:#999999;padding:5px;">34,000원</div>
-			<div style="color:#999999;padding:5px;"><img src="./img/focuson/hearton.png" style="margin-top:3px;width:25px;height:22px;"></div>
-		</div>
-		<div class="col-xs-6" onclick="GoDetail();">
-			<img src="./img/focuson/MainFocusOn1.png" style="width:100%">
-			<div style="color:#0961f2;padding:12px;">[bba_na_na]</div>
-			<div>플라이밍고 체크셔츠</div>
-			<div style="color:#999999;padding:5px;">34,000원</div>
-			<div style="color:#999999;padding:5px;"><img src="./img/focuson/heartoff.png" style="margin-top:3px;width:25px;height:22px;"></div>
-		</div>
-  </div>
-	<div class="itemlist col-xs-12" style="padding-top:30px;">
-		<div class="col-xs-6" onclick="GoDetail();">
-			<img src="./img/focuson/MainFocusOn1.png" style="width:100%">
-			<div style="color:#0961f2;padding:12px;">[bba_na_na]</div>
-			<div>썸머홀릭 체크셔츠</div>
-			<div style="color:#999999;padding:5px;">34,000원</div>
-			<div style="color:#999999;padding:5px;"><img src="./img/focuson/heartoff.png" style="margin-top:3px;width:25px;height:22px;"></div>
-		</div>
-		<div class="col-xs-6" onclick="GoDetail();">
-			<img src="./img/focuson/MainFocusOn1.png" style="width:100%">
-			<div style="color:#0961f2;padding:12px;">[bba_na_na]</div>
-			<div>플라이밍고 체크셔츠</div>
-			<div style="color:#999999;padding:5px;">34,000원</div>
-			<div style="color:#999999;padding:5px;"><img src="./img/focuson/heartoff.png" style="margin-top:3px;width:25px;height:22px;"></div>
-		</div>
+	<% for(var i=0;i<itemlist.length;i++){%>
+		<% if(i % 2 == 0){%>
+		<div class="itemlist col-xs-12" style="padding-top:30px;">
+		<%}%>
+			<div class="col-xs-6">
+				<a href="detail.html#<%=itemlist[i].it_id%>"><img src="<%=url%>/yc/data/item/<%=itemlist[i].it_img1%>" style="width:100%"></a>
+				<div style="color:#0961f2;padding:12px;">[<%=itemlist[i].it_model%>]</div>
+				<div><%=itemlist[i].it_name%></div>
+				<div style="color:#999999;padding:5px;"><%=itemlist[i].it_price%></div>
+				<div style="color:#999999;padding:5px;"><img src="<%=url%>/img/focuson/hearton.png" style="margin-top:3px;width:25px;height:22px;"></div>
+			</div>
+		<% if(i % 2 == 1 || i == (itemlist.length - 1)){%>
+	  </div>
+		<%}%>
+	<%}%>
+	<div class="itemlist col-xs-12" style="padding-top:30px;text-align:center;">
+		<img src="<%=url%>/img/more.png" style="width:128px;height:35px;">
 	</div>
 	<div class="itemlist col-xs-12" style="padding-top:30px;text-align:center;">
-		<img src="./img/more.png" style="width:128px;height:35px;">
-	</div>
-	<div class="itemlist col-xs-12" style="padding-top:30px;text-align:center;">
-		<img src="./img/2x2.png" style="width:33px;height:33px;margin:2px;">
-		<img src="./img/2x6.png" style="width:33px;height:33px;margin:2px;">
+		<img src="<%=url%>/img/2x2.png" style="width:33px;height:33px;margin:2px;">
+		<img src="<%=url%>/img/2x6.png" style="width:33px;height:33px;margin:2px;">
 	</div>
 </div>
 </script>
@@ -802,78 +417,35 @@
 	<div class="bartitle" style="width:100%;margin:0 auto;text-align:center;">
     <div class="title">NEW ITEM</div>
   </div>
-	<div class="itemlist2 col-xs-12" style="margin-top:30px;padding:0px;">
+	<% var itemlist = obj;%>
+	<% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
+
+	<% for(i=0;i<itemlist.length;i++){%>
+		<% if(i % 3 == 0){%>
+		<div class="itemlist col-xs-12" style="padding-top:30px;">
+		<%}%>
 		<div class="col-xs-4" onclick="GoDetail();" style="padding:1px;">
-			<img src="./img/newitem/MainNewItemProduct.png" style="width:100%">
-			<div style="padding-left:10px;"><img src="./img/newitem/MainNewItemFace.png" style="margin-top:-25px;width:50px;height:50px;"></div>
-			<div style="padding-left:10px;padding-bottom:20px">ro.junghwa</div>
-			<div style="padding-left:10px;padding-bottom:5px">레드미 티셔츠</div>
+			<a href="./detail.html#<%=itemlist[i].it_id%>"><img src="<%=url%>/yc/data/item/<%=itemlist[i].it_img1%>" style="width:100%"></a>
+			<div style="padding-left:10px;"><img src="<%=url%>/yc/data/face/<%=itemlist[i].it_model%>/<%=itemlist[i].it_model%>.jpg" style="margin-top:-25px;width:50px;height:50px;border-radius:50%;"></div>
+			<div style="padding-left:10px;padding-bottom:20px"><%=itemlist[i].it_model%></div>
+			<div style="padding-left:10px;padding-bottom:5px"><%=itemlist[i].it_name%></div>
 			<div style="width:100%">
-			<div style="padding-left:10px;padding-bottom:5px;display:inline-block;">24,000원</div>
-			<div style="display:inline-block;float:right;"><img src="./img/focuson/heartoff.png" style="vertical-align:middle;width:25px;height:22px;"></div>
-			</div>
-		</div>
-		<div class="col-xs-4" onclick="GoDetail();" style="padding:1px;">
-			<img src="./img/newitem/MainNewItemProduct.png" style="width:100%">
-			<div style="padding-left:10px;"><img src="./img/newitem/MainNewItemFace.png" style="margin-top:-25px;width:50px;height:50px;"></div>
-			<div style="padding-left:10px;padding-bottom:20px">ro.junghwa</div>
-			<div style="padding-left:10px;padding-bottom:5px">레드미 티셔츠</div>
-			<div style="width:100%">
-			<div style="padding-left:10px;padding-bottom:5px;display:inline-block;">24,000원</div>
-			<div style="display:inline-block;float:right;"><img src="./img/focuson/heartoff.png" style="vertical-align:middle;width:25px;height:22px;"></div>
-			</div>
-		</div>
-		<div class="col-xs-4" onclick="GoDetail();" style="padding:1px;">
-			<img src="./img/newitem/MainNewItemProduct.png" style="width:100%">
-			<div style="padding-left:10px;"><img src="./img/newitem/MainNewItemFace.png" style="margin-top:-25px;width:50px;height:50px;"></div>
-			<div style="padding-left:10px;padding-bottom:20px">ro.junghwa</div>
-			<div style="padding-left:10px;padding-bottom:5px">레드미 티셔츠</div>
-			<div style="width:100%">
-			<div style="padding-left:10px;padding-bottom:5px;display:inline-block;">24,000원</div>
-			<div style="display:inline-block;float:right;"><img src="./img/focuson/heartoff.png" style="vertical-align:middle;width:25px;height:22px;"></div>
+			<div style="padding-left:10px;padding-bottom:5px;display:inline-block;"><%=itemlist[i].it_price%></div>
+			<div style="display:inline-block;float:right;"><img src="<%=url%>/img/focuson/heartoff.png" style="vertical-align:middle;width:25px;height:22px;"></div>
 			</div>
 		</div>
 
-	</div>
-	<div class="itemlist2 col-xs-12" style="margin-top:30px;padding:0px;">
-		<div class="col-xs-4" onclick="GoDetail();" style="padding:1px;">
-			<img src="./img/newitem/MainNewItemProduct.png" style="width:100%">
-			<div style="padding-left:10px;"><img src="./img/newitem/MainNewItemFace.png" style="margin-top:-25px;width:50px;height:50px;"></div>
-			<div style="padding-left:10px;padding-bottom:20px">ro.junghwa</div>
-			<div style="padding-left:10px;padding-bottom:5px">레드미 티셔츠</div>
-			<div style="width:100%">
-			<div style="padding-left:10px;padding-bottom:5px;display:inline-block;">24,000원</div>
-			<div style="display:inline-block;float:right;"><img src="./img/focuson/heartoff.png" style="vertical-align:middle;width:25px;height:22px;"></div>
-			</div>
+		<% if(i % 3 == 2 || i == (itemlist.length - 1)){%>
 		</div>
-		<div class="col-xs-4" onclick="GoDetail();" style="padding:1px;">
-			<img src="./img/newitem/MainNewItemProduct.png" style="width:100%">
-			<div style="padding-left:10px;"><img src="./img/newitem/MainNewItemFace.png" style="margin-top:-25px;width:50px;height:50px;"></div>
-			<div style="padding-left:10px;padding-bottom:20px">ro.junghwa</div>
-			<div style="padding-left:10px;padding-bottom:5px">레드미 티셔츠</div>
-			<div style="width:100%">
-			<div style="padding-left:10px;padding-bottom:5px;display:inline-block;">24,000원</div>
-			<div style="display:inline-block;float:right;"><img src="./img/focuson/heartoff.png" style="vertical-align:middle;width:25px;height:22px;"></div>
-			</div>
-		</div>
-		<div class="col-xs-4" onclick="GoDetail();" style="padding:1px;">
-			<img src="./img/newitem/MainNewItemProduct.png" style="width:100%">
-			<div style="padding-left:10px;"><img src="./img/newitem/MainNewItemFace.png" style="margin-top:-25px;width:50px;height:50px;"></div>
-			<div style="padding-left:10px;padding-bottom:20px">ro.junghwa</div>
-			<div style="padding-left:10px;padding-bottom:5px">레드미 티셔츠</div>
-			<div style="width:100%">
-			<div style="padding-left:10px;padding-bottom:5px;display:inline-block;">24,000원</div>
-			<div style="display:inline-block;float:right;"><img src="./img/focuson/heartoff.png" style="vertical-align:middle;width:25px;height:22px;"></div>
-			</div>
-		</div>
+		<%}%>
 
-	</div>
+		<%}%>
 	<div class="itemlist col-xs-12" style="padding-top:30px;text-align:center;">
-		<img src="./img/more.png" style="width:128px;height:35px;">
+		<img src="<%=url%>/img/more.png" style="width:128px;height:35px;">
 	</div>
 	<div class="itemlist col-xs-12" style="padding-top:30px;padding-bottom:30px;text-align:center;">
-		<img src="./img/2x2.png" style="width:33px;height:33px;margin:2px;">
-		<img src="./img/2x6.png" style="width:33px;height:33px;margin:2px;">
+		<img src="<%=url%>/img/2x2.png" style="width:33px;height:33px;margin:2px;">
+		<img src="<%=url%>/img/2x6.png" style="width:33px;height:33px;margin:2px;">
 	</div>
 </div>
 
@@ -890,6 +462,7 @@
 </script>
 
 <script type="text/template" id="MainBestItem">
+<% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
 
 <style>
 .bartitle{
@@ -905,172 +478,166 @@
   font-size:20px;
 }
 </style>
+<% var itemlist = obj;%>
+
 <div class="focuson" style="margin-top:20px;padding-top:20px;overflow:hidden;">
 	<div class="bartitle" style="width:100%;margin:0 auto;text-align:center;">
     <div class="title">BEST ITEMS</div>
   </div>
-	<div class="itemlist2 col-xs-12" style="margin-top:30px;padding:0px;">
-		<div class="col-xs-6" onclick="GoDetail();" style="padding:1px;">
-			<img src="./img/newitem/MainNewItemProduct.png" style="width:100%">
-			<div style="padding-left:10px;"><img src="./img/newitem/MainNewItemFace.png" style="margin-top:-25px;width:50px;height:50px;"></div>
-			<div style="padding-left:10px;padding-bottom:20px">ro.junghwa</div>
-			<div style="padding-left:10px;padding-bottom:5px">레드미 티셔츠</div>
-			<div style="width:100%">
-			<div style="padding-left:10px;padding-bottom:5px;display:inline-block;">24,000원</div>
-			<div style="display:inline-block;float:right;"><img src="./img/focuson/heartoff.png" style="vertical-align:middle;width:25px;height:22px;"></div>
+	<% for(var i=0;i<itemlist.length;i++){%>
+		<% if(i % 2 == 0){%>
+		<div class="itemlist col-xs-12" style="padding-top:30px;">
+		<%}%>
+			<div class="col-xs-6" onclick="GoDetail();">
+				<a href="detail.html#<%=itemlist[i].it_id%>"><img src="<%=url%>/yc/data/item/<%=itemlist[i].it_img1%>" style="width:100%"></a>
+				<div style="color:#0961f2;padding:12px;">[<%=itemlist[i].it_model%>]</div>
+				<div><%=itemlist[i].it_name%></div>
+				<div style="color:#999999;padding:5px;"><%=itemlist[i].it_price%></div>
+				<div style="color:#999999;padding:5px;"><img src="<%=url%>/img/focuson/hearton.png" style="margin-top:3px;width:25px;height:22px;"></div>
 			</div>
-		</div>
-		<div class="col-xs-6" onclick="GoDetail();" style="padding:1px;">
-			<img src="./img/newitem/MainNewItemProduct.png" style="width:100%">
-			<div style="padding-left:10px;"><img src="./img/newitem/MainNewItemFace.png" style="margin-top:-25px;width:50px;height:50px;"></div>
-			<div style="padding-left:10px;padding-bottom:20px">ro.junghwa</div>
-			<div style="padding-left:10px;padding-bottom:5px">레드미 티셔츠</div>
-			<div style="width:100%">
-			<div style="padding-left:10px;padding-bottom:5px;display:inline-block;">24,000원</div>
-			<div style="display:inline-block;float:right;"><img src="./img/focuson/heartoff.png" style="vertical-align:middle;width:25px;height:22px;"></div>
-			</div>
-		</div>
-
-	</div>
-	<div class="itemlist2 col-xs-12" style="margin-top:30px;padding:0px;">
-		<div class="col-xs-6" onclick="GoDetail();" style="padding:1px;">
-			<img src="./img/newitem/MainNewItemProduct.png" style="width:100%">
-			<div style="padding-left:10px;"><img src="./img/newitem/MainNewItemFace.png" style="margin-top:-25px;width:50px;height:50px;"></div>
-			<div style="padding-left:10px;padding-bottom:20px">ro.junghwa</div>
-			<div style="padding-left:10px;padding-bottom:5px">레드미 티셔츠</div>
-			<div style="width:100%">
-			<div style="padding-left:10px;padding-bottom:5px;display:inline-block;">24,000원</div>
-			<div style="display:inline-block;float:right;"><img src="./img/focuson/heartoff.png" style="vertical-align:middle;width:25px;height:22px;"></div>
-			</div>
-		</div>
-		<div class="col-xs-6" onclick="GoDetail();" style="padding:1px;">
-			<img src="./img/newitem/MainNewItemProduct.png" style="width:100%">
-			<div style="padding-left:10px;"><img src="./img/newitem/MainNewItemFace.png" style="margin-top:-25px;width:50px;height:50px;"></div>
-			<div style="padding-left:10px;padding-bottom:20px">ro.junghwa</div>
-			<div style="padding-left:10px;padding-bottom:5px">레드미 티셔츠</div>
-			<div style="width:100%">
-			<div style="padding-left:10px;padding-bottom:5px;display:inline-block;">24,000원</div>
-			<div style="display:inline-block;float:right;"><img src="./img/focuson/heartoff.png" style="vertical-align:middle;width:25px;height:22px;"></div>
-			</div>
-		</div>
-
-	</div>
+		<% if(i % 2 == 1 || i == (itemlist.length - 1)){%>
+	  </div>
+		<%}%>
+	<%}%>
 	<div class="itemlist col-xs-12" style="padding-top:30px;text-align:center;">
-		<img src="./img/more.png" style="width:128px;height:35px;">
+		<img src="<%=url%>/img/more.png" style="width:128px;height:35px;">
 	</div>
 	<div class="itemlist col-xs-12" style="padding-top:30px;padding-bottom:30px;text-align:center;">
-		<img src="./img/2x2.png" style="width:33px;height:33px;margin:2px;">
-		<img src="./img/2x6.png" style="width:33px;height:33px;margin:2px;">
+		<img src="<%=url%>/img/2x2.png" style="width:33px;height:33px;margin:2px;">
+		<img src="<%=url%>/img/2x6.png" style="width:33px;height:33px;margin:2px;">
 	</div>
 </div>
 
 </script>
 
-<script type="text/template" id="StoreTopMenuInfo">
-<% var topmenulist = obj;%>
-<nav style="background-color:#fed664;height:75px;padding-top:9px;margin-bottom:-9px;" class="navbar navbar-default" role="navigation">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <!--
-              1-1 셋삼 처리로직 (css)
-              .navbar-header > .navbar-toggle {
-                float:left;
-                margin-left:10px;
-                border-color:transparent;
-              }
-            --->
-            <button onclick="openNav()" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" style="float:left;margin-left:13px;border-color:transparent;">
-                <span class="sr-only" >Toggle navigation</span>
-                <span class="icon-bar" style="background-color:#252525;"></span>
-                <span class="icon-bar" style="background-color:#252525;"></span>
-                <span class="icon-bar" style="background-color:#252525;"></span>
-            </button>
-            <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-            <!--
-              1- 3 브랜드 중앙
-              .navbar-header > .navbar-brand{
-                left: 50%;margin-left:-42px;position: absolute;
-              }
-            -->
-            <a class="navbar-brand"  href="#" onclick="GoMain()" style="left: 50%;margin-left:-42px;position: absolute;font-size:30px;color:#252525;">#Be</a>
-
-        </div>
-        <!-- /.navbar-collapse -->
+<script type="text/template" id="LeftMenuTopMenuInfo">
+  <div class="logInfo">
+    <div class="group title"><span>#B</span><span  onclick="closeNav()"style="float:right;">X</span></div>
+    <div class="group content">
+      <div>안녕하세요, 인탑님. </div>
+      <div>#B에 오신걸 환영합니다.</div>
     </div>
-    <!-- /.container -->
-</nav>
+    <%if(document.querySelector("#loginsuccess")){%>
+      <div class="group button-group">
+        <div class="yellow">마이페이지</div>
+        <div class="black">위시리스트</div>
+      </div>
+    <%}else{%>
+
+      <div class="group button-group">
+        <a href="login.html?device=mobile"><div class="yellow">로그인</div></a>
+        <a href="joincheck.html?device=mobile"><div class="black">회원가입</div></a>
+      </div>
+    <%}%>
+  </div>
 </script>
 
-<script type="text/template" id="StoreSubInfo">
-  <div class="subTitle">chuu_official</div>
-  <div id="subMan">
-    <div class="subInfo">
-      <div style="display:inline;height:inherit">
-        <div class="pic">
-        <img src="img\subinfo\subInfoMockup.png" style="width:100px;">
-        </div>
+<script type="text/template" id="LeftMenuFollowList">
+  <div class="submenu">
+    <div class="group title">
+      <div>Folow</div>
+    </div>
+    <div class="group contents">
+      <div class="follow" onclick="GoStore();">
+        <div class="face" style="padding:20 20 10 20px;"><img src="img\subinfo\subInfoMockup.png" style="width:100%;"></div>
+        <div class="name" style="padding-bottom:20px;">chu</div>
       </div>
-      <div style="display:inline">
-        <div class="info">
-          <div style="font-size:15px;font-weight:bold;color:#555555">츄</div>
-          <div style="font-size:15px;font-weight:500;color:#999999">#큐티 #러블리</div>
-        </div>
+      <div class="follow" onclick="GoStore();">
+        <div class="face" style="padding:20 20 10 20px;"><img src="img\subinfo\subInfoMockup.png" style="width:100%;"></div>
+        <div class="name" style="padding-bottom:20px;">chu</div>
       </div>
-
-        <div class="right">
-          <div class="info">
-            <div class="followbutton" onclick="">
-              +팔로우
-            </div>
-          </div>
-        </div>
+      <div class="follow" onclick="GoStore();">
+        <div class="face" style="padding:20 20 10 20px;"><img src="img\subinfo\subInfoMockup.png" style="width:100%;"></div>
+        <div class="name" style="padding-bottom:20px;">chu</div>
+      </div>
     </div>
   </div>
 </script>
 
-<!---
-filterMenu 관련
---->
-<script type="text/template" id="StoreFilterMenu">
-<% var filterlist = obj;%>
-  <div class="menu menu-up col-xs-12">
-      <div class="col-xs-4" onclick="filterMenu('<%=filterlist[0].menu[0]%>')">
-        <span><%=filterlist[0].menu[0]%></span>
-      </div>
-      <div class="col-xs-4" onclick="filterMenu('<%=filterlist[0].menu[1]%>')">
-        <span><%=filterlist[0].menu[1]%></span>
-      </div>
-      <div class="col-xs-4" onclick="filterMenu('<%=filterlist[0].menu[2]%>')">
-        <span><%=filterlist[0].menu[2]%></span>
-      </div>
-  </div>
-  <div class="menu menu-down col-xs-12">
-    <div class="horizontal">
-      <% for(i=1;i<filterlist.length;i++){%>
-        <span onclick="filterItem('<%=filterlist[i].type%>')"><%=filterlist[i].name%></span>
-      <%}%>
-    </div>
-  </div>
-</script>
+<script type="text/template" id="LeftMenuMenuList">
+  <% var categorylist = obj.sort(function(a,b){return (a.ca_id.toString() > b.ca_id.toString() ? 1 : 0 )});%>
 
-<!---
-Itemlist 관련
---->
-<script type="text/template" id="StoreItemList">
-<% var itemlist = obj;%>
-<% for(var i=0;i<itemlist.length;i++){%>
-<% if((i%3) == 0){%>
-  <div class="col-xs-12" style="padding:0;margin:0">
-<% } %>
-    <div onclick="GoDetail()" class="col-xs-4" style="width:33.33333333%;height:33.33333333%;padding:0px;margin:0px;"><img src="<%=itemlist[i].image%>" class="responsive" style="width:100%;height:100%;"/></div>
-<% if((i%3) == 2 || (i%3) == itemlist.length){%>
+  <div class="list">
+    <div class="group tab">
+      <div style="background-color: #eeeeee;text-align:center;width:50%;float:left;padding:15px 0px 15px 0px;">
+        <div>Item</div>
+      </div>
+      <div style="border: 1px solid #eeeeee;border-left-width:0px;border-right-width:0px;border-bottom-width:0px;text-align:center;width:50%;float:left;padding:15px 0px 15px 0px;">
+        <div>Celeb</div>
+      </div>
+    </div>
+    <ul class="list-mainmenu" style="clear:both;">
+      <% for(i=0;i<categorylist.length;i++){%>
+      <% var caid=categorylist[i].ca_id %>
+      <li>
+        <% if(caid.toString().length == 2){%>
+        <div><%=categorylist[i].ca_name%></div>
+        <ul class="list-submenu">
+        <% while(categorylist[i+1] !== undefined && categorylist[i+1].ca_id.toString().length == 4){%>
+            <li>- <%=categorylist[i++].ca_name%></li>
+        <%}%>
+        </ul>
+        <%}%>
+
+
+      </li>
+      <% }%>
+
+    </ul>
 </div>
-<% } %>
-<%}%>
-
-
 </script>
+
+
+<script type="text/template" id="LeftMenuLatestList">
+  <div class="submenu">
+    <div class="group title">
+      <div>최근에 본 상품</div>
+    </div>
+    <div class="group contents">
+      <div class="follow" onclick="GoDetail();">
+        <div class="face"><img src="./img/shoplist/1.jpg" style="padding:10px 0px 10px 10px;width:100%;"/></div>
+      </div>
+      <div class="follow" onclick="GoDetail();">
+        <div class="face"><img src="./img/shoplist/1.jpg" style="padding:10px 0px 10px 10px;width:100%;"/></div>
+      </div>
+      <div class="follow" onclick="GoDetail();">
+        <div class="face"><img src="./img/shoplist/1.jpg" style="padding:10px 0px 10px 10px;width:100%;"/></div>
+      </div>
+    </div>
+  </div>
+</script>
+
+<script type="text/template" id="LeftMenuFooter">
+  <div class="footer" style="padding:15px;background-color: #333333;color:#888888;">
+    <div class="group title">
+    <div style="display:block;text-align:center;">
+      <div style="display:inline-block;width:10%;text-align:left;vertical-align:middle;">ㅅ</div>
+      <div style="display:inline-block;width:40%;vertical-align:middle;text-align:left;font-size:8px;">
+        <div>고객센터</div>
+        <div>Weekdays 9:30 ~ 18:00</div>
+        <div>Sat,Sun,Holiday OFF</div>
+      </div>
+      <div style="display:inline-block;text-align:left;width:45%;font-size:20px;vertical-align:middle;">
+        <span style="margin:5px;">1522-6631</span>
+      </div>
+    </div>
+    </div>
+  </div>
+</script>
+
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/jquery.lazyload.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Plugin JavaScript -->
+    <script src="js/jquery.easing.min.js"></script>
+<script src="js/swiper.js"></script>
+<!-- Theme JavaScript -->
+<script src="js/underscore.js"></script>
+<script src="js/backcontroller.min.js"></script>
+<script src="js/frontcontroller.min.js"></script>
 
 </body>
 </html>

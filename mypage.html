@@ -1,0 +1,443 @@
+<?php
+include_once('./yc/common.php');
+define('_SHOP_', true);
+?>
+<!DOCTYPE html><html>
+<head>
+
+    <meta charset="utf-8">
+    <META http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Delibe Light</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="css/common.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="http://0sun.net/pub/intop/yc/theme/basic/css/mobile_shop.css?ver=161020">
+    <link rel="stylesheet" href="http://0sun.net/pub/intop/yc/mobile/skin/member/delibe/style.css?ver=161020">
+
+
+    <link rel="stylesheet" href="css/swiper.css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+<div id="skipnav"><a href="#maincontent">Skip to main content</a></div>
+    <!-- Navigation -->
+
+    <div id="leftMenu"  class="left-menu">
+      <div class="LeftMenuTopMenuInfo"></div>
+      <div class="LeftMenuFollowList"></div>
+      <div class="LeftMenuMenuList"></div>
+      <div class="LeftMenuLatestList"></div>
+      <div class="LeftMenuFooter"></div>
+    </div>
+
+
+    <div class="wrapper">
+
+      <div id="MyPage">
+        <div class="MyPageTopMenu"></div>
+        <div class="MyPageTopState"></div>
+        <div class="MyPageTabSelector"></div>
+        <div class="MyPageTabOrderFilter"></div>
+        <div class="MyPageTabOrderList"></div>
+        <div class="MyPageTabWishList"></div>
+        <div class="MyPageTabMemberModify"></div>
+        <div class="MyPageTabPoint"></div>
+        <div class="MyPageTabWillPoint"></div>
+        <div class="MyPageTabCoupon"></div>
+      </div>
+      <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+      <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
+          <a class="btn btn-primary" href="#page-top">
+              <i class="fa fa-chevron-up"></i>
+          </a>
+      </div>
+  </div>
+
+<script type="text/template" id="MyPageTopMenu">
+    <% var topmenulist = obj;%>
+    <nav style="background-color:#fed664;height:75px;padding-top:9px;margin-bottom:-9px;" class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <!--
+                  1-1 셋삼 처리로직 (css)
+                  .navbar-header > .navbar-toggle {
+                    float:left;
+                    margin-left:10px;
+                    border-color:transparent;
+                  }
+                --->
+                <button onclick="openNav()" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" style="float:left;margin-left:13px;border-color:transparent;">
+                    <span class="sr-only" >Toggle navigation</span>
+                    <span class="icon-bar" style="background-color:#252525;"></span>
+                    <span class="icon-bar" style="background-color:#252525;"></span>
+                    <span class="icon-bar" style="background-color:#252525;"></span>
+                </button>
+                <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
+                <!--
+                  1- 3 브랜드 중앙
+                  .navbar-header > .navbar-brand{
+                    left: 50%;margin-left:-42px;position: absolute;
+                  }
+                -->
+                <span class="navbar-brand" href="#" onclick="GoMain()" style="left: 50%;margin-left:-42px;position: absolute;font-size:30px;color:#252525;">#Be</span>
+
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+</script>
+
+<script type="text/template" id="MyPageTopState">
+    <div class="subTitle">마이페이지</div>
+    <style>
+    .topstate{display:block;background-color: #333333;padding:15px 0px 15px 20px;}
+    .topstate .line{display:block;color:white;margin:5px;}
+    .topstate .line > span.isvalue {color:blue;color:#6c9cff;}
+    </style>
+    <div class="topstate">
+      <div class="line">
+        인탑님 반갑습니다.
+      </div>
+      <div class="line">
+        <span>적립금 : </span> <span class="isvalue">1000원</span>
+        <span>예치금 : </span> <span class="isvalue">0원</span>
+        <span>쿠폰 : </span> <span class="isvalue">1개</span>
+      </div>
+    </div>
+</script>
+
+<script type="text/template" id="MyPageTabSelector">
+<style>
+.tabselector{display:block;clear:both;overflow:hidden;margin: 0px auto;}
+.tabselector .line{width:100%;display:block;padding:0;margin:0px auto;text-align: center;}
+.tabselector .button {width:32%;height:40px;padding-left: 15px;text-align:left;line-height: 40px;background-color: white; display: inline-block;}
+.tabselector .button > img {width:25px;height:25px;}
+.tabselector .button > span {padding-left: 5px;color:#333333;word-wrap: normal;word-break: keep-all;font-size: 12px;}
+</style>
+<div>
+  <div class="tabselector">
+    <div class="line line">
+      <div class="button"><img src="./img/mypage/orderlist.png"/><span>주문내역</span></div>
+      <div class="button"><img src="./img/mypage/orderlist.png"/><span>위시리스트</span></div>
+      <div class="button"><img src="./img/mypage/orderlist.png"/><span>나의정보수정</span></div>
+    </div>
+    <div class="line">
+      <div class="button"><img src="./img/mypage/orderlist.png"/><span>적립금</span></div>
+      <div class="button"><img src="./img/mypage/orderlist.png"/><span>예치금</span></div>
+      <div class="button"><img src="./img/mypage/orderlist.png"/><span>쿠폰</span></div>
+    </div>
+  </div>
+</div>
+</script>
+
+<script type="text/template" id="MyPageTabOrderFilter">
+<style>
+.taborderfliter{display:block;padding:0px;margin:10px 0px 0px 0px;overflow: hidden;}
+.taborderfliter .line{width:100%;display:block;padding:0px;text-align: center;overflow: hidden;}
+.taborderfliter .block{float:left;height:50px;line-height: 50px;width:50%;background-color: #ffffff;display:inline-block;padding:0px;margin:0px auto;text-align: center;}
+.taborderfliter .block.isactive{background-color: #fdd04e;}
+.taborderfliter .content{width:100%;}
+.taborderfliter .contentline{padding:10px 0px 0px 10px;display: block;}
+.taborderfliter .title{width:15%;display: inline-block;}
+.taborderfliter .condition{width:83%;display: inline-block;}
+.taborderfliter .button{display:inline-block;border: 1px #999999 solid;padding:5px 7px 5px 7px;border-radius: 5px;}
+input.date{ width:80px;padding:5px 3px 5px 3px;border-radius: 5px;}
+input.calenderbutton{ width:25px; padding:0px;margin:0px; }
+</style>
+<div>
+  <div class="taborderfliter">
+    <div class="line">
+      <div class="block isactive"><span>주문내역(3건)</span></div>
+      <div class="block "><span>취소/교환/반품내역(0건)</span></div>
+    </div>
+    <div class="content">
+      <div class="contentline">
+        <div class="title">기간</div>
+        <div class="condition">
+          <span class="button">오늘</span>
+          <span class="button">1개월</span>
+          <span class="button">3개월</span>
+          <span class="button">6개월</span>
+        </div>
+      </div>
+      <div class="contentline">
+        <div class="title"><span>기간설정</span></div>
+        <div class="condition">
+          <input class="date" type="input" value="2017-00-00"></input>
+            <input class="calenderbutton" type="image" src="./img/mypage/calenderbutton.png"></input>
+              <span>~</span>
+          <input class="date" type="input" value="2017-00-00"></input>
+            <input class="calenderbutton" type="image" src="./img/mypage/calenderbutton.png"></input>
+              <span class="button"style="color:white;float:right;margin-top:3px;margin-right:10px;background-color:#333333">조회</span>
+        </div>
+      </div>
+    </div>
+</div>
+</script>
+
+<script type="text/template" id="MyPageTabOrderList">
+<style>
+.orderlist{display:block;background-color: #ffffff;padding:15px 0px 15px 0px;}
+.orderlist .line{width:100%;display:block;color:#474747;margin:5px;}
+.orderlist .line .product {display:inline-block;width:35%;}
+.orderlist .line .productinfo {display:inline-block;width:63%;}
+.orderlist .line .productinfo >span {display:block;}
+.orderlist .line.isCenter{text-align: center}
+.orderlist .header {background-color: #f9f9f9;padding:15px 0px 15px 0px;}
+.orderlist .line .button.isState {background-color: #42669f;color:white;}
+.orderlist .line .button {display:inline-block;width:22%;border:1px #a3a3a3 solid;border-radius: 5px; padding:10px;}
+</style>
+<div class="orderlist">
+  <div class="order">
+    <div class="header">
+      <div class="line" style="margin-left:25px;"><span style="font-weight:bold">2017-01-01</span> (201701011234)</div>
+    </div>
+    <div class="contents">
+      <div class="content">
+        <div class="line">
+          <div class="product">
+            <span><img src="./img/newitem/MainNewItemProduct.png" style="width:100%;height:100%;padding:15px 20px 15px 20px;"/></span>
+          </div>
+          <div class="productinfo" style="padding-top:20px;">
+            <span style="color:#0961f2;">[style]</span>
+            <span style="color:#474747;">셔츠</span>
+            <span style="color:#999999;">34,000원</span>
+            <span style="color:#999999;">SIZE : S | COLOR : RED | 1개</span>
+          </div>
+        </div>
+        <div class="line isCenter">
+          <div class="button isState">배송준비중</div>
+          <div class="button">상세보기</div>
+          <div class="button">배송조회</div>
+          <div class="button">구매후기</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</script>
+
+<script type="text/template" id="MyPageTabWishList">
+<style>
+.wishlist{display:block;background-color: #ffffff;padding:15px 0px 15px 0px;}
+.wishlist .line{width:100%;display:block;color:#474747;}
+.wishlist .block{height:50px;line-height: 50px;width:100%;background-color: #ffffff;display:inline-block;padding:0px;margin:0px auto;text-align: center;}
+.wishlist .block.isactive{background-color: #fdd04e;}
+.wishlist .line .product {display:inline-block;width:35%;}
+.wishlist .line .productinfo {display:inline-block;width:63%;text-align: left;}
+.wishlist .line .productinfo >span {display:block;}
+.wishlist .line.isCenter{text-align: center}
+.wishlist .header {background-color: #f9f9f9;padding:15px 0px 15px 0px;}
+.wishlist .line .button.isState {background-color: #42669f;color:white;}
+.wishlist .line .button {display:inline-block;border:1px #a3a3a3 solid;border-radius: 5px; padding:10px;}
+.wishlist .line .button.isOrder {display:inline-block;background-color:#ff0000; color:white;border:1px #a3a3a3 solid;border-radius: 5px; padding:5px;margin:10px;}
+</style>
+<div class="wishlist">
+    <div class="taborderfliter">
+      <div class="line">
+        <div class="block isactive"><span>위시리스트</span></div>
+      </div>
+    <div class="order">
+      <div class="header">
+        <div class="line">
+          <div style="display:inline-block;width:53%"></div>
+          <div style="display:inline-block;width:45%">
+            <div class="button">장바구니담기</div>
+            <div class="button">삭제</div>
+          </div>
+
+        </div>
+      </div>
+      <div class="contents">
+        <div class="content">
+          <div class="line">
+            <div class="product">
+              <span><img src="./img/newitem/MainNewItemProduct.png" style="width:100%;height:100%;padding:15px 20px 15px 20px;"/></span>
+            </div>
+            <div class="productinfo" style="padding-top:20px;">
+              <span style="color:#0961f2;">[style]</span>
+              <span style="color:#474747;">셔츠</span>
+              <span style="color:#999999;">34,000원</span>
+              <span style="color:#999999;">SIZE : S | COLOR : RED | 1개</span>
+            </div>
+          </div>
+          <div class="line" style="border: 1px #cccccc solid;border-left-width:0px;border-right-width:0px;">
+            <div style="display:inline-block;width:73%;text-align:left;padding-left:25px;">
+              <span style="font-weight:bold">상품합계:34,000원</span>
+            </div>
+            <div style="display:inline-block;width:25%">
+              <div class="button isOrder">주문하기</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</script>
+
+<script type="text/template" id="MyPageTabMemberModify">
+</script>
+
+<script type="text/template" id="MyPageTabPoint">
+</script>
+
+<script type="text/template" id="MyPageTabWillPoint">
+</script>
+
+<script type="text/template" id="MyPageTabCoupon">
+</script>
+
+<script type="text/template" id="LeftMenuTopMenuInfo">
+  <div class="logInfo">
+    <div class="group title"><span>#B</span><span  onclick="closeNav()"style="float:right;">X</span></div>
+    <div class="group content">
+      <div>안녕하세요, 인탑님. </div>
+      <div>#B에 오신걸 환영합니다.</div>
+    </div>
+    <%if(document.querySelector("#loginsuccess")){%>
+      <div class="group button-group">
+        <div class="yellow">마이페이지</div>
+        <div class="black">위시리스트</div>
+      </div>
+    <%}else{%>
+
+      <div class="group button-group">
+        <a href="login.html?device=mobile"><div class="yellow">로그인</div></a>
+        <a href="joincheck.html?device=mobile"><div class="black">회원가입</div></a>
+      </div>
+    <%}%>
+  </div>
+</script>
+
+<script type="text/template" id="LeftMenuFollowList">
+  <div class="submenu">
+    <div class="group title">
+      <div>Folow</div>
+    </div>
+    <div class="group contents">
+      <div class="follow" onclick="GoStore();">
+        <div class="face" style="padding:20 20 10 20px;"><img src="img\subinfo\subInfoMockup.png" style="width:100%;"></div>
+        <div class="name" style="padding-bottom:20px;">chu</div>
+      </div>
+      <div class="follow" onclick="GoStore();">
+        <div class="face" style="padding:20 20 10 20px;"><img src="img\subinfo\subInfoMockup.png" style="width:100%;"></div>
+        <div class="name" style="padding-bottom:20px;">chu</div>
+      </div>
+      <div class="follow" onclick="GoStore();">
+        <div class="face" style="padding:20 20 10 20px;"><img src="img\subinfo\subInfoMockup.png" style="width:100%;"></div>
+        <div class="name" style="padding-bottom:20px;">chu</div>
+      </div>
+    </div>
+  </div>
+</script>
+
+<script type="text/template" id="LeftMenuMenuList">
+  <% var categorylist = obj.sort(function(a,b){return (a.ca_id.toString() > b.ca_id.toString() ? 1 : 0 )});%>
+
+  <div class="list">
+    <div class="group tab">
+      <div style="background-color: #eeeeee;text-align:center;width:50%;float:left;padding:15px 0px 15px 0px;">
+        <div>Item</div>
+      </div>
+      <div style="border: 1px solid #eeeeee;border-left-width:0px;border-right-width:0px;border-bottom-width:0px;text-align:center;width:50%;float:left;padding:15px 0px 15px 0px;">
+        <div>Celeb</div>
+      </div>
+    </div>
+    <ul class="list-mainmenu" style="clear:both;">
+      <% for(i=0;i<categorylist.length;i++){%>
+      <% var caid=categorylist[i].ca_id %>
+      <li>
+        <% if(caid.toString().length == 2){%>
+        <div><%=categorylist[i].ca_name%></div>
+        <ul class="list-submenu">
+        <% while(categorylist[i+1] !== undefined && categorylist[i+1].ca_id.toString().length == 4){%>
+            <li>- <%=categorylist[i++].ca_name%></li>
+        <%}%>
+        </ul>
+        <%}%>
+
+
+      </li>
+      <% }%>
+
+    </ul>
+</div>
+</script>
+
+
+<script type="text/template" id="LeftMenuLatestList">
+  <div class="submenu">
+    <div class="group title">
+      <div>최근에 본 상품</div>
+    </div>
+    <div class="group contents">
+      <div class="follow" onclick="GoDetail();">
+        <div class="face"><img src="./img/shoplist/1.jpg" style="padding:10px 0px 10px 10px;width:100%;"/></div>
+      </div>
+      <div class="follow" onclick="GoDetail();">
+        <div class="face"><img src="./img/shoplist/1.jpg" style="padding:10px 0px 10px 10px;width:100%;"/></div>
+      </div>
+      <div class="follow" onclick="GoDetail();">
+        <div class="face"><img src="./img/shoplist/1.jpg" style="padding:10px 0px 10px 10px;width:100%;"/></div>
+      </div>
+    </div>
+  </div>
+</script>
+
+<script type="text/template" id="LeftMenuFooter">
+  <div class="footer" style="padding:15px;background-color: #333333;color:#888888;">
+    <div class="group title">
+    <div style="display:block;text-align:center;">
+      <div style="display:inline-block;width:10%;text-align:left;vertical-align:middle;">ㅅ</div>
+      <div style="display:inline-block;width:40%;vertical-align:middle;text-align:left;font-size:8px;">
+        <div>고객센터</div>
+        <div>Weekdays 9:30 ~ 18:00</div>
+        <div>Sat,Sun,Holiday OFF</div>
+      </div>
+      <div style="display:inline-block;text-align:left;width:45%;font-size:20px;vertical-align:middle;">
+        <span style="margin:5px;">1522-6631</span>
+      </div>
+    </div>
+    </div>
+  </div>
+</script>
+
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/jquery.lazyload.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Plugin JavaScript -->
+    <script src="js/jquery.easing.min.js"></script>
+<script src="js/swiper.js"></script>
+<!-- Theme JavaScript -->
+<script src="js/underscore.js"></script>
+<script src="js/backcontroller.min.js"></script>
+<script src="js/frontcontroller.min.js"></script>
+
+</body>
+</html>

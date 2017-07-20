@@ -1,4 +1,6 @@
 <script type="text/template" id="LeftMenuMenuList">
+  <% var categorylist = obj.sort(function(a,b){return (a.ca_id.toString() > b.ca_id.toString() ? 1 : 0 )});%>
+
   <div class="list">
     <div class="group tab">
       <div style="background-color: #eeeeee;text-align:center;width:50%;float:left;padding:15px 0px 15px 0px;">
@@ -9,51 +11,22 @@
       </div>
     </div>
     <ul class="list-mainmenu" style="clear:both;">
+      <% for(i=0;i<categorylist.length;i++){%>
+      <% var caid=categorylist[i].ca_id %>
       <li>
-        <div>아우터</div>
+        <% if(caid.toString().length == 2){%>
+        <div><%=categorylist[i].ca_name%></div>
         <ul class="list-submenu">
-          <li>- 가디건</li>
-          <li>- 가디건</li>
-          <li>- 가디건</li>
-          <li>- 가디건</li>
+        <% while(categorylist[i+1] !== undefined && categorylist[i+1].ca_id.toString().length == 4){%>
+            <li>- <%=categorylist[i++].ca_name%></li>
+        <%}%>
         </ul>
+        <%}%>
+
+
       </li>
-      <li>
-        <div>상의</div>
-        <ul class="list-submenu">
-          <li>- 가디건</li>
-          <li>- 가디건</li>
-          <li>- 가디건</li>
-          <li>- 가디건</li>
-        </ul>
-      </li>
-      <li>
-        <div>하의</div>
-        <ul class="list-submenu">
-          <li>- 가디건</li>
-          <li>- 가디건</li>
-          <li>- 가디건</li>
-          <li>- 가디건</li>
-        </ul>
-      </li>
-      <li>
-        <div>원피스</div>
-        <ul class="list-submenu">
-          <li>- 가디건</li>
-          <li>- 가디건</li>
-          <li>- 가디건</li>
-          <li>- 가디건</li>
-        </ul>
-      </li>
-      <li>
-        <div>세트</div>
-        <ul class="list-submenu">
-          <li>- 가디건</li>
-          <li>- 가디건</li>
-          <li>- 가디건</li>
-          <li>- 가디건</li>
-        </ul>
-      </li>
+      <% }%>
+
     </ul>
 </div>
 </script>
