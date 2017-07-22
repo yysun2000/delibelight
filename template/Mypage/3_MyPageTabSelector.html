@@ -1,23 +1,48 @@
 <script type="text/template" id="MyPageTabSelector">
 <style>
+
 .tabselector{display:block;clear:both;overflow:hidden;margin: 0px auto;}
 .tabselector .line{width:100%;display:block;padding:0;margin:0px auto;text-align: center;}
 .tabselector .button {width:32%;height:40px;padding-left: 15px;text-align:left;line-height: 40px;background-color: white; display: inline-block;}
 .tabselector .button > img {width:25px;height:25px;}
 .tabselector .button > span {padding-left: 5px;color:#333333;word-wrap: normal;word-break: keep-all;font-size: 12px;}
+.tabselector .button.isSelected {background-color: #eeeeee};
 </style>
 <div>
   <div class="tabselector">
     <div class="line line">
-      <div class="button"><img src="./img/mypage/orderlist.png"/><span>주문내역</span></div>
-      <div class="button"><img src="./img/mypage/orderlist.png"/><span>위시리스트</span></div>
-      <div class="button"><img src="./img/mypage/orderlist.png"/><span>나의정보수정</span></div>
+      <div class="button" data-tab="MyPageTabOrder"><img src="./img/mypage/orderlist.png"/><span>주문내역</span></div>
+      <div class="button" data-tab="MyPageTabWishList"><img src="./img/mypage/orderlist.png"/><span>위시리스트</span></div>
+      <div class="button" data-tab="MyPageTabMemberModify"><img src="./img/mypage/orderlist.png"/><span>나의정보수정</span></div>
     </div>
     <div class="line">
-      <div class="button"><img src="./img/mypage/orderlist.png"/><span>적립금</span></div>
-      <div class="button"><img src="./img/mypage/orderlist.png"/><span>예치금</span></div>
-      <div class="button"><img src="./img/mypage/orderlist.png"/><span>쿠폰</span></div>
+      <div class="button" data-tab="MyPageTabPoint"><img src="./img/mypage/orderlist.png"/><span>적립금</span></div>
+      <div class="button" data-tab="MyPageTabWillPoint"><img src="./img/mypage/orderlist.png"/><span>예치금</span></div>
+      <div class="button" data-tab="MyPageTabCoupon"><img src="./img/mypage/orderlist.png"/><span>쿠폰</span></div>
     </div>
   </div>
 </div>
+<script>
+$(".tabselector .button > span,.tabselector .button > img").on("click",function(evt){
+  $(".tabselector .button").removeClass("isSelected");
+
+  $(".MyPageTabOrderFilter").addClass("isDeactive");
+  $(".MyPageTabOrderList").addClass("isDeactive");
+  $(".MyPageTabWishList").addClass("isDeactive");
+  $(".MyPageTabMemberModify").addClass("isDeactive");
+  $(".MyPageTabPoint").addClass("isDeactive");
+  $(".MyPageTabWillPoint").addClass("isDeactive");
+  $(".MyPageTabCoupon").addClass("isDeactive");
+
+  $(evt.target).parent().toggleClass("isSelected");
+  var datatab = $(evt.target).parent().attr("data-tab");
+  if(datatab == "MyPageTabOrder"){
+    $("."+datatab+"Filter").removeClass("isDeactive");
+    $("."+datatab+"List").removeClass("isDeactive");
+  }else{
+    $("."+datatab).removeClass("isDeactive");
+  }
+})
+</script>
+
 </script>

@@ -175,68 +175,78 @@ function DataToTemplate(){
   var API_URL = "http://0sun.net/pub/intop/yc/api/";
   var connect = backcontroller.DB.dataTotemplate;
   var DataTo = backcontroller.DB.method;
+  var showView = backcontroller.render.showView;
 
-  connect(API_URL+"category.php")("getCategory",function(data){
+  /// VIEWLIST
+  var Category;
 
+  Category = connect(API_URL+"category.php")("getCategory",function(data){
     DataTo.LeftMenuList(data);
-    setTimeout(function(){
-      $(".list-mainmenu > li > div").click(function(){
-        if($(this).siblings().css("display")=="none"){
-          $(this).attr("class","active");
-          $(this).siblings().show();
-        }else{
-          $(this).removeAttr("class");
-          $(this).siblings().hide();
-        }
-      })
-    },100);
   });
 
 
+  var MainFocus, MainItem, MainFollow;
   if(document.querySelector("#MainPage")){
-    connect(API_URL+"model.php")("getFocus",function(data){
-      DataTo.FollowList(data);
-      connect(API_URL+"item.php?q=/focus")("getFocus",function(data){
-        DataTo.PrintFocusOn(data);
-      });
+    MainFollow = connect(API_URL+"model.php")("getFocus",function(data){
+        DataTo.FollowList(data);
+    });
+    MainFocus = connect(API_URL+"item.php?q=/focus")("getFocus",function(data){
+      DataTo.PrintFocusOn(data);
     });
 
-    connect(API_URL+"item.php")("getItem",function(data) {
+    MainItem = connect(API_URL+"item.php")("getItem",function(data) {
       DataTo.PrintNewItem(data);
       DataTo.PrintBestItem(data);
     })
+    $.when(Category,MainFocus,MainItem,MainFollow).done(function(e){
+        showView()
+    }).fail(function(e){
+      console.log(e);
+    });
+
+    return;
   }
 
 
+  var DetailPage;
   if(document.querySelector("#DetailPage")){
       var detailData = location.href.split("#")[1];
-      connect(API_URL+"item.php?q=/"+detailData)("getDetail",function(data){
+      DetailPage = connect(API_URL+"item.php?q=/"+detailData)("getDetail",function(data){
         DataTo.PriceInfo(data);
         DataTo.Slider(data);
       });
-  }
-
-  if(document.querySelector("#StorePage")){
-      var detailData = location.href.split("#")[1];
-
-      /*
-      connect(API_URL+"model.php?q=/"+detailData)("getDetail",function(data){
-        DataTo.SubInfo(data);
-      });*/
-
-      connect(API_URL+"model.php?q=/"+detailData)("getModel",function(data){
-          console.log(API_URL+"model.php?q=/"+detailData+ " :::: " +data);
-          DataTo.SubInfo(data);
-
-          connect(API_URL+"item.php?q=/model/"+detailData)("getModelItem",function(data){
-            DataTo.StoreItemList(data);
-          });
-
+      $.when(Category,DetailPage).done(function(e){
+          showView()
+      }).fail(function(e){
+        console.log(e);
       });
 
-
-
+      return;
   }
+
+
+  var StoreModel, StoreModelItem;
+  if(document.querySelector("#StorePage")){
+      var detailData = location.href.split("#")[1];
+      StoreModel = connect(API_URL+"model.php?q=/"+detailData)("getModel",function(data){
+          DataTo.SubInfo(data);
+      });
+      StoreModelItem = connect(API_URL+"item.php?q=/model/"+detailData)("getModelItem",function(data){
+        DataTo.StoreItemList(data);
+      });
+      $.when(Category,StoreModel,StoreModelItem).done(function(e){
+          showView()
+      }).fail(function(e){
+        console.log(e);
+      });
+      return;
+  }
+
+  $.when(Category).done(function(e){
+      showView()
+  }).fail(function(e){
+    console.log(e);
+  });
 
 
 }

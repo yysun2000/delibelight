@@ -11,7 +11,7 @@ define('_SHOP_', true);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
- 
+
     <title>Delibe Light</title>
 
     <!-- Bootstrap Core CSS -->
@@ -115,7 +115,7 @@ if ($is_member)
   <% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
   <div class="subTitle"><%=itemlist[0].shopname%></div>
   <div id="subMan">
-    <div class="subInfo">
+    <div class="subInfo"> 
       <div style="display:inline;height:inherit">
         <div class="pic">
         <img src="<%=url%>/yc/data/face/<%=itemlist[0].face%>" style="width:100px;border-radius: 50%;">
@@ -194,8 +194,8 @@ Itemlist 관련
     </div>
     <%if(document.querySelector("#loginsuccess")){%>
       <div class="group button-group">
-        <div class="yellow">마이페이지</div>
-        <div class="black">위시리스트</div>
+        <a href="mypage.html"><div class="yellow">마이페이지</div></a>
+        <a href="#"><div class="black">위시리스트</div></a>
       </div>
     <%}else{%>
 
@@ -269,13 +269,13 @@ Itemlist 관련
       <div>최근에 본 상품</div>
     </div>
     <div class="group contents">
-      <div class="follow" onclick="GoDetail();">
+      <div class="follow">
         <div class="face"><img src="./img/shoplist/1.jpg" style="padding:10px 0px 10px 10px;width:100%;"/></div>
       </div>
-      <div class="follow" onclick="GoDetail();">
+      <div class="follow">
         <div class="face"><img src="./img/shoplist/1.jpg" style="padding:10px 0px 10px 10px;width:100%;"/></div>
       </div>
-      <div class="follow" onclick="GoDetail();">
+      <div class="follow">
         <div class="face"><img src="./img/shoplist/1.jpg" style="padding:10px 0px 10px 10px;width:100%;"/></div>
       </div>
     </div>
@@ -303,16 +303,16 @@ Itemlist 관련
 
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="js/jquery.lazyload.js"></script>
+    <script src="js/jquery.lazyload.min.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
     <!-- Plugin JavaScript -->
     <script src="js/jquery.easing.min.js"></script>
-<script src="js/swiper.js"></script>
-<!-- Theme JavaScript -->
-<script src="js/underscore.js"></script>
-<script src="js/backcontroller.min.js"></script>
-<script src="js/frontcontroller.min.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <!-- Theme JavaScript -->
+    <script src="js/underscore.min.js"></script>
+    <script src="js/backcontroller.min.js"></script>
+    <script src="js/frontcontroller.min.js"></script>
 
 </body>
 </html>

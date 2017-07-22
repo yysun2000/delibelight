@@ -132,8 +132,14 @@ table {
   border-spacing: 0;
 }
 body {
-  font-family: 'Noto Sans KR', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Noto Sans KR', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
   overflow-x: hidden;
+}
+.isActive {
+  display: block !important;
+}
+.isDeactive {
+  display: none !important;
 }
 #skipnav a {
   padding: 6px;

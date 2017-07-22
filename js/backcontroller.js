@@ -14,10 +14,19 @@ var backcontroller = (function(){
   var dbprops = {
     itemlist : []
   }
-  var dbMethod = {};
+  var dataview = {};
+  var view = [];
+  var showViews = function(){
+    console.log(view);
+    console.log("total : "+view.length);
+    for(var i=0;i<view.length;i++){
+      console.log("current : "+i);
+      view[i]();
+    }
+  }
   var DataToTemplate = function(purl){
     return function(cb,fuc){
-      $.ajax({
+      return $.ajax({
             type:"GET",
             url:purl,
             dataType:"JSONP", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨,
@@ -586,7 +595,7 @@ var backcontroller = (function(){
   return {
 
     DB : {
-      method : dbMethod,
+      method : dataview,
       getItemList : function(){
         return dbprops.itemlist;
       },
@@ -623,7 +632,8 @@ var backcontroller = (function(){
     },
 
     render : {
-
+      View : view,
+      showView : showViews,
       json : function(param){
 
         /*
@@ -636,38 +646,45 @@ var backcontroller = (function(){
         */
         if(param.DataURL){
           if(param.DataURL.indexOf("DB:") > -1){
-            dbMethod[param.DataURL.split(":")[1]] = function(data){
-              var templateHtml = $(param.templateSelector).html();
-              $(param.targetSelector).append(_.template( templateHtml )(data));
+            dataview[param.DataURL.split(":")[1]] = function(_data){
+              var data = _data;
+              view.push(function(){
+                var templateHtml = $(param.templateSelector).html();
+                $(param.targetSelector).append(_.template( templateHtml )(data));
+              });
             }
           }else{
-          $.ajax({
-                type:"GET",
-                url:param.DataURL,
-                dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
-                success : function(data) {
-                      var templateHtml = $(param.templateSelector).html();
-                      param.stateProcessor(data);
-                      $(param.targetSelector).append(_.template( templateHtml )(data));
-                      if(param.afterEvent)
-                      try{
-                        param.afterEvent();
-                      }catch(e){
-                        console.log(e);
-                      }
-                },
-                complete : function(data) {
-                      // 통신이 실패했어도 완료가 되었을 때 이 함수를 타게 된다.
-                      // TODO
-                },
-                error : function(xhr, status, error) {
-                      alert("에러발생"+status+error);
-                }
-          });
+            view.push(function(){
+              $.ajax({
+                    type:"GET",
+                    url:param.DataURL,
+                    dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
+                    success : function(data) {
+                          var templateHtml = $(param.templateSelector).html();
+                          param.stateProcessor(data);
+                          $(param.targetSelector).append(_.template( templateHtml )(data));
+                          if(param.afterEvent)
+                          try{
+                            param.afterEvent();
+                          }catch(e){
+                            console.log(e);
+                          }
+                    },
+                    complete : function(data) {
+                          // 통신이 실패했어도 완료가 되었을 때 이 함수를 타게 된다.
+                          // TODO
+                    },
+                    error : function(xhr, status, error) {
+                          alert("에러발생"+status+error);
+                    }
+              });
+            })
           }
         }else{
-          var templateHtml = $(param.templateSelector).html();
-          $(param.targetSelector).append(_.template( templateHtml )());
+          view.push(function(){
+            var templateHtml = $(param.templateSelector).html();
+            $(param.targetSelector).append(_.template( templateHtml )());
+          })
         }
       },
       run : function(param){
