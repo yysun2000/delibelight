@@ -1,4 +1,24 @@
+<script>
+(function(){
+	backcontroller.Component.init({
+		Name : "Main",
+    Data : {
+      name : "BestItem",
+      url : "http://0sun.net/pub/intop/yc/api/item.php"
+    },
+		DataURL : "DB:PrintBestItem",
+		templateSelector : '#MainBestItem',
+		stateProcessor : function(data){
+		},
+		targetSelector : ".MainBestItem",
+		afterEvent : function(){
+		}
+	})
+})()
+</script>
+
 <script type="text/template" id="MainBestItem">
+
 <% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
 
 <style>

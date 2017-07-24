@@ -30,6 +30,14 @@ define('_SHOP_', true);
 
     <link rel="stylesheet" href="css/swiper.css"/>
 
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/underscore.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <script src="js/jquery.lazyload.min.js"></script>
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/backcontroller.min.js"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -81,7 +89,22 @@ if ($is_member)
       </div>
   </div>
 
+<script>
+(function(){
+	backcontroller.Component.init({
+		Name : "Main",
+		templateSelector : '#MainCategory',
+		stateProcessor : function(data){
+		},
+		targetSelector : ".MainCategory",
+		afterEvent : function(){
+		}
+	})
+})()
+</script>
+
 <script type="text/template" id="MainCategory">
+
 
 <style>
 .bartitle{
@@ -126,7 +149,22 @@ if ($is_member)
 
 </script>
 
+<script>
+(function(){
+	backcontroller.Component.init({
+		Name : "Main",
+		templateSelector : '#MainInstagram',
+		stateProcessor : function(data){
+		},
+		targetSelector : ".MainInstagram",
+		afterEvent : function(){
+		}
+	})
+})()
+</script>
+
 <script type="text/template" id="MainInstagram">
+
 
 <style>
 .bartitle{
@@ -176,9 +214,21 @@ if ($is_member)
 
 </script>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "Main",
+    templateSelector : '#MainFooter',
+    stateProcessor : function(data){
+    },
+    targetSelector : ".MainFooter",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
+
 <script type="text/template" id="MainFooter">
-
-
     <script>
     var swiper = new Swiper('.swiper-container', {
        pagination: '.mmls-pagination',
@@ -190,7 +240,23 @@ if ($is_member)
     </script>
 </script>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "Main",
+    DataURL : "./admin/json/topmenu.json",
+    templateSelector : '#MainTopMenu',
+    stateProcessor : function(data){
+      backcontroller.state.TopMenu.setList(data);
+    },
+    targetSelector : ".MainTopMenu",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
 <script type="text/template" id="MainTopMenu">
+
 
   <% var topmenulist = obj;%>
   <nav style="background-color:#fed664;height:75px;padding-top:9px;margin-bottom:-9px;" class="navbar navbar-default" role="navigation">
@@ -228,9 +294,22 @@ if ($is_member)
 
 </script>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "Main",
+    templateSelector : '#MainTopSubMenu',
+    stateProcessor : function(data){
+    },
+    targetSelector : ".MainTopSubMenu",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
+
 <script type="text/template" id="MainTopSubMenu">
-
-
+  
   <div class="subTitle">
     <div class="horizontal" style="background-color:#ffffff">
       <span>BEST</span>
@@ -243,7 +322,28 @@ if ($is_member)
 
 </script>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "Main",
+    Data : {
+      name : "FollowList",
+      url : "http://0sun.net/pub/intop/yc/api/model.php"
+    },
+    templateSelector : '#MainTopFollowList',
+    stateProcessor : function(data){
+    },
+    targetSelector : ".MainTopFollowList",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
+
 <script type="text/template" id="MainTopFollowList">
+
+
+
   <% var itemlist = obj;%>
   <% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
 
@@ -289,6 +389,19 @@ if ($is_member)
 
 </script>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "Main",
+    templateSelector : '#MainTopSlider',
+    stateProcessor : function(data){
+    },
+    targetSelector : ".MainTopSlider",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
 <script type="text/template" id="MainTopSlider">
 
   <div style="background-color:#ffffff" style="margin-top: 15px;">
@@ -297,7 +410,23 @@ if ($is_member)
 
 </script>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "Main",
+    templateSelector : '#MainMiddleListSlider',
+    stateProcessor : function(data){
+    },
+    targetSelector : ".MainMiddleListSlider",
+    afterEvent : function(){
+
+    }
+  })
+})()
+</script>
+
 <script type="text/template" id="MainMiddleListSlider">
+
       <div style="background-color:#ffffff;margin-top: 50px;overflow:hidden;">
 
         <div class="MainMiddleListSlider-main blackgray-pagination swiper-container">
@@ -347,7 +476,26 @@ if ($is_member)
 
 </script>
 
+<script>
+(function(){
+	backcontroller.Component.init({
+		Name : "Main",
+    Data : {
+      name : "FocusOn",
+      url : "http://0sun.net/pub/intop/yc/api/item.php?q=/focus"
+    },
+		templateSelector : '#MainFocusOn',
+		stateProcessor : function(data){
+		},
+		targetSelector : ".MainFocusOn",
+		afterEvent : function(){
+		}
+	})
+})()
+</script>
+
 <script type="text/template" id="MainFocusOn">
+
 <style>
 .bartitle{
 	background-image:url("./img/main/bg.png");
@@ -398,7 +546,26 @@ if ($is_member)
 </div>
 </script>
 
+<script>
+(function(){
+	backcontroller.Component.init({
+		Name : "Main",
+    Data : {
+      name : "NewItem",
+      url : "http://0sun.net/pub/intop/yc/api/item.php"
+    },
+		templateSelector : '#MainNewItem',
+		stateProcessor : function(data){
+		},
+		targetSelector : ".MainNewItem",
+		afterEvent : function(){
+		}
+	})
+})()
+</script>
+
 <script type="text/template" id="MainNewItem">
+
 <style>
 .bartitle{
 	background-image:url("./img/main/bg.png");
@@ -451,7 +618,22 @@ if ($is_member)
 
 </script>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "Main",
+    templateSelector : '#MainMiddleBanner',
+    stateProcessor : function(data){
+    },
+    targetSelector : ".MainMiddleBanner",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
+
 <script type="text/template" id="MainMiddleBanner">
+
 
   <div class="banner" style="margin-top:5px;margin-bottom:50px;overflow:hidden;">
     <div><img src="./img/middlebanner/MainMiddleBanner1.png" style="width:100%;"></div>
@@ -461,7 +643,27 @@ if ($is_member)
 
 </script>
 
+<script>
+(function(){
+	backcontroller.Component.init({
+		Name : "Main",
+    Data : {
+      name : "BestItem",
+      url : "http://0sun.net/pub/intop/yc/api/item.php"
+    },
+		DataURL : "DB:PrintBestItem",
+		templateSelector : '#MainBestItem',
+		stateProcessor : function(data){
+		},
+		targetSelector : ".MainBestItem",
+		afterEvent : function(){
+		}
+	})
+})()
+</script>
+
 <script type="text/template" id="MainBestItem">
+
 <% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
 
 <style>
@@ -510,6 +712,21 @@ if ($is_member)
 
 </script>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "LeftMenu",
+    DataURL : "./admin/json/filter.json",
+    templateSelector : '#LeftMenuTopMenuInfo',
+    stateProcessor : function(data){
+      //backcontroller.state.FilterList.setList(data);
+    },
+    targetSelector : ".LeftMenuTopMenuInfo",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
 <script type="text/template" id="LeftMenuTopMenuInfo">
   <div class="logInfo">
     <div class="group title"><span>#B</span><span  onclick="closeNav()"style="float:right;">X</span></div>
@@ -532,6 +749,21 @@ if ($is_member)
   </div>
 </script>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "LeftMenu",
+    DataURL : "./admin/json/filter.json",
+    templateSelector : '#LeftMenuFollowList',
+    stateProcessor : function(data){
+      //backcontroller.state.FilterList.setList(data);
+    },
+    targetSelector : ".LeftMenuFollowList",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
 <script type="text/template" id="LeftMenuFollowList">
   <div class="submenu">
     <div class="group title">
@@ -554,6 +786,24 @@ if ($is_member)
   </div>
 </script>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "LeftMenu",
+    Data : {
+      name : "LeftMenu",
+      url : "http://0sun.net/pub/intop/yc/api/category.php"
+    },
+    templateSelector : '#LeftMenuMenuList',
+    stateProcessor : function(data){
+      //backcontroller.state.FilterList.setList(data);
+    },
+    targetSelector : ".LeftMenuMenuList",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
 <script type="text/template" id="LeftMenuMenuList">
   <% var categorylist = obj.sort(function(a,b){return (a.ca_id.toString() > b.ca_id.toString() ? 1 : 0 )});%>
 
@@ -587,7 +837,21 @@ if ($is_member)
 </div>
 </script>
 
-
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "LeftMenu",
+    DataURL : "./admin/json/filter.json",
+    templateSelector : '#LeftMenuLatestList',
+    stateProcessor : function(data){
+      //backcontroller.state.FilterList.setList(data);
+    },
+    targetSelector : ".LeftMenuLatestList",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
 <script type="text/template" id="LeftMenuLatestList">
   <div class="submenu">
     <div class="group title">
@@ -607,6 +871,21 @@ if ($is_member)
   </div>
 </script>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "LeftMenu",
+    DataURL : "./admin/json/filter.json",
+    templateSelector : '#LeftMenuFooter',
+    stateProcessor : function(data){
+      //backcontroller.state.FilterList.setList(data);
+    },
+    targetSelector : ".LeftMenuFooter",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
 <script type="text/template" id="LeftMenuFooter">
   <div class="footer" style="padding:15px;background-color: #333333;color:#888888;">
     <div class="group title">
@@ -627,16 +906,9 @@ if ($is_member)
 
 
     <!-- jQuery -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="js/jquery.lazyload.min.js"></script>
     <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
     <!-- Plugin JavaScript -->
-    <script src="js/jquery.easing.min.js"></script>
-    <script src="js/swiper.min.js"></script>
     <!-- Theme JavaScript -->
-    <script src="js/underscore.min.js"></script>
-    <script src="js/backcontroller.min.js"></script>
     <script src="js/frontcontroller.min.js"></script>
 
 </body>

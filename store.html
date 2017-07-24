@@ -30,6 +30,14 @@ define('_SHOP_', true);
 
     <link rel="stylesheet" href="css/swiper.css"/>
 
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/underscore.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <script src="js/jquery.lazyload.min.js"></script>
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/backcontroller.min.js"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -74,6 +82,22 @@ if ($is_member)
       </div>
   </div>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "Store",
+    DataURL : "./admin/json/topmenu.json",
+    templateSelector : '#StoreTopMenuInfo',
+    stateProcessor : function(data){
+      backcontroller.state.TopMenu.setList(data);
+    },
+    targetSelector : ".StoreTopMenuInfo",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
+
 <script type="text/template" id="StoreTopMenuInfo">
 <% var topmenulist = obj;%>
 <nav style="background-color:#fed664;height:75px;padding-top:9px;margin-bottom:-9px;" class="navbar navbar-default" role="navigation">
@@ -110,12 +134,31 @@ if ($is_member)
 </nav>
 </script>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "Store",
+    Data : {
+      name : "SubInfo",
+      url : "http://0sun.net/pub/intop/yc/api/item.php?q=/model/" +location.href.split("#")[1]
+    },
+    templateSelector : '#StoreSubInfo',
+    stateProcessor : function(data){
+    },
+    targetSelector : ".StoreSubInfo",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
+
+
 <script type="text/template" id="StoreSubInfo">
   <% var itemlist = obj;%>
   <% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
   <div class="subTitle"><%=itemlist[0].shopname%></div>
   <div id="subMan">
-    <div class="subInfo"> 
+    <div class="subInfo">
       <div style="display:inline;height:inherit">
         <div class="pic">
         <img src="<%=url%>/yc/data/face/<%=itemlist[0].face%>" style="width:100px;border-radius: 50%;">
@@ -137,6 +180,22 @@ if ($is_member)
         </div>
     </div>
   </div>
+</script>
+
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "Store",
+    DataURL : "DB:FilterMenu",
+    templateSelector : '#StoreFilterMenu',
+    stateProcessor : function(data){
+      backcontroller.state.FilterList.setList(data);
+    },
+    targetSelector : ".StoreFilterMenu",
+    afterEvent : function(){
+    }
+  })
+})()
 </script>
 
 <!---
@@ -164,6 +223,25 @@ filterMenu 관련
   </div>
 </script>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "Store",
+    Data : {
+      name : "ItemList",
+      url : "http://0sun.net/pub/intop/yc/api/item.php?q=/model/" +location.href.split("#")[1]
+    },
+    templateSelector : '#StoreItemList',
+    stateProcessor : function(data){
+    //  backcontroller.state.ItemList.setList(data);
+    },
+    targetSelector : ".StoreItemList",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
+
 <!---
 Itemlist 관련
 --->
@@ -185,6 +263,21 @@ Itemlist 관련
 
 </script>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "LeftMenu",
+    DataURL : "./admin/json/filter.json",
+    templateSelector : '#LeftMenuTopMenuInfo',
+    stateProcessor : function(data){
+      //backcontroller.state.FilterList.setList(data);
+    },
+    targetSelector : ".LeftMenuTopMenuInfo",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
 <script type="text/template" id="LeftMenuTopMenuInfo">
   <div class="logInfo">
     <div class="group title"><span>#B</span><span  onclick="closeNav()"style="float:right;">X</span></div>
@@ -207,6 +300,21 @@ Itemlist 관련
   </div>
 </script>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "LeftMenu",
+    DataURL : "./admin/json/filter.json",
+    templateSelector : '#LeftMenuFollowList',
+    stateProcessor : function(data){
+      //backcontroller.state.FilterList.setList(data);
+    },
+    targetSelector : ".LeftMenuFollowList",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
 <script type="text/template" id="LeftMenuFollowList">
   <div class="submenu">
     <div class="group title">
@@ -229,6 +337,24 @@ Itemlist 관련
   </div>
 </script>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "LeftMenu",
+    Data : {
+      name : "LeftMenu",
+      url : "http://0sun.net/pub/intop/yc/api/category.php"
+    },
+    templateSelector : '#LeftMenuMenuList',
+    stateProcessor : function(data){
+      //backcontroller.state.FilterList.setList(data);
+    },
+    targetSelector : ".LeftMenuMenuList",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
 <script type="text/template" id="LeftMenuMenuList">
   <% var categorylist = obj.sort(function(a,b){return (a.ca_id.toString() > b.ca_id.toString() ? 1 : 0 )});%>
 
@@ -262,7 +388,21 @@ Itemlist 관련
 </div>
 </script>
 
-
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "LeftMenu",
+    DataURL : "./admin/json/filter.json",
+    templateSelector : '#LeftMenuLatestList',
+    stateProcessor : function(data){
+      //backcontroller.state.FilterList.setList(data);
+    },
+    targetSelector : ".LeftMenuLatestList",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
 <script type="text/template" id="LeftMenuLatestList">
   <div class="submenu">
     <div class="group title">
@@ -282,6 +422,21 @@ Itemlist 관련
   </div>
 </script>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "LeftMenu",
+    DataURL : "./admin/json/filter.json",
+    templateSelector : '#LeftMenuFooter',
+    stateProcessor : function(data){
+      //backcontroller.state.FilterList.setList(data);
+    },
+    targetSelector : ".LeftMenuFooter",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
 <script type="text/template" id="LeftMenuFooter">
   <div class="footer" style="padding:15px;background-color: #333333;color:#888888;">
     <div class="group title">
@@ -302,16 +457,9 @@ Itemlist 관련
 
 
     <!-- jQuery -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="js/jquery.lazyload.min.js"></script>
     <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
     <!-- Plugin JavaScript -->
-    <script src="js/jquery.easing.min.js"></script>
-    <script src="js/swiper.min.js"></script>
     <!-- Theme JavaScript -->
-    <script src="js/underscore.min.js"></script>
-    <script src="js/backcontroller.min.js"></script>
     <script src="js/frontcontroller.min.js"></script>
 
 </body>

@@ -1,4 +1,25 @@
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "Main",
+    Data : {
+      name : "FollowList",
+      url : "http://0sun.net/pub/intop/yc/api/model.php"
+    },
+    templateSelector : '#MainTopFollowList',
+    stateProcessor : function(data){
+    },
+    targetSelector : ".MainTopFollowList",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
+
 <script type="text/template" id="MainTopFollowList">
+
+
+
   <% var itemlist = obj;%>
   <% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
 

@@ -1,3 +1,18 @@
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "LeftMenu",
+    DataURL : "./admin/json/filter.json",
+    templateSelector : '#LeftMenuTopMenuInfo',
+    stateProcessor : function(data){
+      //backcontroller.state.FilterList.setList(data);
+    },
+    targetSelector : ".LeftMenuTopMenuInfo",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
 <script type="text/template" id="LeftMenuTopMenuInfo">
   <div class="logInfo">
     <div class="group title"><span>#B</span><span  onclick="closeNav()"style="float:right;">X</span></div>

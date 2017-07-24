@@ -1,6 +1,18 @@
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "Main",
+    templateSelector : '#MainFooter',
+    stateProcessor : function(data){
+    },
+    targetSelector : ".MainFooter",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
+
 <script type="text/template" id="MainFooter">
-
-
     <script>
     var swiper = new Swiper('.swiper-container', {
        pagination: '.mmls-pagination',

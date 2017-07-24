@@ -16,14 +16,31 @@ var backcontroller = (function(){
   }
   var dataview = {};
   var view = [];
+  var promise = [];
   var showViews = function(){
-    console.log(view);
     console.log("total : "+view.length);
-    for(var i=0;i<view.length;i++){
-      console.log("current : "+i);
-      view[i]();
+    if(promise.length > 0){
+      var query = "";
+      console.log(promise.length);
+      for(var i=0;i<promise.length;i++){
+        query += "window[\""+promise[i]+"\"],"
+      }
+      query = query.substr(0,query.length-1);
+
+      eval("$.when("+query+").done(function(){for(var i=0;i<view.length;i++){try{view[i]();}catch(e){console.log('에러발생');}}})")
+    }else{
+      for(var i=0;i<view.length;i++){
+        console.log(view[i]);
+        console.log("current : "+i);
+        try{
+        view[i]();
+        }catch(e){
+
+        }
+      }
     }
   }
+  this.p = {}
   var DataToTemplate = function(purl){
     return function(cb,fuc){
       return $.ajax({
@@ -74,172 +91,13 @@ var backcontroller = (function(){
     MainInstagram
     MainFooter
     */
-    {
-      Name : "Main",
-      DataURL : "./admin/json/topmenu.json",
-      templateSelector : '#MainTopMenu',
-      stateProcessor : function(data){
-        backcontroller.state.TopMenu.setList(data);
-      },
-      targetSelector : ".MainTopMenu",
-      afterEvent : function(){
-      }
-    },
-    {
-      Name : "Main",
-      templateSelector : '#MainTopSubMenu',
-      stateProcessor : function(data){
-      },
-      targetSelector : ".MainTopSubMenu",
-      afterEvent : function(){
-      }
-    },
-    {
-      Name : "Main",
-      DataURL : "DB:FollowList",
-      templateSelector : '#MainTopFollowList',
-      stateProcessor : function(data){
-      },
-      targetSelector : ".MainTopFollowList",
-      afterEvent : function(){
-      }
-    },
-    {
-      Name : "Main",
-      templateSelector : '#MainTopSlider',
-      stateProcessor : function(data){
-      },
-      targetSelector : ".MainTopSlider",
-      afterEvent : function(){
-      }
-    },
-    {
-      Name : "Main",
-      templateSelector : '#MainMiddleListSlider',
-      stateProcessor : function(data){
-      },
-      targetSelector : ".MainMiddleListSlider",
-      afterEvent : function(){
 
-      }
-    },
-    {
-      Name : "Main",
-      DataURL : "DB:PrintFocusOn",
-      templateSelector : '#MainFocusOn',
-      stateProcessor : function(data){
-      },
-      targetSelector : ".MainFocusOn",
-      afterEvent : function(){
-      }
-    },
-    {
-      Name : "Main",
-      DataURL : "DB:PrintNewItem",
-      templateSelector : '#MainNewItem',
-      stateProcessor : function(data){
-      },
-      targetSelector : ".MainNewItem",
-      afterEvent : function(){
-      }
-    },
-    {
-      Name : "Main",
-      templateSelector : '#MainMiddleBanner',
-      stateProcessor : function(data){
-      },
-      targetSelector : ".MainMiddleBanner",
-      afterEvent : function(){
-      }
-    },
-    {
-      Name : "Main",
-      DataURL : "DB:PrintBestItem",
-      templateSelector : '#MainBestItem',
-      stateProcessor : function(data){
-      },
-      targetSelector : ".MainBestItem",
-      afterEvent : function(){
-      }
-    },
-    {
-      Name : "Main",
-      templateSelector : '#MainCategory',
-      stateProcessor : function(data){
-      },
-      targetSelector : ".MainCategory",
-      afterEvent : function(){
-      }
-    },
-    {
-      Name : "Main",
-      templateSelector : '#MainInstagram',
-      stateProcessor : function(data){
-      },
-      targetSelector : ".MainInstagram",
-      afterEvent : function(){
-      }
-    },
-    {
-      Name : "Main",
-      templateSelector : '#MainFooter',
-      stateProcessor : function(data){
-      },
-      targetSelector : ".MainFooter",
-      afterEvent : function(){
-      }
-    },
     /*
       StoreTopMenuInfo
       StoreSubInfo
       StoreFilterMenu
       StoreItemList
     */
-
-
-      {
-        Name : "Store",
-        DataURL : "./admin/json/topmenu.json",
-        templateSelector : '#StoreTopMenuInfo',
-        stateProcessor : function(data){
-          backcontroller.state.TopMenu.setList(data);
-        },
-        targetSelector : ".StoreTopMenuInfo",
-        afterEvent : function(){
-        }
-      },
-      {
-        Name : "Store",
-        DataURL : "DB:SubInfo",
-        templateSelector : '#StoreSubInfo',
-        stateProcessor : function(data){
-        },
-        targetSelector : ".StoreSubInfo",
-        afterEvent : function(){
-        }
-      },
-      {
-        Name : "Store",
-        DataURL : "DB:FilterMenu",
-        templateSelector : '#StoreFilterMenu',
-        stateProcessor : function(data){
-          backcontroller.state.FilterList.setList(data);
-        },
-        targetSelector : ".StoreFilterMenu",
-        afterEvent : function(){
-        },
-        },
-        {
-          Name : "Store",
-          DataURL : "DB:StoreItemList",
-          templateSelector : '#StoreItemList',
-          stateProcessor : function(data){
-            backcontroller.state.ItemList.setList(data);
-          },
-          targetSelector : ".StoreItemList",
-          afterEvent : function(){
-          }
-        },
 
 
 
@@ -255,61 +113,6 @@ var backcontroller = (function(){
           LeftMenuLatestList
           LeftMenuFooter
           */
-          {
-            Name : "LeftMenu",
-            DataURL : "./admin/json/filter.json",
-            templateSelector : '#LeftMenuTopMenuInfo',
-            stateProcessor : function(data){
-              //backcontroller.state.FilterList.setList(data);
-            },
-            targetSelector : ".LeftMenuTopMenuInfo",
-            afterEvent : function(){
-            }
-          },
-          {
-            Name : "LeftMenu",
-            DataURL : "./admin/json/filter.json",
-            templateSelector : '#LeftMenuFollowList',
-            stateProcessor : function(data){
-              //backcontroller.state.FilterList.setList(data);
-            },
-            targetSelector : ".LeftMenuFollowList",
-            afterEvent : function(){
-            }
-          },
-          {
-            Name : "LeftMenu",
-            DataURL : "DB:LeftMenuList",
-            templateSelector : '#LeftMenuMenuList',
-            stateProcessor : function(data){
-              //backcontroller.state.FilterList.setList(data);
-            },
-            targetSelector : ".LeftMenuMenuList",
-            afterEvent : function(){
-            }
-          },
-          {
-            Name : "LeftMenu",
-            DataURL : "./admin/json/filter.json",
-            templateSelector : '#LeftMenuLatestList',
-            stateProcessor : function(data){
-              //backcontroller.state.FilterList.setList(data);
-            },
-            targetSelector : ".LeftMenuLatestList",
-            afterEvent : function(){
-            }
-          },
-          {
-            Name : "LeftMenu",
-            DataURL : "./admin/json/filter.json",
-            templateSelector : '#LeftMenuFooter',
-            stateProcessor : function(data){
-              //backcontroller.state.FilterList.setList(data);
-            },
-            targetSelector : ".LeftMenuFooter",
-            afterEvent : function(){
-            }
-          },
 
           //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
           // 디테일 페이지 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -601,6 +404,11 @@ var backcontroller = (function(){
       },
       dataTotemplate : DataToTemplate
     },
+    Component : {
+      init : function(obj){
+        setting.push(obj);
+      }
+    },
     state : {
 
       TopMenu : {
@@ -635,15 +443,22 @@ var backcontroller = (function(){
       View : view,
       showView : showViews,
       json : function(param){
+        if(param.Data){
 
-        /*
-        DataURL : "url",
-        templateSelector : "#template",
-        stateProcessor : function(data){
+          var connect = backcontroller.DB.dataTotemplate;
+          promise.push(param.Data.name);
+          window[param.Data.name] = connect(param.Data.url)("get"+param.Data.name,function(_data){
+            console.log("DONE : "+param.Data.name);
+            var data = _data;
+            view.push(function(){
+              var templateHtml = $(param.templateSelector).html();
+              $(param.targetSelector).append(_.template( templateHtml )(data));
+            });
+          });
 
-        },
-        targetSelector : "#output"
-        */
+          return;
+        }
+
         if(param.DataURL){
           if(param.DataURL.indexOf("DB:") > -1){
             dataview[param.DataURL.split(":")[1]] = function(_data){
@@ -762,11 +577,14 @@ var backcontroller = (function(){
                 }
 
             }
+
           }catch(e){
 
           }
 
         }
+
+        showViews();
       }
 
     }

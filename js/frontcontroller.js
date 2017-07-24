@@ -65,9 +65,6 @@
 
 
 
-    backcontroller.render.start();
-
-        DataToTemplate();
 })(jQuery); // End of use strict
 
 
@@ -75,7 +72,9 @@ var MainWidth;
 var LeftMenuWidth;
 window.onload = function(){
 
+    backcontroller.render.start();
 
+    DataToTemplate();
     MainWidth = $(window).width();
     LeftMenuWidth = MainWidth - 100;
     $(".left-menu").css("display","block")
@@ -172,7 +171,7 @@ function filterItem(type){
 
 
 function DataToTemplate(){
-  var API_URL = "http://0sun.net/pub/intop/yc/api/";
+  var API_URL = "http://0sun.net/pub/intop/yc/api/category.php";
   var connect = backcontroller.DB.dataTotemplate;
   var DataTo = backcontroller.DB.method;
   var showView = backcontroller.render.showView;
@@ -180,30 +179,9 @@ function DataToTemplate(){
   /// VIEWLIST
   var Category;
 
-  Category = connect(API_URL+"category.php")("getCategory",function(data){
-    DataTo.LeftMenuList(data);
-  });
-
 
   var MainFocus, MainItem, MainFollow;
   if(document.querySelector("#MainPage")){
-    MainFollow = connect(API_URL+"model.php")("getFocus",function(data){
-        DataTo.FollowList(data);
-    });
-    MainFocus = connect(API_URL+"item.php?q=/focus")("getFocus",function(data){
-      DataTo.PrintFocusOn(data);
-    });
-
-    MainItem = connect(API_URL+"item.php")("getItem",function(data) {
-      DataTo.PrintNewItem(data);
-      DataTo.PrintBestItem(data);
-    })
-    $.when(Category,MainFocus,MainItem,MainFollow).done(function(e){
-        showView()
-    }).fail(function(e){
-      console.log(e);
-    });
-
     return;
   }
 
@@ -227,18 +205,6 @@ function DataToTemplate(){
 
   var StoreModel, StoreModelItem;
   if(document.querySelector("#StorePage")){
-      var detailData = location.href.split("#")[1];
-      StoreModel = connect(API_URL+"model.php?q=/"+detailData)("getModel",function(data){
-          DataTo.SubInfo(data);
-      });
-      StoreModelItem = connect(API_URL+"item.php?q=/model/"+detailData)("getModelItem",function(data){
-        DataTo.StoreItemList(data);
-      });
-      $.when(Category,StoreModel,StoreModelItem).done(function(e){
-          showView()
-      }).fail(function(e){
-        console.log(e);
-      });
       return;
   }
 

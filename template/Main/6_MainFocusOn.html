@@ -1,4 +1,23 @@
+<script>
+(function(){
+	backcontroller.Component.init({
+		Name : "Main",
+    Data : {
+      name : "FocusOn",
+      url : "http://0sun.net/pub/intop/yc/api/item.php?q=/focus"
+    },
+		templateSelector : '#MainFocusOn',
+		stateProcessor : function(data){
+		},
+		targetSelector : ".MainFocusOn",
+		afterEvent : function(){
+		}
+	})
+})()
+</script>
+
 <script type="text/template" id="MainFocusOn">
+
 <style>
 .bartitle{
 	background-image:url("./img/main/bg.png");

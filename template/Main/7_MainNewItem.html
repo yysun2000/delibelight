@@ -1,4 +1,23 @@
+<script>
+(function(){
+	backcontroller.Component.init({
+		Name : "Main",
+    Data : {
+      name : "NewItem",
+      url : "http://0sun.net/pub/intop/yc/api/item.php"
+    },
+		templateSelector : '#MainNewItem',
+		stateProcessor : function(data){
+		},
+		targetSelector : ".MainNewItem",
+		afterEvent : function(){
+		}
+	})
+})()
+</script>
+
 <script type="text/template" id="MainNewItem">
+
 <style>
 .bartitle{
 	background-image:url("./img/main/bg.png");

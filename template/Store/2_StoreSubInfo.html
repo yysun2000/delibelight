@@ -1,9 +1,28 @@
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "Store",
+    Data : {
+      name : "SubInfo",
+      url : "http://0sun.net/pub/intop/yc/api/item.php?q=/model/" +location.href.split("#")[1]
+    },
+    templateSelector : '#StoreSubInfo',
+    stateProcessor : function(data){
+    },
+    targetSelector : ".StoreSubInfo",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
+
+
 <script type="text/template" id="StoreSubInfo">
   <% var itemlist = obj;%>
   <% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
   <div class="subTitle"><%=itemlist[0].shopname%></div>
   <div id="subMan">
-    <div class="subInfo"> 
+    <div class="subInfo">
       <div style="display:inline;height:inherit">
         <div class="pic">
         <img src="<%=url%>/yc/data/face/<%=itemlist[0].face%>" style="width:100px;border-radius: 50%;">

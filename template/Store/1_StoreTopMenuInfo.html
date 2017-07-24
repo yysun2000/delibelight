@@ -1,3 +1,19 @@
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "Store",
+    DataURL : "./admin/json/topmenu.json",
+    templateSelector : '#StoreTopMenuInfo',
+    stateProcessor : function(data){
+      backcontroller.state.TopMenu.setList(data);
+    },
+    targetSelector : ".StoreTopMenuInfo",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
+
 <script type="text/template" id="StoreTopMenuInfo">
 <% var topmenulist = obj;%>
 <nav style="background-color:#fed664;height:75px;padding-top:9px;margin-bottom:-9px;" class="navbar navbar-default" role="navigation">

@@ -1,3 +1,18 @@
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "LeftMenu",
+    DataURL : "./admin/json/filter.json",
+    templateSelector : '#LeftMenuFollowList',
+    stateProcessor : function(data){
+      //backcontroller.state.FilterList.setList(data);
+    },
+    targetSelector : ".LeftMenuFollowList",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
 <script type="text/template" id="LeftMenuFollowList">
   <div class="submenu">
     <div class="group title">

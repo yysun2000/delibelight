@@ -7,12 +7,11 @@ var rename = require("gulp-rename");
 var uglify = require('gulp-uglify');
 var filter = require('gulp-filter');
 var concat = require('gulp-concat');
+var inject = require('gulp-inject');
 var insert = require('gulp-insert');
 var fileInsert = require("gulp-file-insert");
 var ap = require("gulp-append-prepend");
-var del = require('del');
 var pkg = require('./package.json');
-var ftp = require('gulp-ftp');
 
 // Set the banner content
 var banner = ['/*!\n',

@@ -1,4 +1,18 @@
-
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "LeftMenu",
+    DataURL : "./admin/json/filter.json",
+    templateSelector : '#LeftMenuLatestList',
+    stateProcessor : function(data){
+      //backcontroller.state.FilterList.setList(data);
+    },
+    targetSelector : ".LeftMenuLatestList",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
 <script type="text/template" id="LeftMenuLatestList">
   <div class="submenu">
     <div class="group title">

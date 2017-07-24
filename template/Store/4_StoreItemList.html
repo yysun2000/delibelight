@@ -1,3 +1,22 @@
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "Store",
+    Data : {
+      name : "ItemList",
+      url : "http://0sun.net/pub/intop/yc/api/item.php?q=/model/" +location.href.split("#")[1]
+    },
+    templateSelector : '#StoreItemList',
+    stateProcessor : function(data){
+    //  backcontroller.state.ItemList.setList(data);
+    },
+    targetSelector : ".StoreItemList",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
+
 <!---
 Itemlist 관련
 --->
