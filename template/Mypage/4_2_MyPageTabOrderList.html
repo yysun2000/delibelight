@@ -4,7 +4,8 @@
   Name : "MyPage",
   Data : {
     name : "OrderList",
-    url : "http://0sun.net/pub/intop/yc/api/order.php?q=/"+<? echo "'".$member['mb_id']."'"; ?>
+    //url : "http://0sun.net/pub/intop/yc/api/order.php?q=/"+<? echo "'".$member['mb_id']."'"; ?>
+    url : "http://0sun.net/pub/intop/yc/api/order.php?q=/test2"
   },
   templateSelector : '#MyPageTabOrderList',
   stateProcessor : function(data){
@@ -34,6 +35,7 @@
     </div>
     <div class="contents">
       <% var orderlist = obj;%>
+      <% console.log(orderlist);%>
       <% for(var i=0;i<orderlist.length;i++){%>
       <div class="content">
         <div class="line">

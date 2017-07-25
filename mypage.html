@@ -293,7 +293,8 @@ input.calenderbutton{ width:25px; padding:0px;margin:0px; }
   Name : "MyPage",
   Data : {
     name : "OrderList",
-    url : "http://0sun.net/pub/intop/yc/api/order.php?q=/"+<? echo "'".$member['mb_id']."'"; ?>
+    //url : "http://0sun.net/pub/intop/yc/api/order.php?q=/"+<? echo "'".$member['mb_id']."'"; ?>
+    url : "http://0sun.net/pub/intop/yc/api/order.php?q=/test2"
   },
   templateSelector : '#MyPageTabOrderList',
   stateProcessor : function(data){
@@ -323,6 +324,7 @@ input.calenderbutton{ width:25px; padding:0px;margin:0px; }
     </div>
     <div class="contents">
       <% var orderlist = obj;%>
+      <% console.log(orderlist);%>
       <% for(var i=0;i<orderlist.length;i++){%>
       <div class="content">
         <div class="line">
@@ -765,7 +767,11 @@ input.calenderbutton{ width:25px; padding:0px;margin:0px; }
 (function(){
   backcontroller.Component.init({
     Name : "MyPage",
-  //  DataURL : "./admin/json/filter.json",
+    Data : {
+      name : "CouponList",
+      //url : "http://0sun.net/pub/intop/yc/api/coupon.php?q=/"+<? echo "'".$member['mb_id']."'"; ?>
+      url : "http://0sun.net/pub/intop/yc/api/coupon.php?q=/test2"
+    },
     templateSelector : '#MyPageTabCoupon',
     stateProcessor : function(data){
       //backcontroller.state.FilterList.setList(data);
@@ -826,10 +832,13 @@ span.button{border:1px black solid;border-radius: 5px;padding:5px;margin-left: 1
   <span>마이쿠폰 목록(총 3장)</span>
 </div>
 
+  <% var couponlist = obj;%>
+  <% console.log(couponlist);%>
+  <% for(var i=0;i<couponlist.length;i++){%>
 <div class="rollMenu">
   <div class="line isTitle isSubTitle isLeft">
     <div class="line">
-      <div class="title">쿠폰명</div> <div class="value">좋은 쿠폰</div>
+      <div class="title">쿠폰명</div> <div class="value"><%=couponlist[i].cp_subject%></div>
     </div>
   </div>
   <div class="content">
@@ -855,6 +864,7 @@ span.button{border:1px black solid;border-radius: 5px;padding:5px;margin-left: 1
     </div>
   </div>
 </div>
+<% }%>
 
 
 </div>
@@ -891,7 +901,7 @@ $(".coupon .rollMenu .isTitle > div > div").on("click",function(evt){
       <div>안녕하세요, 인탑님. </div>
       <div>#B에 오신걸 환영합니다.</div>
     </div>
-    <%if(document.querySelector("#loginsuccess")){%>
+    <%if(!document.querySelector("#loginsuccess")){%>
       <div class="group button-group">
         <a href="mypage.html"><div class="yellow">마이페이지</div></a>
         <a href="#"><div class="black">위시리스트</div></a>

@@ -2,7 +2,11 @@
 (function(){
   backcontroller.Component.init({
     Name : "MyPage",
-  //  DataURL : "./admin/json/filter.json",
+    Data : {
+      name : "CouponList",
+      //url : "http://0sun.net/pub/intop/yc/api/coupon.php?q=/"+<? echo "'".$member['mb_id']."'"; ?>
+      url : "http://0sun.net/pub/intop/yc/api/coupon.php?q=/test2"
+    },
     templateSelector : '#MyPageTabCoupon',
     stateProcessor : function(data){
       //backcontroller.state.FilterList.setList(data);
@@ -63,10 +67,13 @@ span.button{border:1px black solid;border-radius: 5px;padding:5px;margin-left: 1
   <span>마이쿠폰 목록(총 3장)</span>
 </div>
 
+  <% var couponlist = obj;%>
+  <% console.log(couponlist);%>
+  <% for(var i=0;i<couponlist.length;i++){%>
 <div class="rollMenu">
   <div class="line isTitle isSubTitle isLeft">
     <div class="line">
-      <div class="title">쿠폰명</div> <div class="value">좋은 쿠폰</div>
+      <div class="title">쿠폰명</div> <div class="value"><%=couponlist[i].cp_subject%></div>
     </div>
   </div>
   <div class="content">
@@ -92,6 +99,7 @@ span.button{border:1px black solid;border-radius: 5px;padding:5px;margin-left: 1
     </div>
   </div>
 </div>
+<% }%>
 
 
 </div>

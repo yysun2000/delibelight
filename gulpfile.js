@@ -11,7 +11,6 @@ var insert = require('gulp-insert');
 var fileInsert = require("gulp-file-insert");
 var ap = require("gulp-append-prepend");
 var pkg = require('./package.json');
-
 // Set the banner content
 var banner = ['/*!\n',
     ' * 제작자 : 유영선 \n',

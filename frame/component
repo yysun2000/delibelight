@@ -1,0 +1,14 @@
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "[NAME]",
+  templateSelector : '[#ID]',
+  stateProcessor : function(data){
+  },
+  targetSelector : "[.class]",
+  afterEvent : function(){
+  }})
+})()
+</script>
+<script type="text/template" id="[ID]">
+</script>
