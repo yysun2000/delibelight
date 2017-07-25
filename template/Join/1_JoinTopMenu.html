@@ -1,3 +1,17 @@
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "JoinPage",
+//  DataURL : "./admin/json/filter.json",
+  templateSelector : '#JoinTopMenu',
+  stateProcessor : function(data){
+    //backcontroller.state.FilterList.setList(data);
+  },
+  targetSelector : ".JoinTopMenu",
+  afterEvent : function(){
+  }})
+})()
+</script>
 <script type="text/template" id="JoinTopMenu">
 
   <% var topmenulist = obj;%>

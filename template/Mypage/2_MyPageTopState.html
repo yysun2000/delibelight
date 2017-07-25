@@ -1,3 +1,17 @@
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "MyPage",
+//  DataURL : "./admin/json/filter.json",
+  templateSelector : '#MyPageTopState',
+  stateProcessor : function(data){
+    //backcontroller.state.FilterList.setList(data);
+  },
+  targetSelector : ".MyPageTopState",
+  afterEvent : function(){
+  }})
+})()
+</script>
 <script type="text/template" id="MyPageTopState">
     <div class="subTitle">마이페이지</div>
     <style>

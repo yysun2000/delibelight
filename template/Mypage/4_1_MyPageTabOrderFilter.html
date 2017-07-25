@@ -1,3 +1,17 @@
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "MyPage",
+//  DataURL : "./admin/json/filter.json",
+  templateSelector : '#MyPageTabOrderFilter',
+  stateProcessor : function(data){
+    //backcontroller.state.FilterList.setList(data);
+  },
+  targetSelector : ".MyPageTabOrderFilter",
+  afterEvent : function(){
+  }})
+})()
+</script>
 <script type="text/template" id="MyPageTabOrderFilter">
 <style>
 .taborderfliter{display:block;padding:0px;margin:10px 0px 0px 0px;overflow: hidden;}

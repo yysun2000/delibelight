@@ -1,3 +1,17 @@
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "Detail",
+  DataURL : "./admin/json/filter.json",
+  templateSelector : '#DetailBottomMenu',
+  stateProcessor : function(data){
+    //backcontroller.state.FilterList.setList(data);
+  },
+  targetSelector : ".DetailBottomMenu",
+  afterEvent : function(){
+  }})
+})()
+</script>
 <script type="text/template" id="DetailBottomMenu">
       <div class="filterMenu">
         <div class="menu menu-up col-xs-12">

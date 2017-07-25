@@ -48,8 +48,12 @@ define('_SHOP_', true);
 </head>
 <body>
 <?php
-if ($is_member)
+if ($is_member){
   echo "<div id='loginsuccess' style='display:none'></div>";
+  $member = get_member($_SESSION['ss_mb_id']);
+}
+
+
 ?>
 
 <div id="skipnav"><a href="#maincontent">Skip to main content</a></div>
@@ -82,6 +86,18 @@ if ($is_member)
       </div>
   </div>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "TopMenu",
+  templateSelector : '#DetailTopMenu',
+  stateProcessor : function(data){
+  },
+  targetSelector : ".DetailTopMenu",
+  afterEvent : function(){
+  }})
+})()
+</script>
 <script type="text/template" id="DetailTopMenu">
 <% var topmenulist = obj;%>
 <nav style="background-color:#fed664;height:75px;padding-top:9px;margin-bottom:-9px;" class="navbar navbar-default" role="navigation">
@@ -119,6 +135,22 @@ if ($is_member)
 
 </script>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "Detail",
+  Data : {
+    name : "Slider",
+    url : "http://0sun.net/pub/intop/yc/api/item.php?q=/"+location.href.split("#")[1]
+  },
+  stateProcessor : function(data){
+  },
+  templateSelector : '#DetailSlider',
+  targetSelector : ".DetailSlider",
+  afterEvent : function(){
+  }})
+})()
+</script>
 <script type="text/template" id="DetailSlider">
   <% var detailItem = obj;%>
   <% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
@@ -156,6 +188,22 @@ if ($is_member)
   </script>
 </script>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "Detail",
+  Data : {
+    name : "Detail",
+    url : "http://0sun.net/pub/intop/yc/api/item.php?q=/"+location.href.split("#")[1]
+  },
+  templateSelector : '#DetailPriceInfo',
+  stateProcessor : function(data){
+  },
+  targetSelector : ".DetailPriceInfo",
+  afterEvent : function(){
+  }})
+})()
+</script>
 <script type="text/template" id="DetailPriceInfo">
   <% var detailItem = obj;%>
   <div class="col-xs-12" style="padding:20px 0px 10px 0px;">
@@ -170,6 +218,20 @@ if ($is_member)
   </div>
 </script>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "Detail",
+  DataURL : "./admin/json/filter.json",
+  templateSelector : '#DetailContents',
+  stateProcessor : function(data){
+    //backcontroller.state.FilterList.setList(data);
+  },
+  targetSelector : ".DetailContents",
+  afterEvent : function(){
+  }})
+})()
+</script>
 <script type="text/template" id="DetailContents">
 
   <div class="filterMenu">
@@ -280,6 +342,20 @@ if ($is_member)
 
 </script>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "Detail",
+  DataURL : "./admin/json/filter.json",
+  templateSelector : '#DetailBottomMenu',
+  stateProcessor : function(data){
+    //backcontroller.state.FilterList.setList(data);
+  },
+  targetSelector : ".DetailBottomMenu",
+  afterEvent : function(){
+  }})
+})()
+</script>
 <script type="text/template" id="DetailBottomMenu">
       <div class="filterMenu">
         <div class="menu menu-up col-xs-12">
@@ -293,6 +369,20 @@ if ($is_member)
       </div>
 </script>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "Detail",
+  DataURL : "./admin/json/filter.json",
+  templateSelector : '#DetailBottomItems',
+  stateProcessor : function(data){
+    //backcontroller.state.FilterList.setList(data);
+  },
+  targetSelector : ".DetailBottomItems",
+  afterEvent : function(){
+  }})
+})()
+</script>
 <script type="text/template" id="DetailBottomItems">
 
 

@@ -1,3 +1,18 @@
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "MyPage",
+  //  DataURL : "./admin/json/filter.json",
+    templateSelector : '#MyPageTabWillPoint',
+    stateProcessor : function(data){
+      //backcontroller.state.FilterList.setList(data);
+    },
+    targetSelector : ".MyPageTabWillPoint",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
 <script type="text/template" id="MyPageTabWillPoint">
 
 

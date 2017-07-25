@@ -1,3 +1,18 @@
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "MyPage",
+  //  DataURL : "./admin/json/filter.json",
+    templateSelector : '#MyPageTabCoupon',
+    stateProcessor : function(data){
+      //backcontroller.state.FilterList.setList(data);
+    },
+    targetSelector : ".MyPageTabCoupon",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
 <script type="text/template" id="MyPageTabCoupon">
 
 <style>

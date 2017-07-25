@@ -81,6 +81,20 @@ define('_SHOP_', true);
       </div>
   </div>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "MyPage",
+//  DataURL : "./admin/json/filter.json",
+  templateSelector : '#MyPageTopMenu',
+  stateProcessor : function(data){
+    //backcontroller.state.FilterList.setList(data);
+  },
+  targetSelector : ".MyPageTopMenu",
+  afterEvent : function(){
+  }})
+})()
+</script>
 <script type="text/template" id="MyPageTopMenu">
     <% var topmenulist = obj;%>
     <nav style="background-color:#fed664;height:75px;padding-top:9px;margin-bottom:-9px;" class="navbar navbar-default" role="navigation">
@@ -118,6 +132,20 @@ define('_SHOP_', true);
 
 </script>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "MyPage",
+//  DataURL : "./admin/json/filter.json",
+  templateSelector : '#MyPageTopState',
+  stateProcessor : function(data){
+    //backcontroller.state.FilterList.setList(data);
+  },
+  targetSelector : ".MyPageTopState",
+  afterEvent : function(){
+  }})
+})()
+</script>
 <script type="text/template" id="MyPageTopState">
     <div class="subTitle">마이페이지</div>
     <style>
@@ -137,6 +165,20 @@ define('_SHOP_', true);
     </div>
 </script>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "MyPage",
+//  DataURL : "./admin/json/filter.json",
+  templateSelector : '#MyPageTabSelector',
+  stateProcessor : function(data){
+    //backcontroller.state.FilterList.setList(data);
+  },
+  targetSelector : ".MyPageTabSelector",
+  afterEvent : function(){
+  }})
+})()
+</script>
 <script type="text/template" id="MyPageTabSelector">
 <style>
 
@@ -186,6 +228,20 @@ $(".tabselector .button > span,.tabselector .button > img").on("click",function(
 
 </script>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "MyPage",
+//  DataURL : "./admin/json/filter.json",
+  templateSelector : '#MyPageTabOrderFilter',
+  stateProcessor : function(data){
+    //backcontroller.state.FilterList.setList(data);
+  },
+  targetSelector : ".MyPageTabOrderFilter",
+  afterEvent : function(){
+  }})
+})()
+</script>
 <script type="text/template" id="MyPageTabOrderFilter">
 <style>
 .taborderfliter{display:block;padding:0px;margin:10px 0px 0px 0px;overflow: hidden;}
@@ -231,6 +287,23 @@ input.calenderbutton{ width:25px; padding:0px;margin:0px; }
 </div>
 </script>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "MyPage",
+  Data : {
+    name : "OrderList",
+    url : "http://0sun.net/pub/intop/yc/api/order.php?q=/"+<? echo "'".$member['mb_id']."'"; ?>
+  },
+  templateSelector : '#MyPageTabOrderList',
+  stateProcessor : function(data){
+    //backcontroller.state.FilterList.setList(data);
+  },
+  targetSelector : ".MyPageTabOrderList",
+  afterEvent : function(){
+  }})
+})()
+</script>
 <script type="text/template" id="MyPageTabOrderList">
 <style>
 .orderlist{display:block;background-color: #ffffff;padding:15px 0px 15px 0px;}
@@ -249,30 +322,47 @@ input.calenderbutton{ width:25px; padding:0px;margin:0px; }
       <div class="line" style="margin-left:25px;"><span style="font-weight:bold">2017-01-01</span> (201701011234)</div>
     </div>
     <div class="contents">
+      <% var orderlist = obj;%>
+      <% for(var i=0;i<orderlist.length;i++){%>
       <div class="content">
         <div class="line">
           <div class="product">
             <span><img src="./img/newitem/MainNewItemProduct.png" style="width:100%;height:100%;padding:15px 20px 15px 20px;"/></span>
           </div>
           <div class="productinfo" style="padding-top:20px;">
-            <span style="color:#0961f2;">[style]</span>
-            <span style="color:#474747;">셔츠</span>
-            <span style="color:#999999;">34,000원</span>
+            <span style="color:#0961f2;">[<%=orderlist[i].it_model%>]</span>
+            <span style="color:#474747;"><%=orderlist[i].it_name%></span>
+            <span style="color:#999999;"><%=orderlist[i].it_price%>원</span>
             <span style="color:#999999;">SIZE : S | COLOR : RED | 1개</span>
           </div>
         </div>
         <div class="line isCenter">
-          <div class="button isState">배송준비중</div>
+          <div class="button isState"><%=orderlist[i].od_status%></div>
           <div class="button">상세보기</div>
           <div class="button">배송조회</div>
           <div class="button">구매후기</div>
         </div>
       </div>
+      <%}%>
     </div>
   </div>
 </div>
 </script>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "MyPage",
+//  DataURL : "./admin/json/filter.json",
+  templateSelector : '#MyPageTabWishList',
+  stateProcessor : function(data){
+    //backcontroller.state.FilterList.setList(data);
+  },
+  targetSelector : ".MyPageTabWishList",
+  afterEvent : function(){
+  }})
+})()
+</script>
 <script type="text/template" id="MyPageTabWishList">
 <style>
 .wishlist{display:block;background-color: #ffffff;padding:15px 0px 15px 0px;}
@@ -331,9 +421,38 @@ input.calenderbutton{ width:25px; padding:0px;margin:0px; }
 </div>
 </script>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "MyPage",
+//  DataURL : "./admin/json/filter.json",
+  templateSelector : '#MyPageTabMemberModify',
+  stateProcessor : function(data){
+    //backcontroller.state.FilterList.setList(data);
+  },
+  targetSelector : ".MyPageTabMemberModify",
+  afterEvent : function(){
+  }
+  })
+})()
+</script>
 <script type="text/template" id="MyPageTabMemberModify">
 </script>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "MyPage",
+//  DataURL : "./admin/json/filter.json",
+  templateSelector : '#MyPageTabPoint',
+  stateProcessor : function(data){
+    //backcontroller.state.FilterList.setList(data);
+  },
+  targetSelector : ".MyPageTabPoint",
+  afterEvent : function(){
+  }})
+})()
+</script>
 <script type="text/template" id="MyPageTabPoint">
 
 <style>
@@ -480,6 +599,21 @@ input.calenderbutton{ width:25px; padding:0px;margin:0px; }
 
 </script>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "MyPage",
+  //  DataURL : "./admin/json/filter.json",
+    templateSelector : '#MyPageTabWillPoint',
+    stateProcessor : function(data){
+      //backcontroller.state.FilterList.setList(data);
+    },
+    targetSelector : ".MyPageTabWillPoint",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
 <script type="text/template" id="MyPageTabWillPoint">
 
 
@@ -627,6 +761,21 @@ input.calenderbutton{ width:25px; padding:0px;margin:0px; }
 
 </script>
 
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "MyPage",
+  //  DataURL : "./admin/json/filter.json",
+    templateSelector : '#MyPageTabCoupon',
+    stateProcessor : function(data){
+      //backcontroller.state.FilterList.setList(data);
+    },
+    targetSelector : ".MyPageTabCoupon",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
 <script type="text/template" id="MyPageTabCoupon">
 
 <style>

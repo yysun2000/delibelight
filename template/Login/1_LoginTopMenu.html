@@ -1,3 +1,17 @@
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "Login",
+//  DataURL : "./admin/json/filter.json",
+  templateSelector : '#LoginTopMenu',
+  stateProcessor : function(data){
+    //backcontroller.state.FilterList.setList(data);
+  },
+  targetSelector : ".LoginTopMenu",
+  afterEvent : function(){
+  }})
+})()
+</script>
 <script type="text/template" id="LoginTopMenu">
 
   <% var topmenulist = obj;%>

@@ -1,11 +1,11 @@
 
-
-
-// Freelancer Theme JavaScript
 (function($) {
     "use strict"; // Start of use strict
+    try{
+      $('img').lazyload();
+    }catch(e){
 
-    $('img').lazyload();
+    }
     $(document).on("touchstart", function(){ });
     // jQuery for page scrolling feature - requires jQuery Easing plugin
     $('.page-scroll a').bind('click', function(event) {
@@ -17,10 +17,15 @@
     });
 
     // Highlight the top nav as scrolling occurs
-    $('body').scrollspy({
-        target: '.navbar-fixed-top',
-        offset: 51
-    });
+    try{
+      $('body').scrollspy({
+          target: '.navbar-fixed-top',
+          offset: 51
+      });
+    }
+    catch(e){
+
+    }
 
     // Closes the Responsive Menu on Menu Item Click
     $('.navbar-collapse ul li a').click(function(){
@@ -30,11 +35,15 @@
 
 
     // Offset for Main Navigation
-    $('#mainNav').affix({
-        offset: {
-            top: 100
-        }
-    })
+    try{
+      $('#mainNav').affix({
+          offset: {
+              top: 100
+          }
+      })
+    }catch(e){
+
+    }
 
 
 
@@ -72,9 +81,33 @@ var MainWidth;
 var LeftMenuWidth;
 window.onload = function(){
 
+    try{
+      $('img').lazyload();
+    }catch(e){
+
+    }
+
+    try{
+      $('body').scrollspy({
+          target: '.navbar-fixed-top',
+          offset: 51
+      });
+    }
+    catch(e){
+
+    }
+
+    try{
+      $('#mainNav').affix({
+          offset: {
+              top: 100
+          }
+      })
+    }catch(e){
+
+    }
     backcontroller.render.start();
 
-    DataToTemplate();
     MainWidth = $(window).width();
     LeftMenuWidth = MainWidth - 100;
     $(".left-menu").css("display","block")
@@ -167,52 +200,4 @@ function filterItem(type){
       "data":filteredList
     }
   );
-}
-
-
-function DataToTemplate(){
-  var API_URL = "http://0sun.net/pub/intop/yc/api/category.php";
-  var connect = backcontroller.DB.dataTotemplate;
-  var DataTo = backcontroller.DB.method;
-  var showView = backcontroller.render.showView;
-
-  /// VIEWLIST
-  var Category;
-
-
-  var MainFocus, MainItem, MainFollow;
-  if(document.querySelector("#MainPage")){
-    return;
-  }
-
-
-  var DetailPage;
-  if(document.querySelector("#DetailPage")){
-      var detailData = location.href.split("#")[1];
-      DetailPage = connect(API_URL+"item.php?q=/"+detailData)("getDetail",function(data){
-        DataTo.PriceInfo(data);
-        DataTo.Slider(data);
-      });
-      $.when(Category,DetailPage).done(function(e){
-          showView()
-      }).fail(function(e){
-        console.log(e);
-      });
-
-      return;
-  }
-
-
-  var StoreModel, StoreModelItem;
-  if(document.querySelector("#StorePage")){
-      return;
-  }
-
-  $.when(Category).done(function(e){
-      showView()
-  }).fail(function(e){
-    console.log(e);
-  });
-
-
 }

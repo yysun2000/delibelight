@@ -1,3 +1,19 @@
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "Detail",
+  Data : {
+    name : "Slider",
+    url : "http://0sun.net/pub/intop/yc/api/item.php?q=/"+location.href.split("#")[1]
+  },
+  stateProcessor : function(data){
+  },
+  templateSelector : '#DetailSlider',
+  targetSelector : ".DetailSlider",
+  afterEvent : function(){
+  }})
+})()
+</script>
 <script type="text/template" id="DetailSlider">
   <% var detailItem = obj;%>
   <% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>

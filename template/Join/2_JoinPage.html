@@ -1,3 +1,18 @@
+<script>
+(function(){
+  backcontroller.Component.init({
+    type : "PHP",
+  Name : "JoinPage",
+//  DataURL : "./admin/json/filter.json",
+  templateSelector : '#JoinPage',
+  stateProcessor : function(data){
+    //backcontroller.state.FilterList.setList(data);
+  },
+  targetSelector : ".JoinPage",
+  afterEvent : function(){
+  }})
+})()
+</script>
 <script type="text/template" id="JoinPage">
   <div class="subTitle">회원가입</div>
   <?php

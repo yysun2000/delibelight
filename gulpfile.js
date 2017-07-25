@@ -7,7 +7,6 @@ var rename = require("gulp-rename");
 var uglify = require('gulp-uglify');
 var filter = require('gulp-filter');
 var concat = require('gulp-concat');
-var inject = require('gulp-inject');
 var insert = require('gulp-insert');
 var fileInsert = require("gulp-file-insert");
 var ap = require("gulp-append-prepend");
@@ -193,6 +192,9 @@ gulp.task('dist',['build'],function(){
       .pipe(gulp.dest('../dist/js/'));
   gulp.src('css/*.min.css')
       .pipe(gulp.dest('../dist/css/'));
+
+  gulp.src('*.html')
+      .pipe(gulp.dest('../dist/'));
 })
 
 // Run everything
@@ -209,12 +211,12 @@ gulp.task('browserSync', function() {
 
 // Dev task with browserSync
 gulp.task('dev', ['browserSync', 'less', 'minify-css', 'minify-frontjs','minify-backjs','build','dist'], function() {
-    gulp.watch('less/*.less', ['less']);
-    gulp.watch('css/*.css', ['minify-css']);
-    gulp.watch('js/*.js', ['minify-frontjs','minify-backjs']);
-    gulp.watch('template/**/*.html', ['build']);
-    gulp.watch('template/*.html', ['build']);
-    gulp.watch('backend/*.php',['build'])
+    gulp.watch('less/*.less', ['less','dist']);
+    gulp.watch('css/*.css', ['minify-css','dist']);
+    gulp.watch('js/*.js', ['minify-frontjs','minify-backjs','dist']);
+    gulp.watch('template/**/*.html', ['build','dist']);
+    gulp.watch('template/*.html', ['build','dist']);
+    gulp.watch('backend/*.php',['build','dist'])
     // Reloads the browser whenever HTML or JS files change
     gulp.watch('*.html', browserSync.reload);
     gulp.watch('js/**/*.js', browserSync.reload);
