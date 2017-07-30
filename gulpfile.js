@@ -68,8 +68,27 @@ gulp.task('minify-backjs', function() {
 });
 
 
+var CommonImport = ["backend/checklogin.php","template/Common/TopMenu/*.html","template/Common/LeftMenu/*.html"];
+var NologinCommonImport = ["template/Common/TopMenu/*.html","template/Common/LeftMenu/*.html"];
+var LastImport = ["template/include.html"];
+
+
+gulp.task('build-main',function(){
+  var InputLib = ["template/1_main.html","template/Main/*.html","template/Common/ProductList/*.html"];
+  var ImportLib = CommonImport.concat(InputLib).concat(LastImport);
+  return gulp.src(ImportLib)
+        .pipe(concat("index.html"))
+        .pipe(insert.wrap("<body>\n","\n</body>"))
+        .pipe(ap.prependFile("template/head.html"))
+        .pipe(insert.wrap("<!DOCTYPE html><html>\n","\n</html>"))
+        .pipe(ap.prependFile("backend/common.php"))
+        .pipe(gulp.dest("."))
+})
+
 gulp.task('build-store',function(){
-  return gulp.src(["backend/checklogin.php","template/2_store.html","template/Store/*.html","template/LeftMenu/*.html","template/include.html"])
+  var InputLib = ["template/2_store.html","template/Store/*.html"];
+  var ImportLib = CommonImport.concat(InputLib).concat(LastImport);
+  return gulp.src(ImportLib)
         .pipe(concat("store.html"))
         .pipe(insert.wrap("<body>\n","\n</body>"))
         .pipe(ap.prependFile("template/head.html"))
@@ -79,7 +98,9 @@ gulp.task('build-store',function(){
 })
 
 gulp.task('build-detail',function(){
-  return gulp.src(["backend/checklogin.php","template/3_detail.html","template/Detail/*.html","template/LeftMenu/*.html","template/include.html"])
+  var InputLib = ["template/3_detail.html","template/Detail/*.html"];
+  var ImportLib = CommonImport.concat(InputLib).concat(LastImport);
+  return gulp.src(ImportLib)
         .pipe(concat("detail.html"))
         .pipe(insert.wrap("<body>\n","\n</body>"))
         .pipe(ap.prependFile("template/head.html"))
@@ -88,18 +109,11 @@ gulp.task('build-detail',function(){
         .pipe(gulp.dest("."))
 })
 
-gulp.task('build-main',function(){
-  return gulp.src(["backend/checklogin.php","template/1_main.html","template/Main/*.html","template/LeftMenu/*.html","template/include.html"])
-        .pipe(concat("index.html"))
-        .pipe(insert.wrap("<body>\n","\n</body>"))
-        .pipe(ap.prependFile("template/head.html"))
-        .pipe(insert.wrap("<!DOCTYPE html><html>\n","\n</html>"))
-        .pipe(ap.prependFile("backend/common.php"))
-        .pipe(gulp.dest("."))
-})
 
 gulp.task('build-login',function(){
-  return gulp.src(["backend/checklogin.php","template/4_login.html","template/Login/*.html","template/LeftMenu/*.html","template/include.html"])
+  var InputLib = ["template/4_login.html","template/Login/*.html"];
+  var ImportLib = CommonImport.concat(InputLib).concat(LastImport);
+  return gulp.src(ImportLib)
         .pipe(concat("login.html"))
         .pipe(insert.wrap("<body>\n","\n</body>"))
         .pipe(ap.prependFile("template/head.html"))
@@ -109,7 +123,9 @@ gulp.task('build-login',function(){
 })
 
 gulp.task('build-joincheck',function(){
-  return gulp.src(["template/5_joincheck.html","template/JoinCheck/*.html","template/LeftMenu/*.html","template/include.html"])
+  var InputLib = ["template/5_joincheck.html","template/JoinCheck/*.html"];
+  var ImportLib = NologinCommonImport.concat(InputLib).concat(LastImport);
+  return gulp.src(ImportLib)
         .pipe(concat("joincheck.html"))
         .pipe(insert.wrap("<body>\n","\n</body>"))
         .pipe(ap.prependFile("template/head.html"))
@@ -119,7 +135,9 @@ gulp.task('build-joincheck',function(){
 })
 
 gulp.task('build-join',function(){
-  return gulp.src(["template/6_joinpage.html","template/Join/*.html","template/LeftMenu/*.html","template/include.html"])
+  var InputLib = ["template/6_joinpage.html","template/Join/*.html"];
+  var ImportLib = NologinCommonImport.concat(InputLib).concat(LastImport);
+  return gulp.src(ImportLib)
         .pipe(concat("join.html"))
         .pipe(insert.wrap("<body>\n","\n</body>"))
         .pipe(ap.prependFile("template/head.html"))
@@ -129,7 +147,9 @@ gulp.task('build-join',function(){
 })
 
 gulp.task('build-mypage',function(){
-  return gulp.src(["template/7_mypage.html","template/Mypage/*.html","template/LeftMenu/*.html","template/include.html"])
+  var InputLib = ["template/7_mypage.html","template/Mypage/*.html"];
+  var ImportLib = CommonImport.concat(InputLib).concat(LastImport);
+  return gulp.src(ImportLib)
         .pipe(concat("mypage.html"))
         .pipe(insert.wrap("<body>\n","\n</body>"))
         .pipe(ap.prependFile("template/head.html"))
@@ -138,7 +158,19 @@ gulp.task('build-mypage',function(){
         .pipe(gulp.dest("."))
 })
 
-gulp.task('build',['build-login','build-main','build-store','build-detail','build-joincheck','build-join','build-mypage'])
+gulp.task('build-new',function(){
+  var InputLib = ["template/8_new.html","template/New/*.html"];
+  var ImportLib = CommonImport.concat(InputLib).concat(LastImport);
+  return gulp.src(ImportLib)
+        .pipe(concat("new.html"))
+        .pipe(insert.wrap("<body>\n","\n</body>"))
+        .pipe(ap.prependFile("template/head.html"))
+        .pipe(insert.wrap("<!DOCTYPE html><html>\n","\n</html>"))
+        .pipe(ap.prependFile("backend/common.php"))
+        .pipe(gulp.dest("."))
+})
+
+gulp.task('build',['build-login','build-main','build-store','build-detail','build-joincheck','build-join','build-mypage','build-new'])
 
 /*
 gulp.task('unified-all',['unified-body'],function(){

@@ -1,0 +1,51 @@
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "NewSearch",
+  templateSelector : '#NewSearch',
+  stateProcessor : function(data){
+  },
+  targetSelector : ".NewSearch",
+  afterEvent : function(){
+  }})
+})()
+</script>
+<style>
+  .NewSearch {
+    height:40px;
+  }
+	.NewSearch .subTitle {
+    height:40px;
+		overflow-x:scroll;
+		overflow-y:hidden;
+		white-space:nowrap;
+	}
+	.NewSearch .subTitle .horizontal{
+    height:40px;
+		overflow-x:scroll;
+		overflow-y:hidden;
+		white-space:nowrap;
+	}
+
+	.NewSearch .subTitle .horizontal > div{
+    height:40px;
+		padding-left: 20px;
+		padding-right: 20px;
+		display: block;
+		font-size:15px;
+		color:#b4b4b4;
+	}
+
+</style>
+<script type="text/template" id="NewSearch">
+  <div class="subTitle" >
+    <div class="horizontal" style="background-color:#ffffff">
+      <div>BEST</div>
+      <div>NEW</div>
+      <div>CELLEB</div>
+      <div>ITEM</div>
+      <div>#TAG</div>
+    </div>
+  </div>
+
+</script>

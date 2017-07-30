@@ -1,0 +1,250 @@
+<?php
+include_once('./yc/common.php');
+define('_SHOP_', true);
+?>
+<!DOCTYPE html><html>
+<head>
+
+    <meta charset="utf-8">
+    <META http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Delibe Light</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="css/common.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="http://0sun.net/pub/intop/yc/theme/basic/css/mobile_shop.css?ver=161020">
+    <link rel="stylesheet" href="http://0sun.net/pub/intop/yc/mobile/skin/member/delibe/style.css?ver=161020">
+
+
+    <link rel="stylesheet" href="css/swiper.css"/>
+
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/underscore.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <script src="js/jquery.lazyload.min.js"></script>
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/backcontroller.min.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "LeftMenu",
+    DataURL : "./admin/json/filter.json",
+    templateSelector : '#LeftMenuTopMenuInfo',
+    stateProcessor : function(data){
+      //backcontroller.state.FilterList.setList(data);
+    },
+    targetSelector : ".LeftMenuTopMenuInfo",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
+<script type="text/template" id="LeftMenuTopMenuInfo">
+  <div class="logInfo">
+    <div class="group title"><span>#B</span><span  onclick="closeNav()"style="float:right;">X</span></div>
+    <div class="group content">
+      <div>안녕하세요, 인탑님. </div>
+      <div>#B에 오신걸 환영합니다.</div>
+    </div>
+    <%if(!document.querySelector("#loginsuccess")){%>
+      <div class="group button-group">
+        <a href="mypage.html"><div class="yellow">마이페이지</div></a>
+        <a href="#"><div class="black">위시리스트</div></a>
+      </div>
+    <%}else{%>
+
+      <div class="group button-group">
+        <a href="login.html?device=mobile"><div class="yellow">로그인</div></a>
+        <a href="joincheck.html?device=mobile"><div class="black">회원가입</div></a>
+      </div>
+    <%}%>
+  </div>
+</script>
+
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "LeftMenu",
+    DataURL : "./admin/json/filter.json",
+    templateSelector : '#LeftMenuFollowList',
+    stateProcessor : function(data){
+      //backcontroller.state.FilterList.setList(data);
+    },
+    targetSelector : ".LeftMenuFollowList",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
+<script type="text/template" id="LeftMenuFollowList">
+  <div class="submenu">
+    <div class="group title">
+      <div>Folow</div>
+    </div>
+    <div class="group contents">
+      <div class="follow" onclick="GoStore();">
+        <div class="face" style="padding:20 20 10 20px;"><img src="img\subinfo\subInfoMockup.png" style="width:100%;"></div>
+        <div class="name" style="padding-bottom:20px;">chu</div>
+      </div>
+      <div class="follow" onclick="GoStore();">
+        <div class="face" style="padding:20 20 10 20px;"><img src="img\subinfo\subInfoMockup.png" style="width:100%;"></div>
+        <div class="name" style="padding-bottom:20px;">chu</div>
+      </div>
+      <div class="follow" onclick="GoStore();">
+        <div class="face" style="padding:20 20 10 20px;"><img src="img\subinfo\subInfoMockup.png" style="width:100%;"></div>
+        <div class="name" style="padding-bottom:20px;">chu</div>
+      </div>
+    </div>
+  </div>
+</script>
+
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "LeftMenu",
+    Data : {
+      name : "LeftMenu",
+      url : "http://0sun.net/pub/intop/yc/api/category.php"
+    },
+    templateSelector : '#LeftMenuMenuList',
+    stateProcessor : function(data){
+      //backcontroller.state.FilterList.setList(data);
+    },
+    targetSelector : ".LeftMenuMenuList",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
+<script type="text/template" id="LeftMenuMenuList">
+  <% var categorylist = obj.sort(function(a,b){return (a.ca_id.toString() > b.ca_id.toString() ? 1 : 0 )});%>
+
+  <div class="list">
+    <div class="group tab">
+      <div style="background-color: #eeeeee;text-align:center;width:50%;float:left;padding:15px 0px 15px 0px;">
+        <div>Item</div>
+      </div>
+      <div style="border: 1px solid #eeeeee;border-left-width:0px;border-right-width:0px;border-bottom-width:0px;text-align:center;width:50%;float:left;padding:15px 0px 15px 0px;">
+        <div>Celeb</div>
+      </div>
+    </div>
+    <ul class="list-mainmenu" style="clear:both;">
+      <% for(i=0;i<categorylist.length;i++){%>
+      <% var caid=categorylist[i].ca_id %>
+      <li>
+        <% if(caid.toString().length == 2){%>
+        <div><%=categorylist[i].ca_name%></div>
+        <ul class="list-submenu">
+        <% while(categorylist[i+1] !== undefined && categorylist[i+1].ca_id.toString().length == 4){%>
+            <li>- <%=categorylist[i++].ca_name%></li>
+        <%}%>
+        </ul>
+        <%}%>
+
+
+      </li>
+      <% }%>
+
+    </ul>
+</div>
+</script>
+
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "LeftMenu",
+    DataURL : "./admin/json/filter.json",
+    templateSelector : '#LeftMenuLatestList',
+    stateProcessor : function(data){
+      //backcontroller.state.FilterList.setList(data);
+    },
+    targetSelector : ".LeftMenuLatestList",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
+<script type="text/template" id="LeftMenuLatestList">
+  <div class="submenu">
+    <div class="group title">
+      <div>최근에 본 상품</div>
+    </div>
+    <div class="group contents">
+      <div class="follow">
+        <div class="face"><img src="./img/shoplist/1.jpg" style="padding:10px 0px 10px 10px;width:100%;"/></div>
+      </div>
+      <div class="follow">
+        <div class="face"><img src="./img/shoplist/1.jpg" style="padding:10px 0px 10px 10px;width:100%;"/></div>
+      </div>
+      <div class="follow">
+        <div class="face"><img src="./img/shoplist/1.jpg" style="padding:10px 0px 10px 10px;width:100%;"/></div>
+      </div>
+    </div>
+  </div>
+</script>
+
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "LeftMenu",
+    DataURL : "./admin/json/filter.json",
+    templateSelector : '#LeftMenuFooter',
+    stateProcessor : function(data){
+      //backcontroller.state.FilterList.setList(data);
+    },
+    targetSelector : ".LeftMenuFooter",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
+<script type="text/template" id="LeftMenuFooter">
+  <div class="footer" style="padding:15px;background-color: #333333;color:#888888;">
+    <div class="group title">
+    <div style="display:block;text-align:center;">
+      <div style="display:inline-block;width:10%;text-align:left;vertical-align:middle;">ㅅ</div>
+      <div style="display:inline-block;width:40%;vertical-align:middle;text-align:left;font-size:8px;">
+        <div>고객센터</div>
+        <div>Weekdays 9:30 ~ 18:00</div>
+        <div>Sat,Sun,Holiday OFF</div>
+      </div>
+      <div style="display:inline-block;text-align:left;width:45%;font-size:20px;vertical-align:middle;">
+        <span style="margin:5px;">1522-6631</span>
+      </div>
+    </div>
+    </div>
+  </div>
+</script>
+
+
+    <!-- jQuery -->
+    <!-- Bootstrap Core JavaScript -->
+    <!-- Plugin JavaScript -->
+    <!-- Theme JavaScript -->
+    <script src="js/frontcontroller.min.js"></script>
+
+</body>
+</html>

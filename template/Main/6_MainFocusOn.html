@@ -1,11 +1,8 @@
 <script>
 (function(){
+
 	backcontroller.Component.init({
 		Name : "Main",
-    Data : {
-      name : "FocusOn",
-      url : "http://0sun.net/pub/intop/yc/api/item.php?q=/focus"
-    },
 		templateSelector : '#MainFocusOn',
 		stateProcessor : function(data){
 		},
@@ -13,57 +10,32 @@
 		afterEvent : function(){
 		}
 	})
+
+
+	backcontroller.Component.push({
+		Name : "Main",
+		Data : {
+			name : "MainFocusOn", // 위에 클래스 이름과 똑같이 정의해준다.
+	    params : { "listCols": 2 ,"listType":1}, // 넘겨줄 파라메터.
+			url : "http://0sun.net/pub/intop/yc/api/item.php?q=/focus" // JSON으로 보낼 데이터
+		},
+		templateSelector : '#ProductList', // 템프레이트 경로
+		stateProcessor : function(data){
+		},
+		targetSelector : ".MainFocusOnList", // 템프레이터를 최종 적용할 경로
+		afterEvent : function(){
+		}
+	})
+
 })()
 </script>
 
 <script type="text/template" id="MainFocusOn">
 
-<style>
-.bartitle{
-	background-image:url("./img/main/bg.png");
-	height:10px;
-}
-
-.bartitle .title{
-  display: inline-block;
-  margin-top:-6px;
-  width:150px;
-  background: white;
-  font-size:20px;
-}
-.itemlist div{
-	text-align:center;
-}
-</style>
-
-<% var itemlist = obj;%>
-<% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
-
-<div class="focuson" style="margin-top:20px;padding-top:20px;overflow:hidden;">
-  <div class="bartitle" style="width:100%;margin:0 auto;text-align:center;margin-bottom:20px;">
+  <div class="bartitle">
     <div class="title">FOCUS ON</div>
   </div>
-	<% for(var i=0;i<itemlist.length;i++){%>
-		<% if(i % 2 == 0){%>
-		<div class="itemlist col-xs-12" style="padding-top:30px;">
-		<%}%>
-			<div class="col-xs-6">
-				<a href="detail.html#<%=itemlist[i].it_id%>"><img src="<%=url%>/yc/data/item/<%=itemlist[i].it_img1%>" style="width:100%"></a>
-				<div style="color:#0961f2;padding:12px;">[<%=itemlist[i].it_model%>]</div>
-				<div><%=itemlist[i].it_name%></div>
-				<div style="color:#999999;padding:5px;"><%=itemlist[i].it_price%></div>
-				<div style="color:#999999;padding:5px;"><img src="<%=url%>/img/focuson/hearton.png" style="margin-top:3px;width:25px;height:22px;"></div>
-			</div>
-		<% if(i % 2 == 1 || i == (itemlist.length - 1)){%>
-	  </div>
-		<%}%>
-	<%}%>
-	<div class="itemlist col-xs-12" style="padding-top:30px;text-align:center;">
-		<img src="<%=url%>/img/more.png" style="width:128px;height:35px;">
+	<div class="MainFocusOnList">
 	</div>
-	<div class="itemlist col-xs-12" style="padding-top:30px;text-align:center;">
-		<img src="<%=url%>/img/2x2.png" style="width:33px;height:33px;margin:2px;">
-		<img src="<%=url%>/img/2x6.png" style="width:33px;height:33px;margin:2px;">
-	</div>
-</div>
+
 </script>

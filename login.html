@@ -19,11 +19,10 @@ define('_SHOP_', true);
 
     <!-- Theme CSS -->
     <link href="css/common.min.css" rel="stylesheet">
+    <link href="css/font/font.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="http://0sun.net/pub/intop/yc/theme/basic/css/mobile_shop.css?ver=161020">
     <link rel="stylesheet" href="http://0sun.net/pub/intop/yc/mobile/skin/member/delibe/style.css?ver=161020">
 
@@ -56,126 +55,37 @@ if ($is_member){
 
 ?>
 
-<div id="skipnav"><a href="#maincontent">Skip to main content</a></div>
-    <!-- Navigation -->
-
-    <div id="leftMenu"  class="left-menu">
-      <div class="LeftMenuTopMenuInfo"></div>
-      <div class="LeftMenuFollowList"></div>
-      <div class="LeftMenuMenuList"></div>
-      <div class="LeftMenuLatestList"></div>
-      <div class="LeftMenuFooter"></div>
-    </div>
-
-
-    <div class="wrapper">
-
-      <div id="LoginPage">
-        <div class="LoginTopMenu"></div>
-        <div class="LoginFrame"></div>
-      </div>
-      <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
-      <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
-          <a class="btn btn-primary" href="#page-top">
-              <i class="fa fa-chevron-up"></i>
-          </a>
-      </div>
-  </div>
-
 <script>
 (function(){
   backcontroller.Component.init({
-  Name : "Login",
+  Name : "Common",
 //  DataURL : "./admin/json/filter.json",
-  templateSelector : '#LoginTopMenu',
+  templateSelector : '#TopMenu',
   stateProcessor : function(data){
     //backcontroller.state.FilterList.setList(data);
   },
-  targetSelector : ".LoginTopMenu",
+  targetSelector : ".TopMenu",
   afterEvent : function(){
   }})
 })()
 </script>
-<script type="text/template" id="LoginTopMenu">
 
-  <% var topmenulist = obj;%>
-  <nav style="background-color:#fed664;height:75px;padding-top:9px;margin-bottom:-9px;" class="navbar navbar-default" role="navigation">
+<script type="text/template" id="TopMenu">
+
+  <nav class="navbar navbar-default" role="navigation">
       <div class="container">
-          <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
-              <!--
-                1-1 셋삼 처리로직 (css)
-                .navbar-header > .navbar-toggle {
-                  float:left;
-                  margin-left:10px;
-                  border-color:transparent;
-                }
-              --->
-              <button onclick="openNav()" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" style="float:left;margin-left:13px;border-color:transparent;">
+              <button onclick="openNav()" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                   <span class="sr-only" >Toggle navigation</span>
-                  <span class="icon-bar" style="background-color:#252525;"></span>
-                  <span class="icon-bar" style="background-color:#252525;"></span>
-                  <span class="icon-bar" style="background-color:#252525;"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
               </button>
-              <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-              <!--
-                1- 3 브랜드 중앙
-                .navbar-header > .navbar-brand{
-                  left: 50%;margin-left:-42px;position: absolute;
-                }
-              -->
-              <span class="navbar-brand" href="#" onclick="GoMain()" style="left: 50%;margin-left:-42px;position: absolute;font-size:30px;color:#252525;">#Be</span>
+              <span class="navbar-brand" href="#" onclick="GoMain()">#Be</span>
 
           </div>
-          <!-- /.navbar-collapse -->
       </div>
-      <!-- /.container -->
   </nav>
-
-</script>
-
-<script>
-(function(){
-  backcontroller.Component.init({
-  Name : "Login",
-  templateSelector : '#LoginFrame',
-  stateProcessor : function(data){
-  },
-  targetSelector : ".LoginFrame",
-  afterEvent : function(){
-  }})
-})()
-</script>
-<script type="text/template" id="LoginFrame">
-  <div class="subTitle">로그인</div>
-  <?php
-    include_once('./yc/common.php');
-
-    $g5['title'] = '로그인';
-    include_once('./yc/bbs/_head.sub.php');
-
-    $url = $_GET['url'];
-
-    // url 체크
-    check_url_host($url);
-
-    // 이미 로그인 중이라면
-    if ($is_member) {
-       goto_url("http://0sun.net/pub/intop/");//G5_URL
-    }
-
-    $login_url        = login_url($url);
-    $login_action_url = G5_HTTPS_BBS_URL."/login_check.php";
-
-    // 로그인 스킨이 없는 경우 관리자 페이지 접속이 안되는 것을 막기 위하여 기본 스킨으로 대체
-    $login_file = $member_skin_path.'/login.skin.php';
-    if (!file_exists($login_file))
-        $member_skin_path   = G5_SKIN_PATH.'/member/basic';
-
-    include_once($member_skin_path.'/login.skin.php');
-
-    include_once('./yc/bbs/_tail.sub.php');
-  ?>
 
 </script>
 
@@ -369,6 +279,77 @@ if ($is_member){
     </div>
     </div>
   </div>
+</script>
+
+<div id="skipnav"><a href="#maincontent">Skip to main content</a></div>
+    <!-- Navigation -->
+
+    <div id="leftMenu"  class="left-menu">
+      <div class="LeftMenuTopMenuInfo"></div>
+      <div class="LeftMenuFollowList"></div>
+      <div class="LeftMenuMenuList"></div>
+      <div class="LeftMenuLatestList"></div>
+      <div class="LeftMenuFooter"></div>
+    </div>
+
+
+    <div class="wrapper">
+
+      <div id="LoginPage">
+        <div class="TopMenu"></div>
+        <div class="LoginFrame"></div>
+      </div>
+      <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+      <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
+          <a class="btn btn-primary" href="#page-top">
+              <i class="fa fa-chevron-up"></i>
+          </a>
+      </div>
+  </div>
+
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "Login",
+  templateSelector : '#LoginFrame',
+  stateProcessor : function(data){
+  },
+  targetSelector : ".LoginFrame",
+  afterEvent : function(){
+  }})
+})()
+</script>
+<script type="text/template" id="LoginFrame">
+  <div class="subTitle">로그인</div>
+  <?php
+    include_once('./yc/common.php');
+
+    $g5['title'] = '로그인';
+    include_once('./yc/bbs/_head.sub.php');
+
+    $url = $_GET['url'];
+
+    // url 체크
+    check_url_host($url);
+
+    // 이미 로그인 중이라면
+    if ($is_member) {
+       goto_url("http://0sun.net/pub/intop/");//G5_URL
+    }
+
+    $login_url        = login_url($url);
+    $login_action_url = G5_HTTPS_BBS_URL."/login_check.php";
+
+    // 로그인 스킨이 없는 경우 관리자 페이지 접속이 안되는 것을 막기 위하여 기본 스킨으로 대체
+    $login_file = $member_skin_path.'/login.skin.php';
+    if (!file_exists($login_file))
+        $member_skin_path   = G5_SKIN_PATH.'/member/basic';
+
+    include_once($member_skin_path.'/login.skin.php');
+
+    include_once('./yc/bbs/_tail.sub.php');
+  ?>
+
 </script>
 
 

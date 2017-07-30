@@ -19,11 +19,10 @@ define('_SHOP_', true);
 
     <!-- Theme CSS -->
     <link href="css/common.min.css" rel="stylesheet">
+    <link href="css/font/font.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="http://0sun.net/pub/intop/yc/theme/basic/css/mobile_shop.css?ver=161020">
     <link rel="stylesheet" href="http://0sun.net/pub/intop/yc/mobile/skin/member/delibe/style.css?ver=161020">
 
@@ -47,122 +46,37 @@ define('_SHOP_', true);
 
 </head>
 <body>
-<div id="skipnav"><a href="#maincontent">Skip to main content</a></div>
-    <!-- Navigation -->
-
-    <div id="leftMenu"  class="left-menu">
-      <div class="LeftMenuTopMenuInfo"></div>
-      <div class="LeftMenuFollowList"></div>
-      <div class="LeftMenuMenuList"></div>
-      <div class="LeftMenuLatestList"></div>
-      <div class="LeftMenuFooter"></div>
-    </div>
-
-
-    <div class="wrapper">
-
-      <div id="JoinPage">
-        <div class="JoinCheckTopMenu"></div>
-        <div class="JoinCheck"></div>
-      </div>
-      <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
-      <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
-          <a class="btn btn-primary" href="#page-top">
-              <i class="fa fa-chevron-up"></i>
-          </a>
-      </div>
-  </div>
-
 <script>
 (function(){
   backcontroller.Component.init({
-  Name : "JoinCheck",
+  Name : "Common",
 //  DataURL : "./admin/json/filter.json",
-  templateSelector : '#JoinCheckTopMenu',
+  templateSelector : '#TopMenu',
   stateProcessor : function(data){
     //backcontroller.state.FilterList.setList(data);
   },
-  targetSelector : ".JoinCheckTopMenu",
+  targetSelector : ".TopMenu",
   afterEvent : function(){
   }})
 })()
 </script>
-<script type="text/template" id="JoinCheckTopMenu">
 
-  <% var topmenulist = obj;%>
-  <nav style="background-color:#fed664;height:75px;padding-top:9px;margin-bottom:-9px;" class="navbar navbar-default" role="navigation">
+<script type="text/template" id="TopMenu">
+
+  <nav class="navbar navbar-default" role="navigation">
       <div class="container">
-          <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
-              <!--
-                1-1 셋삼 처리로직 (css)
-                .navbar-header > .navbar-toggle {
-                  float:left;
-                  margin-left:10px;
-                  border-color:transparent;
-                }
-              --->
-              <button onclick="openNav()" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" style="float:left;margin-left:13px;border-color:transparent;">
+              <button onclick="openNav()" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                   <span class="sr-only" >Toggle navigation</span>
-                  <span class="icon-bar" style="background-color:#252525;"></span>
-                  <span class="icon-bar" style="background-color:#252525;"></span>
-                  <span class="icon-bar" style="background-color:#252525;"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
               </button>
-              <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-              <!--
-                1- 3 브랜드 중앙
-                .navbar-header > .navbar-brand{
-                  left: 50%;margin-left:-42px;position: absolute;
-                }
-              -->
-              <span class="navbar-brand" href="#" onclick="GoMain()" style="left: 50%;margin-left:-42px;position: absolute;font-size:30px;color:#252525;">#Be</span>
+              <span class="navbar-brand" href="#" onclick="GoMain()">#Be</span>
 
           </div>
-          <!-- /.navbar-collapse -->
       </div>
-      <!-- /.container -->
   </nav>
-
-</script>
-
-<script>
-(function(){
-  backcontroller.Component.init({
-    type : "PHP",
-  Name : "JoinCheck",
-//  DataURL : "./admin/json/filter.json",
-  templateSelector : '#JoinCheck',
-  stateProcessor : function(data){
-    //backcontroller.state.FilterList.setList(data);
-  },
-  targetSelector : ".JoinCheck",
-  afterEvent : function(){
-  }})
-})()
-</script>
-<script type="text/template" id="JoinCheck">
-  <div class="subTitle">회원가입</div>
-  <?php
-  include_once('./yc/common.php');
-
-  // 로그인중인 경우 회원가입 할 수 없습니다.
-  if ($is_member) {
-      goto_url(G5_URL);
-  }
-
-  // 세션을 지웁니다.
-  set_session("ss_mb_reg", "");
-
-  $g5['title'] = '회원가입약관';
-  include_once('./yc/head.php');
-
-//  $register_action_url = G5_BBS_URL.'/register_form.php';
-  $register_action_url = './join.html';
-  include_once($member_skin_path.'/register.skin.php');
-
-  include_once('./yc/tail.php');
-  ?>
-
 
 </script>
 
@@ -356,6 +270,73 @@ define('_SHOP_', true);
     </div>
     </div>
   </div>
+</script>
+
+<div id="skipnav"><a href="#maincontent">Skip to main content</a></div>
+    <!-- Navigation -->
+
+    <div id="leftMenu"  class="left-menu">
+      <div class="LeftMenuTopMenuInfo"></div>
+      <div class="LeftMenuFollowList"></div>
+      <div class="LeftMenuMenuList"></div>
+      <div class="LeftMenuLatestList"></div>
+      <div class="LeftMenuFooter"></div>
+    </div>
+
+
+    <div class="wrapper">
+
+      <div id="JoinPage">
+        <div class="TopMenu"></div>
+        <div class="JoinCheck"></div>
+      </div>
+      <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+      <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
+          <a class="btn btn-primary" href="#page-top">
+              <i class="fa fa-chevron-up"></i>
+          </a>
+      </div>
+  </div>
+
+<script>
+(function(){
+  backcontroller.Component.init({
+    type : "PHP",
+  Name : "JoinCheck",
+//  DataURL : "./admin/json/filter.json",
+  templateSelector : '#JoinCheck',
+  stateProcessor : function(data){
+    //backcontroller.state.FilterList.setList(data);
+  },
+  targetSelector : ".JoinCheck",
+  afterEvent : function(){
+  }})
+})()
+</script>
+<script type="text/template" id="JoinCheck">
+  <div class="subTitle">회원가입</div>
+  <?php
+  include_once('./yc/common.php');
+
+  // 로그인중인 경우 회원가입 할 수 없습니다.
+  if ($is_member) {
+      goto_url(G5_URL);
+  }
+
+  // 세션을 지웁니다.
+  set_session("ss_mb_reg", "");
+
+  $g5['title'] = '회원가입약관';
+  include_once('./yc/head.php');
+
+//  $register_action_url = G5_BBS_URL.'/register_form.php';
+  $register_action_url = './join.html';
+  include_once($member_skin_path.'/register.skin.php');
+
+  include_once('./yc/tail.php');
+  ?>
+
+
 </script>
 
 

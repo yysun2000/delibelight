@@ -1,0 +1,39 @@
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "Main",
+    Data : {
+      name : "FollowList",
+      url : "http://0sun.net/pub/intop/yc/api/model.php"
+    },
+    templateSelector : '#MainTopFollowList',
+    stateProcessor : function(data){
+    },
+    targetSelector : ".MainTopFollowList",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
+
+<script type="text/template" id="MainTopFollowList">
+
+
+
+  <% var itemlist = obj;%>
+  <% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
+
+    <div class="horizontal">
+      <style>
+      </style>
+      <% for(i=0;i<itemlist.length;i++){%>
+      <div class="MainTopFollow">
+        <a href="./store.html#<%=itemlist[i].name%>">
+        <img src="<%=url%>/yc/data/face/<%=itemlist[i].face%>">
+        </a>
+        <div><span><%=itemlist[i].name%></span></div>
+      </div>
+      <%}%>
+  </div>
+
+</script>

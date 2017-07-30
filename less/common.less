@@ -1,5 +1,7 @@
 @import "variables.less";
 @import "mixins.less";
+@import "css/font/font.css";
+
 
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
@@ -51,7 +53,7 @@ table {
 }
 
 body {
-	font-family: 'Noto Sans KR', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+	font-family: 'Noto Sans UI', 'Noto Sans KR', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
 	overflow-x: hidden;
 }
 /// RESET END
@@ -86,8 +88,6 @@ div#maincontent{
 	outline: none;
 }
 
-
-@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
 .subTitle{
   color:black;
@@ -391,3 +391,64 @@ div#maincontent{
 		white-space:nowrap;
 	}
 }
+
+
+/* 공통 */
+.wrapper{padding:0px;margin:0px;}
+.wrapper > div{padding:0px;margin:0px;}
+
+/* 공통 : 탑메뉴 */
+.navbar{ height:57px;  /* fixed */ background-color:#fed664; /*탑메뉴의 배경화면*/ }
+.navbar-header > .navbar-brand {margin-left:-42px;font-size:28px; /* fixed */ left: 50%;position: absolute;color:#252525; /*타이틀 제목*/  }
+.navbar-header .navbar-toggle {margin-left:13px;  /* fixed */ float:left !important;border-color:transparent; /* 좌측 메뉴 버튼 */ }
+.navbar-default .navbar-toggle .icon-bar{/* fixed */ boder-bottom-color:#252525;background-color:#252525 !important ;color:#252525;/* 좌측 메뉴 버튼의 아이콘 (셋삼)*/ }
+
+
+/* 탑메뉴 : 정리필요 */
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover{/* fixed */ background-color:#fed664 !important }
+.navbar.navbar-default{ /* fixed */margin-bottom:0px; /* navbar에 있는 마진값을 제거함. 추후 정리필요*/}
+
+
+/* 공통 :  서브메뉴 */
+.subTitle {height:40px; /* fixed */overflow-x:hidden;overflow-y:hidden;white-space:nowrap;margin:0px;line-height:40px;color:#252525; /*서브메뉴*/}
+.subTitle .horizontal{height:40px;  /* fixed */overflow-x:scroll;overflow-y:hidden;white-space:nowrap; /*서브메뉴 안*/}
+.subTitle .horizontal > span{padding-right: 20px;font-size:15px;padding-left:20px; /* fixed */height:inherit;color:#b4b4b4; /*서브메뉴의 메뉴*/}
+.subTitle .horizontal > span:hover{color:#252525;border-bottom-width: 2px;border-style:solid;border-bottom-color:#fed664}
+
+
+/* 공통 : 상품 */
+
+.productlist { margin-top:20px;overflow:hidden;}
+.productlist .itemlist{ /*아이템의 리스트의 상자가 정의됨 */}
+.productlist .itemlist div{ /* fixed */ text-align:center; }
+/* 공통 : 프로덕트 */
+.product.type1{margin-bottom: 20px;padding:0px;}
+.product.type1 .main-img{width:100%;height: 0;padding-bottom: 100%;display:block;background-position:center center;background-repeat:no-repeat;background-size:cover;}
+.product.type1 > .model{color:#0961f2;padding:12px;}
+.product.type1 > .name{text-overflow: ellipsis;white-space: nowrap; width:100%;display: block;overflow:hidden;}
+.product.type1 > .price{color:#999999;padding:5px;}
+.product.type1 > .heart{color:#999999;padding:5px;}
+
+/* 공통 : 프로덕트 */
+.product.type2{margin-bottom: 20px;padding:0px;}
+.product.type2 .main-img{/* fixed */width:100%;height: 0;padding-bottom: 100%;display:block;background-position:center center;background-repeat:no-repeat;background-size:cover;}
+.product.type2 > .model{padding-left:10px;padding-bottom:20px;}
+.product.type2 > .name{padding-left:10px;padding-bottom:5px;/* fixed */text-overflow: ellipsis;white-space: nowrap; width:100%;display: block;overflow:hidden;}
+.product.type2 > .modelface {padding-left:10px;}
+.product.type2 > .modelface > img{margin-top:-25px;width:50px;height:50px;/* fixed */border-radius:50%;}
+.product.type2 .price{padding-left:10px;padding-bottom:5px;/* fixed */display:inline-block;}
+.product.type2 .heart{display:inline-block;float:right;}
+.product.type2 .heart > img{width:25px;height:22px;/* fixed */vertical-align:middle;}
+
+
+
+/* 메인 : 팔로우 리스트 */
+.MainTopFollowList{height:120px;padding:0;text-align: center;margin:0;font-weight:bold;width:100%;background-color:#ffffff;}
+.MainTopFollow{display:inline-block;color:#252525;}
+.MainTopFollow > a >img{text-align: center;width:70px;display:inline-block;margin-top:15px; border-radius:50%;}
+.MainTopFollow > div{display:block;font-size:13px;height:16px;margin-top:5px;margin-right:15px;margin-left:15px;}
+
+
+/* 타이틀 : 세로무늬로 된 타이틀*/
+.bartitle{	margin-top: 50px !important;height:10px;margin-bottom:20px; /* fixed */	background-image:url("./../img/main/bg.png");width:100%;margin:0 auto;text-align:center;}
+.bartitle .title{ display: inline-block;font-size:20px; margin-top:-6px; width:150px; /* fixed */  background: white; }

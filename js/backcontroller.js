@@ -27,7 +27,7 @@ var backcontroller = (function(){
       }
       query = query.substr(0,query.length-1);
 
-      eval("$.when("+query+").done(function(){for(var i=0;i<view.length;i++){try{view[i]();}catch(e){console.log('에러발생');}}})")
+      eval("$.when("+query+").done(function(){for(var i=0;i<view.length;i++){try{view[i]();}catch(e){console.log(e);}}})")
     }else{
       for(var i=0;i<view.length;i++){
         console.log(view[i]);
@@ -68,6 +68,9 @@ var backcontroller = (function(){
     },
     Component : {
       init : function(obj){
+        setting.push(obj);
+      },
+      push : function(obj){
         setting.push(obj);
       }
     },
@@ -112,7 +115,9 @@ var backcontroller = (function(){
           window[param.Data.name] = connect(param.Data.url)("get"+param.Data.name,function(_data){
             console.log("DONE : "+param.Data.name);
             var data = _data;
+            window[param.Data.name]=param.Data.params;
             view.push(function(){
+              window["currentListName"]=param.Data.name;
               var templateHtml = $(param.templateSelector).html();
               $(param.targetSelector).append(_.template( templateHtml )(data));
             });
@@ -152,7 +157,7 @@ var backcontroller = (function(){
                           // TODO
                     },
                     error : function(xhr, status, error) {
-                          alert("에러발생"+status+error);
+                          console.log(xhr+status+error);
                     }
               });
             })

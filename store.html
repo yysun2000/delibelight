@@ -19,11 +19,10 @@ define('_SHOP_', true);
 
     <!-- Theme CSS -->
     <link href="css/common.min.css" rel="stylesheet">
+    <link href="css/font/font.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="http://0sun.net/pub/intop/yc/theme/basic/css/mobile_shop.css?ver=161020">
     <link rel="stylesheet" href="http://0sun.net/pub/intop/yc/mobile/skin/member/delibe/style.css?ver=161020">
 
@@ -56,214 +55,37 @@ if ($is_member){
 
 ?>
 
-<div id="skipnav"><a href="#maincontent">Skip to main content</a></div>
-    <!-- Navigation -->
-
-    <div id="leftMenu"  class="left-menu">
-      <div class="LeftMenuTopMenuInfo"></div>
-      <div class="LeftMenuFollowList"></div>
-      <div class="LeftMenuMenuList"></div>
-      <div class="LeftMenuLatestList"></div>
-      <div class="LeftMenuFooter"></div>
-    </div>
-
-
-    <div class="wrapper">
-
-      <div id="StorePage">
-        <div style="background-color:black;" class="StoreTopMenuInfo"></div>
-        <div class="StoreSubInfo"></div>
-        <div class="StoreFilterMenu filterMenu"></div>
-        <div class="StoreItemList"></div>
-      </div>
-
-
-      <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
-      <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
-          <a class="btn btn-primary" href="#page-top">
-              <i class="fa fa-chevron-up"></i>
-          </a>
-      </div>
-  </div>
-
 <script>
 (function(){
   backcontroller.Component.init({
-    Name : "Store",
-    DataURL : "./admin/json/topmenu.json",
-    templateSelector : '#StoreTopMenuInfo',
-    stateProcessor : function(data){
-      backcontroller.state.TopMenu.setList(data);
-    },
-    targetSelector : ".StoreTopMenuInfo",
-    afterEvent : function(){
-    }
-  })
+  Name : "Common",
+//  DataURL : "./admin/json/filter.json",
+  templateSelector : '#TopMenu',
+  stateProcessor : function(data){
+    //backcontroller.state.FilterList.setList(data);
+  },
+  targetSelector : ".TopMenu",
+  afterEvent : function(){
+  }})
 })()
 </script>
 
-<script type="text/template" id="StoreTopMenuInfo">
-<% var topmenulist = obj;%>
-<nav style="background-color:#fed664;height:75px;padding-top:9px;margin-bottom:-9px;" class="navbar navbar-default" role="navigation">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <!--
-              1-1 셋삼 처리로직 (css)
-              .navbar-header > .navbar-toggle {
-                float:left;
-                margin-left:10px;
-                border-color:transparent;
-              }
-            --->
-            <button onclick="openNav()" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" style="float:left;margin-left:13px;border-color:transparent;">
-                <span class="sr-only" >Toggle navigation</span>
-                <span class="icon-bar" style="background-color:#252525;"></span>
-                <span class="icon-bar" style="background-color:#252525;"></span>
-                <span class="icon-bar" style="background-color:#252525;"></span>
-            </button>
-            <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-            <!--
-              1- 3 브랜드 중앙
-              .navbar-header > .navbar-brand{
-                left: 50%;margin-left:-42px;position: absolute;
-              }
-            -->
-            <a class="navbar-brand"  href="#" onclick="GoMain()" style="left: 50%;margin-left:-42px;position: absolute;font-size:30px;color:#252525;">#Be</a>
+<script type="text/template" id="TopMenu">
 
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
-</nav>
-</script>
+  <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+          <div class="navbar-header">
+              <button onclick="openNav()" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only" >Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <span class="navbar-brand" href="#" onclick="GoMain()">#Be</span>
 
-<script>
-(function(){
-  backcontroller.Component.init({
-    Name : "Store",
-    Data : {
-      name : "SubInfo",
-      url : "http://0sun.net/pub/intop/yc/api/item.php?q=/model/" +location.href.split("#")[1]
-    },
-    templateSelector : '#StoreSubInfo',
-    stateProcessor : function(data){
-    },
-    targetSelector : ".StoreSubInfo",
-    afterEvent : function(){
-    }
-  })
-})()
-</script>
-
-
-<script type="text/template" id="StoreSubInfo">
-  <% var itemlist = obj;%>
-  <% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
-  <div class="subTitle"><%=itemlist[0].shopname%></div>
-  <div id="subMan">
-    <div class="subInfo">
-      <div style="display:inline;height:inherit">
-        <div class="pic">
-        <img src="<%=url%>/yc/data/face/<%=itemlist[0].face%>" style="width:100px;border-radius: 50%;">
-        </div>
-      </div>
-      <div style="display:inline">
-        <div class="info">
-          <div style="font-size:15px;font-weight:bold;color:#555555"><%=itemlist[0].name%></div>
-          <div style="font-size:15px;font-weight:500;color:#999999"><%=itemlist[0].keyword%></div>
-        </div>
-      </div>
-
-        <div class="right">
-          <div class="info">
-            <div class="followbutton" onclick="">
-              +팔로우
-            </div>
           </div>
-        </div>
-    </div>
-  </div>
-</script>
-
-<script>
-(function(){
-  backcontroller.Component.init({
-    Name : "Store",
-    DataURL : "DB:FilterMenu",
-    templateSelector : '#StoreFilterMenu',
-    stateProcessor : function(data){
-      backcontroller.state.FilterList.setList(data);
-    },
-    targetSelector : ".StoreFilterMenu",
-    afterEvent : function(){
-    }
-  })
-})()
-</script>
-
-<!---
-filterMenu 관련
---->
-<script type="text/template" id="StoreFilterMenu">
-<% var filterlist = obj;%>
-  <div class="menu menu-up col-xs-12">
-      <div class="col-xs-4" onclick="filterMenu('<%=filterlist[0].menu[0]%>')">
-        <span><%=filterlist[0].menu[0]%></span>
       </div>
-      <div class="col-xs-4" onclick="filterMenu('<%=filterlist[0].menu[1]%>')">
-        <span><%=filterlist[0].menu[1]%></span>
-      </div>
-      <div class="col-xs-4" onclick="filterMenu('<%=filterlist[0].menu[2]%>')">
-        <span><%=filterlist[0].menu[2]%></span>
-      </div>
-  </div>
-  <div class="menu menu-down col-xs-12">
-    <div class="horizontal">
-      <% for(i=1;i<filterlist.length;i++){%>
-        <span onclick="filterItem('<%=filterlist[i].type%>')"><%=filterlist[i].name%></span>
-      <%}%>
-    </div>
-  </div>
-</script>
-
-<script>
-(function(){
-  backcontroller.Component.init({
-    Name : "Store",
-    Data : {
-      name : "ItemList",
-      url : "http://0sun.net/pub/intop/yc/api/item.php?q=/model/" +location.href.split("#")[1]
-    },
-    templateSelector : '#StoreItemList',
-    stateProcessor : function(data){
-    //  backcontroller.state.ItemList.setList(data);
-    },
-    targetSelector : ".StoreItemList",
-    afterEvent : function(){
-    }
-  })
-})()
-</script>
-
-<!---
-Itemlist 관련
---->
-<script type="text/template" id="StoreItemList">
-<% var itemlist = obj;%>
-<% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
-<% for(var i=0;i<itemlist.length;i++){%>
-<% if((i%3) == 0){%>
-  <div class="col-xs-12" style="padding:0;margin:0">
-<% } %>
-  <a href="./detail.html#<%=itemlist[i].it_id%>">
-    <div class="col-xs-4" style="width:33.33333333%;height:33.33333333%;padding:0px;margin:0px;"><img src="<%=url%>/yc/data/item/<%=itemlist[i].it_img1%>" class="responsive" style="width:100%;height:100%;"/></div>
-  </a>
-<% if((i%3) == 2 || (i%3) == itemlist.length){%>
-</div>
-<% } %>
-<%}%>
-
+  </nav>
 
 </script>
 
@@ -457,6 +279,165 @@ Itemlist 관련
     </div>
     </div>
   </div>
+</script>
+
+<div id="skipnav"><a href="#maincontent">Skip to main content</a></div>
+    <!-- Navigation -->
+
+    <div id="leftMenu"  class="left-menu">
+      <div class="LeftMenuTopMenuInfo"></div>
+      <div class="LeftMenuFollowList"></div>
+      <div class="LeftMenuMenuList"></div>
+      <div class="LeftMenuLatestList"></div>
+      <div class="LeftMenuFooter"></div>
+    </div>
+
+
+    <div class="wrapper">
+
+      <div id="StorePage">
+        <div class="TopMenu"></div>
+        <div class="StoreSubInfo"></div>
+        <div class="StoreFilterMenu filterMenu"></div>
+        <div class="StoreItemList"></div>
+      </div>
+
+
+      <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+      <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
+          <a class="btn btn-primary" href="#page-top">
+              <i class="fa fa-chevron-up"></i>
+          </a>
+      </div>
+  </div>
+
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "Store",
+    Data : {
+      name : "SubInfo",
+      url : "http://0sun.net/pub/intop/yc/api/item.php?q=/model/" +location.href.split("#")[1]
+    },
+    templateSelector : '#StoreSubInfo',
+    stateProcessor : function(data){
+    },
+    targetSelector : ".StoreSubInfo",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
+
+
+<script type="text/template" id="StoreSubInfo">
+  <% var itemlist = obj;%>
+  <% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
+  <div class="subTitle"><%=itemlist[0].shopname%></div>
+  <div id="subMan">
+    <div class="subInfo">
+      <div style="display:inline;height:inherit">
+        <div class="pic">
+        <img src="<%=url%>/yc/data/face/<%=itemlist[0].face%>" style="width:100px;border-radius: 50%;">
+        </div>
+      </div>
+      <div style="display:inline">
+        <div class="info">
+          <div style="font-size:15px;font-weight:bold;color:#555555"><%=itemlist[0].name%></div>
+          <div style="font-size:15px;font-weight:500;color:#999999"><%=itemlist[0].keyword%></div>
+        </div>
+      </div>
+
+        <div class="right">
+          <div class="info">
+            <div class="followbutton" onclick="">
+              +팔로우
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</script>
+
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "Store",
+    DataURL : "DB:FilterMenu",
+    templateSelector : '#StoreFilterMenu',
+    stateProcessor : function(data){
+      backcontroller.state.FilterList.setList(data);
+    },
+    targetSelector : ".StoreFilterMenu",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
+
+<!---
+filterMenu 관련
+--->
+<script type="text/template" id="StoreFilterMenu">
+<% var filterlist = obj;%>
+  <div class="menu menu-up col-xs-12">
+      <div class="col-xs-4" onclick="filterMenu('<%=filterlist[0].menu[0]%>')">
+        <span><%=filterlist[0].menu[0]%></span>
+      </div>
+      <div class="col-xs-4" onclick="filterMenu('<%=filterlist[0].menu[1]%>')">
+        <span><%=filterlist[0].menu[1]%></span>
+      </div>
+      <div class="col-xs-4" onclick="filterMenu('<%=filterlist[0].menu[2]%>')">
+        <span><%=filterlist[0].menu[2]%></span>
+      </div>
+  </div>
+  <div class="menu menu-down col-xs-12">
+    <div class="horizontal">
+      <% for(i=1;i<filterlist.length;i++){%>
+        <span onclick="filterItem('<%=filterlist[i].type%>')"><%=filterlist[i].name%></span>
+      <%}%>
+    </div>
+  </div>
+</script>
+
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "Store",
+    Data : {
+      name : "ItemList",
+      url : "http://0sun.net/pub/intop/yc/api/item.php?q=/model/" +location.href.split("#")[1]
+    },
+    templateSelector : '#StoreItemList',
+    stateProcessor : function(data){
+    //  backcontroller.state.ItemList.setList(data);
+    },
+    targetSelector : ".StoreItemList",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
+
+<!---
+Itemlist 관련
+--->
+<script type="text/template" id="StoreItemList">
+<% var itemlist = obj;%>
+<% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
+<% for(var i=0;i<itemlist.length;i++){%>
+<% if((i%3) == 0){%>
+  <div class="col-xs-12" style="padding:0;margin:0">
+<% } %>
+  <a href="./detail.html#<%=itemlist[i].it_id%>">
+    <div class="col-xs-4" style="width:33.33333333%;height:33.33333333%;padding:0px;margin:0px;"><img src="<%=url%>/yc/data/item/<%=itemlist[i].it_img1%>" class="responsive" style="width:100%;height:100%;"/></div>
+  </a>
+<% if((i%3) == 2 || (i%3) == itemlist.length){%>
+</div>
+<% } %>
+<%}%>
+
+
 </script>
 
 

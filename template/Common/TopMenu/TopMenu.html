@@ -1,0 +1,33 @@
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "Common",
+//  DataURL : "./admin/json/filter.json",
+  templateSelector : '#TopMenu',
+  stateProcessor : function(data){
+    //backcontroller.state.FilterList.setList(data);
+  },
+  targetSelector : ".TopMenu",
+  afterEvent : function(){
+  }})
+})()
+</script>
+
+<script type="text/template" id="TopMenu">
+
+  <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+          <div class="navbar-header">
+              <button onclick="openNav()" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only" >Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <span class="navbar-brand" href="#" onclick="GoMain()">#Be</span>
+
+          </div>
+      </div>
+  </nav>
+
+</script>

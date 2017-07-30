@@ -2,11 +2,6 @@
 (function(){
 	backcontroller.Component.init({
 		Name : "Main",
-    Data : {
-      name : "BestItem",
-      url : "http://0sun.net/pub/intop/yc/api/item.php"
-    },
-		DataURL : "DB:PrintBestItem",
 		templateSelector : '#MainBestItem',
 		stateProcessor : function(data){
 		},
@@ -14,55 +9,30 @@
 		afterEvent : function(){
 		}
 	})
+
+	backcontroller.Component.push({
+		Name : "Main",
+		Data : {
+      name : "MainBestItem",
+	    params : { "listCols": 2 ,"listType":1},
+      url : "http://0sun.net/pub/intop/yc/api/item.php"
+		},
+		templateSelector : '#ProductList',
+		stateProcessor : function(data){
+		},
+		targetSelector : ".MainBestItemOnList",
+		afterEvent : function(){
+		}
+})
 })()
 </script>
 
 <script type="text/template" id="MainBestItem">
 
-<% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
-
-<style>
-.bartitle{
-	background-image:url("./img/main/bg.png");
-	height:10px;
-}
-
-.bartitle .title{
-  display: inline-block;
-  margin-top:-6px;
-  width:150px;
-  background: white;
-  font-size:20px;
-}
-</style>
-<% var itemlist = obj;%>
-
-<div class="focuson" style="margin-top:20px;padding-top:20px;overflow:hidden;">
-	<div class="bartitle" style="width:100%;margin:0 auto;text-align:center;">
-    <div class="title">BEST ITEMS</div>
-  </div>
-	<% for(var i=0;i<itemlist.length;i++){%>
-		<% if(i % 2 == 0){%>
-		<div class="itemlist col-xs-12" style="padding-top:30px;">
-		<%}%>
-			<div class="col-xs-6" onclick="GoDetail();">
-				<a href="detail.html#<%=itemlist[i].it_id%>"><img src="<%=url%>/yc/data/item/<%=itemlist[i].it_img1%>" style="width:100%"></a>
-				<div style="color:#0961f2;padding:12px;">[<%=itemlist[i].it_model%>]</div>
-				<div><%=itemlist[i].it_name%></div>
-				<div style="color:#999999;padding:5px;"><%=itemlist[i].it_price%></div>
-				<div style="color:#999999;padding:5px;"><img src="<%=url%>/img/focuson/hearton.png" style="margin-top:3px;width:25px;height:22px;"></div>
-			</div>
-		<% if(i % 2 == 1 || i == (itemlist.length - 1)){%>
-	  </div>
-		<%}%>
-	<%}%>
-	<div class="itemlist col-xs-12" style="padding-top:30px;text-align:center;">
-		<img src="<%=url%>/img/more.png" style="width:128px;height:35px;">
-	</div>
-	<div class="itemlist col-xs-12" style="padding-top:30px;padding-bottom:30px;text-align:center;">
-		<img src="<%=url%>/img/2x2.png" style="width:33px;height:33px;margin:2px;">
-		<img src="<%=url%>/img/2x6.png" style="width:33px;height:33px;margin:2px;">
-	</div>
+<div class="bartitle">
+	<div class="title">BEST ITEMS</div>
+</div>
+<div class="MainBestItemOnList">
 </div>
 
 </script>

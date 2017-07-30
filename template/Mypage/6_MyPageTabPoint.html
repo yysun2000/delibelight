@@ -1,0 +1,159 @@
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "MyPage",
+//  DataURL : "./admin/json/filter.json",
+  templateSelector : '#MyPageTabPoint',
+  stateProcessor : function(data){
+    //backcontroller.state.FilterList.setList(data);
+  },
+  targetSelector : ".MyPageTabPoint",
+  afterEvent : function(){
+  }})
+})()
+</script>
+<script type="text/template" id="MyPageTabPoint">
+
+<style>
+.point{  width:100%;display:block;}
+.point .line{width:100%;display:block;}
+.point .line.isMainTitle{background-color:#fdd04e;color:black;}
+.point .line.isLeft{text-align: left;padding-left:20px;}
+.point .line.isCenter{text-align: center;}
+.point .line.isTitle{height:50px;line-height:50px;}
+.rollMenu .line.isSubTitle{background-color:#f9f9f9;color:black;}
+.rollMenu .content {display:none;}
+.rollMenu .content .line {padding:20px;}
+.rollMenu .content .line > .title{display:inline-block;width:20%;margin-left:20px;word-wrap: normal;word-break: keep-all;}
+.rollMenu .content .line > .value{display:inline-block;width:70%;}
+.rollMenu.isSelected .line.isSubTitle{background-color:#333333;color:white;}
+.rollMenu.isSelected .content{display:block;}
+</style>
+<div class="point">
+  <div class="line isTitle isMainTitle isCenter">
+    <span style="font-size:18px;">적립금</span>
+  </div>
+  <div class="rollMenu">
+    <div class="line isTitle isSubTitle isLeft">
+      <span>적립금</span>
+    </div>
+    <div class="content">
+      <div class="line">
+        <div class="title">총 적립금</div> <div class="value">1,940원</div>
+      </div>
+
+      <div class="line">
+        <div class="title">사용가능 적립금</div> <div class="value">1,000원</div>
+      </div>
+
+      <div class="line">
+        <div class="title">사용된 적립금</div> <div class="value">0원</div>
+      </div>
+
+      <div class="line">
+        <div class="title">미가용 적립금</div> <div class="value">0원</div>
+      </div>
+
+
+      <div class="line">
+        <div class="title">환불예정 적립금</div> <div class="value">0원</div>
+      </div>
+    </div>
+  </div>
+
+    <div class="rollMenu">
+      <div class="line isTitle isSubTitle isLeft">
+        <span>적립내역</span>
+      </div>
+      <div class="content">
+        <div class="line">
+          <div class="title">총 적립금</div> <div class="value">1,940원</div>
+        </div>
+
+        <div class="line">
+          <div class="title">사용가능 적립금</div> <div class="value">1,000원</div>
+        </div>
+
+        <div class="line">
+          <div class="title">사용된 적립금</div> <div class="value">0원</div>
+        </div>
+
+        <div class="line">
+          <div class="title">미가용 적립금</div> <div class="value">0원</div>
+        </div>
+
+
+        <div class="line">
+          <div class="title">환불예정 적립금</div> <div class="value">0원</div>
+        </div>
+      </div>
+    </div>
+
+      <div class="rollMenu">
+        <div class="line isTitle isSubTitle isLeft">
+          <span>미가용 적립내역</span>
+        </div>
+        <div class="content">
+          <div class="line">
+            <div class="title">총 적립금</div> <div class="value">1,940원</div>
+          </div>
+
+          <div class="line">
+            <div class="title">사용가능 적립금</div> <div class="value">1,000원</div>
+          </div>
+
+          <div class="line">
+            <div class="title">사용된 적립금</div> <div class="value">0원</div>
+          </div>
+
+          <div class="line">
+            <div class="title">미가용 적립금</div> <div class="value">0원</div>
+          </div>
+
+
+          <div class="line">
+            <div class="title">환불예정 적립금</div> <div class="value">0원</div>
+          </div>
+        </div>
+      </div>
+
+  <div class="rollMenu">
+    <div class="line isTitle isSubTitle isLeft">
+      <span>미가용쿠폰/회원등급 적립내역</span>
+    </div>
+    <div class="content">
+      <div class="line">
+        <div class="title">총 적립금</div> <div class="value">1,940원</div>
+      </div>
+
+      <div class="line">
+        <div class="title">사용가능 적립금</div> <div class="value">1,000원</div>
+      </div>
+
+      <div class="line">
+        <div class="title">사용된 적립금</div> <div class="value">0원</div>
+      </div>
+
+      <div class="line">
+        <div class="title">미가용 적립금</div> <div class="value">0원</div>
+      </div>
+
+
+      <div class="line">
+        <div class="title">환불예정 적립금</div> <div class="value">0원</div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</div>
+
+  <script>
+  $(".point .rollMenu .isTitle").on("click",function(evt){
+    $(evt.target).parent().toggleClass("isSelected");
+  })
+  </script>
+
+</script>

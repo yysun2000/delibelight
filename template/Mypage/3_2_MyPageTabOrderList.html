@@ -1,0 +1,63 @@
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "MyPage",
+  Data : {
+    name : "OrderList",
+    //url : "http://0sun.net/pub/intop/yc/api/order.php?q=/"+<? echo "'".$member['mb_id']."'"; ?>
+    url : "http://0sun.net/pub/intop/yc/api/order.php?q=/test2"
+  },
+  templateSelector : '#MyPageTabOrderList',
+  stateProcessor : function(data){
+    //backcontroller.state.FilterList.setList(data);
+  },
+  targetSelector : ".MyPageTabOrderList",
+  afterEvent : function(){
+  }})
+})()
+</script>
+<script type="text/template" id="MyPageTabOrderList">
+<style>
+.orderlist{display:block;background-color: #ffffff;padding:15px 0px 15px 0px;}
+.orderlist .line{width:100%;display:block;color:#474747;margin:5px;}
+.orderlist .line .product {display:inline-block;width:35%;}
+.orderlist .line .productinfo {display:inline-block;width:63%;}
+.orderlist .line .productinfo >span {display:block;}
+.orderlist .line.isCenter{text-align: center}
+.orderlist .header {background-color: #f9f9f9;padding:15px 0px 15px 0px;}
+.orderlist .line .button.isState {background-color: #42669f;color:white;}
+.orderlist .line .button {display:inline-block;width:22%;border:1px #a3a3a3 solid;border-radius: 5px; padding:10px;}
+</style>
+<div class="orderlist">
+  <div class="order">
+    <div class="header">
+      <div class="line" style="margin-left:25px;"><span style="font-weight:bold">2017-01-01</span> (201701011234)</div>
+    </div>
+    <div class="contents">
+      <% var orderlist = obj;%>
+      <% console.log(orderlist);%>
+      <% for(var i=0;i<orderlist.length;i++){%>
+      <div class="content">
+        <div class="line">
+          <div class="product">
+            <span><img src="./img/newitem/MainNewItemProduct.png" style="width:100%;height:100%;padding:15px 20px 15px 20px;"/></span>
+          </div>
+          <div class="productinfo" style="padding-top:20px;">
+            <span style="color:#0961f2;">[<%=orderlist[i].it_model%>]</span>
+            <span style="color:#474747;"><%=orderlist[i].it_name%></span>
+            <span style="color:#999999;"><%=orderlist[i].it_price%>원</span>
+            <span style="color:#999999;">SIZE : S | COLOR : RED | 1개</span>
+          </div>
+        </div>
+        <div class="line isCenter">
+          <div class="button isState"><%=orderlist[i].od_status%></div>
+          <div class="button">상세보기</div>
+          <div class="button">배송조회</div>
+          <div class="button">구매후기</div>
+        </div>
+      </div>
+      <%}%>
+    </div>
+  </div>
+</div>
+</script>
