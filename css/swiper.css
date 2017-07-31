@@ -219,9 +219,9 @@ button.swiper-pagination-bullet {
 }
 
 .blackgray-pagination .swiper-pagination-bullet {
-      margin-top:20px !important;
+      margin-top:5px !important;
       margin-left:0px !important;
-      width:15px;
+      width:14px;
       height:2px;
       background-color:#999999;
       display:inline-block;
@@ -235,7 +235,7 @@ button.swiper-pagination-bullet {
 .blackgray-pagination .swiper-pagination-bullet-active{
   margin-top:0px;
   background-color:black;
-  width:15px;
+  width:14px;
   height:2px;
   display:inline-block;
 }
@@ -244,7 +244,7 @@ button.swiper-pagination-bullet {
 
     margin-top:0px;
     background-color:#999999;
-    width:15px;
+    width:14px;
     height:2px;
     display:inline-block;
 

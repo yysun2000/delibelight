@@ -72,102 +72,102 @@ var CommonImport = ["backend/checklogin.php","template/Common/TopMenu/*.html","t
 var NologinCommonImport = ["template/Common/TopMenu/*.html","template/Common/LeftMenu/*.html"];
 var LastImport = ["template/include.html"];
 
-
-gulp.task('build-main',function(){
-  var InputLib = ["template/1_main.html","template/Main/*.html","template/Common/ProductList/*.html"];
+function defaultPage(param){
+  var InputLib = param.list;
   var ImportLib = CommonImport.concat(InputLib).concat(LastImport);
   return gulp.src(ImportLib)
-        .pipe(concat("index.html"))
+        .pipe(concat(param.output))
         .pipe(insert.wrap("<body>\n","\n</body>"))
         .pipe(ap.prependFile("template/head.html"))
         .pipe(insert.wrap("<!DOCTYPE html><html>\n","\n</html>"))
         .pipe(ap.prependFile("backend/common.php"))
         .pipe(gulp.dest("."))
+}
+
+function NoLoginPage(param){
+  var InputLib = param.list;
+  var ImportLib = NologinCommonImport.concat(InputLib).concat(LastImport);
+  return gulp.src(ImportLib)
+        .pipe(concat(param.output))
+        .pipe(insert.wrap("<body>\n","\n</body>"))
+        .pipe(ap.prependFile("template/head.html"))
+        .pipe(insert.wrap("<!DOCTYPE html><html>\n","\n</html>"))
+        .pipe(ap.prependFile("backend/common.php"))
+        .pipe(gulp.dest("."))
+
+}
+
+gulp.task('build-main',function(){
+  return defaultPage(
+      {
+        list  : ["template/1_main.html","template/Main/*.html","template/Common/ProductList/*.html"],
+        output : "index.html"
+      }
+  );
 })
 
 gulp.task('build-store',function(){
-  var InputLib = ["template/2_store.html","template/Store/*.html"];
-  var ImportLib = CommonImport.concat(InputLib).concat(LastImport);
-  return gulp.src(ImportLib)
-        .pipe(concat("store.html"))
-        .pipe(insert.wrap("<body>\n","\n</body>"))
-        .pipe(ap.prependFile("template/head.html"))
-        .pipe(insert.wrap("<!DOCTYPE html><html>\n","\n</html>"))
-        .pipe(ap.prependFile("backend/common.php"))
-        .pipe(gulp.dest("."))
+      return defaultPage(
+          {
+            list  : ["template/2_store.html","template/Store/*.html"],
+            output : "store.html"
+          }
+      );
 })
 
 gulp.task('build-detail',function(){
-  var InputLib = ["template/3_detail.html","template/Detail/*.html"];
-  var ImportLib = CommonImport.concat(InputLib).concat(LastImport);
-  return gulp.src(ImportLib)
-        .pipe(concat("detail.html"))
-        .pipe(insert.wrap("<body>\n","\n</body>"))
-        .pipe(ap.prependFile("template/head.html"))
-        .pipe(insert.wrap("<!DOCTYPE html><html>\n","\n</html>"))
-        .pipe(ap.prependFile("backend/common.php"))
-        .pipe(gulp.dest("."))
+  return defaultPage(
+      {
+        list  : ["template/3_detail.html","template/Detail/*.html"],
+        output : "detail.html"
+      }
+  );
 })
 
 
 gulp.task('build-login',function(){
-  var InputLib = ["template/4_login.html","template/Login/*.html"];
-  var ImportLib = CommonImport.concat(InputLib).concat(LastImport);
-  return gulp.src(ImportLib)
-        .pipe(concat("login.html"))
-        .pipe(insert.wrap("<body>\n","\n</body>"))
-        .pipe(ap.prependFile("template/head.html"))
-        .pipe(insert.wrap("<!DOCTYPE html><html>\n","\n</html>"))
-        .pipe(ap.prependFile("backend/common.php"))
-        .pipe(gulp.dest("."))
+  return defaultPage(
+      {
+        list  : ["template/4_login.html","template/Login/*.html"],
+        output : "login.html"
+      }
+  );
 })
 
 gulp.task('build-joincheck',function(){
-  var InputLib = ["template/5_joincheck.html","template/JoinCheck/*.html"];
-  var ImportLib = NologinCommonImport.concat(InputLib).concat(LastImport);
-  return gulp.src(ImportLib)
-        .pipe(concat("joincheck.html"))
-        .pipe(insert.wrap("<body>\n","\n</body>"))
-        .pipe(ap.prependFile("template/head.html"))
-        .pipe(insert.wrap("<!DOCTYPE html><html>\n","\n</html>"))
-        .pipe(ap.prependFile("backend/common.php"))
-        .pipe(gulp.dest("."))
+  return NoLoginPage(
+      {
+        list  : ["template/5_joincheck.html","template/JoinCheck/*.html"],
+        output : "joincheck.html"
+      }
+  );
 })
 
 gulp.task('build-join',function(){
-  var InputLib = ["template/6_joinpage.html","template/Join/*.html"];
-  var ImportLib = NologinCommonImport.concat(InputLib).concat(LastImport);
-  return gulp.src(ImportLib)
-        .pipe(concat("join.html"))
-        .pipe(insert.wrap("<body>\n","\n</body>"))
-        .pipe(ap.prependFile("template/head.html"))
-        .pipe(insert.wrap("<!DOCTYPE html><html>\n","\n</html>"))
-        .pipe(ap.prependFile("backend/common.php"))
-        .pipe(gulp.dest("."))
+  return NoLoginPage(
+      {
+        list  : ["template/6_joinpage.html","template/Join/*.html"],
+        output : "join.html"
+      }
+  )
 })
 
 gulp.task('build-mypage',function(){
-  var InputLib = ["template/7_mypage.html","template/Mypage/*.html"];
-  var ImportLib = CommonImport.concat(InputLib).concat(LastImport);
-  return gulp.src(ImportLib)
-        .pipe(concat("mypage.html"))
-        .pipe(insert.wrap("<body>\n","\n</body>"))
-        .pipe(ap.prependFile("template/head.html"))
-        .pipe(insert.wrap("<!DOCTYPE html><html>\n","\n</html>"))
-        .pipe(ap.prependFile("backend/common.php"))
-        .pipe(gulp.dest("."))
+  return defaultPage(
+      {
+        list  : ["template/7_mypage.html","template/Mypage/*.html"],
+        output : "mypage.html"
+      }
+  );
 })
 
 gulp.task('build-new',function(){
-  var InputLib = ["template/8_new.html","template/New/*.html"];
-  var ImportLib = CommonImport.concat(InputLib).concat(LastImport);
-  return gulp.src(ImportLib)
-        .pipe(concat("new.html"))
-        .pipe(insert.wrap("<body>\n","\n</body>"))
-        .pipe(ap.prependFile("template/head.html"))
-        .pipe(insert.wrap("<!DOCTYPE html><html>\n","\n</html>"))
-        .pipe(ap.prependFile("backend/common.php"))
-        .pipe(gulp.dest("."))
+  return defaultPage(
+      {
+        list  : ["template/8_new.html","template/New/*.html"],
+        output : "new.html"
+      }
+  );
 })
 
 gulp.task('build',['build-login','build-main','build-store','build-detail','build-joincheck','build-join','build-mypage','build-new'])

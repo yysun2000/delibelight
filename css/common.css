@@ -425,6 +425,7 @@ div#maincontent {
 .wrapper {
   padding: 0px;
   margin: 0px;
+  background-color: #efefef;
 }
 .wrapper > div {
   padding: 0px;
@@ -432,14 +433,17 @@ div#maincontent {
 }
 /* 공통 : 탑메뉴 */
 .navbar {
-  height: 57px;
+  height: 58px;
   /* fixed */
   background-color: #fed664;
   /*탑메뉴의 배경화면*/
 }
 .navbar-header > .navbar-brand {
+  font-family: "Noto Sans KR";
   margin-left: -42px;
-  font-size: 28px;
+  font-weight: 500;
+  font-size: 27px;
+  height: 58px;
   /* fixed */
   left: 50%;
   position: absolute;
@@ -447,7 +451,7 @@ div#maincontent {
   /*타이틀 제목*/
 }
 .navbar-header .navbar-toggle {
-  margin-left: 13px;
+  margin-left: 9px;
   /* fixed */
   float: left !important;
   border-color: transparent;
@@ -492,12 +496,16 @@ div#maincontent {
   /*서브메뉴 안*/
 }
 .subTitle .horizontal > span {
-  padding-right: 20px;
+  font-family: "Noto Sans KR";
+  padding-right: 15px;
+  /*최적맞춤*/
   font-size: 15px;
-  padding-left: 20px;
+  padding-left: 15px;
+  /*최적맞춤*/
+  font-weight: 500;
   /* fixed */
   height: inherit;
-  color: #b4b4b4;
+  color: #252525;
   /*서브메뉴의 메뉴*/
 }
 .subTitle .horizontal > span:hover {
@@ -508,8 +516,9 @@ div#maincontent {
 }
 /* 공통 : 상품 */
 .productlist {
-  margin-top: 20px;
+  padding-top: 25px;
   overflow: hidden;
+  background-color: #ffffff;
 }
 .productlist .itemlist {
   /*아이템의 리스트의 상자가 정의됨 */
@@ -521,7 +530,7 @@ div#maincontent {
 /* 공통 : 프로덕트 */
 .product.type1 {
   margin-bottom: 20px;
-  padding: 0px;
+  padding: 0.5px;
 }
 .product.type1 .main-img {
   width: 100%;
@@ -533,10 +542,13 @@ div#maincontent {
   background-size: cover;
 }
 .product.type1 > .model {
+  padding-top: 10px;
+  font-weight: 800;
   color: #0961f2;
-  padding: 12px;
 }
 .product.type1 > .name {
+  padding-top: 10px;
+  font-weight: 500;
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 100%;
@@ -544,17 +556,19 @@ div#maincontent {
   overflow: hidden;
 }
 .product.type1 > .price {
+  padding-top: 6px;
+  font-weight: 700;
   color: #999999;
-  padding: 5px;
 }
 .product.type1 > .heart {
+  padding-top: 10px;
   color: #999999;
   padding: 5px;
 }
 /* 공통 : 프로덕트 */
 .product.type2 {
   margin-bottom: 20px;
-  padding: 0px;
+  padding: 0.5px;
 }
 .product.type2 .main-img {
   /* fixed */
@@ -568,11 +582,12 @@ div#maincontent {
 }
 .product.type2 > .model {
   padding-left: 10px;
-  padding-bottom: 20px;
+  text-align: left;
 }
 .product.type2 > .name {
   padding-left: 10px;
-  padding-bottom: 5px;
+  font-weight: 700;
+  padding-top: 5px;
   /* fixed */
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -581,17 +596,21 @@ div#maincontent {
   overflow: hidden;
 }
 .product.type2 > .modelface {
-  padding-left: 10px;
+  text-align: left;
 }
 .product.type2 > .modelface > img {
+  margin-left: 10px;
   margin-top: -25px;
   width: 50px;
   height: 50px;
   /* fixed */
   border-radius: 50%;
+  border: 2px solid white;
 }
 .product.type2 .price {
-  padding-left: 10px;
+  text-align: left;
+  font-weight: 800;
+  margin-left: 10px;
   padding-bottom: 5px;
   /* fixed */
   display: inline-block;
@@ -601,10 +620,13 @@ div#maincontent {
   float: right;
 }
 .product.type2 .heart > img {
-  width: 25px;
-  height: 22px;
+  width: 13px;
+  height: 12px;
   /* fixed */
   vertical-align: middle;
+}
+.product.type2 div {
+  text-align: left;
 }
 /* 메인 : 팔로우 리스트 */
 .MainTopFollowList {
@@ -615,6 +637,9 @@ div#maincontent {
   font-weight: bold;
   width: 100%;
   background-color: #ffffff;
+  /*fixed*/
+  margin-top: 7px;
+  margin-bottom: 7px;
 }
 .MainTopFollow {
   display: inline-block;
@@ -637,8 +662,12 @@ div#maincontent {
 }
 /* 타이틀 : 세로무늬로 된 타이틀*/
 .bartitle {
-  margin-top: 50px !important;
-  height: 10px;
+  padding-top: 53px !important;
+  padding-bottom: 25px !important;
+  background-color: white;
+  background-position-y: 56px;
+  background-repeat: repeat-x;
+  height: 63px;
   margin-bottom: 20px;
   /* fixed */
   background-image: url("../img/main/bg.png");
@@ -648,9 +677,15 @@ div#maincontent {
 }
 .bartitle .title {
   display: inline-block;
-  font-size: 20px;
-  margin-top: -6px;
-  width: 150px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  font-size: 12px;
+  width: 156px;
   /* fixed */
   background: white;
+}
+/* 탑슬라이더 정의 안됬으므로 아이폰사이즈 기준으로 250*/
+.MainTopSlider > div {
+  height: 250px;
+  margin-bottom: 7px;
 }

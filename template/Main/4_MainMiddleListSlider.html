@@ -12,10 +12,17 @@
   })
 })()
 </script>
-
+<style>
+  .mmls-pagination{
+    height:10px;
+    text-align:center;
+  }
+  .mmls-pagination .swiper-pagination-bullet{
+  }
+</style>
 <script type="text/template" id="MainMiddleListSlider">
 
-      <div style="background-color:#ffffff;margin-top: 50px;overflow:hidden;">
+      <div style="background-color:#ffffff;overflow:hidden;">
 
         <div class="MainMiddleListSlider-main blackgray-pagination swiper-container">
           <div class="swiper-wrapper">
@@ -28,7 +35,7 @@
                   <img src="./img/main/MainMiddleListSlider2.png" style="width:100%;">
                 </div>
               </div>
-              <div class="col-xs-12" style="margin-top:5px;padding:0px;">
+              <div class="col-xs-12" style="margin-top:3px;padding:0px;">
                 <div class="col-xs-6" style="margin:0px;padding:0px;">
                   <img src="./img/main/MainMiddleListSlider3.png" style="width:100%;">
                 </div>
@@ -61,5 +68,11 @@
 
   </div>
   </div>
-
+  <script>
+  var swiper = new Swiper('.MainMiddleListSlider-main', {
+     pagination: '.mmls-pagination',
+     paginationClickable: true,
+     autoplay:5000
+  });
+  </script>
 </script>

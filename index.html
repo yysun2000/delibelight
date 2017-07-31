@@ -81,8 +81,9 @@ if ($is_member){
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
               </button>
-              <span class="navbar-brand" href="#" onclick="GoMain()">#Be</span>
-
+              <span class="navbar-brand" href="#" onclick="GoMain()">#B</span>
+              <button type="button" class="navbar-toggle"  style="background:transparent;border:none;margin:0px;margin-top:9px;margin-bottom:9px;padding:0px;float:right !important;"><img src="./img/main/shopping-cart.png" style="height:20px;"/></button>
+              <button type="button" class="navbar-toggle" style="background:transparent;border:none;margin:0px;margin-top:9px;margin-bottom:9px;padding:0px;float:right !important;"><img src="./img/main/zoom.png" style="height:20px;"/></button>
           </div>
       </div>
   </nav>
@@ -337,7 +338,7 @@ if ($is_member){
   <div class="bartitle" style="width:100%;margin:0 auto;text-align:center;">
     <div class="title">CATEGORY</div>
   </div>
-  <div class="swiper-container blackgray-pagination" style="background-color:#ffffff;margin-top: 30px;overflow:hidden;">
+  <div class="swiper-container blackgray-pagination" style="background-color:#ffffff;overflow:hidden;">
 		<div class="swiper-wrapper">
 		<div class="col-xs-12 swiper-slide" style="margin:0px;padding:0px;">
       <div class="col-xs-6">
@@ -381,28 +382,28 @@ if ($is_member){
 	  <div class="bartitle">
 	    <div class="title">INSTAGRAM</div>
 	  </div>
-<div class="focuson" style="margin-top:20px;padding-top:20px;margin-bottom:50px;overflow:hidden;">
-	  <div class="itemlist" style="padding-top:50px;">
+<div class="focuson" style="overflow:hidden;">
+	  <div class="itemlist">
 			<div style="background-color:#f0e1c3;overflow:hidden;padding:20 0 20 0px;">
 			<div class="col-xs-12">
-				<div class="col-xs-4" style="padding:0 10 0 0px;">
+				<div class="col-xs-4" style="padding:0 5 0 0px;">
 					<img src="./img/instagram/MainInstagram1.png" style="width:100%;">
 				</div>
-				<div class="col-xs-4" style="padding:0 10 0 0px;">
+				<div class="col-xs-4" style="padding:0 5 0 0px;">
 					<img src="./img/instagram/MainInstagram1.png" style="width:100%;">
 				</div>
-				<div class="col-xs-4" style="padding:0 10 0 0px;">
+				<div class="col-xs-4" style="padding:0 5 0 0px;">
 					<img src="./img/instagram/MainInstagram1.png" style="width:100%;">
 				</div>
 			</div>
 			<div class="col-xs-12" style="margin-top:10px;">
-				<div class="col-xs-4" style="padding:0 10 0 0px;">
+				<div class="col-xs-4" style="padding:0 5 0 0px;">
 					<img src="./img/instagram/MainInstagram1.png" style="width:100%;">
 				</div>
-				<div class="col-xs-4" style="padding:0 10 0 0px;">
+				<div class="col-xs-4" style="padding:0 5 0 0px;">
 					<img src="./img/instagram/MainInstagram1.png" style="width:100%;">
 				</div>
-				<div class="col-xs-4" style="padding:0 10 0 0px;">
+				<div class="col-xs-4" style="padding:0 5 0 0px;">
 					<img src="./img/instagram/MainInstagram1.png" style="width:100%;">
 				</div>
 			</div>
@@ -521,8 +522,8 @@ if ($is_member){
 </script>
 <script type="text/template" id="MainTopSlider">
 
-  <div style="background-color:#ffffff" style="margin-top: 15px;">
-    <img src="./img/main/MainTopSlider.png" style="width:100%;">
+  <div style="background-color:#ffffff">
+    <div style="background-image:url('./img/main/MainTopSlider.png');background-repeat:no-repeat;background-position:center center;width:100%;padding-bottom:250px;">
   </div>
 
 </script>
@@ -541,10 +542,17 @@ if ($is_member){
   })
 })()
 </script>
-
+<style>
+  .mmls-pagination{
+    height:10px;
+    text-align:center;
+  }
+  .mmls-pagination .swiper-pagination-bullet{
+  }
+</style>
 <script type="text/template" id="MainMiddleListSlider">
 
-      <div style="background-color:#ffffff;margin-top: 50px;overflow:hidden;">
+      <div style="background-color:#ffffff;overflow:hidden;">
 
         <div class="MainMiddleListSlider-main blackgray-pagination swiper-container">
           <div class="swiper-wrapper">
@@ -557,7 +565,7 @@ if ($is_member){
                   <img src="./img/main/MainMiddleListSlider2.png" style="width:100%;">
                 </div>
               </div>
-              <div class="col-xs-12" style="margin-top:5px;padding:0px;">
+              <div class="col-xs-12" style="margin-top:3px;padding:0px;">
                 <div class="col-xs-6" style="margin:0px;padding:0px;">
                   <img src="./img/main/MainMiddleListSlider3.png" style="width:100%;">
                 </div>
@@ -590,7 +598,13 @@ if ($is_member){
 
   </div>
   </div>
-
+  <script>
+  var swiper = new Swiper('.MainMiddleListSlider-main', {
+     pagination: '.mmls-pagination',
+     paginationClickable: true,
+     autoplay:5000
+  });
+  </script>
 </script>
 
 <script>
@@ -639,10 +653,6 @@ if ($is_member){
 (function(){
 	backcontroller.Component.init({
 		Name : "Main",
-    Data : {
-      name : "NewItem",
-      url : "http://0sun.net/pub/intop/yc/api/item.php"
-    },
 		templateSelector : '#MainNewItem',
 		stateProcessor : function(data){
 		},
@@ -697,7 +707,7 @@ if ($is_member){
 <script type="text/template" id="MainMiddleBanner">
 
 
-  <div class="banner" style="margin-top:5px;margin-bottom:50px;overflow:hidden;">
+  <div class="banner" style="overflow:hidden;padding-top:43px;background-color:white;">
     <div><img src="./img/middlebanner/MainMiddleBanner1.png" style="width:100%;"></div>
     <div><img src="./img/middlebanner/MainMiddleBanner2.png" style="width:100%;"></div>
     <div><img src="./img/middlebanner/MainMiddleBanner3.png" style="width:100%;"></div>
@@ -730,7 +740,7 @@ if ($is_member){
 		targetSelector : ".MainBestItemOnList",
 		afterEvent : function(){
 		}
-})
+	})
 })()
 </script>
 
@@ -772,10 +782,10 @@ if ($is_member){
         <%}%>
       <%}%>
     </div>
-  <div class="itemlist col-xs-12" style="padding-top:30px;text-align:center;">
+  <div class="itemlist col-xs-12" style="padding-top:45px;text-align:center;">
     <img src="<%=url%>/img/more.png" style="width:128px;height:35px;">
   </div>
-  <div class="itemlist col-xs-12" style="padding-top:30px;text-align:center;">
+  <div class="itemlist col-xs-12" style="padding-top:48px;text-align:center;">
     <img onclick="transList(2,'<%=window["currentListName"]%>',<%=window[window.currentListName].listType%>)" src="<%=url%>/img/2x2.png" style="width:33px;height:33px;margin:2px;">
     <img onclick="transList(3,'<%=window["currentListName"]%>',<%=window[window.currentListName].listType%>)" src="<%=url%>/img/2x6.png" style="width:33px;height:33px;margin:2px;">
   </div>
