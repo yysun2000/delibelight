@@ -2,7 +2,10 @@
 (function(){
   backcontroller.Component.init({
     Name : "LeftMenu",
-    DataURL : "./admin/json/filter.json",
+    Data : {
+      name : "LeftFollowList",
+      url : "http://0sun.net/pub/intop/yc/api/model.php"
+    },
     templateSelector : '#LeftMenuFollowList',
     stateProcessor : function(data){
       //backcontroller.state.FilterList.setList(data);
@@ -14,23 +17,22 @@
 })()
 </script>
 <script type="text/template" id="LeftMenuFollowList">
+  <% var itemlist = obj;%>
+  <% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
   <div class="submenu">
     <div class="group title">
-      <div>Folow</div>
+      <div>Follow<span style="float:right"><img src="img/plus.png"/></span></div>
     </div>
     <div class="group contents">
-      <div class="follow" onclick="GoStore();">
-        <div class="face" style="padding:20 20 10 20px;"><img src="img\subinfo\subInfoMockup.png" style="width:100%;"></div>
-        <div class="name" style="padding-bottom:20px;">chu</div>
+    <% for(i=0;i<itemlist.length;i++){%>
+      <a href="./store.html#<%=itemlist[i].name%>">
+      <div class="horizontalElement follow">
+        <div class="face"><img src="<%=url%>/yc/data/face/<%=itemlist[i].face%>" style="width:100%;"></div>
+        <div class="name"><%=itemlist[i].name%></div>
       </div>
-      <div class="follow" onclick="GoStore();">
-        <div class="face" style="padding:20 20 10 20px;"><img src="img\subinfo\subInfoMockup.png" style="width:100%;"></div>
-        <div class="name" style="padding-bottom:20px;">chu</div>
-      </div>
-      <div class="follow" onclick="GoStore();">
-        <div class="face" style="padding:20 20 10 20px;"><img src="img\subinfo\subInfoMockup.png" style="width:100%;"></div>
-        <div class="name" style="padding-bottom:20px;">chu</div>
-      </div>
+      </a>
+    <%}%>
+
     </div>
   </div>
 </script>

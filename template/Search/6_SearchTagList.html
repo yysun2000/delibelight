@@ -1,0 +1,39 @@
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "SearchTagList",
+  templateSelector : '#SearchTagList',
+  stateProcessor : function(data){
+  },
+  targetSelector : ".SearchTagList",
+  afterEvent : function(){
+  }})
+})()
+</script>
+<style>
+  .searchElement{
+    display:none;
+  }
+</style>
+<script type="text/template" id="SearchTagList">
+  <div style="width:100%;text-align:center;background-color:white;display:block;">
+    <div style="float:left;margin:0px;display:inline-block;width:32.9%;text-align:center;padding:10px 0px 10px 0px;color:white;background-color:#333333;">인기 태그</div>
+    <div style="float:left;margin:0px;margin-left:1px;display:inline-block;width:32.9%;text-align:center;padding:10px 0px 10px 0px;background-color:#ffe28f;">추천 태그</div>
+    <div style="float:left;margin:0px;margin-left:1px;display:inline-block;width:33.4%;text-align:center;padding:10px 0px 10px 0px;background-color:#ffe28f;">내가 본 태그</div>
+  </div>
+  <div style="background-color:white;clear:both;">
+    <div class="searchElement" style="width:100%;"><div style="font-weight:900;margin:0 auto;width:95%;padding:15px 0px 12px 22px;border:0px;border-style:solid;border-color:#eeeeee;border-bottom-width:1px;">1. #bba_na_na</div></div>
+    <div class="searchElement" style="width:100%;"><div style="font-weight:900;margin:0 auto;width:95%;padding:15px 0px 12px 22px;border:0px;border-style:solid;border-color:#eeeeee;border-bottom-width:1px;">2. #10대</div></div>
+    <div class="searchElement" style="width:100%;"><div style="font-weight:900;margin:0 auto;width:95%;padding:15px 0px 12px 22px;border:0px;border-style:solid;border-color:#eeeeee;border-bottom-width:1px;">3. #데일리</div></div>
+    <div class="searchElement" style="width:100%;"><div style="font-weight:900;margin:0 auto;width:95%;padding:15px 0px 12px 22px;border:0px;border-style:solid;border-color:#eeeeee;border-bottom-width:1px;">4. #스포티</div></div>
+    <div class="searchElement" style="width:100%;"><div style="font-weight:900;margin:0 auto;width:95%;padding:15px 0px 12px 22px;border:0px;border-style:solid;border-color:#eeeeee;border-bottom-width:1px;">5. #원피스</div></div>
+
+  </div>
+</script>
+<script>
+  setTimeout(function(){
+    $(".searchElement").each(function(idx){
+      $(this).delay(1000*idx).fadeIn();
+    })
+  },1000);
+</script>

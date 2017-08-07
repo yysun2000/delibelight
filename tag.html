@@ -46,6 +46,15 @@ define('_SHOP_', true);
 
 </head>
 <body>
+<?php
+if ($is_member){
+  echo "<div id='loginsuccess' style='display:none'></div>";
+  $member = get_member($_SESSION['ss_mb_id']);
+}
+
+
+?>
+
 <script>
 (function(){
   backcontroller.Component.init({
@@ -292,10 +301,12 @@ define('_SHOP_', true);
 
 
     <div class="wrapper">
-
-      <div id="JoinPage">
+      <div id="Tag">
         <div class="TopMenu"></div>
-        <div class="JoinCheck"></div>
+        <div class="TagSubTopMenu"></div>
+        <div class="TagTitle"></div>
+        <div class="TagForm"></div>
+        <div class="TagList"></div>
       </div>
       <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
       <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
@@ -308,42 +319,193 @@ define('_SHOP_', true);
 <script>
 (function(){
   backcontroller.Component.init({
-    type : "PHP",
-  Name : "JoinCheck",
-//  DataURL : "./admin/json/filter.json",
-  templateSelector : '#JoinCheck',
+  Name : "TagSubTopMenu",
+  templateSelector : '#TagSubTopMenu',
   stateProcessor : function(data){
-    //backcontroller.state.FilterList.setList(data);
   },
-  targetSelector : ".JoinCheck",
+  targetSelector : ".TagSubTopMenu",
   afterEvent : function(){
   }})
 })()
 </script>
-<script type="text/template" id="JoinCheck">
-  <div class="subTitle">회원가입</div>
-  <?php
-  include_once('./yc/common.php');
+<script type="text/template" id="TagSubTopMenu">
+  <div class="subTitle">
+    <div class="horizontal" style="background-color:#ffffff">
+      <span><a href="new.html">BEST</a></span>
+      <span><a href="new.html">NEW</a></span>
+      <span>CELLEB</span>
+      <span><a href="allitem.html">ITEM</a></span>
+      <span><a href="tag.html">#TAG</a></span>
+    </div>
+  </div>
 
-  // 로그인중인 경우 회원가입 할 수 없습니다.
-  if ($is_member) {
-      goto_url(G5_URL);
+</script>
+
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "TagTitle",
+  templateSelector : '#TagTitle',
+  stateProcessor : function(data){
+  },
+  targetSelector : ".TagTitle",
+  afterEvent : function(){
+  }})
+})()
+</script>
+<script type="text/template" id="TagTitle">
+      <div class="ListContent title"><span>#TAG</span></div>
+</script>
+
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "TagForm",
+  templateSelector : '#TagForm',
+  stateProcessor : function(data){
+  },
+  targetSelector : ".TagForm",
+  afterEvent : function(){
+  }})
+})()
+</script>
+<script type="text/template" id="TagForm">
+  <div style="background-color:#f8f8f8;padding:17px 20px 17px 20px;"><input placeholder="검색어를 입력해주세요." type="input" style="border-radius:2px;-webkit-appearance: none;padding:10px;width:100%;border:1px solid #f6f6f6"></input><button style="margin-left:-52px;width:50px;border:0px;border-radius:0px;border-style:solid;background-color:white;border-color:#eee;border-left-width:1px;">검색</button></div>
+</script>
+
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "TagList",
+  templateSelector : '#TagList',
+  stateProcessor : function(data){
+  },
+  targetSelector : ".TagList",
+  afterEvent : function(){
+  }})
+})()
+</script>
+<script type="text/template" id="TagList">
+    <div style="padding-top:48px;padding-bottom:16px;background-color:white;">
+      <div style="font-size:12px;text-align:center;">다음 태그중 <span style="font-size:13px;color:#2f72ff">하나 이상</span> 선택해 주세요.</div>
+    </div>
+    <div style="background-color:#f8f8f8;padding:10px 0px 10px 20px;font-size:13px;color:#292929;">연령별</div>
+    <div style="background-color:white;padding:25px 0px 25px 20px;font-size:13px;color:#292929;">
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#전연령</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#10대</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#20대</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#30대</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">+</span>
+    </div>
+    <div style="background-color:#f8f8f8;padding:10px 0px 10px 20px;font-size:13px;color:#292929;">스타일별</div>
+    <div style="background-color:white;padding:25px 0px 15px 20px;font-size:13px;color:#292929;">
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#청순</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#섹시</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#힙합</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#오피스</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#스포티</span>
+    </div>
+    <div style="background-color:white;padding:10px 0px 15px 20px;font-size:13px;color:#292929;">
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#큐티</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#러블리</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#데일리</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#럭셔리</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">+</span>
+    </div>
+
+
+    <div style="background-color:#f8f8f8;padding:10px 0px 10px 20px;font-size:13px;color:#292929;">아이템별</div>
+    <div style="background-color:white;padding:25px 0px 15px 20px;font-size:13px;color:#292929;">
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#아우터</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#상의</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#하의</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#원피스</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#세트</span>
+    </div>
+    <div style="background-color:white;padding:10px 0px 15px 20px;font-size:13px;color:#292929;">
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#이너웨어</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#신발</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#가방</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#악세사리</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#etc</span>
+    </div>
+    <div style="background-color:#f8f8f8;padding:26px 35px 26px 25px;font-size:13px;color:#292929;">
+      <div style="display:block;width:100%;background-color:#333;color:white;padding:9px 0px 9px 0px;text-align:center;">선택 항목 검색</div>
+    </div>
+</script>
+
+<script type="text/template" id="ProductList">
+<div class="productlist">
+<% var itemlist = obj;%>
+<% ;var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
+    <div class="itemlist">
+      <% for(var i=0;i<itemlist.length;i++){%>
+        <% if(window[window.currentListName].listType == 1){%>
+          <div class="col-xs-6 product type1">
+            <a href="detail.html#<%=itemlist[i].it_id%>"><div style='background-image:url("<%=url%>/yc/data/item/<%=itemlist[i].it_img1%>")' class="main-img"></div></a>
+            <div class="model">[<%=itemlist[i].it_model%>]</div>
+            <div class="name"><%=itemlist[i].it_name%></div>
+            <div class="price"><%=itemlist[i].it_price%></div>
+            <div class="heart"><img src="<%=url%>/img/focuson/hearton.png" style="margin-top:3px;width:25px;height:22px;"></div>
+          </div>
+        <% }else{%>
+          <div class="col-xs-6 product type2">
+            <a href="./detail.html#<%=itemlist[i].it_id%>"><div style='background-image:url("<%=url%>/yc/data/item/<%=itemlist[i].it_img1%>")' class="main-img"></div></a>
+    			  <div class="modelface"><img src="<%=url%>/yc/data/face/<%=itemlist[i].it_model%>/<%=itemlist[i].it_model%>.jpg"></div>
+    			  <div class="model"><%=itemlist[i].it_model%></div>
+    			  <div class="name"><%=itemlist[i].it_name%></div>
+    			  <div style="width:100%">
+    			     <div class="price"><%=itemlist[i].it_price%></div>
+    			     <div class="heart"><img src="<%=url%>/img/focuson/heartoff.png"></div>
+    			  </div>
+          </div>
+        <%}%>
+      <%}%>
+    </div>
+  <div class="itemlist col-xs-12" style="padding-top:45px;text-align:center;">
+    <img src="<%=url%>/img/more.png" style="width:128px;height:35px;">
+  </div>
+  <div class="itemlist col-xs-12 sortArr" style="padding-top:48px;text-align:center;">
+    <img onclick="transList(2,'<%=window["currentListName"]%>',<%=window[window.currentListName].listType%>)" src="<%=url%>/img/2x2.png" style="width:33px;height:33px;margin:2px;">
+    <img onclick="transList(3,'<%=window["currentListName"]%>',<%=window[window.currentListName].listType%>)" src="<%=url%>/img/2x6.png" style="width:33px;height:33px;margin:2px;">
+  </div>
+
+
+  <script>
+  function slientTransList(val,sel,type){
+    if(val==2){
+      $("."+sel+" .product.type"+type).attr("class","product type"+type+" col-xs-6");
+    }else if(val==3){
+      $("."+sel+" .product.type"+type).attr("class","product type"+type+" col-xs-4");
+    }else{
+      $("."+sel+" .product.type"+type).attr("class","product type"+type);
+    }
   }
 
-  // 세션을 지웁니다.
-  set_session("ss_mb_reg", "");
+  function transList(val,sel,type){
+    $("html,body").animate({scrollTop: $("."+sel).offset().top - 10}, 500,function(){
+        if(val==2){
+          $("."+sel+" .product.type"+type).attr("class","product type"+type+" col-xs-6");
+        }else if(val==3){
+          $("."+sel+" .product.type"+type).attr("class","product type"+type+" col-xs-4");
+        }else{
+          $("."+sel+" .product.type"+type).attr("class","product type"+type);
+        }
+    });
 
-  $g5['title'] = '회원가입약관';
-  include_once('./yc/head.php');
+  }
 
-//  $register_action_url = G5_BBS_URL.'/register_form.php';
-  $register_action_url = './join.html';
-  include_once($member_skin_path.'/register.skin.php');
+  setTimeout(function(){
+    try{
+      slientTransList(<%=window[window.currentListName].listCols%>,'<%=window["currentListName"]%>',<%=window[window.currentListName].listType%>);
+    }catch(e){
 
-  include_once('./yc/tail.php');
-  ?>
+    }
+  },500);
+  </script>
 
 
+</div>
 </script>
 
 

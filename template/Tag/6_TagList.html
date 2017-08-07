@@ -1,0 +1,60 @@
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "TagList",
+  templateSelector : '#TagList',
+  stateProcessor : function(data){
+  },
+  targetSelector : ".TagList",
+  afterEvent : function(){
+  }})
+})()
+</script>
+<script type="text/template" id="TagList">
+    <div style="padding-top:48px;padding-bottom:16px;background-color:white;">
+      <div style="font-size:12px;text-align:center;">다음 태그중 <span style="font-size:13px;color:#2f72ff">하나 이상</span> 선택해 주세요.</div>
+    </div>
+    <div style="background-color:#f8f8f8;padding:10px 0px 10px 20px;font-size:13px;color:#292929;">연령별</div>
+    <div style="background-color:white;padding:25px 0px 25px 20px;font-size:13px;color:#292929;">
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#전연령</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#10대</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#20대</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#30대</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">+</span>
+    </div>
+    <div style="background-color:#f8f8f8;padding:10px 0px 10px 20px;font-size:13px;color:#292929;">스타일별</div>
+    <div style="background-color:white;padding:25px 0px 15px 20px;font-size:13px;color:#292929;">
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#청순</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#섹시</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#힙합</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#오피스</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#스포티</span>
+    </div>
+    <div style="background-color:white;padding:10px 0px 15px 20px;font-size:13px;color:#292929;">
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#큐티</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#러블리</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#데일리</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#럭셔리</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">+</span>
+    </div>
+
+
+    <div style="background-color:#f8f8f8;padding:10px 0px 10px 20px;font-size:13px;color:#292929;">아이템별</div>
+    <div style="background-color:white;padding:25px 0px 15px 20px;font-size:13px;color:#292929;">
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#아우터</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#상의</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#하의</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#원피스</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#세트</span>
+    </div>
+    <div style="background-color:white;padding:10px 0px 15px 20px;font-size:13px;color:#292929;">
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#이너웨어</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#신발</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#가방</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#악세사리</span>
+      <span style="margin:15px 5px 15px 0px;padding:4px 7px 4px 7px;color:#969696;border:1px solid #eee;border-radius:2px;">#etc</span>
+    </div>
+    <div style="background-color:#f8f8f8;padding:26px 35px 26px 25px;font-size:13px;color:#292929;">
+      <div style="display:block;width:100%;background-color:#333;color:white;padding:9px 0px 9px 0px;text-align:center;">선택 항목 검색</div>
+    </div>
+</script>

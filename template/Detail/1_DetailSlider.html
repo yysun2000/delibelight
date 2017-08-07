@@ -14,6 +14,17 @@
   }})
 })()
 </script>
+<style>
+.swiper-slide{
+  height:547px;
+}
+.swiper-pagination-bullet-active{
+  background-color: #fed664 !important;
+}
+.swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets{
+  padding-top: 70px !important;
+}
+</style>
 <script type="text/template" id="DetailSlider">
   <% var detailItem = obj;%>
   <% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
@@ -21,17 +32,17 @@
   <div class="subTitle">chuu_official</div>
   <div class="swiper-container col-xs-12" style="padding:0px;margin:0px;">
     <div class="swiper-wrapper">
-    <% if(detailItem[0].it_img1 !== ""){ %> <div class="swiper-slide"><img src="<%=url%>/yc/data/item/<%=detailItem[0].it_img1%>" style="width:100%;"></div><%}%>
-    <% if(detailItem[0].it_img2 !== ""){ %> <div class="swiper-slide"><img src="<%=url%>/yc/data/item/<%=detailItem[0].it_img2%>" style="width:100%;"></div><%}%>
-    <% if(detailItem[0].it_img3 !== ""){ %> <div class="swiper-slide"><img src="<%=url%>/yc/data/item/<%=detailItem[0].it_img3%>" style="width:100%;"></div><%}%>
-    <% if(detailItem[0].it_img4 !== ""){ %> <div class="swiper-slide"><img src="<%=url%>/yc/data/item/<%=detailItem[0].it_img4%>" style="width:100%;"></div><%}%>
-    <% if(detailItem[0].it_img5 !== ""){ %> <div class="swiper-slide"><img src="<%=url%>/yc/data/item/<%=detailItem[0].it_img5%>" style="width:100%;"></div><%}%>
-    <% if(detailItem[0].it_img6 !== ""){ %> <div class="swiper-slide"><img src="<%=url%>/yc/data/item/<%=detailItem[0].it_img6%>" style="width:100%;"></div><%}%>
-    <% if(detailItem[0].it_img7 !== ""){ %> <div class="swiper-slide"><img src="<%=url%>/yc/data/item/<%=detailItem[0].it_img7%>" style="width:100%;"></div><%}%>
-    <% if(detailItem[0].it_img8 !== ""){ %> <div class="swiper-slide"><img src="<%=url%>/yc/data/item/<%=detailItem[0].it_img8%>" style="width:100%;"></div><%}%>
-    <% if(detailItem[0].it_img9 !== ""){ %> <div class="swiper-slide"><img src="<%=url%>/yc/data/item/<%=detailItem[0].it_img9%>" style="width:100%;"></div><%}%>
-    <% if(detailItem[0].it_img10 !== ""){ %> <div class="swiper-slide"><img src="<%=url%>/yc/data/item/<%=detailItem[0].it_img10%>" style="width:100%;height:100%;"></div><%}%>
-    <div class="swiper-slide"><video src="http://techslides.com/demos/sample-videos/small.mp4"  playsinline controls style="width: 100% !important;" poster="<%=url%>/yc/data/item/<%=detailItem[0].it_img1%>"></video></div>
+    <% if(detailItem[0].it_img1 !== ""){ %> <div class="swiper-slide"><div style="background-image:url('<%=url%>/yc/data/item/<%=detailItem[0].it_img1%>');height:520px;width:100%;background-repeat:no-repeat;background-position:center center;"></div></div><%}%>
+    <% if(detailItem[0].it_img2 !== ""){ %> <div class="swiper-slide"><div style="background-image:url('<%=url%>/yc/data/item/<%=detailItem[0].it_img2%>');height:520px;width:100%;background-repeat:no-repeat;background-position:center center;)"></div></div><%}%>
+    <% if(detailItem[0].it_img3 !== ""){ %> <div class="swiper-slide"><div style="background-image:url('<%=url%>/yc/data/item/<%=detailItem[0].it_img3%>');height:520px;width:100%;background-repeat:no-repeat;background-position:center center;)"></div></div><%}%>
+    <% if(detailItem[0].it_img4 !== ""){ %> <div class="swiper-slide"><div style="background-image:url('<%=url%>/yc/data/item/<%=detailItem[0].it_img4%>');height:520px;width:100%;background-repeat:no-repeat;background-position:center center;)"></div></div><%}%>
+    <% if(detailItem[0].it_img5 !== ""){ %> <div class="swiper-slide"><div style="background-image:url('<%=url%>/yc/data/item/<%=detailItem[0].it_img5%>');height:520px;width:100%;background-repeat:no-repeat;background-position:center center;)"></div></div><%}%>
+    <% if(detailItem[0].it_img6 !== ""){ %> <div class="swiper-slide"><div style="background-image:url('<%=url%>/yc/data/item/<%=detailItem[0].it_img6%>');height:520px;width:100%;background-repeat:no-repeat;background-position:center center;)"></div></div><%}%>
+    <% if(detailItem[0].it_img7 !== ""){ %> <div class="swiper-slide"><div style="background-image:url('<%=url%>/yc/data/item/<%=detailItem[0].it_img7%>');height:520px;width:100%;background-repeat:no-repeat;background-position:center center;)"></div></div><%}%>
+    <% if(detailItem[0].it_img8 !== ""){ %> <div class="swiper-slide"><div style="background-image:url('<%=url%>/yc/data/item/<%=detailItem[0].it_img8%>');height:520px;width:100%;background-repeat:no-repeat;background-position:center center;)"></div></div><%}%>
+    <% if(detailItem[0].it_img9 !== ""){ %> <div class="swiper-slide"><div style="background-image:url('<%=url%>/yc/data/item/<%=detailItem[0].it_img9%>');height:520px;width:100%;background-repeat:no-repeat;background-position:center center;)"></div></div><%}%>
+    <% if(detailItem[0].it_img10 !== ""){ %> <div class="swiper-slide"><div style="background-image:url('<%=url%>/yc/data/item/<%=detailItem[0].it_img10%>');height:520px;width:100%;background-repeat:no-repeat;background-position:center center;)"></div></div><%}%>
+    <div class="swiper-slide"><video src="http://techslides.com/demos/sample-videos/small.mp4"  playsinline controls style="width: 100% !important;height:520px !important;" poster="<%=url%>/yc/data/item/<%=detailItem[0].it_img1%>"></video></div>
 
     </div>
 

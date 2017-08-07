@@ -1,61 +1,61 @@
 <script>
 (function(){
   backcontroller.Component.init({
-    Name : "NewItem",
-    templateSelector : '#NewItem',
+    Name : "AllItemList",
+    templateSelector : '#AllItemList',
     stateProcessor : function(data){
     },
-    targetSelector : ".NewItem",
+    targetSelector : ".AllItemList",
     afterEvent : function(){
     }
   })
 
   backcontroller.Component.push({
-		Name : "NewItem",
+		Name : "AllItem",
 		Data : {
-			name : "NewItem", // 위에 클래스 이름과 똑같이 정의해준다.
+			name : "AllItem", // 위에 클래스 이름과 똑같이 정의해준다.
 	    params : { "listCols": 2 ,"listType":2}, // 넘겨줄 파라메터.
 			url : "http://0sun.net/pub/intop/yc/api/item.php?q=/focus" // JSON으로 보낼 데이터
 		},
 		templateSelector : '#ProductList', // 템프레이트 경로
 		stateProcessor : function(data){
 		},
-		targetSelector : ".NewItemList", // 템프레이터를 최종 적용할 경로
+		targetSelector : ".AllItemListDatas", // 템프레이터를 최종 적용할 경로
 		afterEvent : function(){
 		}
 	})
 })()
 </script>
   <style>
-  .NewItemList > .productlist {
+  .AllItemListDatas > .productlist {
     padding-top:19px !important;
   }
-  .NewItem .sortArr{
+  .AllItemList .sortArr{
     margin-top: -10px;
     right:22px;
     position: absolute;
     display:inline-block;
   }
-  .NewItemList .sortArr{
+  .AllItemListDatas .sortArr{
     display:none;padding-right:22px;
   }
-  .NewItem .title{
+  .AllItemList .title{
     font-weight:900;letter-spacing:1px;font-size:12px;
     text-align:center;margin-top:7px;background-color:white;padding-top:30px;padding-bottom:33px;
   }
-  .NewItem .category{text-align: center;background-color:white;width:100%;}
-  .NewItem .category .inner{text-align: center;width:85%;margin:auto;}
-  .NewItem .category .inner div{border-radius: 0px;
+  .AllItemList .category{text-align: center;background-color:white;width:100%;}
+  .AllItemList .category .inner{text-align: center;width:85%;margin:auto;}
+  .AllItemList .category .inner div{border-radius: 0px;
     background-color: white;padding:3px 0px 3px;display: inline-block;width:19%;color:#919191;}
-  .NewItem .category .inner div:hover,
-  .NewItem .category .inner div:focus{border-radius: 3px;background-color: #efefef;padding:3px 0px 3px;color:#252525;}
+  .AllItemList .category .inner div:hover,
+  .AllItemList .category .inner div:focus{border-radius: 3px;background-color: #efefef;padding:3px 0px 3px;color:#252525;}
   </style>
-<script type="text/template" id="NewItem">
+<script type="text/template" id="AllItemList">
 
-    <div class="title"><span>NEW ITEMS</span>
+    <div class="title"><span>All ITEMS</span>
       <div class="sortArr">
-        <img onclick="transList2(2,'NewItemList')" src="/img/2x2.png" style="width:33px;height:33px;margin:2px;">
-        <img onclick="transList2(3,'NewItemList')" src="/img/2x6.png" style="width:33px;height:33px;margin:2px;">
+        <img onclick="transList2(2,'AllItemList')" src="/img/2x2.png" style="width:33px;height:33px;margin:2px;">
+        <img onclick="transList2(3,'AllItemList')" src="/img/2x6.png" style="width:33px;height:33px;margin:2px;">
       </div>
     </div>
     <div class="category">
@@ -68,7 +68,7 @@
       </div>
     </div>
 
-  <div class="NewItemList"></div>
+  <div class="AllItemListDatas"></div>
 </script>
 <script>
 function transList2(val,sel){

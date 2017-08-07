@@ -2,9 +2,9 @@
 (function(){
   backcontroller.Component.init({
     Name : "MyPage",
+
     Data : {
       name : "CouponList",
-      //url : "http://0sun.net/pub/intop/yc/api/coupon.php?q=/"+<? echo "'".$member['mb_id']."'"; ?>
       url : "http://0sun.net/pub/intop/yc/api/coupon.php?q=/test2"
     },
     templateSelector : '#MyPageTabCoupon',
@@ -20,24 +20,6 @@
 <script type="text/template" id="MyPageTabCoupon">
 
 <style>
-.coupon{  width:100%;display:block;}
-.coupon .line{width:100%;display:block;}
-.coupon .line.isMainTitle{background-color:#fdd04e;color:black;}
-.coupon .line.isSubTitle{background-color:#333333;color:white;}
-.coupon .line.isLeft{text-align: left;padding-left:20px;}
-.coupon .line.isCenter{text-align: center;}
-.coupon .line.isTitle{height:50px;line-height:50px;}
-.coupon .line.isBlock{padding:0px;}
-.coupon .line.isDescription{color:gray;padding:20px;}
-.coupon .line > .title{display:inline-block;width:20%;word-wrap: normal;word-break: keep-all;}
-.coupon .line > .value{display:inline-block;width:70%;}
-.rollMenu .line.isSubTitle{background-color:#f9f9f9;color:black;}
-.rollMenu .content {display:none;}
-.rollMenu .content .line {padding:20px;}
-.rollMenu.isSelected .line.isSubTitle{background-color:#333333;color:white;}
-.rollMenu.isSelected .content{display:block;}
-input.coupon {width:50%;padding:5px 3px 5px 3px;display: inline-block;margin-left:20px;}
-span.button{border:1px black solid;border-radius: 5px;padding:5px;margin-left: 15px;font-size: 12px;background-color: black;color:white;}
 
 </style>
 <div class="coupon">

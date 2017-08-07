@@ -164,13 +164,38 @@ gulp.task('build-mypage',function(){
 gulp.task('build-new',function(){
   return defaultPage(
       {
-        list  : ["template/8_new.html","template/New/*.html"],
+        list  : ["template/8_new.html","template/New/*.html","template/Common/ProductList/*.html"],
         output : "new.html"
       }
   );
 })
 
-gulp.task('build',['build-login','build-main','build-store','build-detail','build-joincheck','build-join','build-mypage','build-new'])
+gulp.task('build-all',function(){
+  return defaultPage(
+      {
+        list  : ["template/9_allitem.html","template/AllItem/*.html","template/Common/ProductList/*.html"],
+        output : "allitem.html"
+      }
+  );
+})
+gulp.task('build-search',function(){
+  return defaultPage(
+      {
+        list  : ["template/10_search.html","template/Search/*.html","template/Common/ProductList/*.html"],
+        output : "search.html"
+      }
+  );
+})
+gulp.task('build-tag',function(){
+  return defaultPage(
+      {
+        list  : ["template/11_tag.html","template/Tag/*.html","template/Common/ProductList/*.html"],
+        output : "tag.html"
+      }
+  );
+})
+
+gulp.task('build',['build-login','build-main','build-store','build-detail','build-joincheck','build-join','build-mypage','build-new','build-all','build-search','build-tag'])
 
 /*
 gulp.task('unified-all',['unified-body'],function(){

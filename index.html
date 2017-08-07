@@ -82,7 +82,7 @@ if ($is_member){
                   <span class="icon-bar"></span>
               </button>
               <span class="navbar-brand" href="#" onclick="GoMain()">#B</span>
-              <button type="button" class="navbar-toggle" style="background:transparent;border:none;margin:0px;margin-right:9px;margin-top:9px;margin-bottom:9px;float:right !important;"><img src="./img/main/zoom.png" style="height:20px;"/></button>
+              <a href="search.html"><button type="button" class="navbar-toggle" style="background:transparent;border:none;margin:0px;margin-right:9px;margin-top:9px;margin-bottom:9px;float:right !important;"><img src="./img/main/zoom.png" style="height:20px;"/></button></a>
               <button type="button" class="navbar-toggle"  style="background:transparent;border:none;margin:0px;margin-top:9px;margin-bottom:9px;float:right !important;"><img src="./img/main/shopping-cart.png" style="height:20px;"/></button>
           </div>
       </div>
@@ -107,9 +107,12 @@ if ($is_member){
 </script>
 <script type="text/template" id="LeftMenuTopMenuInfo">
   <div class="logInfo">
-    <div class="group title"><span>#B</span><span  onclick="closeNav()"style="float:right;">X</span></div>
+    <div class="group title">
+      <span>#B</span>
+      <div class="close" onclick="closeNav()"><img src="img\close.png" style="width:100%;height:100%;"></div>
+    </div>
     <div class="group content">
-      <div>안녕하세요, 인탑님. </div>
+      <div>안녕하세요, <span style="color:#0e64f2;">인탑</span>님. </div>
       <div>#B에 오신걸 환영합니다.</div>
     </div>
     <%if(!document.querySelector("#loginsuccess")){%>
@@ -131,7 +134,10 @@ if ($is_member){
 (function(){
   backcontroller.Component.init({
     Name : "LeftMenu",
-    DataURL : "./admin/json/filter.json",
+    Data : {
+      name : "LeftFollowList",
+      url : "http://0sun.net/pub/intop/yc/api/model.php"
+    },
     templateSelector : '#LeftMenuFollowList',
     stateProcessor : function(data){
       //backcontroller.state.FilterList.setList(data);
@@ -143,23 +149,22 @@ if ($is_member){
 })()
 </script>
 <script type="text/template" id="LeftMenuFollowList">
+  <% var itemlist = obj;%>
+  <% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
   <div class="submenu">
     <div class="group title">
-      <div>Folow</div>
+      <div>Follow<span style="float:right"><img src="img/plus.png"/></span></div>
     </div>
     <div class="group contents">
-      <div class="follow" onclick="GoStore();">
-        <div class="face" style="padding:20 20 10 20px;"><img src="img\subinfo\subInfoMockup.png" style="width:100%;"></div>
-        <div class="name" style="padding-bottom:20px;">chu</div>
+    <% for(i=0;i<itemlist.length;i++){%>
+      <a href="./store.html#<%=itemlist[i].name%>">
+      <div class="horizontalElement follow">
+        <div class="face"><img src="<%=url%>/yc/data/face/<%=itemlist[i].face%>" style="width:100%;"></div>
+        <div class="name"><%=itemlist[i].name%></div>
       </div>
-      <div class="follow" onclick="GoStore();">
-        <div class="face" style="padding:20 20 10 20px;"><img src="img\subinfo\subInfoMockup.png" style="width:100%;"></div>
-        <div class="name" style="padding-bottom:20px;">chu</div>
-      </div>
-      <div class="follow" onclick="GoStore();">
-        <div class="face" style="padding:20 20 10 20px;"><img src="img\subinfo\subInfoMockup.png" style="width:100%;"></div>
-        <div class="name" style="padding-bottom:20px;">chu</div>
-      </div>
+      </a>
+    <%}%>
+
     </div>
   </div>
 </script>
@@ -186,11 +191,12 @@ if ($is_member){
   <% var categorylist = obj.sort(function(a,b){return (a.ca_id.toString() > b.ca_id.toString() ? 1 : 0 )});%>
 
   <div class="list">
+
     <div class="group tab">
-      <div style="background-color: #eeeeee;text-align:center;width:50%;float:left;padding:15px 0px 15px 0px;">
+      <div>
         <div>Item</div>
       </div>
-      <div style="border: 1px solid #eeeeee;border-left-width:0px;border-right-width:0px;border-bottom-width:0px;text-align:center;width:50%;float:left;padding:15px 0px 15px 0px;">
+      <div class="deactive">
         <div>Celeb</div>
       </div>
     </div>
@@ -236,14 +242,14 @@ if ($is_member){
       <div>최근에 본 상품</div>
     </div>
     <div class="group contents">
-      <div class="follow">
-        <div class="face"><img src="./img/shoplist/1.jpg" style="padding:10px 0px 10px 10px;width:100%;"/></div>
+      <div class="horizontalElement">
+        <div><img src="./img/shoplist/1.jpg"/></div>
       </div>
-      <div class="follow">
-        <div class="face"><img src="./img/shoplist/1.jpg" style="padding:10px 0px 10px 10px;width:100%;"/></div>
+      <div class="horizontalElement">
+        <div><img src="./img/shoplist/1.jpg"/></div>
       </div>
-      <div class="follow">
-        <div class="face"><img src="./img/shoplist/1.jpg" style="padding:10px 0px 10px 10px;width:100%;"/></div>
+      <div class="horizontalElement">
+        <div><img src="./img/shoplist/1.jpg"/></div>
       </div>
     </div>
   </div>
@@ -265,17 +271,17 @@ if ($is_member){
 })()
 </script>
 <script type="text/template" id="LeftMenuFooter">
-  <div class="footer" style="padding:15px;background-color: #333333;color:#888888;">
+  <div class="footer" style="padding:15px 0px 15px 0px;background-color: #333333;color:#888888;">
     <div class="group title">
     <div style="display:block;text-align:center;">
-      <div style="display:inline-block;width:10%;text-align:left;vertical-align:middle;">ㅅ</div>
-      <div style="display:inline-block;width:40%;vertical-align:middle;text-align:left;font-size:8px;">
-        <div>고객센터</div>
-        <div>Weekdays 9:30 ~ 18:00</div>
-        <div>Sat,Sun,Holiday OFF</div>
+      <div style="display:inline-block;width:17%;text-align:left;vertical-align:middle;padding:10px 10px 10px 10px;"><img src="img/call.png" style="width:100%"></div>
+      <div style="display:inline-block;width:34%;vertical-align:middle;text-align:left;font-size:8px;">
+        <div style="font-size:12px;">고객센터</div>
+        <div style="font-size:8px;">Weekdays 9:30 ~ 18:00</div>
+        <div style="font-size:8px;">Sat,Sun,Holiday OFF</div>
       </div>
-      <div style="display:inline-block;text-align:left;width:45%;font-size:20px;vertical-align:middle;">
-        <span style="margin:5px;">1522-6631</span>
+      <div style="display:inline-block;text-align:left;width:45%;font-size:24px;vertical-align:middle;white-space:nowrap">
+        <span style="margin:5px;text-align:center;">1522-6631</span>
       </div>
     </div>
     </div>
@@ -454,14 +460,14 @@ if ($is_member){
 </script>
 
 <script type="text/template" id="MainTopSubMenu">
-  
+
   <div class="subTitle">
     <div class="horizontal" style="background-color:#ffffff">
-      <span>BEST</span>
-      <span>NEW</span>
+      <span><a href="new.html">BEST</a></span>
+      <span><a href="new.html">NEW</a></span>
       <span>CELLEB</span>
-      <span>ITEM</span>
-      <span>#TAG</span>
+      <span><a href="allitem.html">ITEM</a></span>
+      <span><a href="tag.html">#TAG</a></span>
     </div>
   </div>
 
@@ -757,7 +763,7 @@ if ($is_member){
 <script type="text/template" id="ProductList">
 <div class="productlist">
 <% var itemlist = obj;%>
-<% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
+<% ;var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
     <div class="itemlist">
       <% for(var i=0;i<itemlist.length;i++){%>
         <% if(window[window.currentListName].listType == 1){%>
@@ -785,10 +791,12 @@ if ($is_member){
   <div class="itemlist col-xs-12" style="padding-top:45px;text-align:center;">
     <img src="<%=url%>/img/more.png" style="width:128px;height:35px;">
   </div>
-  <div class="itemlist col-xs-12" style="padding-top:48px;text-align:center;">
+  <div class="itemlist col-xs-12 sortArr" style="padding-top:48px;text-align:center;">
     <img onclick="transList(2,'<%=window["currentListName"]%>',<%=window[window.currentListName].listType%>)" src="<%=url%>/img/2x2.png" style="width:33px;height:33px;margin:2px;">
     <img onclick="transList(3,'<%=window["currentListName"]%>',<%=window[window.currentListName].listType%>)" src="<%=url%>/img/2x6.png" style="width:33px;height:33px;margin:2px;">
   </div>
+
+
   <script>
   function slientTransList(val,sel,type){
     if(val==2){
@@ -821,6 +829,8 @@ if ($is_member){
     }
   },500);
   </script>
+
+
 </div>
 </script>
 

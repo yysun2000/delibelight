@@ -1,7 +1,7 @@
 <script type="text/template" id="ProductList">
 <div class="productlist">
 <% var itemlist = obj;%>
-<% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
+<% ;var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
     <div class="itemlist">
       <% for(var i=0;i<itemlist.length;i++){%>
         <% if(window[window.currentListName].listType == 1){%>
@@ -29,10 +29,12 @@
   <div class="itemlist col-xs-12" style="padding-top:45px;text-align:center;">
     <img src="<%=url%>/img/more.png" style="width:128px;height:35px;">
   </div>
-  <div class="itemlist col-xs-12" style="padding-top:48px;text-align:center;">
+  <div class="itemlist col-xs-12 sortArr" style="padding-top:48px;text-align:center;">
     <img onclick="transList(2,'<%=window["currentListName"]%>',<%=window[window.currentListName].listType%>)" src="<%=url%>/img/2x2.png" style="width:33px;height:33px;margin:2px;">
     <img onclick="transList(3,'<%=window["currentListName"]%>',<%=window[window.currentListName].listType%>)" src="<%=url%>/img/2x6.png" style="width:33px;height:33px;margin:2px;">
   </div>
+
+
   <script>
   function slientTransList(val,sel,type){
     if(val==2){
@@ -65,5 +67,7 @@
     }
   },500);
   </script>
+
+
 </div>
 </script>

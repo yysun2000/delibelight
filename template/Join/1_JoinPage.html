@@ -412,7 +412,109 @@
 
           </table>
       </div>
+      <div style="background-color:#f8f8f8;padding:10px 0px 10px 20px;font-size:11px;color:#292929;">
+        옵션정보를 입력하시면 추가로 2천원 할인 쿠폰이 제공됩니다.
+      </div>
+      <div class="tbl_frm01 tbl_wrap">
+          <table>
+          <tr>
+              <th scope="row"><label for="reg_mb_id">신장</label></th>
+              <td>
+                    <input type="text" name="mb_id" value="<?php echo $member['mb_id'] ?>" id="reg_mb_id" class="frm_input <?php echo $required ?> <?php echo $readonly ?>" minlength="3" maxlength="20" <?php echo $readonly ?>>
+                  <span id="msg_mb_id"></span>
+              </td>
+          </tr>
+          <tr>
+              <th scope="row"><label for="reg_mb_id">몸무게</label></th>
+              <td>
+                    <input type="text" name="mb_id" value="<?php echo $member['mb_id'] ?>" id="reg_mb_id" class="frm_input <?php echo $required ?> <?php echo $readonly ?>" minlength="3" maxlength="20" <?php echo $readonly ?>>
+                  <span id="msg_mb_id"></span>
+              </td>
+          </tr>
+          <tr>
+              <th scope="row"><label for="reg_mb_id">입는사이즈(상)</label></th>
+              <td>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default">XS</button>
+                  <button type="button" class="btn btn-default">S</button>
+                  <button type="button" class="btn btn-default">M</button>
+                  <button type="button" class="btn btn-default">L</button>
+                  <button type="button" class="btn btn-default">XL</button>
+                </div>
+              </td>
+          </tr>
+          <tr>
+              <th scope="row"><label for="reg_mb_id">입는사이즈(하)</label></th>
+              <td>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default">24</button>
+                  <button type="button" class="btn btn-default">25</button>
+                  <button type="button" class="btn btn-default">26</button>
+                  <button type="button" class="btn btn-default">27</button>
+                  <button type="button" class="btn btn-default">28</button>
+                  <button type="button" class="btn btn-default">29</button>
+                  <button type="button" class="btn btn-default">30</button>
+                  <button type="button" class="btn btn-default">31</button>
+                  <button type="button" class="btn btn-default">32</button>
+                </div>
+              </td>
+          </tr>
+          <tr>
+              <th scope="row"><label for="reg_mb_id">선호하는 핏</label></th>
+              <td>
+                <div class="dropdown">
+                  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">선호하는 핏
+                  <span class="caret"></span></button>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">상</a></li>
+                    <li><a href="#">중</a></li>
+                    <li><a href="#">하</a></li>
+                  </ul>
+                </div>
+              </td>
+          </tr>
+          </table>
+      </div>
 
+      <div style="margin:0;background-color:#f8f8f8;padding:10px 0px 10px 20px;font-size:13px;color:#292929;">
+        체형
+      </div>
+
+      <div class="tbl_frm01 tbl_wrap">
+          <table>
+          <tr>
+              <th scope="row"><label for="reg_mb_id">상의</label></th>
+              <td>
+                <div>
+                  <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
+                  <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
+                  <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
+                  <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
+                  <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
+                  <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
+                  <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
+                  <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
+                </div>
+
+              </td>
+          </tr>
+          <tr>
+              <th scope="row"><label for="reg_mb_id">하의</label></th>
+              <td>
+                <div>
+                  <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
+                  <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
+                  <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
+                  <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
+                  <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
+                  <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
+                  <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
+                  <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
+                </div>
+              </td>
+          </tr>
+          </table>
+      </div>
       <div class="btn_confirm">
           <input type="submit" value="<?php echo $w==''?'회원가입':'정보수정'; ?>" id="btn_submit" class="btn_submit" accesskey="s">
           <!---<a href="<?php echo G5_URL; ?>/" class="btn_cancel">취소</a>---->

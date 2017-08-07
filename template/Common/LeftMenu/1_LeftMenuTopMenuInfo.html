@@ -15,9 +15,12 @@
 </script>
 <script type="text/template" id="LeftMenuTopMenuInfo">
   <div class="logInfo">
-    <div class="group title"><span>#B</span><span  onclick="closeNav()"style="float:right;">X</span></div>
+    <div class="group title">
+      <span>#B</span>
+      <div class="close" onclick="closeNav()"><img src="img\close.png" style="width:100%;height:100%;"></div>
+    </div>
     <div class="group content">
-      <div>안녕하세요, 인탑님. </div>
+      <div>안녕하세요, <span style="color:#0e64f2;">인탑</span>님. </div>
       <div>#B에 오신걸 환영합니다.</div>
     </div>
     <%if(!document.querySelector("#loginsuccess")){%>

@@ -126,10 +126,12 @@ window.onload = function(){
 
 function openNav() {
   $(".left-menu").css("transition", "0.5s");
-  $(".left-menu").css("margin-left","0px");
-  $('.left-menu').css("width",LeftMenuWidth);
+  $(".left-menu").css("margin-left","0");
+  $('.left-menu').css("width","85%");
+  LeftMenuWidth = $('.left-menu').css("width");
   $(".wrapper").css("width",MainWidth);
   $(".wrapper").css("margin-left",LeftMenuWidth);
+  $(".wrapper").addClass("dimmed");
   setTimeout(function(){
     $(".wrapper").attr("onclick","closeNav()");
   },1000);
@@ -137,7 +139,8 @@ function openNav() {
 }
 
 function closeNav() {
-  $(".left-menu").css("margin-left","-"+LeftMenuWidth+"px");
+  $(".wrapper").removeClass("dimmed");
+  $(".left-menu").css("margin-left","-85%");
   $(".wrapper").css("margin-left","0px");
   $(".wrapper").attr("onclick","")
 }
