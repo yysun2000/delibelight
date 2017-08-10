@@ -17,13 +17,31 @@
 <script type="text/template" id="DetailPriceInfo">
   <% var detailItem = obj;%>
   <div class="col-xs-12" style="padding:15px 0px 23px 0px;font-size:12px;">
-    <div class="col-xs-3">
-      <div style="text-align:left;padding:5px 0px 5px 0px;">제품명</div>
-      <div style="text-align:left;padding:5px 0px 5px 0px;">가격</div>
+    <div style="display:block;width:100%;text-align:center;padding-bottom:20px;border:0px;border-bottom-width:2px;border-style:solid;border-color:#eee;">
+      <div style="display:inline-block;background-color:#1593bc;color:white;padding:5px 10px 5px 10px;margin:5px;font-size:20px;border-radius:5px;">주문폭주</div>
+      <div style="display:inline-block;background-color:#e7004c;color:white;padding:5px 10px 5px 10px;margin:5px;font-size:20px;border-radius:5px;">HOT</div>
     </div>
-    <div class="col-xs-9">
-      <div style="text-align:left;padding:5px 0px 5px 0px;color:#bbbbbb"><%=detailItem[0].it_name%></div>
-      <div style="text-align:left;padding:5px 0px 5px 0px;color:#bbbbbb"><%=detailItem[0].it_price%></div>
+    <div class="col-xs-3" style="margin-top:10px;">
+      <div style="text-align:left;padding:5px 0px 5px 0px;white-space:nowrap;">제품명</div>
+      <div style="text-align:left;padding:5px 0px 5px 0px;white-space:nowrap;">가격</div>
+      <div style="text-align:left;padding:5px 0px 15px 0px;white-space:nowrap;">컬러</div>
+      <div style="text-align:left;padding:5px 0px 15px 0px;white-space:nowrap;">사이즈</div>
+    </div>
+    <div class="col-xs-9" style="margin-top:10px;">
+      <div style="text-align:left;padding:5px 0px 5px 0px;color:#bbbbbb;white-space:nowrap;"><%=detailItem[0].it_name%></div>
+      <div style="text-align:left;padding:5px 0px 5px 0px;color:#bbbbbb;white-space:nowrap;"><%=detailItem[0].it_price%></div>
+      <div style="text-align:left;padding:5px 0px 15px 0px;color:#bbbbbb;white-space:nowrap;">
+        <a class="waves-effect waves-light btn" style="padding:0px;margin:0px;line-height:0px;width:20px;height:20px;background-color:#9dc6d8;display:inline-block;margin-right:5px;"></a>
+        <a class="waves-effect waves-light btn" style="padding:0px;margin:0px;width:20px;height:20px;background-color:#00b3ca;display:inline-block;margin-right:5px;"></a>
+        <a class="waves-effect waves-light btn" style="padding:0px;margin:0px;width:20px;height:20px;background-color:#7dd0b6;display:inline-block;margin-right:5px;"></a>
+        <a class="waves-effect waves-light btn" style="padding:0px;margin:0px;width:20px;height:20px;background-color:#1d4e89;display:inline-block;margin-right:5px;"></a>
+        <a class="waves-effect waves-light btn" style="padding:0px;margin:0px;width:20px;height:20px;background-color:#d2b29b;display:inline-block;margin-right:5px;"></a>
+      </div>
+      <div style="text-align:left;padding:0px 0px 15px 0px;color:#bbbbbb;white-space:nowrap;">
+        <a class="btn" style="line-height:15px;padding:0px;margin:0px;width:20px;height:20px;display:inline-block;margin-right:5px;background-color:white;color:#7f7f7f;border:2px solid #7f7f7f;font-weight:800;border-radius:0px;">S</a>
+        <a class="btn" style="line-height:15px;padding:0px;margin:0px;width:20px;height:20px;display:inline-block;margin-right:5px;background-color:white;color:#7f7f7f;border:2px solid #7f7f7f;font-weight:800;border-radius:0px;">M</a>
+        <a class="btn" style="line-height:15px;padding:0px;margin:0px;width:20px;height:20px;display:inline-block;margin-right:5px;background-color:white;color:#7f7f7f;border:2px solid #7f7f7f;font-weight:800;border-radius:0px;">L</a>
+      </div>
     </div>
   </div>
 </script>

@@ -465,6 +465,18 @@ div#maincontent {
   overflow-y: hidden;
   white-space: nowrap;
 }
+nav .container {
+  width: 100% !important;
+}
+.swiper-pagination-fraction,
+.swiper-pagination-custom,
+.swiper-container-horizontal > .swiper-pagination-bullets {
+  bottom: 30px !important;
+}
+.navbar {
+  line-height: 0px !important;
+  box-shadow: none !important;
+}
 /* 공통 */
 .wrapper {
   padding: 0px;

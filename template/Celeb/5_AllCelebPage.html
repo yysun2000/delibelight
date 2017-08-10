@@ -1,0 +1,48 @@
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "AllCelebPage",
+  templateSelector : '#AllCelebPage',
+  Data : {
+    name : "CelebList",
+    url : "http://0sun.net/pub/intop/yc/api/model.php"
+  },
+  stateProcessor : function(data){
+  },
+  targetSelector : ".AllCelebPage",
+  afterEvent : function(){
+  }})
+})()
+</script>
+<script type="text/template" id="AllCelebPage">
+  <% var itemlist = obj;%>
+  <% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
+
+    <% for(i=0;i<10;i++){itemlist.push(obj[Math.round((Math.random()*10)/9)]);}%>
+    <div class="horizontal" style="background-color:white;">
+      <style>
+      </style>
+      <div class="title">
+        <span>All CELEB</span>
+      </div>
+        <div class="allceleb">
+          <div>
+            <% for(i=0;i<itemlist.length;i++){%>
+            <div class="celeb" style="width:30%;">
+              <div style="padding:30px;">
+              <a href="./store.html#<%=itemlist[i].name%>">
+                <img src="<%=url%>/yc/data/face/<%=itemlist[i].face%>" style="width:100%;">
+              </a>
+              <div style="text-align:center;padding:5px;white-space:nowrap;test-align:center;">
+                <span style="font-size:20px;"><%=itemlist[i].name%></span>
+                <div style="margin-left:5px;border-radius:100%;border:2px solid #252525;padding:3px;display:inline-block;">
+                  <i class="material-icons" style="font-size:15px;">add</i>
+                </div>
+              </div>
+              </div>
+            </div>
+            <%}%>
+          </div>
+          <div class="swiper-pagination" style="position:relative;bottom:0px !important;"></div>
+        </div>
+</script>

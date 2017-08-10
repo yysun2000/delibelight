@@ -2,6 +2,10 @@
 (function(){
   backcontroller.Component.init({
   Name : "Detail",
+  Data : {
+    name : "Detail",
+    url : "http://0sun.net/pub/intop/yc/api/item.php?q=/"+location.href.split("#")[1]
+  },
   DataURL : "./admin/json/filter.json",
   templateSelector : '#DetailContents',
   stateProcessor : function(data){
@@ -12,21 +16,31 @@
   }})
 })()
 </script>
+<script>
+  function showDetail(selector){
+    $('.productdetail').hide();
+    $('.productinfo').hide();
+    $('.productafter').hide();
+    $('.productqna').hide();
+    $(selector).show();
+  }
+</script>
 <script type="text/template" id="DetailContents">
-
+  <%var itemlist = obj;%>
+  <%console.log(obj);window.itemlist = obj;%>
   <div class="filterMenu">
     <div class="menu menu-up col-xs-12" style="border-top:2px #e4e4e4 solid">
         <div class="col-xs-3">
-          <span>디테일</span>
+          <span onclick="showDetail('.productdetail')">디테일</span>
         </div>
         <div class="col-xs-3">
-          <span>상품정보</span>
+          <span onclick="showDetail('.productinfo')">상품정보</span>
         </div>
         <div class="col-xs-3">
-          <span>상품후기</span>
+          <span onclick="showDetail('.productafter')">상품후기</span>
         </div>
         <div class="col-xs-3">
-          <span>상품문의</span>
+          <span onclick="showDetail('.productqna')">상품문의</span>
         </div>
     </div>
   </div>
@@ -52,8 +66,10 @@
         background-color: #eeeeee;
       }
   </style>
-
-  <div class="contentt col-xs-12" style="margin-top:20px;margin-bottom:20px;">
+  <div class="productdetail contentt col-xs-12" style="margin-top:20px;margin-bottom:20px;">
+    <%=itemlist[0].it_basic%>
+  </div>
+  <div class="productinfo contentt col-xs-12" style="margin-left:0px;margin-right:0px;margin-top:20px;margin-bottom:20px;">
     <div>소재 : 레이온 100% </div>
     <div>색상 : 아이보리,블랙 </div>
     <div>사이즈 : S,M,L </div>
@@ -117,7 +133,60 @@
       　<div>- 품질보증기준 : 소비자 분쟁해결</div>
       　<div> - A/S 책임자 : 럭키페이스 (1522-1631)</div>
       </div>
+      <div style="background-color:#f8f8f8;margin:20px -20px 20px -20px;padding:10px 10px 10px 10px;font-size:13px;color:#292929;">신축성</div>
+      <style>
+      input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        color: black !important;
+        font-size: 10px !important;
+        height: 50px;
+        width: 50px;
+        border-radius: 100%;
+        background: transparent;
+        cursor: pointer;
+        margin-top: -25px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+        }
+        input[type=range]::-webkit-slider-thumb::before { content: "4" !important; color: black !important; }
+        input[type=range][value="1"]::-webkit-slider-thumb { background-repeat: no-repeat;background-size: contain;background-position: center center;background-image: url("./img/test.png"); content: "1"; color: black; }
+        input[type=range][value="2"]::-webkit-slider-thumb { background-repeat: no-repeat;background-size: contain;background-position: center center;background-image: url("./img/test.png"); content: "1"; color: black; }
+        input[type=range][value="3"]::-webkit-slider-thumb { background-repeat: no-repeat;background-size: contain;background-position: center center;background-image: url("./img/test.png"); content: "1"; color: black; }
+        input[type=range][value="4"]::-webkit-slider-thumb { background-repeat: no-repeat;background-size: contain;background-position: center center;background-image: url("./img/test.png"); content: "1"; color: black; }
+        input[type=range][value="5"]::-webkit-slider-thumb { background-repeat: no-repeat;background-size: contain;background-position: center center;background-image: url("./img/test.png"); content: "1"; color: black; }
+                      </style>
+      <form action="#">
+          <p class="range-field">
+            <input type="range" min="1" max="5" value="4" onchange="this.setAttribute('value', this.value);" />
+            <span style="float:left">낮음</span>
+            <span style="float:right">높음</span>
+            </p>
+        </form>
+        <div style="background-color:#f8f8f8;margin:20px -20px 20px -20px;padding:10px 10px 10px 10px;font-size:13px;color:#292929;">세탁방법</div>
+        <div style="width:100%;white-space:nowrap">
+          <style>.st{
+            display:inline-block;
+            background-size: contain;
+            background-position: center center;
+            background-repeat: no-repeat;
+            width:25%;height:100px;padding:10px;
+            }</style>
+          <div class="st" style="background-image:url('./img/stb/bb.png')"></div>
+          <div class="st" style="background-image:url('./img/stb/dc.png')"></div>
+          <div class="st" style="background-image:url('./img/stb/sp.png')"></div>
+          <div class="st" style="background-image:url('./img/stb/wp.png')"></div>
+        </div>
 
   </div>
+  <div class="productafter contentt col-xs-12" style="margin-top:20px;margin-bottom:20px;">
+    상품후기
+  </div>
+  <div class="productqna contentt col-xs-12" style="margin-top:20px;margin-bottom:20px;">
+    상품문의
+  </div>
 
+  <script>
+  setTimeout(function(){
+    showDetail('.productdetail');
+    $("input[type=range]::-webkit-slider-thumb").append("Intop");
+  },100)
+  </script>
 </script>

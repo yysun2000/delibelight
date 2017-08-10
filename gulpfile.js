@@ -118,7 +118,7 @@ gulp.task('build-store',function(){
 gulp.task('build-detail',function(){
   return defaultPage(
       {
-        list  : ["template/3_detail.html","template/Detail/*.html"],
+        list  : ["template/3_detail.html","template/Detail/*.html","template/Common/ProductList/*.html"],
         output : "detail.html"
       }
   );
@@ -191,6 +191,14 @@ gulp.task('build-tag',function(){
       {
         list  : ["template/11_tag.html","template/Tag/*.html","template/Common/ProductList/*.html"],
         output : "tag.html"
+      }
+  );
+})
+gulp.task('build-tag',function(){
+  return defaultPage(
+      {
+        list  : ["template/12_celeb.html","template/Celeb/*.html"],
+        output : "celeb.html"
       }
   );
 })

@@ -2,7 +2,6 @@
 (function(){
   backcontroller.Component.init({
   Name : "Detail",
-  DataURL : "./admin/json/filter.json",
   templateSelector : '#DetailBottomItems',
   stateProcessor : function(data){
     //backcontroller.state.FilterList.setList(data);
@@ -10,9 +9,28 @@
   targetSelector : ".DetailBottomItems",
   afterEvent : function(){
   }})
+
+
+  backcontroller.Component.push({
+  	Name : "Detail",
+  	Data : {
+  		name : "DetailBottomItems",
+      params : { "listCols": 3 ,"listType":2},
+      url : "http://0sun.net/pub/intop/yc/api/item.php?q=/1500364628/with"
+  	},
+  	templateSelector : '#ProductList',
+  	stateProcessor : function(data){
+  	},
+  	targetSelector : ".DetailBottomItemsOnList",
+  	afterEvent : function(){
+  	}
+  	})
 })()
+
 </script>
 <script type="text/template" id="DetailBottomItems">
 
+  	<div class="DetailBottomItemsOnList" style="clear:both;">
+  	</div>
 
 </script>

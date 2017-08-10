@@ -1,0 +1,74 @@
+<script>
+(function(){
+  backcontroller.Component.init({
+    Name : "Celeb",
+    Data : {
+      name : "BestCelebList",
+      url : "http://0sun.net/pub/intop/yc/api/model.php"
+    },
+    templateSelector : '#BestCelebPage',
+    stateProcessor : function(data){
+    },
+    targetSelector : ".BestCelebPage",
+    afterEvent : function(){
+    }
+  })
+
+})()
+</script>
+<script type="text/template" id="BestCelebPage">
+
+<style>
+.title{
+  font-weight:900;letter-spacing:1px;font-size:12px;
+  text-align:center;margin-top:7px;background-color:white;padding-top:30px;padding-bottom:33px;
+}
+  .celeb{
+    display:inline-block;
+  }
+  .celeb img{
+    border-radius: 100%;
+  }
+  .celeb span{
+    font-size:16px;
+  }
+</style>
+  <% var itemlist = obj;%>
+  <% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
+
+    <% for(i=0;i<10;i++){itemlist.push(obj[Math.round((Math.random()*10)/9)]);}%>
+    <div class="horizontal" style="background-color:white;">
+      <style>
+      </style>
+      <div class="title">
+        <span>BEST CELEB</span>
+      </div>
+        <div class="swiper-celeb">
+          <div class="swiper-wrapper">
+            <% for(i=0;i<itemlist.length;i++){%>
+            <div class="celeb swiper-slide">
+              <div style="padding:30px;">
+              <a href="./store.html#<%=itemlist[i].name%>">
+                <img src="<%=url%>/yc/data/face/<%=itemlist[i].face%>" style="width:100%;">
+              </a>
+              <div><span><%=itemlist[i].name%></span></div>
+              </div>
+            </div>
+            <%}%>
+          </div>
+          <div class="swiper-pagination" style="position:relative;bottom:0px !important;"></div>
+        </div>
+        <script>
+        var swiper = new Swiper('.swiper-celeb', {
+           pagination:".swiper-pagination",
+           paginationClickable: true,
+           slidesPerView:3,
+           slidesPerGroup:1,
+           autoplay:5000
+        });
+        </script>
+  </div>
+
+
+
+</script>
