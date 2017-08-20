@@ -1,0 +1,17 @@
+<script data-bc="action">
+(function(){
+  backcontroller.Component.init({
+  Name : "Detail",
+  templateSelector : '#DetailButton',
+  stateProcessor : function(data){
+    //backcontroller.state.FilterList.setList(data);
+  },
+  targetSelector : ".DetailButton",
+  afterEvent : function(){
+  }})
+})()
+
+</script>
+<script type="text/template" id="DetailButton" data-bc="template">
+  <input type="button" value="test"></input>
+</script>

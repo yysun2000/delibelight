@@ -11,6 +11,7 @@ var insert = require('gulp-insert');
 var fileInsert = require("gulp-file-insert");
 var ap = require("gulp-append-prepend");
 var pkg = require('./package.json');
+var php  = require('gulp-connect-php');
 // Set the banner content
 var banner = ['/*!\n',
     ' * 제작자 : 유영선 \n',
@@ -118,7 +119,7 @@ gulp.task('build-store',function(){
 gulp.task('build-detail',function(){
   return defaultPage(
       {
-        list  : ["template/3_detail.html","template/Detail/*.html","template/Common/ProductList/*.html"],
+        list  : ["template/3_detail.html","template/Common/ProductList/*.html","template/Common/Board/*.html","template/Detail/*.html"],
         output : "detail.html"
       }
   );
@@ -194,7 +195,7 @@ gulp.task('build-tag',function(){
       }
   );
 })
-gulp.task('build-tag',function(){
+gulp.task('build-celeb',function(){
   return defaultPage(
       {
         list  : ["template/12_celeb.html","template/Celeb/*.html"],
@@ -202,8 +203,41 @@ gulp.task('build-tag',function(){
       }
   );
 })
+gulp.task('build-order',function(){
+  return defaultPage(
+      {
+        list  : ["template/13_order.html","template/Order/*.html","template/Common/ProductList/*.html"],
+        output : "order.html"
+      }
+  );
+})
 
-gulp.task('build',['build-login','build-main','build-store','build-detail','build-joincheck','build-join','build-mypage','build-new','build-all','build-search','build-tag'])
+gulp.task('build-cart',function(){
+  return defaultPage(
+      {
+        list  : ["template/14_cart.html","template/Cart/*.html"],
+        output : "cart.html"
+      }
+  );
+})
+
+gulp.task('build-wish',function(){
+  return defaultPage(
+      {
+        list  : ["template/15_wish.html","template/Wish/*.html"],
+        output : "wish.html"
+      }
+  );
+})
+
+gulp.task('build',
+[
+  'build-login','build-main','build-store',
+  'build-detail','build-joincheck','build-join',
+  'build-mypage','build-new','build-all',
+  'build-search','build-tag','build-celeb',
+  'build-order','build-cart','build-wish'
+])
 
 /*
 gulp.task('unified-all',['unified-body'],function(){
@@ -264,13 +298,24 @@ gulp.task('dist',['build'],function(){
 // Run everything
 gulp.task('default', ['less', 'minify-css', 'minify-frontjs','minify-backjs', 'copy','build','dist']);
 
+gulp.task('php', function() {
+    php.server({ base: 'build', port: 9988, keepalive: true});
+});
+
 // Configure the browserSync task
 gulp.task('browserSync', function() {
+
     browserSync.init({
-        server: {
-            baseDir: ''
-        },
-    })
+        proxy: '127.0.0.1:9988',
+        port: 3322,
+        open: true,
+        notify: false
+    });
+    //    browserSync.init({
+//        server: {
+//            baseDir: ''
+//        },
+//    })
 })
 
 // Dev task with browserSync

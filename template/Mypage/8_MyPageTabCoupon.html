@@ -5,7 +5,7 @@
 
     Data : {
       name : "CouponList",
-      url : "http://0sun.net/pub/intop/yc/api/coupon.php?q=/test2"
+      url : "/yc/api/coupon.php?q=/test2"
     },
     templateSelector : '#MyPageTabCoupon',
     stateProcessor : function(data){
@@ -52,46 +52,38 @@
   <% var couponlist = obj;%>
   <% console.log(couponlist);%>
   <% for(var i=0;i<couponlist.length;i++){%>
-<div class="rollMenu">
-  <div class="line isTitle isSubTitle isLeft">
-    <div class="line">
-      <div class="title">쿠폰명</div> <div class="value"><%=couponlist[i].cp_subject%></div>
+  <div class="rollMenu">
+    <div class="line isTitle isSubTitle isLeft">
+      <div class="line">
+        <div class="title">쿠폰명</div> <div class="value"><%=couponlist[i].cp_subject%></div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="line">
+        <div class="title">총 적립금</div> <div class="value">1,940원</div>
+      </div>
+
+      <div class="line">
+        <div class="title">사용가능 적립금</div> <div class="value">1,000원</div>
+      </div>
+
+      <div class="line">
+        <div class="title">사용된 적립금</div> <div class="value">0원</div>
+      </div>
+
+      <div class="line">
+        <div class="title">미가용 적립금</div> <div class="value">0원</div>
+      </div>
+
+
+      <div class="line">
+        <div class="title">환불예정 적립금</div> <div class="value">0원</div>
+      </div>
     </div>
   </div>
-  <div class="content">
-    <div class="line">
-      <div class="title">총 적립금</div> <div class="value">1,940원</div>
-    </div>
-
-    <div class="line">
-      <div class="title">사용가능 적립금</div> <div class="value">1,000원</div>
-    </div>
-
-    <div class="line">
-      <div class="title">사용된 적립금</div> <div class="value">0원</div>
-    </div>
-
-    <div class="line">
-      <div class="title">미가용 적립금</div> <div class="value">0원</div>
-    </div>
-
-
-    <div class="line">
-      <div class="title">환불예정 적립금</div> <div class="value">0원</div>
-    </div>
-  </div>
-</div>
-<% }%>
+  <% }%>
 
 
 </div>
-
-
-
-<script>
-$(".coupon .rollMenu .isTitle > div > div").on("click",function(evt){
-  $(evt.target).parent().parent().parent().toggleClass("isSelected");
-})
-</script>
 
 </script>

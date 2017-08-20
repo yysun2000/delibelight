@@ -4,7 +4,7 @@
     Name : "Celeb",
     Data : {
       name : "BestCelebList",
-      url : "http://0sun.net/pub/intop/yc/api/model.php"
+      url : "/yc/api/model.php"
     },
     templateSelector : '#BestCelebPage',
     stateProcessor : function(data){
@@ -34,7 +34,7 @@
   }
 </style>
   <% var itemlist = obj;%>
-  <% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
+  <% var url = location.href.indexOf("localhost") < 0 ? "." : "."%>
 
     <% for(i=0;i<10;i++){itemlist.push(obj[Math.round((Math.random()*10)/9)]);}%>
     <div class="horizontal" style="background-color:white;">

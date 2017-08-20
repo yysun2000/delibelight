@@ -1,10 +1,18 @@
 <script>
 (function(){
+
+  var purl;
+  if($("#loginsuccess").length > 0){
+    purl = "/yc/api/model.php?m=get&q=/follow/"+$("#loginsuccess").text();
+  }else{
+    purl = "/yc/api/model.php";
+  }
+
   backcontroller.Component.init({
     Name : "Main",
     Data : {
       name : "FollowList",
-      url : "http://0sun.net/pub/intop/yc/api/model.php"
+      url : purl
     },
     templateSelector : '#MainTopFollowList',
     stateProcessor : function(data){
@@ -21,7 +29,7 @@
 
 
   <% var itemlist = obj;%>
-  <% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
+  <% var url = location.href.indexOf("localhost") < 0 ? "." : "."%>
 
     <div class="horizontal">
       <style>

@@ -23,9 +23,8 @@ define('_SHOP_', true);
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="css/materialize.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="http://0sun.net/pub/intop/yc/theme/basic/css/mobile_shop.css?ver=161020">
-    <link rel="stylesheet" href="http://0sun.net/pub/intop/yc/mobile/skin/member/delibe/style.css?ver=161020">
+    <link rel="stylesheet" href="/yc/theme/basic/css/mobile_shop.css?ver=161020">
+    <link rel="stylesheet" href="/yc/mobile/skin/member/delibe/style.css?ver=161020">
 
 
     <link rel="stylesheet" href="css/swiper.css"/>
@@ -37,7 +36,6 @@ define('_SHOP_', true);
     <script src="js/jquery.lazyload.min.js"></script>
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/backcontroller.min.js"></script>
-    <script src="js/materialize.min.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -50,14 +48,14 @@ define('_SHOP_', true);
 <body>
 <?php
 if ($is_member){
-  echo "<div id='loginsuccess' style='display:none'></div>";
   $member = get_member($_SESSION['ss_mb_id']);
+  echo "<div id='loginsuccess' style='display:none'>".$member['mb_id']."</div>";
 }
 
 
 ?>
 
-<script>
+<script data-bc="action">
 (function(){
   backcontroller.Component.init({
   Name : "Common",
@@ -72,7 +70,7 @@ if ($is_member){
 })()
 </script>
 
-<script type="text/template" id="TopMenu">
+<script type="text/template" id="TopMenu" data-bc="template">
 
   <nav class="navbar navbar-default" role="navigation">
       <div class="container">
@@ -85,14 +83,14 @@ if ($is_member){
               </button>
               <span class="navbar-brand" href="#" onclick="GoMain()">#B</span>
               <a href="search.html"><button type="button" class="navbar-toggle" style="background:transparent;border:none;margin:0px;margin-right:9px;margin-top:9px;margin-bottom:9px;float:right !important;"><img src="./img/main/zoom.png" style="height:20px;"/></button></a>
-              <button type="button" class="navbar-toggle"  style="background:transparent;border:none;margin:0px;margin-top:9px;margin-bottom:9px;float:right !important;"><img src="./img/main/shopping-cart.png" style="height:20px;"/></button>
+              <button type="button" class="navbar-toggle"  style="background:transparent;border:none;margin:0px;margin-top:9px;margin-bottom:9px;float:right !important;"><a href="cart.html"><img src="./img/main/shopping-cart.png" style="height:20px;"/></a></button>
           </div>
       </div>
   </nav>
 
 </script>
 
-<script>
+<script data-bc="action">
 (function(){
   backcontroller.Component.init({
     Name : "LeftMenu",
@@ -107,7 +105,7 @@ if ($is_member){
   })
 })()
 </script>
-<script type="text/template" id="LeftMenuTopMenuInfo">
+<script type="text/template" id="LeftMenuTopMenuInfo" data-bc="template">
   <div class="logInfo">
     <div class="group title">
       <span>#B</span>
@@ -117,10 +115,10 @@ if ($is_member){
       <div>안녕하세요, <span style="color:#0e64f2;">인탑</span>님. </div>
       <div>#B에 오신걸 환영합니다.</div>
     </div>
-    <%if(!document.querySelector("#loginsuccess")){%>
+    <%if(document.querySelector("#loginsuccess")){%>
       <div class="group button-group">
         <a href="mypage.html"><div class="yellow">마이페이지</div></a>
-        <a href="#"><div class="black">위시리스트</div></a>
+        <a href="wish.html"><div class="black">위시리스트</div></a>
       </div>
     <%}else{%>
 
@@ -132,13 +130,21 @@ if ($is_member){
   </div>
 </script>
 
-<script>
+<script data-bc="action">
 (function(){
+  var purl;
+  if($("#loginsuccess").length > 0){
+    purl = "/yc/api/model.php?m=get&q=/follow/"+$("#loginsuccess").text();
+  }else{
+    purl = "/yc/api/model.php";
+  }
+  console.log(purl);
+
   backcontroller.Component.init({
     Name : "LeftMenu",
     Data : {
       name : "LeftFollowList",
-      url : "http://0sun.net/pub/intop/yc/api/model.php"
+      url : purl
     },
     templateSelector : '#LeftMenuFollowList',
     stateProcessor : function(data){
@@ -150,14 +156,14 @@ if ($is_member){
   })
 })()
 </script>
-<script type="text/template" id="LeftMenuFollowList">
+<script type="text/template" id="LeftMenuFollowList" data-bc="template">
   <% var itemlist = obj;%>
-  <% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
+  <% var url = location.href.indexOf("localhost") < 0 ? "." : "."%>
   <div class="submenu">
     <div class="group title">
       <div>Follow<span style="float:right"><img src="img/plus.png"/></span></div>
     </div>
-    <div class="group contents">
+    <div class="group contents" style="white-space:nowrap;overflow-x:scroll;">
     <% for(i=0;i<itemlist.length;i++){%>
       <a href="./store.html#<%=itemlist[i].name%>">
       <div class="horizontalElement follow">
@@ -171,13 +177,13 @@ if ($is_member){
   </div>
 </script>
 
-<script>
+<script data-bc="action">
 (function(){
   backcontroller.Component.init({
     Name : "LeftMenu",
     Data : {
       name : "LeftMenu",
-      url : "http://0sun.net/pub/intop/yc/api/category.php"
+      url : "/yc/api/category.php"
     },
     templateSelector : '#LeftMenuMenuList',
     stateProcessor : function(data){
@@ -189,7 +195,7 @@ if ($is_member){
   })
 })()
 </script>
-<script type="text/template" id="LeftMenuMenuList">
+<script type="text/template" id="LeftMenuMenuList" data-bc="template">
   <% var categorylist = obj.sort(function(a,b){return (a.ca_id.toString() > b.ca_id.toString() ? 1 : 0 )});%>
 
   <div class="list">
@@ -223,7 +229,7 @@ if ($is_member){
 </div>
 </script>
 
-<script>
+<script data-bc="action">
 (function(){
   backcontroller.Component.init({
     Name : "LeftMenu",
@@ -238,7 +244,7 @@ if ($is_member){
   })
 })()
 </script>
-<script type="text/template" id="LeftMenuLatestList">
+<script type="text/template" id="LeftMenuLatestList" data-bc="template">
   <div class="submenu">
     <div class="group title">
       <div>최근에 본 상품</div>
@@ -257,7 +263,7 @@ if ($is_member){
   </div>
 </script>
 
-<script>
+<script data-bc="action">
 (function(){
   backcontroller.Component.init({
     Name : "LeftMenu",
@@ -272,7 +278,7 @@ if ($is_member){
   })
 })()
 </script>
-<script type="text/template" id="LeftMenuFooter">
+<script type="text/template" id="LeftMenuFooter" data-bc="template">
   <div class="footer" style="padding:15px 0px 15px 0px;background-color: #333333;color:#888888;">
     <div class="group title">
     <div style="display:block;text-align:center;">
@@ -316,6 +322,57 @@ if ($is_member){
       </div>
   </div>
 
+<style>
+.common.line {color:#474747;padding:10px 20px 10px 20px;white-space: nowrap;overflow:hidden;width:100%;}
+.common.yellowheader {background-color:#fed664;}
+.common.line .name2 {display:inline-block;float:left;}
+.common.line .value2 {display:inline-block;float:right;}
+
+.line {width:100%;display: block;white-space: nowrap;margin-bottom:10px;}
+.line.grayheader{margin:10px 0px 10px 0px;background-color:#f8f8f8;padding:10px 0px 10px 20px;font-size:11px;color:#292929;}
+.name {display:inline-block;width:10%;vertical-align: middle;}
+.value {display:inline-block;width:90%;}
+
+.value input, .value button{
+  border-radius: 5px;
+  background-color: white !important;
+}
+
+.LoginFrame{
+  background-color: white;
+}
+.mbskin{
+  padding-top:20px;
+  margin:0 auto;
+  width:80%;
+  background-color: white;
+}
+.value input[type="text"],.value input[type="password"]{
+  width:100%;
+}
+#mb_login input[type="submit"]{
+  background-color:#fed664 !important;
+  color:#252525;
+  padding:10px 50px 10px 50px !important;
+  width:100%;
+}
+.btn01{
+  width:100%;
+  border: 0px !important;
+  background-color: black !important;
+  color:white !important;
+  padding:10px 50px 10px 50px !important;
+  text-align: center;
+}
+.findidpass{
+  width:100%;
+  text-align: center;
+  border: 0px !important;
+  background-color: transparent !important;
+  color:#777 !important;
+}
+</style>
+
 <script>
 (function(){
   backcontroller.Component.init({
@@ -331,10 +388,9 @@ if ($is_member){
 <script type="text/template" id="LoginFrame">
   <div class="subTitle">로그인</div>
   <?php
-    include_once('./yc/common.php');
+    include_once('./backend/common.php');
 
     $g5['title'] = '로그인';
-    include_once('./yc/bbs/_head.sub.php');
 
     $url = $_GET['url'];
 
@@ -343,22 +399,146 @@ if ($is_member){
 
     // 이미 로그인 중이라면
     if ($is_member) {
-       goto_url("http://0sun.net/pub/intop/");//G5_URL
+       goto_url("/");//G5_URL
     }
 
     $login_url        = login_url($url);
-    $login_action_url = G5_HTTPS_BBS_URL."/login_check.php";
+    $login_action_url = "login_check.php";
 
     // 로그인 스킨이 없는 경우 관리자 페이지 접속이 안되는 것을 막기 위하여 기본 스킨으로 대체
     $login_file = $member_skin_path.'/login.skin.php';
     if (!file_exists($login_file))
         $member_skin_path   = G5_SKIN_PATH.'/member/basic';
 
-    include_once($member_skin_path.'/login.skin.php');
 
-    include_once('./yc/bbs/_tail.sub.php');
+    //include_once('./yc/bbs/_tail.sub.php');
   ?>
+  <div id="mb_login" class="mbskin">
 
+      <form name="flogin" action="/login_check.php" method="post">
+      <input type="hidden" name="url" value="/login.html">
+      <div class="line">
+        <div class="name">ID</div>
+        <div class="value">
+          <input type="text" name="mb_id" id="login_id" placeholder="아이디를 입력해주세요" required class="frm_input required" maxLength="20">
+        </div>
+      </div>
+      <div class="line">
+        <div class="name">PW</div>
+        <div class="value">
+          <input type="password" name="mb_password" id="login_pw" placeholder="패스워드를 입력해주세요" required class="frm_input required" maxLength="20">
+        </div>
+      </div>
+      <div class="line" style="padding:10px;text-align:left;padding-left:40px">
+            <input type="checkbox" name="auto_login" id="login_auto_login">
+            <label for="login_auto_login" style="padding-left:5px;">로그인 상태 유지</label>
+      </div>
+      <div class="line">
+          <input type="submit" value="로그인" class="btn_submit">
+      </div>
+      <div class="line">
+          <a href="joincheck.html" class="btn01">회원 가입</a>
+      </div>
+
+      <div>
+        <a href="password_lost.php" target="_blank"
+        id="login_password_lost" class="btn02 findidpass">아이디 찾기 | 비밀번호 찾기</a>
+      </div>
+
+
+      </form>
+
+      <?php // 쇼핑몰 사용시 여기부터 ?>
+      <?php if ($default['de_level_sell'] == 1) { // 상품구입 권한 ?>
+
+          <!-- 주문하기, 신청하기 -->
+          <?php if (preg_match("/orderform.php/", $url)) { ?>
+
+      <section id="mb_login_notmb">
+          <h2>비회원 구매</h2>
+
+          <p>
+              비회원으로 주문하시는 경우 포인트는 지급하지 않습니다.
+          </p>
+
+          <div id="guest_privacy">
+              <?php echo $default['de_guest_privacy']; ?>
+          </div>
+
+          <label for="agree">개인정보수집에 대한 내용을 읽었으며 이에 동의합니다.</label>
+          <input type="checkbox" id="agree" value="1">
+
+          <div class="btn_confirm">
+              <a href="javascript:guest_submit(document.flogin);" class="btn02">비회원으로 구매하기</a>
+          </div>
+
+          <script>
+          function guest_submit(f)
+          {
+              if (document.getElementById('agree')) {
+                  if (!document.getElementById('agree').checked) {
+                      alert("개인정보수집에 대한 내용을 읽고 이에 동의하셔야 합니다.");
+                      return;
+                  }
+              }
+
+              f.url.value = "<?php echo $url; ?>";
+              f.action = "<?php echo $url; ?>";
+              f.submit();
+          }
+          </script>
+      </section>
+
+          <?php } else if (preg_match("/orderinquiry.php$/", $url)) { ?>
+
+      <fieldset id="mb_login_od">
+          <legend>비회원 주문조회</legend>
+
+          <form name="forderinquiry" method="post" action="<?php echo urldecode($url); ?>" autocomplete="off">
+
+          <label for="od_id" class="od_id sound_only">주문번호<strong class="sound_only"> 필수</strong></label>
+          <input type="text" name="od_id" value="<?php echo $od_id ?>" id="od_id" placeholder="주문번호" required class="frm_input required" size="20">
+          <label for="id_pwd" class="od_pwd sound_only">비밀번호<strong class="sound_only"> 필수</strong></label>
+          <input type="password" name="od_pwd" size="20" id="od_pwd" placeholder="비밀번호" required class="frm_input required">
+          <input type="submit" value="확인" class="btn_submit">
+
+          </form>
+      </fieldset>
+
+      <section id="mb_login_odinfo">
+          <h2>비회원 주문조회 안내</h2>
+          <p>메일로 발송해드린 주문서의 <strong>주문번호</strong> 및 주문 시 입력하신 <strong>비밀번호</strong>를 정확히 입력해주십시오.</p>
+      </section>
+
+          <?php } ?>
+
+      <?php } ?>
+      <?php // 쇼핑몰 사용시 여기까지 반드시 복사해 넣으세요 ?>
+
+      <!---div class="btn_confirm">
+          <a href="/">메인으로 돌아가기</a>
+      </div--->
+
+  </div>
+  <div class="banner" style="overflow:hidden;padding-top:43px;background-color:white;">
+    <div><img src="./img/middlebanner/MainMiddleBanner1.png" style="width:100%;"></div>
+    <div><img src="./img/middlebanner/MainMiddleBanner2.png" style="width:100%;"></div>
+    <div><img src="./img/middlebanner/MainMiddleBanner3.png" style="width:100%;"></div>
+  </div>
+  <script>
+  $(function(){
+      $("#login_auto_login").click(function(){
+          if (this.checked) {
+              this.checked = confirm("자동로그인을 사용하시면 다음부터 회원아이디와 비밀번호를 입력하실 필요가 없습니다.\n\n공공장소에서는 개인정보가 유출될 수 있으니 사용을 자제하여 주십시오.\n\n자동로그인을 사용하시겠습니까?");
+          }
+      });
+  });
+
+  function flogin_submit(f)
+  {
+      return true;
+  }
+  </script>
 </script>
 
 

@@ -9,7 +9,25 @@
   afterEvent : function(){
   }})
 })()
+
 </script>
 <script type="text/template" id="SearchForm">
-  <div style="background-color:#f8f8f8;padding:17px 20px 17px 20px;"><input placeholder="검색어를 입력해주세요." type="input" style="border-radius:2px;outline: none;  -webkit-appearance: none;appearance: none;box-shadow: none !important;padding:10px;width:100%;border:1px solid #f6f6f6"></input><button style="margin-left:-52px;width:50px;border:0px;border-radius:0px;border-style:solid;background-color:white;border-color:#eee;border-left-width:1px;">검색</button></div>
+  <div style="background-color:#f8f8f8;padding:17px 20px 17px 20px;"><input placeholder="검색어를 입력해주세요." type="input" style="border-radius:2px;outline: none;  -webkit-appearance: none;appearance: none;box-shadow: none !important;padding:10px;width:100%;border:1px solid #f6f6f6"></input><button onclick="search($(this).prev().val(),'.AllItemListDatas','AllItemListDatas',afterSearch);" style="margin-left:-52px;width:50px;border:0px;border-radius:0px;border-style:solid;background-color:white;border-color:#eee;border-left-width:1px;">검색</button>
+  </div>
+  <div class="searchResult" style="width:100%;padding:17px 20px 17px 20px;display:none;">
+    <div>총 게시물 : <span class="cnt"></span>건</div>
+    <div style="margin-top:5px;"><span class="keyword" style="color:#6c9cff;border:0px;border-bottom-width:1px;border-style:dotted;border-color:#6c9cff;"></span>에 대한 결과입니다.</div>
+    <a href="search.html"><div class="button" style="margin-top:10px;width:100%;display:block;padding:10px 10px 10px 10px;color:white;background-color:black;text-align:center;">재검색</div></a>
+  </div>
+    <script>
+    function afterSearch(length,keyword){
+      //alert(length);
+      //alert(keyword);
+      $(".SearchForm > div").hide();
+      $(".searchResult").show();
+      $(".searchResult .cnt").append(length);
+      $(".searchResult .keyword").append(keyword);
+      $(".SearchTagList").hide();
+    }
+    </script>
 </script>

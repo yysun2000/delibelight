@@ -5,7 +5,7 @@
   templateSelector : '#AllCelebPage',
   Data : {
     name : "CelebList",
-    url : "http://0sun.net/pub/intop/yc/api/model.php"
+    url : "/yc/api/model.php"
   },
   stateProcessor : function(data){
   },
@@ -16,7 +16,7 @@
 </script>
 <script type="text/template" id="AllCelebPage">
   <% var itemlist = obj;%>
-  <% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
+  <% var url = location.href.indexOf("localhost") < 0 ? "." : "."%>
 
     <% for(i=0;i<10;i++){itemlist.push(obj[Math.round((Math.random()*10)/9)]);}%>
     <div class="horizontal" style="background-color:white;">
@@ -36,7 +36,8 @@
               <div style="text-align:center;padding:5px;white-space:nowrap;test-align:center;">
                 <span style="font-size:20px;"><%=itemlist[i].name%></span>
                 <div style="margin-left:5px;border-radius:100%;border:2px solid #252525;padding:3px;display:inline-block;">
-                  <i class="material-icons" style="font-size:15px;">add</i>
+                  <i class="material-icons addfollow" style="font-size:15px;">add</i>
+                  <input type="hidden" value="<%=itemlist[i].name%>"></input>
                 </div>
               </div>
               </div>

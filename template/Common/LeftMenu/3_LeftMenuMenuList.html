@@ -1,10 +1,10 @@
-<script>
+<script data-bc="action">
 (function(){
   backcontroller.Component.init({
     Name : "LeftMenu",
     Data : {
       name : "LeftMenu",
-      url : "http://0sun.net/pub/intop/yc/api/category.php"
+      url : "/yc/api/category.php"
     },
     templateSelector : '#LeftMenuMenuList',
     stateProcessor : function(data){
@@ -16,7 +16,7 @@
   })
 })()
 </script>
-<script type="text/template" id="LeftMenuMenuList">
+<script type="text/template" id="LeftMenuMenuList" data-bc="template">
   <% var categorylist = obj.sort(function(a,b){return (a.ca_id.toString() > b.ca_id.toString() ? 1 : 0 )});%>
 
   <div class="list">

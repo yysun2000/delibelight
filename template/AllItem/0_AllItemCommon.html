@@ -1,0 +1,49 @@
+<style>
+  .AllItemList > .productlist {padding-top:19px !important;}
+  .AllItem .sortArr{margin-top: -10px;right:22px;position: absolute;display:inline-block;}
+  .AllItemList .sortArr{display:none;padding-right:22px;}
+  .AllItem .title{font-weight:900;letter-spacing:1px;font-size:12px;text-align:center;margin-top:7px;background-color:white;padding-top:30px;padding-bottom:33px;}
+  .AllItem .category{text-align: center;background-color:white;width:100%;}
+  .AllItem .category .inner{text-align: center;width:85%;margin:auto;}
+  .AllItem .category .inner div{border-radius: 0px;background-color: white;padding:3px 0px 3px;display: inline-block;width:19%;color:#919191;}
+  .AllItem .category .inner div:hover,
+  .AllItem .category .inner div:focus{border-radius: 3px;background-color: #efefef;padding:3px 0px 3px;color:#252525;}
+
+  .AllItemListDatas > .productlist {
+    padding-top:19px !important;
+  }
+  .AllItemList .sortArr{
+    margin-top: -10px;
+    right:22px;
+    position: absolute;
+    display:inline-block;
+  }
+  .AllItemListDatas .sortArr{
+    display:none;padding-right:22px;
+  }
+  .AllItemList .title{
+    font-weight:900;letter-spacing:1px;font-size:12px;
+    text-align:center;margin-top:7px;background-color:white;padding-top:30px;padding-bottom:33px;
+  }
+  .AllItemList .category{text-align: center;background-color:white;width:100%;}
+  .AllItemList .category .inner{text-align: center;width:85%;margin:auto;}
+  .AllItemList .category .inner div{border-radius: 0px;
+    background-color: white;padding:3px 0px 3px;display: inline-block;width:19%;color:#919191;}
+  .AllItemList .category .inner div:hover,
+  .AllItemList .category .inner div:focus{border-radius: 3px;background-color: #efefef;padding:3px 0px 3px;color:#252525;}
+</style>
+<script>
+
+function transList2(val,sel){
+  $("html,body").animate({scrollTop: $("."+sel).offset().top - 10}, 500,function(){
+      if(val==2){
+        $("."+sel+" .product.type2").attr("class","product type2 col-xs-6");
+      }else if(val==3){
+        $("."+sel+" .product.type2").attr("class","product type2 col-xs-4");
+      }else{
+        $("."+sel+" .product.type2").attr("class","product type2");
+      }
+  });
+
+}
+</script>

@@ -30,27 +30,5 @@
     </div>
   </div>
 </div>
-<script>
-$(".tabselector .button > span,.tabselector .button > img").on("click",function(evt){
-  $(".tabselector .button").removeClass("isSelected");
-
-  $(".MyPageTabOrderFilter").addClass("isDeactive");
-  $(".MyPageTabOrderList").addClass("isDeactive");
-  $(".MyPageTabWishList").addClass("isDeactive");
-  $(".MyPageTabMemberModify").addClass("isDeactive");
-  $(".MyPageTabPoint").addClass("isDeactive");
-  $(".MyPageTabWillPoint").addClass("isDeactive");
-  $(".MyPageTabCoupon").addClass("isDeactive");
-
-  $(evt.target).parent().toggleClass("isSelected");
-  var datatab = $(evt.target).parent().attr("data-tab");
-  if(datatab == "MyPageTabOrder"){
-    $("."+datatab+"Filter").removeClass("isDeactive");
-    $("."+datatab+"List").removeClass("isDeactive");
-  }else{
-    $("."+datatab).removeClass("isDeactive");
-  }
-})
-</script>
 
 </script>

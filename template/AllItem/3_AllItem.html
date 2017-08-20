@@ -15,7 +15,7 @@
 		Data : {
 			name : "AllItem", // 위에 클래스 이름과 똑같이 정의해준다.
 	    params : { "listCols": 2 ,"listType":2}, // 넘겨줄 파라메터.
-			url : "http://0sun.net/pub/intop/yc/api/item.php?q=/focus" // JSON으로 보낼 데이터
+			url : "/yc/api/item.php?q=/focus" // JSON으로 보낼 데이터
 		},
 		templateSelector : '#ProductList', // 템프레이트 경로
 		stateProcessor : function(data){
@@ -26,30 +26,7 @@
 	})
 })()
 </script>
-  <style>
-  .AllItemListDatas > .productlist {
-    padding-top:19px !important;
-  }
-  .AllItemList .sortArr{
-    margin-top: -10px;
-    right:22px;
-    position: absolute;
-    display:inline-block;
-  }
-  .AllItemListDatas .sortArr{
-    display:none;padding-right:22px;
-  }
-  .AllItemList .title{
-    font-weight:900;letter-spacing:1px;font-size:12px;
-    text-align:center;margin-top:7px;background-color:white;padding-top:30px;padding-bottom:33px;
-  }
-  .AllItemList .category{text-align: center;background-color:white;width:100%;}
-  .AllItemList .category .inner{text-align: center;width:85%;margin:auto;}
-  .AllItemList .category .inner div{border-radius: 0px;
-    background-color: white;padding:3px 0px 3px;display: inline-block;width:19%;color:#919191;}
-  .AllItemList .category .inner div:hover,
-  .AllItemList .category .inner div:focus{border-radius: 3px;background-color: #efefef;padding:3px 0px 3px;color:#252525;}
-  </style>
+
 <script type="text/template" id="AllItemList">
 
     <div class="title"><span>All ITEMS</span>
@@ -69,19 +46,4 @@
     </div>
 
   <div class="AllItemListDatas"></div>
-</script>
-<script>
-function transList2(val,sel){
-  $("html,body").animate({scrollTop: $("."+sel).offset().top - 10}, 500,function(){
-      if(val==2){
-        $("."+sel+" .product.type2").attr("class","product type2 col-xs-6");
-      }else if(val==3){
-        $("."+sel+" .product.type2").attr("class","product type2 col-xs-4");
-      }else{
-        $("."+sel+" .product.type2").attr("class","product type2");
-      }
-  });
-
-}
-
 </script>

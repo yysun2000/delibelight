@@ -23,9 +23,8 @@ define('_SHOP_', true);
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="css/materialize.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="http://0sun.net/pub/intop/yc/theme/basic/css/mobile_shop.css?ver=161020">
-    <link rel="stylesheet" href="http://0sun.net/pub/intop/yc/mobile/skin/member/delibe/style.css?ver=161020">
+    <link rel="stylesheet" href="/yc/theme/basic/css/mobile_shop.css?ver=161020">
+    <link rel="stylesheet" href="/yc/mobile/skin/member/delibe/style.css?ver=161020">
 
 
     <link rel="stylesheet" href="css/swiper.css"/>
@@ -37,7 +36,6 @@ define('_SHOP_', true);
     <script src="js/jquery.lazyload.min.js"></script>
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/backcontroller.min.js"></script>
-    <script src="js/materialize.min.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -48,7 +46,7 @@ define('_SHOP_', true);
 
 </head>
 <body>
-<script>
+<script data-bc="action">
 (function(){
   backcontroller.Component.init({
   Name : "Common",
@@ -63,7 +61,7 @@ define('_SHOP_', true);
 })()
 </script>
 
-<script type="text/template" id="TopMenu">
+<script type="text/template" id="TopMenu" data-bc="template">
 
   <nav class="navbar navbar-default" role="navigation">
       <div class="container">
@@ -76,14 +74,14 @@ define('_SHOP_', true);
               </button>
               <span class="navbar-brand" href="#" onclick="GoMain()">#B</span>
               <a href="search.html"><button type="button" class="navbar-toggle" style="background:transparent;border:none;margin:0px;margin-right:9px;margin-top:9px;margin-bottom:9px;float:right !important;"><img src="./img/main/zoom.png" style="height:20px;"/></button></a>
-              <button type="button" class="navbar-toggle"  style="background:transparent;border:none;margin:0px;margin-top:9px;margin-bottom:9px;float:right !important;"><img src="./img/main/shopping-cart.png" style="height:20px;"/></button>
+              <button type="button" class="navbar-toggle"  style="background:transparent;border:none;margin:0px;margin-top:9px;margin-bottom:9px;float:right !important;"><a href="cart.html"><img src="./img/main/shopping-cart.png" style="height:20px;"/></a></button>
           </div>
       </div>
   </nav>
 
 </script>
 
-<script>
+<script data-bc="action">
 (function(){
   backcontroller.Component.init({
     Name : "LeftMenu",
@@ -98,7 +96,7 @@ define('_SHOP_', true);
   })
 })()
 </script>
-<script type="text/template" id="LeftMenuTopMenuInfo">
+<script type="text/template" id="LeftMenuTopMenuInfo" data-bc="template">
   <div class="logInfo">
     <div class="group title">
       <span>#B</span>
@@ -108,10 +106,10 @@ define('_SHOP_', true);
       <div>안녕하세요, <span style="color:#0e64f2;">인탑</span>님. </div>
       <div>#B에 오신걸 환영합니다.</div>
     </div>
-    <%if(!document.querySelector("#loginsuccess")){%>
+    <%if(document.querySelector("#loginsuccess")){%>
       <div class="group button-group">
         <a href="mypage.html"><div class="yellow">마이페이지</div></a>
-        <a href="#"><div class="black">위시리스트</div></a>
+        <a href="wish.html"><div class="black">위시리스트</div></a>
       </div>
     <%}else{%>
 
@@ -123,13 +121,21 @@ define('_SHOP_', true);
   </div>
 </script>
 
-<script>
+<script data-bc="action">
 (function(){
+  var purl;
+  if($("#loginsuccess").length > 0){
+    purl = "/yc/api/model.php?m=get&q=/follow/"+$("#loginsuccess").text();
+  }else{
+    purl = "/yc/api/model.php";
+  }
+  console.log(purl);
+
   backcontroller.Component.init({
     Name : "LeftMenu",
     Data : {
       name : "LeftFollowList",
-      url : "http://0sun.net/pub/intop/yc/api/model.php"
+      url : purl
     },
     templateSelector : '#LeftMenuFollowList',
     stateProcessor : function(data){
@@ -141,14 +147,14 @@ define('_SHOP_', true);
   })
 })()
 </script>
-<script type="text/template" id="LeftMenuFollowList">
+<script type="text/template" id="LeftMenuFollowList" data-bc="template">
   <% var itemlist = obj;%>
-  <% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
+  <% var url = location.href.indexOf("localhost") < 0 ? "." : "."%>
   <div class="submenu">
     <div class="group title">
       <div>Follow<span style="float:right"><img src="img/plus.png"/></span></div>
     </div>
-    <div class="group contents">
+    <div class="group contents" style="white-space:nowrap;overflow-x:scroll;">
     <% for(i=0;i<itemlist.length;i++){%>
       <a href="./store.html#<%=itemlist[i].name%>">
       <div class="horizontalElement follow">
@@ -162,13 +168,13 @@ define('_SHOP_', true);
   </div>
 </script>
 
-<script>
+<script data-bc="action">
 (function(){
   backcontroller.Component.init({
     Name : "LeftMenu",
     Data : {
       name : "LeftMenu",
-      url : "http://0sun.net/pub/intop/yc/api/category.php"
+      url : "/yc/api/category.php"
     },
     templateSelector : '#LeftMenuMenuList',
     stateProcessor : function(data){
@@ -180,7 +186,7 @@ define('_SHOP_', true);
   })
 })()
 </script>
-<script type="text/template" id="LeftMenuMenuList">
+<script type="text/template" id="LeftMenuMenuList" data-bc="template">
   <% var categorylist = obj.sort(function(a,b){return (a.ca_id.toString() > b.ca_id.toString() ? 1 : 0 )});%>
 
   <div class="list">
@@ -214,7 +220,7 @@ define('_SHOP_', true);
 </div>
 </script>
 
-<script>
+<script data-bc="action">
 (function(){
   backcontroller.Component.init({
     Name : "LeftMenu",
@@ -229,7 +235,7 @@ define('_SHOP_', true);
   })
 })()
 </script>
-<script type="text/template" id="LeftMenuLatestList">
+<script type="text/template" id="LeftMenuLatestList" data-bc="template">
   <div class="submenu">
     <div class="group title">
       <div>최근에 본 상품</div>
@@ -248,7 +254,7 @@ define('_SHOP_', true);
   </div>
 </script>
 
-<script>
+<script data-bc="action">
 (function(){
   backcontroller.Component.init({
     Name : "LeftMenu",
@@ -263,7 +269,7 @@ define('_SHOP_', true);
   })
 })()
 </script>
-<script type="text/template" id="LeftMenuFooter">
+<script type="text/template" id="LeftMenuFooter" data-bc="template">
   <div class="footer" style="padding:15px 0px 15px 0px;background-color: #333333;color:#888888;">
     <div class="group title">
     <div style="display:block;text-align:center;">
@@ -307,6 +313,73 @@ define('_SHOP_', true);
       </div>
   </div>
 
+<style>
+.common.line {color:#474747;padding:10px 20px 10px 20px;white-space: nowrap;overflow:hidden;width:100%;}
+.common.yellowheader {background-color:#fed664;}
+.common.line .name2 {display:inline-block;float:left;}
+.common.line .value2 {display:inline-block;float:right;}
+
+.line {width:100%;display: block;white-space: nowrap;margin-bottom:10px;}
+.line.grayheader{margin:10px 0px 10px 0px;background-color:#f8f8f8;padding:10px 0px 10px 20px;font-size:11px;color:#292929;}
+.name {display:inline-block;width:10%;vertical-align: middle;}
+.value {display:inline-block;width:95%;}
+
+.value input, .value button{
+  border-radius: 5px;
+  background-color: white !important;
+}
+.mbskin{
+  padding-top:20px;
+  margin:0 auto;
+  width:90%;
+  background-color: white;
+}
+.JoinCheck{
+  background-color: white;
+}
+
+  .yblock{
+    display: block;
+    width:100%;
+    border:1px solid #eee;
+    margin-top:10px;
+  }
+  .yblock .name{
+    white-space: nowrap;
+    display: block;
+    border: 0px;
+    width:100%;
+    border-bottom-width:1px;
+    border-style : solid;
+    border-color:#eee;
+    padding:10px 20px 10px 20px;
+  }
+  .yblock .content{
+    overflow: hidden;
+    overflow-y: scroll;
+    display: block;
+    width:100%;
+    height:150px;
+    color:#aaa;
+    padding:20px 15px 10px 15px;
+  }
+  .btn_submit{
+    background-color: white;
+    margin-top:30px;
+    width:50%;
+    color:#252525;
+    border: 1px solid #eee;
+  }
+  .btn_submit:first-child{
+    background-color: black;
+    color:white;
+  }
+  .line.buttons{
+    text-align: center;
+  }
+
+</style>
+
 <script>
 (function(){
   backcontroller.Component.init({
@@ -325,26 +398,63 @@ define('_SHOP_', true);
 <script type="text/template" id="JoinCheck">
   <div class="subTitle">회원가입</div>
   <?php
-  include_once('./yc/common.php');
+  include_once('./backend/common.php');
 
   // 로그인중인 경우 회원가입 할 수 없습니다.
   if ($is_member) {
-      goto_url(G5_URL);
+      goto_url("/");
   }
 
   // 세션을 지웁니다.
   set_session("ss_mb_reg", "");
 
   $g5['title'] = '회원가입약관';
-  include_once('./yc/head.php');
 
-//  $register_action_url = G5_BBS_URL.'/register_form.php';
-  $register_action_url = './join.html';
-  include_once($member_skin_path.'/register.skin.php');
+  $register_action_url = 'join.html';
 
-  include_once('./yc/tail.php');
   ?>
+  <div class="mbskin">
+      <form name="fregister" id="fregister" action="<?php echo $register_action_url ?>" onsubmit="return fregister_submit(this);" method="POST" autocomplete="off">
+      <div class="yblock">
+        <div class="name"><input type="checkbox" name="agree" value="1" id="agree11"> 이용약관동의(필수)<span style="float:right;">전체보기</span></div>
+        <div class="content"><?php echo get_text($config['cf_stipulation']) ?></div>
+      </div>
 
+      <div class="yblock">
+        <div class="name"><input type="checkbox" name="agree2" value="1" id="agree21"> 개인정보처리방침 동의(필수)<span style="float:right;">전체보기</span></div>
+        <div class="content">■수집항목:이름,생년월일,성별,로그인ID,비밀번호,비밀번호 질문과 답변,자택전화번호,자택주소,휴대전화번호,
+        이메일,직업,회사명,부서,직책,회사전화번호,취미,결혼여부,기념일,법정대리인정보,서비스이용기록,접속 로그,접속 IP정보,결제기록<br>
+        ■서비스 제공에 관한 이행 및 서비스 제공에 따른 요금정산 콘텐츠 제공, 구매 및 요금 결제, 물품배송 또는 청구지 등발송
+        </div>
+      </div>
+
+      <div class="line buttons">
+          <input type="submit" class="btn_submit" value="다음">
+          <input type="button" class="btn_submit" onclick="history.go(-1)" value="취소">
+      </div>
+
+      </form>
+
+      <script>
+      function fregister_submit(f)
+      {
+          if (!f.agree.checked) {
+              alert("회원가입약관의 내용에 동의하셔야 회원가입 하실 수 있습니다.");
+              f.agree.focus();
+              return false;
+          }
+
+          if (!f.agree2.checked) {
+              alert("개인정보처리방침안내의 내용에 동의하셔야 회원가입 하실 수 있습니다.");
+              f.agree2.focus();
+              return false;
+          }
+
+          return true;
+      }
+      </script>
+
+  </div>
 
 </script>
 

@@ -1,0 +1,115 @@
+<style>
+  .board.element{overflow:hidden;display:block;padding-top:10px;padding-bottom:10px;}
+  .left{float:left;display: inline-block;padding:0px;margin:0px;}
+  .right{float:right;display: inline-block;padding:0px;margin:0px;}
+  .board .title{display:block;clear:both;padding-top:5px;padding-bottom:5px;}
+  .board .content{display:block;clear:both;padding-top:5px;padding-bottom:5px;}
+  .dropdown{ display:inline-block; padding:5px;}
+  select { width: 30%; /* 원하는 너비설정 */
+    padding: 5px 8px; /* 여백으로 높이 설정 */
+    font-family: inherit; /* 폰트 상속 */
+    background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%;
+    border: 1px solid #999;
+    border-radius: 0px; /* iOS 둥근모서리 제거 */
+     -webkit-appearance: none; /* 네이티브 외형 감추기 */
+     -moz-appearance: none; appearance: none; }
+</style>
+<script>
+function showContents(evt){
+  $(evt).next().toggle();
+}
+</script>
+<script type="text/template" id="BoardList" data-bc="template">
+    <%var boardlist = obj;console.log("boardlist"+boardlist.length);%>
+    <%var property = window[window.currentListName]; console.log(window.currentListName);%>
+
+        <!-- 후기일 경우 -->
+        <%if(property.type == "use"){%>
+        <select>
+          <option>키</option>
+          <option>140</option>
+          <option>150</option>
+          <option>160</option>
+        </select>
+
+        <select>
+          <option>몸무게</option>
+          <option>40</option>
+          <option>50</option>
+          <option>60</option>
+        </select>
+
+        <select>
+          <option>평소사이즈</option>
+          <option>S</option>
+          <option>M</option>
+          <option>L</option>
+        </select>
+        <%}%>
+
+
+      <%for(i=0;i<boardlist.length;i++){%>
+        <div class="board element">
+          <div class="title" onclick="showContents(this)">
+
+            <div class="left">
+
+
+              <!-- Q&A일 경우 -->
+              <%if(property.type == "qna"){%>
+                <div class="title"><%=boardlist[i].iq_subject%></div>
+                <div class="username"><%=boardlist[i].mb_id%></div>
+              <%}%>
+
+
+              <!-- 후기일 경우 -->
+              <%if(property.type == "use"){%>
+                <div class="title"><%=boardlist[i].is_subject%></div>
+                <div class="username"><%=boardlist[i].mb_id%></div>
+              <%}%>
+
+
+            </div>
+            <div class="right">
+
+
+
+            <!-- Q&A일 경우 -->
+            <%if(property.type == "qna"){%>
+              <div class="flag">New</div>
+              <div class="test">덧글 하트</div>
+            <%}%>
+
+            <!-- 후기일 경우 -->
+            <%if(property.type == "use"){%>
+              <div class="flag">New</div>
+              <div class="test">덧글 하트</div>
+            <%}%>
+
+            </div>
+          </div>
+          <div class="content" style="display:none;">
+
+            <div class="left">
+
+
+              <!-- Q&A일 경우 -->
+              <%if(property.type == "qna"){%>
+                <div class="data"><%=boardlist[i].iq_question%></div>
+                <div class="time"><%=boardlist[i].iq_time%></div>
+              <%}%>
+
+
+              <!-- 후기일 경우 -->
+              <%if(property.type == "use"){%>
+                <div class="data"><%=boardlist[i].is_content%></div>
+                <div class="time"><%=boardlist[i].is_time%></div>
+              <%}%>
+
+
+            </div>
+          </div>
+        </div>
+      <%}%>
+
+</script>

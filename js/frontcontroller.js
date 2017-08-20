@@ -116,6 +116,79 @@ window.onload = function(){
 
 
 
+    //MyPage  //2_TabSelector
+    setTimeout(function(){
+      window["tagList"] = [];
+
+      $(".tagGroup > span[class='tag']").click(function(evt){
+        debugger;
+        console.log("1");
+        var tagList = window["tagList"];
+        console.log("2");
+        console.log(evt.target);
+        var value = $(evt.target).text()
+        console.log("3");
+        if(tagList.indexOf(value) == -1){
+          tagList.push(value)
+          $(evt.target).css("backgroundColor","#ffe28f")
+        }else{
+          tagList.splice(tagList.indexOf(value),1);
+          $(evt.target).css("backgroundColor","white")
+        }
+        console.log(window.tagList);
+      })
+        $(".tabselector .button > span,.tabselector .button > img").on("click",function(evt){
+          $(".tabselector .button").removeClass("isSelected");
+
+          $(".MyPageTabOrderFilter").addClass("isDeactive");
+          $(".MyPageTabOrderList").addClass("isDeactive");
+          $(".MyPageTabWishList").addClass("isDeactive");
+          $(".MyPageTabMemberModify").addClass("isDeactive");
+          $(".MyPageTabPoint").addClass("isDeactive");
+          $(".MyPageTabWillPoint").addClass("isDeactive");
+          $(".MyPageTabCoupon").addClass("isDeactive");
+
+          $(evt.target).parent().toggleClass("isSelected");
+          var datatab = $(evt.target).parent().attr("data-tab");
+          if(datatab == "MyPageTabOrder"){
+            $("."+datatab+"Filter").removeClass("isDeactive");
+            $("."+datatab+"List").removeClass("isDeactive");
+          }else{
+            $("."+datatab).removeClass("isDeactive");
+          }
+        })
+
+        //6_Point
+        $(".point .rollMenu .isTitle").on("click",function(evt){
+          $(evt.target).parent().toggleClass("isSelected");
+        })
+
+        //7_WillPoint
+        $(".willPoint .rollMenu .isTitle").on("click",function(evt){
+          $(evt.target).parent().toggleClass("isSelected");
+        })
+
+        // 8_Coupon
+        $(".coupon .rollMenu .isTitle > div > div").on("click",function(evt){
+          $(evt.target).parent().parent().parent().toggleClass("isSelected");
+        })
+
+
+        //Celleb
+        if($("#loginsuccess").length > 0){
+          updateCeleb($("#loginsuccess").text());
+        }
+
+        $(".addfollow").click(function(){
+          if($("#loginsuccess").length > 0){
+            togglefollow($(this).next().val());
+          }else{
+            alert("로그인을 해주십시오.");
+          }
+        })
+    },1000);
+
+
 
 
 
@@ -123,6 +196,7 @@ window.onload = function(){
 }
 
 
+    function number_format(a){ return a;}
 
 function openNav() {
   $(".left-menu").css("transition", "0.5s");
@@ -203,4 +277,158 @@ function filterItem(type){
       "data":filteredList
     }
   );
+}
+
+// 템플릿 활용하기
+
+function DataToTemplate(purl,listname,keyword,callback){ // url, 리스트이름(기능에 필요), 키워드(리턴받을값)
+  console.log(listname);
+  window['currentListName'] = listname;
+  return function(template,selector){ // 탬플릿과 적용할 셀렉터
+    function fuc(data){
+      $(selector).children().remove();
+      if(data.length > 0){
+        var templateHtml = $(template).html();
+        $(selector).append(_.template( templateHtml )(data));
+      }else{
+      }
+      if(callback!=='undefined'){
+        callback(data.length,keyword);
+      }
+    }
+    var cb = fuc;
+    return $.ajax({
+          type:"GET",
+          url:purl,
+          dataType:"JSONP", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨,
+          contentType: "application/json;charset=utf-8",
+          callback:cb,
+          success:fuc
+        });
+  };
+}
+function search(val,selector,listname,callback){
+  DataToTemplate("/yc/api/item.php?q=/search/"+val+"&callback=test",listname,val,callback)("#ProductList",selector); // 리스트 네임과 셀렉터의 이름을 같게할 것.
+}
+function searchTag(val,selector,listname,callback){
+  try{
+    if(val[0] !== "#"){
+      alert("해쉬태그를 붙여주세요!");
+    }else{
+      console.log(val);
+      var hval = val.replace(/#/gi,"/");
+    DataToTemplate("/yc/api/item.php?q=/tag"+hval+"&callback=test",listname,val,callback)("#ProductList",selector); // 리스트 네임과 셀렉터의 이름을 같게할 것.
+    }
+  }catch(e){
+    console.log(e);
+      alert("검색어를 다시 입력해주십시오.");
+  }
+}
+
+function selectTag(callback){
+  try{
+    if(window.tagList !== "undefined"){
+      var taglistvalue = window.tagList.toString();
+      if(taglistvalue !== 'undefined' && taglistvalue !== "null"){
+        var url = taglistvalue;
+        url = url.replace(/,/gi,"");
+        searchTag(url,'.AllItemTagListDatas','AllItemTagListDatas',callback);
+      }
+    }
+
+  }catch(e){
+      console.log(e);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+// Celeb
+
+// 현재 회원의 현재 Celeb을 업데이트한다.
+function updateCeleb(member){
+  function callback(data){
+//    alert(data);
+  }
+  DataToTemplate("/yc/api/model.php?m=get&q=/follow/"+member,"follow","",callback)("#LeftMenuFollowList",".LeftMenuFollowList");
+  DataToTemplate("/yc/api/model.php?m=get&q=/follow/"+member,"follow","",callback)("#MainTopFollowList",".MainTopFollowList");
+  DataToTemplate("/yc/api/model.php?m=get&q=/follow/"+member,"follow","",callback)("#CelebPage",".CelebPage")
+}
+
+
+// Celeb과 follow가 되있으면 팔로우를 해제하고, 그게 아니면 팔로우를 추가한다.
+function togglefollow(model){
+  if($("#loginsuccess").length > 0){
+    var member = $("#loginsuccess").text();
+    var purl = "/yc/api/model.php?m=get&q=/follow/"+model+"/"+member;
+    function fuc(data){
+      if(data.length == 0){
+        followCeleb(model,member);
+      }else{
+        deleteCeleb(model,member);
+      }
+    }
+    $.ajax({
+          type:"GET",
+          url:purl,
+          dataType:"JSONP", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨,
+          contentType: "application/json;charset=utf-8",
+          callback:fuc,
+          success:fuc
+        });
+  }else{
+    alert("로그인을 하신 후 이용하십시오.");
+  }
+}
+
+
+// Celeb과 follow를 한다.
+function followCeleb(model,follow){
+  if($("#loginsuccess").length > 0){
+    var purl = "/yc/api/model.php?m=post&q=/follow/"+model+"/"+follow;
+    function fuc(data){
+      alert("팔로우가 완료되었습니다.");
+      updateCeleb(follow)
+    }
+    $.ajax({
+          type:"GET",
+          url:purl,
+          dataType:"JSONP", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨,
+          contentType: "application/json;charset=utf-8",
+          callback:fuc,
+          success:fuc
+        });
+  }else{
+    alert("로그인을 하신 후 이용하십시오.");
+  }
+}
+
+// 팔로우를 해제한다.
+function deleteCeleb(model,follow){
+    if($("#loginsuccess").length > 0){
+      var purl = "/yc/api/model.php?m=delete&q=/follow/"+model+"/"+follow;
+      function fuc(data){
+        alert("팔로우를 해제합니다.");
+        updateCeleb(follow);
+      }
+      $.ajax({
+        type:"GET",
+        url:purl,
+        dataType:"JSONP", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨,
+        contentType: "application/json;charset=utf-8",
+        callback:fuc,
+        success:fuc
+      });
+
+    }else{
+    alert("로그인을 하신 후 이용하십시오.");
+    }
 }

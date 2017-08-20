@@ -1,0 +1,704 @@
+<?php
+include_once('./yc/common.php');
+define('_SHOP_', true);
+?>
+<!DOCTYPE html><html>
+<head>
+
+    <meta charset="utf-8">
+    <META http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Delibe Light</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Theme CSS -->
+    <link href="css/common.min.css" rel="stylesheet">
+    <link href="css/font/font.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/yc/theme/basic/css/mobile_shop.css?ver=161020">
+    <link rel="stylesheet" href="/yc/mobile/skin/member/delibe/style.css?ver=161020">
+
+
+    <link rel="stylesheet" href="css/swiper.css"/>
+
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/underscore.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <script src="js/jquery.lazyload.min.js"></script>
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/backcontroller.min.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+<?php
+if ($is_member){
+  $member = get_member($_SESSION['ss_mb_id']);
+  echo "<div id='loginsuccess' style='display:none'>".$member['mb_id']."</div>";
+}
+
+
+?>
+
+<script data-bc="action">
+(function(){
+  backcontroller.Component.init({
+  Name : "Common",
+//  DataURL : "./admin/json/filter.json",
+  templateSelector : '#TopMenu',
+  stateProcessor : function(data){
+    //backcontroller.state.FilterList.setList(data);
+  },
+  targetSelector : ".TopMenu",
+  afterEvent : function(){
+  }})
+})()
+</script>
+
+<script type="text/template" id="TopMenu" data-bc="template">
+
+  <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+          <div class="navbar-header">
+              <button onclick="openNav()" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only" >Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <span class="navbar-brand" href="#" onclick="GoMain()">#B</span>
+              <a href="search.html"><button type="button" class="navbar-toggle" style="background:transparent;border:none;margin:0px;margin-right:9px;margin-top:9px;margin-bottom:9px;float:right !important;"><img src="./img/main/zoom.png" style="height:20px;"/></button></a>
+              <button type="button" class="navbar-toggle"  style="background:transparent;border:none;margin:0px;margin-top:9px;margin-bottom:9px;float:right !important;"><a href="cart.html"><img src="./img/main/shopping-cart.png" style="height:20px;"/></a></button>
+          </div>
+      </div>
+  </nav>
+
+</script>
+
+<script data-bc="action">
+(function(){
+  backcontroller.Component.init({
+    Name : "LeftMenu",
+    DataURL : "./admin/json/filter.json",
+    templateSelector : '#LeftMenuTopMenuInfo',
+    stateProcessor : function(data){
+      //backcontroller.state.FilterList.setList(data);
+    },
+    targetSelector : ".LeftMenuTopMenuInfo",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
+<script type="text/template" id="LeftMenuTopMenuInfo" data-bc="template">
+  <div class="logInfo">
+    <div class="group title">
+      <span>#B</span>
+      <div class="close" onclick="closeNav()"><img src="img\close.png" style="width:100%;height:100%;"></div>
+    </div>
+    <div class="group content">
+      <div>안녕하세요, <span style="color:#0e64f2;">인탑</span>님. </div>
+      <div>#B에 오신걸 환영합니다.</div>
+    </div>
+    <%if(document.querySelector("#loginsuccess")){%>
+      <div class="group button-group">
+        <a href="mypage.html"><div class="yellow">마이페이지</div></a>
+        <a href="wish.html"><div class="black">위시리스트</div></a>
+      </div>
+    <%}else{%>
+
+      <div class="group button-group">
+        <a href="login.html?device=mobile"><div class="yellow">로그인</div></a>
+        <a href="joincheck.html?device=mobile"><div class="black">회원가입</div></a>
+      </div>
+    <%}%>
+  </div>
+</script>
+
+<script data-bc="action">
+(function(){
+  var purl;
+  if($("#loginsuccess").length > 0){
+    purl = "/yc/api/model.php?m=get&q=/follow/"+$("#loginsuccess").text();
+  }else{
+    purl = "/yc/api/model.php";
+  }
+  console.log(purl);
+
+  backcontroller.Component.init({
+    Name : "LeftMenu",
+    Data : {
+      name : "LeftFollowList",
+      url : purl
+    },
+    templateSelector : '#LeftMenuFollowList',
+    stateProcessor : function(data){
+      //backcontroller.state.FilterList.setList(data);
+    },
+    targetSelector : ".LeftMenuFollowList",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
+<script type="text/template" id="LeftMenuFollowList" data-bc="template">
+  <% var itemlist = obj;%>
+  <% var url = location.href.indexOf("localhost") < 0 ? "." : "."%>
+  <div class="submenu">
+    <div class="group title">
+      <div>Follow<span style="float:right"><img src="img/plus.png"/></span></div>
+    </div>
+    <div class="group contents" style="white-space:nowrap;overflow-x:scroll;">
+    <% for(i=0;i<itemlist.length;i++){%>
+      <a href="./store.html#<%=itemlist[i].name%>">
+      <div class="horizontalElement follow">
+        <div class="face"><img src="<%=url%>/yc/data/face/<%=itemlist[i].face%>" style="width:100%;"></div>
+        <div class="name"><%=itemlist[i].name%></div>
+      </div>
+      </a>
+    <%}%>
+
+    </div>
+  </div>
+</script>
+
+<script data-bc="action">
+(function(){
+  backcontroller.Component.init({
+    Name : "LeftMenu",
+    Data : {
+      name : "LeftMenu",
+      url : "/yc/api/category.php"
+    },
+    templateSelector : '#LeftMenuMenuList',
+    stateProcessor : function(data){
+      //backcontroller.state.FilterList.setList(data);
+    },
+    targetSelector : ".LeftMenuMenuList",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
+<script type="text/template" id="LeftMenuMenuList" data-bc="template">
+  <% var categorylist = obj.sort(function(a,b){return (a.ca_id.toString() > b.ca_id.toString() ? 1 : 0 )});%>
+
+  <div class="list">
+
+    <div class="group tab">
+      <div>
+        <div>Item</div>
+      </div>
+      <div class="deactive">
+        <div>Celeb</div>
+      </div>
+    </div>
+    <ul class="list-mainmenu" style="clear:both;">
+      <% for(i=0;i<categorylist.length;i++){%>
+      <% var caid=categorylist[i].ca_id %>
+      <li>
+        <% if(caid.toString().length == 2){%>
+        <div><%=categorylist[i].ca_name%></div>
+        <ul class="list-submenu">
+        <% while(categorylist[i+1] !== undefined && categorylist[i+1].ca_id.toString().length == 4){%>
+            <li>- <%=categorylist[i++].ca_name%></li>
+        <%}%>
+        </ul>
+        <%}%>
+
+
+      </li>
+      <% }%>
+
+    </ul>
+</div>
+</script>
+
+<script data-bc="action">
+(function(){
+  backcontroller.Component.init({
+    Name : "LeftMenu",
+    DataURL : "./admin/json/filter.json",
+    templateSelector : '#LeftMenuLatestList',
+    stateProcessor : function(data){
+      //backcontroller.state.FilterList.setList(data);
+    },
+    targetSelector : ".LeftMenuLatestList",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
+<script type="text/template" id="LeftMenuLatestList" data-bc="template">
+  <div class="submenu">
+    <div class="group title">
+      <div>최근에 본 상품</div>
+    </div>
+    <div class="group contents">
+      <div class="horizontalElement">
+        <div><img src="./img/shoplist/1.jpg"/></div>
+      </div>
+      <div class="horizontalElement">
+        <div><img src="./img/shoplist/1.jpg"/></div>
+      </div>
+      <div class="horizontalElement">
+        <div><img src="./img/shoplist/1.jpg"/></div>
+      </div>
+    </div>
+  </div>
+</script>
+
+<script data-bc="action">
+(function(){
+  backcontroller.Component.init({
+    Name : "LeftMenu",
+    DataURL : "./admin/json/filter.json",
+    templateSelector : '#LeftMenuFooter',
+    stateProcessor : function(data){
+      //backcontroller.state.FilterList.setList(data);
+    },
+    targetSelector : ".LeftMenuFooter",
+    afterEvent : function(){
+    }
+  })
+})()
+</script>
+<script type="text/template" id="LeftMenuFooter" data-bc="template">
+  <div class="footer" style="padding:15px 0px 15px 0px;background-color: #333333;color:#888888;">
+    <div class="group title">
+    <div style="display:block;text-align:center;">
+      <div style="display:inline-block;width:17%;text-align:left;vertical-align:middle;padding:10px 10px 10px 10px;"><img src="img/call.png" style="width:100%"></div>
+      <div style="display:inline-block;width:34%;vertical-align:middle;text-align:left;font-size:8px;">
+        <div style="font-size:12px;">고객센터</div>
+        <div style="font-size:8px;">Weekdays 9:30 ~ 18:00</div>
+        <div style="font-size:8px;">Sat,Sun,Holiday OFF</div>
+      </div>
+      <div style="display:inline-block;text-align:left;width:45%;font-size:24px;vertical-align:middle;white-space:nowrap">
+        <span style="margin:5px;text-align:center;">1522-6631</span>
+      </div>
+    </div>
+    </div>
+  </div>
+</script>
+
+<div id="skipnav"><a href="#maincontent">Skip to main content</a></div>
+    <!-- Navigation -->
+
+    <div id="leftMenu"  class="left-menu">
+      <div class="LeftMenuTopMenuInfo"></div>
+      <div class="LeftMenuFollowList"></div>
+      <div class="LeftMenuMenuList"></div>
+      <div class="LeftMenuLatestList"></div>
+      <div class="LeftMenuFooter"></div>
+    </div>
+
+
+    <div class="wrapper">
+      <div id="Order">
+        <div class="TopMenu"></div>
+        <div class="MiddleMenu"></div>
+        <div class="CartHeader"></div>
+        <div class="CartList"></div>
+      </div>
+      <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+      <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
+          <a class="btn btn-primary" href="#page-top">
+              <i class="fa fa-chevron-up"></i>
+          </a>
+      </div>
+  </div>
+
+<style>
+.common.line {color:#474747;padding:10px 20px 10px 20px;white-space: nowrap;overflow:hidden;}
+.common.yellowheader {background-color:#fed664;}
+.common.line .name2 {display:inline-block;float:left;}
+.common.line .value2 {display:inline-block;float:right;}
+.list{display:block;background-color: #ffffff;padding:15px 0px 15px 0px;}
+.list .line{color:#474747;margin:5px;white-space: nowrap;}
+.list .line .product {display:inline-block;}
+.list .line .productinfo {display:inline-block;width:63%;}
+.list .line .productinfo >span {display:block;}
+.list .line.isCenter{text-align: center}
+.list .header {background-color: #f9f9f9;padding:5px 0px 9px 0px;}
+.list .line .button.isOrder {background-color: red;color:white;border:0px;}
+.list .line .button {display:inline-block;border:1px #a3a3a3 solid;border-radius: 5px; padding:10px;}
+.list .line .button {background-color: white;font-size:5px;white-space:nowrap;padding:5px;width:auto;}
+.button {display:inline-block;border:1px #a3a3a3 solid;border-radius: 5px; padding:5px;font-size:5px;}
+input[type='button'].custombutton{background: transparent;border:0px}
+button.custombutton{background: transparent;border:0px}
+#sod_bsk{
+  border:0;
+  padding:0;
+  margin:0;
+}
+</style>
+
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "CartHeader",
+  templateSelector : '#CartHeader',
+  stateProcessor : function(data){
+  },
+  targetSelector : ".CartHeader",
+  afterEvent : function(){
+  }})
+})()
+</script>
+<script type="text/template" id="CartHeader">
+  <div class="subTitle">장바구니</div>
+
+</script>
+
+<script>
+(function(){
+  backcontroller.Component.init({
+  Name : "CartList",
+  templateSelector : '#CartList',
+  stateProcessor : function(data){
+  },
+  targetSelector : ".CartList",
+  afterEvent : function(){
+  }})
+})()
+</script>
+
+<script type="text/template" id="CartList">
+
+
+  <?php
+  include_once('./backend/common.php');
+  $s_cart_id = get_session('ss_cart_id');
+  // 테마에 cart.php 있으면 include
+  /*
+  if(defined('G5_THEME_MSHOP_PATH')) {
+      $theme_cart_file = G5_THEME_MSHOP_PATH.'/cart.php';
+      if(is_file($theme_cart_file)) {
+          include_once($theme_cart_file);
+          return;
+          unset($theme_cart_file);
+      }
+  }*/
+
+  $g5['title'] = '장바구니';
+
+  // $s_cart_id 로 현재 장바구니 자료 쿼리
+  $sql = " select a.ct_id,
+                  a.it_id,
+                  a.it_id,
+                  a.it_name,
+                  a.ct_price,
+                  a.ct_point,
+                  a.ct_qty,
+                  a.ct_status,
+                  a.ct_send_cost,
+                  a.it_sc_type,
+                  b.ca_id,
+                  b.it_model
+             from {$g5['g5_shop_cart_table']} a left join {$g5['g5_shop_item_table']} b on ( a.it_id = b.it_id )
+            where a.od_id = '$s_cart_id' ";
+  $sql .= " group by a.it_id ";
+  $sql .= " order by a.ct_id ";
+  $result = sql_query($sql);
+
+  $cart_count = sql_num_rows($result);
+  ?>
+
+  <script src="<?php echo G5_JS_URL; ?>/shop.js"></script>
+
+  <div id="sod_bsk">
+
+      <form name="frmcartlist" id="sod_bsk_list" method="post" action="cartupdate.php">
+
+
+        <div class="list">
+          <?php
+          $tot_point = 0;
+          $tot_sell_price = 0;
+          $it_send_cost = 0;
+
+          for ($i=0; $row=sql_fetch_array($result); $i++)
+          {
+              // 합계금액 계산
+              $sql = " select SUM(IF(io_type = 1, (io_price * ct_qty), ((ct_price + io_price) * ct_qty))) as price,
+                              SUM(ct_point * ct_qty) as point,
+                              SUM(ct_qty) as qty
+                          from {$g5['g5_shop_cart_table']}
+                          where it_id = '{$row['it_id']}'
+                            and od_id = '$s_cart_id' ";
+              $sum = sql_fetch($sql);
+
+              if ($i==0) { // 계속쇼핑
+                  $continue_ca_id = $row['ca_id'];
+              }
+
+              $a1 = '<a href="./detail.html?it_id='.$row['it_id'].'"><strong>';
+              $a2 = '</strong></a>';
+              $image_width = 80;
+              $image_height = 80;
+              $image = get_it_image($row['it_id'], $image_width, $image_height);
+
+              $it_name = $a1 . stripslashes($row['it_name']) . $a2;
+              $it_model = stripslashes($row['it_model']);
+              $it_options = print_item_options($row['it_id'], $s_cart_id);
+              if($it_options) {
+                  $mod_options = '<button type="button" id="mod_opt_'.$row['it_id'].'" class="mod_btn mod_options custombutton">수정</button>';
+            //      $it_name .= '<div class="sod_opt">'.$it_options.'</div>'; // 수정 유영선
+              }
+
+              // 배송비
+              switch($row['ct_send_cost'])
+              {
+                  case 1:
+                      $ct_send_cost = '착불';
+                      break;
+                  case 2:
+                      $ct_send_cost = '무료';
+                      break;
+                  default:
+                      $ct_send_cost = '선불';
+                      break;
+              }
+
+              // 조건부무료
+              if($row['it_sc_type'] == 2) {
+                  $sendcost = get_item_sendcost($row['it_id'], $sum['price'], $sum['qty'], $s_cart_id);
+
+                  if($sendcost == 0)
+                      $ct_send_cost = '무료';
+              }
+
+              $point      = $sum['point'];
+              $sell_price = $sum['price'];
+          ?>
+
+            <input type="hidden" name="it_id[<?php echo $i; ?>]"    value="<?php echo $row['it_id']; ?>">
+            <input type="hidden" name="it_name[<?php echo $i; ?>]"  value="<?php echo get_text($row['it_name']); ?>">
+
+              <div class="order">
+                <div class="header">
+                  <div class="line" style="margin-left:25px;">
+                    <input type="checkbox" name="ct_chk[<?php echo $i; ?>]" value="1" id="ct_chk_<?php echo $i; ?>" checked>
+                    <div class="button" style="float:right;"><?php echo $mod_options; ?></div>
+                    <div class="button" style="float:right;margin-right:5px;">위시리스트담기</div>
+                  </div>
+                </div>
+                <div class="contents">
+                  <div class="content">
+                    <div class="line" style="vertical-align:top;">
+                      <div class="product" style="vertical-align:top;">
+                        <?php echo $image; ?>
+                      </div>
+                      <div class="productinfo">
+                        <span style="color:#0961f2;"><? echo $it_model;?></span>
+                        <span style="color:#474747;"><?php echo $it_name; ?></span>
+                        <span style="color:#999999;"><?php echo number_format($row['ct_price']); ?>원 (적립금 <?php echo number_format($sum['point']); ?>원)</span>
+                        <span style="color:#999999;">&nbsp;</span>
+                        <span style="color:#999999;">배송 : <?php echo $ct_send_cost; ?></span>
+                        <span style="color:#999999;"><?php echo $it_options; ?></span>
+                      </div>
+                    </div>
+                    <div class="line isCenter" style="vertical-align:middle;border:0px;border-top-width:2px;border-style:solid;border-color:#eee;padding:5px 10px 5px 10px;overflow:hidden;clear:both;">
+                      <div style="float:left;height: 22px;line-height: 22px;">상품합계 : <?php echo number_format($sell_price); ?></div>
+                      <div class="button isOrder" onclick="form_check('selbuy','ct_chk_<?php echo $i; ?>')" style="float:right;cursor:pointer">주문하기</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+          <?php
+              $tot_point      += $point;
+              $tot_sell_price += $sell_price;
+          } // for 끝
+
+          if ($i == 0) {
+              echo '<li class="empty_list">장바구니에 담긴 상품이 없습니다.</li>';
+          } else {
+              // 배송비 계산
+              $send_cost = get_sendcost($s_cart_id, 0);
+          }
+          ?>
+
+          </div>
+
+      <?php if($cart_count) { ?>
+      <div id="sod_chk" style="margin-left:10px;">
+        <div class="button">
+          <input type="button" class="custombutton" name="ct_all" value="전체선택" id="ct_all">
+          </input>
+        </div>
+        <div class="button">
+          <input type="button" class="custombutton" value="선택삭제" onclick="return form_check('seldelete');">
+          </input>
+        </div>
+      </div>
+      <?php } ?>
+
+      <?php
+      $tot_price = $tot_sell_price + $send_cost; // 총계 = 주문상품금액합계 + 배송비
+      if ($tot_price > 0 || $send_cost > 0) {
+      ?>
+
+          <?php if ($tot_price > 0) { ?>
+            <div class="line common yellowheader">
+              <div class="name2">결제예정금액</div>
+              <div class="value2"><?php echo number_format($tot_price); ?> 원</div>
+            </div>
+            <div class="line common">
+              <div class="name2">총 상품금액</div>
+              <div class="value2"><?php echo number_format($tot_sell_price); ?> 원</div>
+            </div>
+            <?php if ($send_cost > 0) { // 배송비가 0 보다 크다면 (있다면) ?>
+              <div class="line common">
+                <div class="name2">배송비</div>
+                <div class="value2"><?php echo number_format($send_cost); ?> 원</div>
+              </div>
+            <?php } ?>
+            <div class="line common">
+              <div class="name2">총 포인트</div>
+              <div class="value2"><?php echo number_format($tot_point); ?> 원</div>
+            </div>
+          <?php } ?>
+      </dl>
+      <?php } ?>
+
+      <div id="sod_bsk_act" class="btn_confirm" style="padding:0px;background: white;width: 100%;position: fixed;bottom: 0;margin: 0px;">
+          <?php if ($i == 0) { ?>
+          <a href="/" class="btn01">쇼핑 계속하기</a>
+          <?php } else { ?>
+          <input type="hidden" name="url" value="orderform.php">
+          <input type="hidden" name="act" value="">
+          <input type="hidden" name="records" value="<?php echo $i; ?>">
+          <a href="/" class="btn01">쇼핑 계속하기</a>
+          <!--a href="/list.php?ca_id=<?php echo $continue_ca_id; ?>" class="btn01">쇼핑 계속하기</a-->
+          <button type="button" onclick="return form_check('buy');" class="btn_submit">주문하기</button>
+          <?php if ($naverpay_button_js) { ?>
+          <div class="naverpay-cart"><?php echo $naverpay_request_js.$naverpay_button_js; ?></div>
+          <?php } ?>
+          <?php } ?>
+      </div>
+
+      </form>
+
+  </div>
+
+  <script>
+  $(function() {
+      var close_btn_idx;
+
+      // 선택사항수정
+      $(".mod_options").click(function() {
+          var it_id = $(this).attr("id").replace("mod_opt_", "");
+          var $this = $(this);
+          close_btn_idx = $(".mod_options").index($(this));
+
+          $.post(
+              "./cartoption.php",
+              { it_id: it_id },
+              function(data) {
+                  $("#mod_option_frm").remove();
+                  $this.after("<div id=\"mod_option_frm\"></div>");
+                  $("#mod_option_frm").html(data);
+                  price_calculate();
+              }
+          );
+      });
+
+      // 모두선택
+      $("input[name=ct_all]").click(function() {
+        $("input[type=checkbox]").each(function(){
+          $(this)[0].checked = true; // 유영선 수정
+        })
+      });
+
+      // 옵션수정 닫기
+      $(document).on("click", "#mod_option_close", function() {
+          $("#mod_option_frm").remove();
+          $("#win_mask, .window").hide();
+          $(".mod_options").eq(close_btn_idx).focus();
+      });
+      $("#win_mask").click(function () {
+          $("#mod_option_frm").remove();
+          $("#win_mask").hide();
+          $(".mod_options").eq(close_btn_idx).focus();
+      });
+
+  });
+
+  function fsubmit_check(f) {
+      if($("input[name^=ct_chk]:checked").size() < 1) {
+          alert("구매하실 상품을 하나이상 선택해 주십시오.");
+          return false;
+      }
+
+      return true;
+  }
+
+  function form_check(act) {
+    debugger;
+      var f = document.frmcartlist;
+      var cnt = f.records.value;
+
+      if (act == "buy")
+      {
+          f.act.value = act;
+          f.submit();
+      }else if(act == "selbuy"){ // 영선수정
+          f.act.value = "buy";
+          $("input[id*='ct_chk_']").each(function(){
+            $(this)[0].checked = false;
+          })
+          $("#"+arguments[1])[0].checked = true;
+          f.submit();
+      }
+      else if (act == "alldelete")
+      {
+          f.act.value = act;
+          f.submit();
+      }
+      else if (act == "seldelete")
+      {
+          if($("input[name^=ct_chk]:checked").size() < 1) {
+              alert("삭제하실 상품을 하나이상 선택해 주십시오.");
+              return false;
+          }
+
+          f.act.value = act;
+          f.submit();
+      }
+
+      return true;
+  }
+  </script>
+
+
+
+</script>
+
+
+    <!-- jQuery -->
+    <!-- Bootstrap Core JavaScript -->
+    <!-- Plugin JavaScript -->
+    <!-- Theme JavaScript -->
+    <script src="js/frontcontroller.min.js"></script>
+
+</body>
+</html>

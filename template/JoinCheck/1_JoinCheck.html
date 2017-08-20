@@ -16,25 +16,62 @@
 <script type="text/template" id="JoinCheck">
   <div class="subTitle">회원가입</div>
   <?php
-  include_once('./yc/common.php');
+  include_once('./backend/common.php');
 
   // 로그인중인 경우 회원가입 할 수 없습니다.
   if ($is_member) {
-      goto_url(G5_URL);
+      goto_url("/");
   }
 
   // 세션을 지웁니다.
   set_session("ss_mb_reg", "");
 
   $g5['title'] = '회원가입약관';
-  include_once('./yc/head.php');
 
-//  $register_action_url = G5_BBS_URL.'/register_form.php';
-  $register_action_url = './join.html';
-  include_once($member_skin_path.'/register.skin.php');
+  $register_action_url = 'join.html';
 
-  include_once('./yc/tail.php');
   ?>
+  <div class="mbskin">
+      <form name="fregister" id="fregister" action="<?php echo $register_action_url ?>" onsubmit="return fregister_submit(this);" method="POST" autocomplete="off">
+      <div class="yblock">
+        <div class="name"><input type="checkbox" name="agree" value="1" id="agree11"> 이용약관동의(필수)<span style="float:right;">전체보기</span></div>
+        <div class="content"><?php echo get_text($config['cf_stipulation']) ?></div>
+      </div>
 
+      <div class="yblock">
+        <div class="name"><input type="checkbox" name="agree2" value="1" id="agree21"> 개인정보처리방침 동의(필수)<span style="float:right;">전체보기</span></div>
+        <div class="content">■수집항목:이름,생년월일,성별,로그인ID,비밀번호,비밀번호 질문과 답변,자택전화번호,자택주소,휴대전화번호,
+        이메일,직업,회사명,부서,직책,회사전화번호,취미,결혼여부,기념일,법정대리인정보,서비스이용기록,접속 로그,접속 IP정보,결제기록<br>
+        ■서비스 제공에 관한 이행 및 서비스 제공에 따른 요금정산 콘텐츠 제공, 구매 및 요금 결제, 물품배송 또는 청구지 등발송
+        </div>
+      </div>
+
+      <div class="line buttons">
+          <input type="submit" class="btn_submit" value="다음">
+          <input type="button" class="btn_submit" onclick="history.go(-1)" value="취소">
+      </div>
+
+      </form>
+
+      <script>
+      function fregister_submit(f)
+      {
+          if (!f.agree.checked) {
+              alert("회원가입약관의 내용에 동의하셔야 회원가입 하실 수 있습니다.");
+              f.agree.focus();
+              return false;
+          }
+
+          if (!f.agree2.checked) {
+              alert("개인정보처리방침안내의 내용에 동의하셔야 회원가입 하실 수 있습니다.");
+              f.agree2.focus();
+              return false;
+          }
+
+          return true;
+      }
+      </script>
+
+  </div>
 
 </script>

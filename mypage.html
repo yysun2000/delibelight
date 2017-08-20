@@ -23,9 +23,8 @@ define('_SHOP_', true);
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="css/materialize.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="http://0sun.net/pub/intop/yc/theme/basic/css/mobile_shop.css?ver=161020">
-    <link rel="stylesheet" href="http://0sun.net/pub/intop/yc/mobile/skin/member/delibe/style.css?ver=161020">
+    <link rel="stylesheet" href="/yc/theme/basic/css/mobile_shop.css?ver=161020">
+    <link rel="stylesheet" href="/yc/mobile/skin/member/delibe/style.css?ver=161020">
 
 
     <link rel="stylesheet" href="css/swiper.css"/>
@@ -37,7 +36,6 @@ define('_SHOP_', true);
     <script src="js/jquery.lazyload.min.js"></script>
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/backcontroller.min.js"></script>
-    <script src="js/materialize.min.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -50,14 +48,14 @@ define('_SHOP_', true);
 <body>
 <?php
 if ($is_member){
-  echo "<div id='loginsuccess' style='display:none'></div>";
   $member = get_member($_SESSION['ss_mb_id']);
+  echo "<div id='loginsuccess' style='display:none'>".$member['mb_id']."</div>";
 }
 
 
 ?>
 
-<script>
+<script data-bc="action">
 (function(){
   backcontroller.Component.init({
   Name : "Common",
@@ -72,7 +70,7 @@ if ($is_member){
 })()
 </script>
 
-<script type="text/template" id="TopMenu">
+<script type="text/template" id="TopMenu" data-bc="template">
 
   <nav class="navbar navbar-default" role="navigation">
       <div class="container">
@@ -85,14 +83,14 @@ if ($is_member){
               </button>
               <span class="navbar-brand" href="#" onclick="GoMain()">#B</span>
               <a href="search.html"><button type="button" class="navbar-toggle" style="background:transparent;border:none;margin:0px;margin-right:9px;margin-top:9px;margin-bottom:9px;float:right !important;"><img src="./img/main/zoom.png" style="height:20px;"/></button></a>
-              <button type="button" class="navbar-toggle"  style="background:transparent;border:none;margin:0px;margin-top:9px;margin-bottom:9px;float:right !important;"><img src="./img/main/shopping-cart.png" style="height:20px;"/></button>
+              <button type="button" class="navbar-toggle"  style="background:transparent;border:none;margin:0px;margin-top:9px;margin-bottom:9px;float:right !important;"><a href="cart.html"><img src="./img/main/shopping-cart.png" style="height:20px;"/></a></button>
           </div>
       </div>
   </nav>
 
 </script>
 
-<script>
+<script data-bc="action">
 (function(){
   backcontroller.Component.init({
     Name : "LeftMenu",
@@ -107,7 +105,7 @@ if ($is_member){
   })
 })()
 </script>
-<script type="text/template" id="LeftMenuTopMenuInfo">
+<script type="text/template" id="LeftMenuTopMenuInfo" data-bc="template">
   <div class="logInfo">
     <div class="group title">
       <span>#B</span>
@@ -117,10 +115,10 @@ if ($is_member){
       <div>안녕하세요, <span style="color:#0e64f2;">인탑</span>님. </div>
       <div>#B에 오신걸 환영합니다.</div>
     </div>
-    <%if(!document.querySelector("#loginsuccess")){%>
+    <%if(document.querySelector("#loginsuccess")){%>
       <div class="group button-group">
         <a href="mypage.html"><div class="yellow">마이페이지</div></a>
-        <a href="#"><div class="black">위시리스트</div></a>
+        <a href="wish.html"><div class="black">위시리스트</div></a>
       </div>
     <%}else{%>
 
@@ -132,13 +130,21 @@ if ($is_member){
   </div>
 </script>
 
-<script>
+<script data-bc="action">
 (function(){
+  var purl;
+  if($("#loginsuccess").length > 0){
+    purl = "/yc/api/model.php?m=get&q=/follow/"+$("#loginsuccess").text();
+  }else{
+    purl = "/yc/api/model.php";
+  }
+  console.log(purl);
+
   backcontroller.Component.init({
     Name : "LeftMenu",
     Data : {
       name : "LeftFollowList",
-      url : "http://0sun.net/pub/intop/yc/api/model.php"
+      url : purl
     },
     templateSelector : '#LeftMenuFollowList',
     stateProcessor : function(data){
@@ -150,14 +156,14 @@ if ($is_member){
   })
 })()
 </script>
-<script type="text/template" id="LeftMenuFollowList">
+<script type="text/template" id="LeftMenuFollowList" data-bc="template">
   <% var itemlist = obj;%>
-  <% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
+  <% var url = location.href.indexOf("localhost") < 0 ? "." : "."%>
   <div class="submenu">
     <div class="group title">
       <div>Follow<span style="float:right"><img src="img/plus.png"/></span></div>
     </div>
-    <div class="group contents">
+    <div class="group contents" style="white-space:nowrap;overflow-x:scroll;">
     <% for(i=0;i<itemlist.length;i++){%>
       <a href="./store.html#<%=itemlist[i].name%>">
       <div class="horizontalElement follow">
@@ -171,13 +177,13 @@ if ($is_member){
   </div>
 </script>
 
-<script>
+<script data-bc="action">
 (function(){
   backcontroller.Component.init({
     Name : "LeftMenu",
     Data : {
       name : "LeftMenu",
-      url : "http://0sun.net/pub/intop/yc/api/category.php"
+      url : "/yc/api/category.php"
     },
     templateSelector : '#LeftMenuMenuList',
     stateProcessor : function(data){
@@ -189,7 +195,7 @@ if ($is_member){
   })
 })()
 </script>
-<script type="text/template" id="LeftMenuMenuList">
+<script type="text/template" id="LeftMenuMenuList" data-bc="template">
   <% var categorylist = obj.sort(function(a,b){return (a.ca_id.toString() > b.ca_id.toString() ? 1 : 0 )});%>
 
   <div class="list">
@@ -223,7 +229,7 @@ if ($is_member){
 </div>
 </script>
 
-<script>
+<script data-bc="action">
 (function(){
   backcontroller.Component.init({
     Name : "LeftMenu",
@@ -238,7 +244,7 @@ if ($is_member){
   })
 })()
 </script>
-<script type="text/template" id="LeftMenuLatestList">
+<script type="text/template" id="LeftMenuLatestList" data-bc="template">
   <div class="submenu">
     <div class="group title">
       <div>최근에 본 상품</div>
@@ -257,7 +263,7 @@ if ($is_member){
   </div>
 </script>
 
-<script>
+<script data-bc="action">
 (function(){
   backcontroller.Component.init({
     Name : "LeftMenu",
@@ -272,7 +278,7 @@ if ($is_member){
   })
 })()
 </script>
-<script type="text/template" id="LeftMenuFooter">
+<script type="text/template" id="LeftMenuFooter" data-bc="template">
   <div class="footer" style="padding:15px 0px 15px 0px;background-color: #333333;color:#888888;">
     <div class="group title">
     <div style="display:block;text-align:center;">
@@ -323,6 +329,95 @@ if ($is_member){
           </a>
       </div>
   </div>
+
+<style>
+  /* Common */
+  .line{width:100%;display:block;}
+  input.date{ width:80px;padding:5px 3px 5px 3px;border-radius: 5px;}
+  input.calenderbutton{ width:25px; padding:0px;margin:0px; }
+  input.coupon {width:50%;padding:5px 3px 5px 3px;display: inline-block;margin-left:20px;}
+  span.button{border:1px black solid;border-radius: 5px;padding:5px;margin-left: 15px;font-size: 12px;background-color: black;color:white;}
+
+
+  /*MyPage*/
+
+  .tabselector{display:block;clear:both;overflow:hidden;margin: 0px auto;}
+  .tabselector .line{padding:0;margin:0px auto;text-align: center;white-space: nowrap;}
+  .tabselector .button {width:32%;height:40px;padding-left:15px;text-align:left;line-height:40px;background-color: white; display: inline-block;}
+  .tabselector .button > img {width:25px;height:25px;}
+  .tabselector .button > span {padding-left: 5px;color:#333333;word-wrap: normal;word-break: keep-all;font-size: 12px;}
+  .tabselector .button.isSelected {background-color: #eeeeee};
+
+  .taborderfliter{display:block;padding:0px;margin:10px 0px 0px 0px;overflow: hidden;}
+  .taborderfliter .line{padding:0px;text-align: center;overflow: hidden;}
+  .taborderfliter .block{float:left;height:50px;line-height: 50px;width:50%;background-color: #ffffff;display:inline-block;padding:0px;margin:0px auto;text-align: center;}
+  .taborderfliter .block.isactive{background-color: #fdd04e;}
+  .taborderfliter .content{width:100%;}
+  .taborderfliter .contentline{padding:10px 0px 0px 10px;display: block;}
+  .taborderfliter .title{width:15%;display: inline-block;}
+  .taborderfliter .condition{width:83%;display: inline-block;}
+  .taborderfliter .button{display:inline-block;border: 1px #999999 solid;padding:5px 7px 5px 7px;border-radius: 5px;}
+  .taborderfliter .calenderbutton.button{color:white;float:right;margin-top:3px;margin-right:10px;background-color:#333333}
+
+  .orderlist{display:block;background-color: #ffffff;padding:15px 0px 15px 0px;}
+  .orderlist .line{color:#474747;margin:5px;}
+  .orderlist .line .product {display:inline-block;width:35%;}
+  .orderlist .line .productinfo {display:inline-block;width:63%;}
+  .orderlist .line .productinfo >span {display:block;}
+  .orderlist .line.isCenter{text-align: center}
+  .orderlist .header {background-color: #f9f9f9;padding:15px 0px 15px 0px;}
+  .orderlist .line .button.isState {background-color: #42669f;color:white;}
+  .orderlist .line .button {display:inline-block;width:22%;border:1px #a3a3a3 solid;border-radius: 5px; padding:10px;}
+
+  .wishlist{display:block;background-color: #ffffff;padding:0px 0px 15px 0px;}
+  .wishlist .line{color:#474747;}
+  .wishlist .block{height:50px;line-height: 50px;width:100%;background-color: #ffffff;display:inline-block;padding:0px;margin:0px auto;text-align: center;}
+  .wishlist .block.isactive{background-color: #fdd04e;}
+  .wishlist .line .product {display:inline-block;width:35%;}
+  .wishlist .line .productinfo {display:inline-block;width:63%;text-align: left;}
+  .wishlist .line .productinfo >span {display:block;}
+  .wishlist .line.isCenter{text-align: center}
+  .wishlist .header {background-color: #f9f9f9;padding:15px 0px 15px 0px;}
+  .wishlist .line .button.isState {background-color: #42669f;color:white;}
+  .wishlist .line .button {display:inline-block;border:1px #a3a3a3 solid;border-radius: 5px; padding:10px;}
+  .wishlist .line .button.isOrder {display:inline-block;background-color:#ff0000; color:white;border:1px #a3a3a3 solid;border-radius: 5px; padding:5px;margin:10px;}
+
+
+  .topstate{display:block;background-color: #333333;padding:15px 0px 15px 20px;}
+  .topstate .line{display:block;color:white;margin:5px;}
+  .topstate .line > span.isvalue {color:blue;color:#6c9cff;}
+  .point .line.isMainTitle{background-color:#fdd04e;color:black;}
+  .point .line.isLeft{text-align: left;padding-left:20px;}
+  .point .line.isCenter{text-align: center;}
+  .point .line.isTitle{height:50px;line-height:50px;}
+
+
+.line.isMainTitle{background-color:#fdd04e;color:black;}
+.line.isLeft{text-align: left;padding-left:20px;}
+.line.isCenter{text-align: center;}
+.line.isTitle{height:50px;line-height:50px;}
+
+
+  .rollMenu .line.isSubTitle{background-color:#f9f9f9;color:black;}
+  .rollMenu .content {display:none;}
+  .rollMenu .content .line {padding:20px;}
+  .rollMenu .content .line > .title{display:inline-block;width:20%;margin-left:20px;word-wrap: normal;word-break: keep-all;}
+  .rollMenu .content .line > .value{display:inline-block;width:70%;}
+  .rollMenu.isSelected .line.isSubTitle{background-color:#333333;color:white;}
+  .rollMenu.isSelected .content{display:block;}
+  .rollMenu .line.isSubTitle{background-color:#f9f9f9;color:black;}
+
+
+  .coupon .line.isMainTitle{background-color:#fdd04e;color:black;}
+  .coupon .line.isSubTitle{background-color:#333333;color:white;}
+  .coupon .line.isLeft{text-align: left;padding-left:20px;}
+  .coupon .line.isCenter{text-align: center;}
+  .coupon .line.isTitle{height:50px;line-height:50px;}
+  .coupon .line.isBlock{padding:0px;}
+  .coupon .line.isDescription{color:gray;padding:20px;}
+  .coupon .line > .title{display:inline-block;width:20%;word-wrap: normal;word-break: keep-all;}
+  .coupon .line > .value{display:inline-block;width:70%;}
+</style>
 
 <script>
 (function(){
@@ -386,28 +481,6 @@ if ($is_member){
     </div>
   </div>
 </div>
-<script>
-$(".tabselector .button > span,.tabselector .button > img").on("click",function(evt){
-  $(".tabselector .button").removeClass("isSelected");
-
-  $(".MyPageTabOrderFilter").addClass("isDeactive");
-  $(".MyPageTabOrderList").addClass("isDeactive");
-  $(".MyPageTabWishList").addClass("isDeactive");
-  $(".MyPageTabMemberModify").addClass("isDeactive");
-  $(".MyPageTabPoint").addClass("isDeactive");
-  $(".MyPageTabWillPoint").addClass("isDeactive");
-  $(".MyPageTabCoupon").addClass("isDeactive");
-
-  $(evt.target).parent().toggleClass("isSelected");
-  var datatab = $(evt.target).parent().attr("data-tab");
-  if(datatab == "MyPageTabOrder"){
-    $("."+datatab+"Filter").removeClass("isDeactive");
-    $("."+datatab+"List").removeClass("isDeactive");
-  }else{
-    $("."+datatab).removeClass("isDeactive");
-  }
-})
-</script>
 
 </script>
 
@@ -429,6 +502,9 @@ $(".tabselector .button > span,.tabselector .button > img").on("click",function(
 <style>
 </style>
 <div>
+  <div class="line isTitle isMainTitle isCenter">
+    <span style="font-size:18px;">주문내역</span>
+  </div>
   <div class="taborderfliter">
     <div class="line">
       <div class="block isactive"><span>주문내역(3건)</span></div>
@@ -448,12 +524,13 @@ $(".tabselector .button > span,.tabselector .button > img").on("click",function(
         <div class="title"><span>기간설정</span></div>
         <div class="condition">
           <input class="date" type="input" value="2017-00-00"></input>
-            <input class="calenderbutton" type="image" src="./img/mypage/calenderbutton.png"></input>
-              <span>~</span>
+          <input class="calenderbutton" type="image" src="./img/mypage/calenderbutton.png"></input>
+          <span>~</span>
           <input class="date" type="input" value="2017-00-00"></input>
-            <input class="calenderbutton" type="image" src="./img/mypage/calenderbutton.png"></input>
-              <span class="button"style="color:white;float:right;margin-top:3px;margin-right:10px;background-color:#333333">조회</span>
+          <input class="calenderbutton" type="image" src="./img/mypage/calenderbutton.png"></input>
+          <span class="calenderbutton button"style="">조회</span>
         </div>
+
       </div>
     </div>
 </div>
@@ -465,7 +542,7 @@ $(".tabselector .button > span,.tabselector .button > img").on("click",function(
   Name : "MyPage",
   Data : {
     name : "OrderList",
-    url : "http://0sun.net/pub/intop/yc/api/order.php?q=/test2"
+    url : "/yc/api/order.php?q=/test2"
   },
   templateSelector : '#MyPageTabOrderList',
   stateProcessor : function(data){
@@ -479,6 +556,7 @@ $(".tabselector .button > span,.tabselector .button > img").on("click",function(
 <script type="text/template" id="MyPageTabOrderList">
 <style>
 </style>
+<div class="subTitle">주문내역</div>
 <div class="orderlist">
   <div class="order">
     <div class="header">
@@ -529,47 +607,190 @@ $(".tabselector .button > span,.tabselector .button > img").on("click",function(
 </script>
 <script type="text/template" id="MyPageTabWishList">
 <style>
+.order {overflow:hidden;}
+.wishlist .common.line {color:#474747;padding:10px 20px 10px 20px;white-space: nowrap;overflow:hidden;}
+.wishlist .common.yellowheader {background-color:#fed664;}
+.wishlist .common.line .name2 {display:inline-block;float:left;}
+.wishlist .common.line .value2 {display:inline-block;float:right;}
+.wishlist .list{display:block;background-color: #ffffff;padding:15px 0px 15px 0px;}
+.wishlist .list .line{color:#474747;margin:5px;white-space: nowrap;padding-right:15px;}
+.wishlist .list .line .product {display:inline-block;}
+.wishlist .list .line .productinfo {display:inline-block;width:63%;}
+.wishlist .list .line .productinfo >span {display:block;}
+.wishlist .list .line.isCenter{text-align: center}
+.wishlist .list .header {background-color: #f9f9f9;padding:5px 0px 9px 0px;}
+.wishlist .list .line .button.isOrder {background-color: red;color:white;border:0px;}
+.wishlist .list .line .button {display:inline-block;border:1px #a3a3a3 solid;border-radius: 5px; padding:10px;}
+.wishlist .list .line .button {background-color: white;font-size:5px;white-space:nowrap;padding:5px;width:auto;}
+.wishlist .button {display:inline-block;border:1px #a3a3a3 solid;border-radius: 5px; padding:5px;font-size:5px;}
+.wishlist input[type='button'].custombutton{background: transparent;border:0px}
+.wishlist button.custombutton{background: transparent;border:0px}
+.wishlist #sod_bsk{
+  border:0;
+  padding:0;
+  margin:0;
+}
 </style>
 <div class="wishlist">
-    <div class="taborderfliter">
-      <div class="line">
-        <div class="block isactive"><span style="font-size:18px;">위시리스트</span></div>
-      </div>
-    <div class="order">
-      <div class="header">
-        <div class="line">
-          <div style="display:inline-block;width:53%"></div>
-          <div style="display:inline-block;width:45%">
-            <div class="button">장바구니담기</div>
-            <div class="button">삭제</div>
+  <div class="line isTitle isMainTitle isCenter">
+    <span style="font-size:18px;">위시리스트</span>
+  </div>
+
+    <?php
+    include_once('./backend/common.php');
+
+    if (!$is_member)
+        goto_url("/login.html?url=".urlencode('wishlist.php'));
+
+
+    // 테마에 wishlist.php 있으면 include
+    /*
+    if(defined('G5_THEME_SHOP_PATH')) {
+        $theme_wishlist_file = G5_THEME_SHOP_PATH.'/wishlist.php';
+        if(is_file($theme_wishlist_file)) {
+            include_once($theme_wishlist_file);
+            return;
+            unset($theme_wishlist_file);
+        }
+    }*/
+
+    $g5['title'] = "위시리스트";
+    ?>
+
+
+        <form name="fwishlist" method="post" action="./cartupdate.php">
+        <input type="hidden" name="act"       value="multi">
+        <input type="hidden" name="sw_direct" value="">
+        <input type="hidden" name="prog"      value="wish">
+        <div class="list">
+        <?php
+            $sql = " select a.wi_id, a.wi_time, b.*
+                       from {$g5['g5_shop_wish_table']} a left join {$g5['g5_shop_item_table']} b on ( a.it_id = b.it_id )
+                      where a.mb_id = '{$member['mb_id']}'
+                      order by a.wi_id desc ";
+            $result = sql_query($sql);
+            for ($i=0; $row = sql_fetch_array($result); $i++) {
+
+                $out_cd = '';
+                $sql = " select count(*) as cnt from {$g5['g5_shop_item_option_table']} where it_id = '{$row['it_id']}' and io_type = '0' ";
+                $tmp = sql_fetch($sql);
+                if($tmp['cnt'])
+                    $out_cd = 'no';
+
+                $it_price = get_price($row);
+
+                if ($row['it_tel_inq']) $out_cd = 'tel_inq';
+
+                $image = get_it_image($row['it_id'], 50, 50);
+        ?>
+          <div class="order">
+            <div class="header">
+              <div class="line" style="margin-left:25px;">
+                <?php
+                // 품절검사
+                if(is_soldout($row['it_id']))
+                {
+                ?>
+                <span class="sold_out">품절</span>
+                <?php } else { //품절이 아니면 체크할수 있도록한다 ?>
+                <input type="checkbox" name="chk_it_id[<?php echo $i; ?>]" value="1" onclick="out_cd_check(this, '<?php echo $out_cd; ?>');">
+                <?php } ?>
+                <span style="padding-left:10px;"><?php echo $row['wi_time']; ?></span>
+              </div>
+            </div>
+            <div class="contents">
+              <div class="content">
+                <div class="line">
+                  <div class="product" style="vertical-align: top;">
+                    <?php echo $image; ?>
+                  </div>
+                  <div class="productinfo">
+                    <span style="color:#0961f2;"><?php echo stripslashes($row['it_model']); ?></span>
+                    <span style="color:#474747;"><a href="detail.html?it_id=<?php echo $row['it_id']; ?>"><?php echo stripslashes($row['it_name']); ?></a></span>
+
+                  </div>
+                </div>
+                <div class="line" style="clear:both;">
+                  <div class="button" style="float:right;"><span class="wish_del"><a href="wishupdate.php?w=d&amp;wi_id=<?php echo $row['wi_id']; ?>">삭제</a></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+            <li>
+                    <div class="wish_chk">
+
+                        <input type="hidden" name="it_id[<?php echo $i; ?>]" value="<?php echo $row['it_id']; ?>">
+                        <input type="hidden" name="io_type[<?php echo $row['it_id']; ?>][0]" value="0">
+                        <input type="hidden" name="io_id[<?php echo $row['it_id']; ?>][0]" value="">
+                        <input type="hidden" name="io_value[<?php echo $row['it_id']; ?>][0]" value="<?php echo $row['it_name']; ?>">
+                        <input type="hidden"   name="ct_qty[<?php echo $row['it_id']; ?>][0]" value="1">
+                    </div>
+
+
+            </li>
+            <?php
+            }
+            if ($i == 0)
+                echo '<li class="empty_table">위시리스트가 비었습니다.</li>';
+            ?>
           </div>
 
+
+        <div id="sod_ws_act"  style="width:100%;position:fixed;bottom:5px;overflow:hidden;display: block;white-space: nowrap;text-align:center;">
+            <button type="submit" class="btn02" onclick="return fwishlist_check(document.fwishlist,'direct_buy');">BUY NOW</button>
+            <button type="submit" class="btn01" onclick="return fwishlist_check(document.fwishlist,'');">CART</button>
+
         </div>
-      </div>
-      <div class="contents">
-        <div class="content">
-          <div class="line">
-            <div class="product">
-              <span><img src="./img/newitem/MainNewItemProduct.png" style="width:100%;height:100%;padding:15px 20px 15px 20px;"/></span>
-            </div>
-            <div class="productinfo" style="padding-top:20px;">
-              <span style="color:#0961f2;">[style]</span>
-              <span style="color:#474747;">셔츠</span>
-              <span style="color:#999999;">34,000원</span>
-              <span style="color:#999999;">SIZE : S | COLOR : RED | 1개</span>
-            </div>
-          </div>
-          <div class="line" style="border: 1px #cccccc solid;border-left-width:0px;border-right-width:0px;">
-            <div style="display:inline-block;width:73%;text-align:left;padding-left:25px;">
-              <span style="font-weight:bold">상품합계:34,000원</span>
-            </div>
-            <div style="display:inline-block;width:25%">
-              <div class="button isOrder">주문하기</div>
-            </div>
-          </div>
-        </div>
-      </div>
+        </form>
     </div>
+
+    <script>
+    <!--
+        function out_cd_check(fld, out_cd)
+        {
+            if (out_cd == 'no'){
+                alert("옵션이 있는 상품입니다.\n\n상품을 클릭하여 상품페이지에서 옵션을 선택한 후 주문하십시오.");
+                fld.checked = false;
+                return;
+            }
+
+            if (out_cd == 'tel_inq'){
+                alert("이 상품은 전화로 문의해 주십시오.\n\n장바구니에 담아 구입하실 수 없습니다.");
+                fld.checked = false;
+                return;
+            }
+        }
+
+        function fwishlist_check(f, act)
+        {
+            var k = 0;
+            var length = f.elements.length;
+
+            for(i=0; i<length; i++) {
+                if (f.elements[i].checked) {
+                    k++;
+                }
+            }
+
+            if(k == 0)
+            {
+                alert("상품을 하나 이상 체크 하십시오");
+                return false;
+            }
+
+            if (act == "direct_buy")
+            {
+                f.sw_direct.value = 1;
+            }
+            else
+            {
+                f.sw_direct.value = 0;
+            }
+
+            return true;
+        }
+    //-->
+    </script>
 </div>
 </script>
 
@@ -589,6 +810,9 @@ $(".tabselector .button > span,.tabselector .button > img").on("click",function(
 })()
 </script>
 <script type="text/template" id="MyPageTabMemberModify">
+  <div class="line isTitle isMainTitle isCenter">
+    <span style="font-size:18px;">정보수정</span>
+  </div>
 </script>
 
 <script>
@@ -730,12 +954,6 @@ $(".tabselector .button > span,.tabselector .button > img").on("click",function(
 
 
 </div>
-
-  <script>
-  $(".point .rollMenu .isTitle").on("click",function(evt){
-    $(evt.target).parent().toggleClass("isSelected");
-  })
-  </script>
 
 </script>
 
@@ -880,11 +1098,6 @@ $(".tabselector .button > span,.tabselector .button > img").on("click",function(
 
   </div>
 
-    <script>
-    $(".willPoint .rollMenu .isTitle").on("click",function(evt){
-      $(evt.target).parent().toggleClass("isSelected");
-    })
-    </script>
 
 </script>
 
@@ -895,7 +1108,7 @@ $(".tabselector .button > span,.tabselector .button > img").on("click",function(
 
     Data : {
       name : "CouponList",
-      url : "http://0sun.net/pub/intop/yc/api/coupon.php?q=/test2"
+      url : "/yc/api/coupon.php?q=/test2"
     },
     templateSelector : '#MyPageTabCoupon',
     stateProcessor : function(data){
@@ -942,47 +1155,43 @@ $(".tabselector .button > span,.tabselector .button > img").on("click",function(
   <% var couponlist = obj;%>
   <% console.log(couponlist);%>
   <% for(var i=0;i<couponlist.length;i++){%>
-<div class="rollMenu">
-  <div class="line isTitle isSubTitle isLeft">
-    <div class="line">
-      <div class="title">쿠폰명</div> <div class="value"><%=couponlist[i].cp_subject%></div>
+  <div class="rollMenu">
+    <div class="line isTitle isSubTitle isLeft">
+      <div class="line">
+        <div class="title">쿠폰명</div> <div class="value"><%=couponlist[i].cp_subject%></div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="line">
+        <div class="title">총 적립금</div> <div class="value">1,940원</div>
+      </div>
+
+      <div class="line">
+        <div class="title">사용가능 적립금</div> <div class="value">1,000원</div>
+      </div>
+
+      <div class="line">
+        <div class="title">사용된 적립금</div> <div class="value">0원</div>
+      </div>
+
+      <div class="line">
+        <div class="title">미가용 적립금</div> <div class="value">0원</div>
+      </div>
+
+
+      <div class="line">
+        <div class="title">환불예정 적립금</div> <div class="value">0원</div>
+      </div>
     </div>
   </div>
-  <div class="content">
-    <div class="line">
-      <div class="title">총 적립금</div> <div class="value">1,940원</div>
-    </div>
-
-    <div class="line">
-      <div class="title">사용가능 적립금</div> <div class="value">1,000원</div>
-    </div>
-
-    <div class="line">
-      <div class="title">사용된 적립금</div> <div class="value">0원</div>
-    </div>
-
-    <div class="line">
-      <div class="title">미가용 적립금</div> <div class="value">0원</div>
-    </div>
-
-
-    <div class="line">
-      <div class="title">환불예정 적립금</div> <div class="value">0원</div>
-    </div>
-  </div>
-</div>
-<% }%>
+  <% }%>
 
 
 </div>
 
-
+</script>
 
 <script>
-$(".coupon .rollMenu .isTitle > div > div").on("click",function(evt){
-  $(evt.target).parent().parent().parent().toggleClass("isSelected");
-})
-</script>
 
 </script>
 

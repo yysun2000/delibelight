@@ -1,10 +1,18 @@
-<script>
+<script data-bc="action">
 (function(){
+  var purl;
+  if($("#loginsuccess").length > 0){
+    purl = "/yc/api/model.php?m=get&q=/follow/"+$("#loginsuccess").text();
+  }else{
+    purl = "/yc/api/model.php";
+  }
+  console.log(purl);
+
   backcontroller.Component.init({
     Name : "LeftMenu",
     Data : {
       name : "LeftFollowList",
-      url : "http://0sun.net/pub/intop/yc/api/model.php"
+      url : purl
     },
     templateSelector : '#LeftMenuFollowList',
     stateProcessor : function(data){
@@ -16,14 +24,14 @@
   })
 })()
 </script>
-<script type="text/template" id="LeftMenuFollowList">
+<script type="text/template" id="LeftMenuFollowList" data-bc="template">
   <% var itemlist = obj;%>
-  <% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
+  <% var url = location.href.indexOf("localhost") < 0 ? "." : "."%>
   <div class="submenu">
     <div class="group title">
       <div>Follow<span style="float:right"><img src="img/plus.png"/></span></div>
     </div>
-    <div class="group contents">
+    <div class="group contents" style="white-space:nowrap;overflow-x:scroll;">
     <% for(i=0;i<itemlist.length;i++){%>
       <a href="./store.html#<%=itemlist[i].name%>">
       <div class="horizontalElement follow">

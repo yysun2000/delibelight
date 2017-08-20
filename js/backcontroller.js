@@ -26,8 +26,8 @@ var backcontroller = (function(){
         query += "window[\""+promise[i]+"\"],"
       }
       query = query.substr(0,query.length-1);
-
-      eval("$.when("+query+").done(function(){for(var i=0;i<view.length;i++){try{view[i]();}catch(e){console.log(e);}}})")
+      console.log("$.when("+query+").done(function(){for(var i=0;i<view.length;i++){try{view[i]();}catch(e){console.log(e);}}})");
+      eval("$.when("+query+").done(function(){for(var i=0;i<view.length;i++){try{view[i]();}catch(e){console.log(e);}}  })")
     }else{
       for(var i=0;i<view.length;i++){
         console.log(view[i]);
@@ -115,11 +115,40 @@ var backcontroller = (function(){
           window[param.Data.name] = connect(param.Data.url)("get"+param.Data.name,function(_data){
             console.log("DONE : "+param.Data.name);
             var data = _data;
+            console.log(data);
             window[param.Data.name]=param.Data.params;
+            console.log(param.Data.params);
+
             view.push(function(){
-              window["currentListName"]=param.Data.name;
-              var templateHtml = $(param.templateSelector).html();
-              $(param.targetSelector).append(_.template( templateHtml )(data));
+              try{
+                window["currentListName"]=param.Data.name;
+                console.log("param.templateSelector : "+param.templateSelector);
+                console.log("param.templateSelector : "+param.targetSelector);
+                var templateHtml = $(param.templateSelector).html();
+                console.log($(param.targetSelector).length);
+
+                if($(param.targetSelector).length == 0){
+                  view.push(function(){
+                    window["currentListName"]=param.Data.name;
+                    var templateHtml = $(param.templateSelector).html();
+                    console.log($(param.targetSelector).length);
+                    $(param.targetSelector).append(_.template( templateHtml )(data));
+                    //$('script[id="'+(param.templateSelector).replace("#","")+'"]').remove(); // DEBUG
+                    console.log(data);
+                  })
+                }else{
+
+                  $(param.targetSelector).append(_.template( templateHtml )(data));
+                  //$('script[id="'+(param.templateSelector).replace("#","")+'"]').remove(); // DEBUG
+                  console.log(data);
+                }
+
+                $('script[data-bc=action]').remove();
+                //$('script[data-bc=template]').remove();
+
+              }catch(e){
+                console.log(param.templateSelector + e);
+              }
             });
           });
 
@@ -133,6 +162,7 @@ var backcontroller = (function(){
               view.push(function(){
                 var templateHtml = $(param.templateSelector).html();
                 $(param.targetSelector).append(_.template( templateHtml )(data));
+                $('script[id="'+(param.templateSelector).replace("#","")+'"]').remove(); // DEBUG
               });
             }
           }else{
@@ -151,6 +181,7 @@ var backcontroller = (function(){
                           }catch(e){
                             console.log(e);
                           }
+                          //$('script[id="'+(param.templateSelector).replace("#","")+'"]').remove(); // DEBUG
                     },
                     complete : function(data) {
                           // 통신이 실패했어도 완료가 되었을 때 이 함수를 타게 된다.
@@ -166,6 +197,7 @@ var backcontroller = (function(){
           view.push(function(){
             var templateHtml = $(param.templateSelector).html();
             $(param.targetSelector).append(_.template( templateHtml )());
+            //$('script[id="'+(param.templateSelector).replace("#","")+'"]').remove(); // DEBUG
           })
         }
       },
@@ -174,6 +206,7 @@ var backcontroller = (function(){
           $(param.selector).children().remove();
           var templateHtml = $(param.selector).html();
           $(param.selector).append(_.template( param.template)(param.data));
+          //$('script[id="'+(param.templateSelector).replace("#","")+'"]').remove(); // DEBUG
       }
       ,
       start : function(){

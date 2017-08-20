@@ -1,0 +1,33 @@
+include_once('./_common.php');
+include_once('./backend/common.php');
+
+  <div class="list">
+    <div class="order">
+      <div class="header">
+        <div class="line" style="margin-left:25px;">
+          <span style="font-weight:bold">2017-01-01</span> (201701011234)
+        </div>
+      </div>
+      <div class="contents">
+        <div class="content">
+          <div class="line">
+            <div class="product">
+              <span><img src="./img/newitem/MainNewItemProduct.png" style="width:100%;height:100%;padding:15px 20px 15px 20px;"/></span>
+            </div>
+            <div class="productinfo" style="padding-top:20px;">
+              <span style="color:#0961f2;">test</span>
+              <span style="color:#474747;">test</span>
+              <span style="color:#999999;">test</span>
+              <span style="color:#999999;">test</span>
+            </div>
+          </div>
+          <div class="line isCenter">
+            <div class="button isState">test</div>
+            <div class="button">상세보기</div>
+            <div class="button">배송조회</div>
+            <div class="button">구매후기</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

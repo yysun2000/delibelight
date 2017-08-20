@@ -23,9 +23,8 @@ define('_SHOP_', true);
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="css/materialize.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="http://0sun.net/pub/intop/yc/theme/basic/css/mobile_shop.css?ver=161020">
-    <link rel="stylesheet" href="http://0sun.net/pub/intop/yc/mobile/skin/member/delibe/style.css?ver=161020">
+    <link rel="stylesheet" href="/yc/theme/basic/css/mobile_shop.css?ver=161020">
+    <link rel="stylesheet" href="/yc/mobile/skin/member/delibe/style.css?ver=161020">
 
 
     <link rel="stylesheet" href="css/swiper.css"/>
@@ -37,7 +36,6 @@ define('_SHOP_', true);
     <script src="js/jquery.lazyload.min.js"></script>
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/backcontroller.min.js"></script>
-    <script src="js/materialize.min.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -50,14 +48,14 @@ define('_SHOP_', true);
 <body>
 <?php
 if ($is_member){
-  echo "<div id='loginsuccess' style='display:none'></div>";
   $member = get_member($_SESSION['ss_mb_id']);
+  echo "<div id='loginsuccess' style='display:none'>".$member['mb_id']."</div>";
 }
 
 
 ?>
 
-<script>
+<script data-bc="action">
 (function(){
   backcontroller.Component.init({
   Name : "Common",
@@ -72,7 +70,7 @@ if ($is_member){
 })()
 </script>
 
-<script type="text/template" id="TopMenu">
+<script type="text/template" id="TopMenu" data-bc="template">
 
   <nav class="navbar navbar-default" role="navigation">
       <div class="container">
@@ -85,14 +83,14 @@ if ($is_member){
               </button>
               <span class="navbar-brand" href="#" onclick="GoMain()">#B</span>
               <a href="search.html"><button type="button" class="navbar-toggle" style="background:transparent;border:none;margin:0px;margin-right:9px;margin-top:9px;margin-bottom:9px;float:right !important;"><img src="./img/main/zoom.png" style="height:20px;"/></button></a>
-              <button type="button" class="navbar-toggle"  style="background:transparent;border:none;margin:0px;margin-top:9px;margin-bottom:9px;float:right !important;"><img src="./img/main/shopping-cart.png" style="height:20px;"/></button>
+              <button type="button" class="navbar-toggle"  style="background:transparent;border:none;margin:0px;margin-top:9px;margin-bottom:9px;float:right !important;"><a href="cart.html"><img src="./img/main/shopping-cart.png" style="height:20px;"/></a></button>
           </div>
       </div>
   </nav>
 
 </script>
 
-<script>
+<script data-bc="action">
 (function(){
   backcontroller.Component.init({
     Name : "LeftMenu",
@@ -107,7 +105,7 @@ if ($is_member){
   })
 })()
 </script>
-<script type="text/template" id="LeftMenuTopMenuInfo">
+<script type="text/template" id="LeftMenuTopMenuInfo" data-bc="template">
   <div class="logInfo">
     <div class="group title">
       <span>#B</span>
@@ -117,10 +115,10 @@ if ($is_member){
       <div>안녕하세요, <span style="color:#0e64f2;">인탑</span>님. </div>
       <div>#B에 오신걸 환영합니다.</div>
     </div>
-    <%if(!document.querySelector("#loginsuccess")){%>
+    <%if(document.querySelector("#loginsuccess")){%>
       <div class="group button-group">
         <a href="mypage.html"><div class="yellow">마이페이지</div></a>
-        <a href="#"><div class="black">위시리스트</div></a>
+        <a href="wish.html"><div class="black">위시리스트</div></a>
       </div>
     <%}else{%>
 
@@ -132,13 +130,21 @@ if ($is_member){
   </div>
 </script>
 
-<script>
+<script data-bc="action">
 (function(){
+  var purl;
+  if($("#loginsuccess").length > 0){
+    purl = "/yc/api/model.php?m=get&q=/follow/"+$("#loginsuccess").text();
+  }else{
+    purl = "/yc/api/model.php";
+  }
+  console.log(purl);
+
   backcontroller.Component.init({
     Name : "LeftMenu",
     Data : {
       name : "LeftFollowList",
-      url : "http://0sun.net/pub/intop/yc/api/model.php"
+      url : purl
     },
     templateSelector : '#LeftMenuFollowList',
     stateProcessor : function(data){
@@ -150,14 +156,14 @@ if ($is_member){
   })
 })()
 </script>
-<script type="text/template" id="LeftMenuFollowList">
+<script type="text/template" id="LeftMenuFollowList" data-bc="template">
   <% var itemlist = obj;%>
-  <% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
+  <% var url = location.href.indexOf("localhost") < 0 ? "." : "."%>
   <div class="submenu">
     <div class="group title">
       <div>Follow<span style="float:right"><img src="img/plus.png"/></span></div>
     </div>
-    <div class="group contents">
+    <div class="group contents" style="white-space:nowrap;overflow-x:scroll;">
     <% for(i=0;i<itemlist.length;i++){%>
       <a href="./store.html#<%=itemlist[i].name%>">
       <div class="horizontalElement follow">
@@ -171,13 +177,13 @@ if ($is_member){
   </div>
 </script>
 
-<script>
+<script data-bc="action">
 (function(){
   backcontroller.Component.init({
     Name : "LeftMenu",
     Data : {
       name : "LeftMenu",
-      url : "http://0sun.net/pub/intop/yc/api/category.php"
+      url : "/yc/api/category.php"
     },
     templateSelector : '#LeftMenuMenuList',
     stateProcessor : function(data){
@@ -189,7 +195,7 @@ if ($is_member){
   })
 })()
 </script>
-<script type="text/template" id="LeftMenuMenuList">
+<script type="text/template" id="LeftMenuMenuList" data-bc="template">
   <% var categorylist = obj.sort(function(a,b){return (a.ca_id.toString() > b.ca_id.toString() ? 1 : 0 )});%>
 
   <div class="list">
@@ -223,7 +229,7 @@ if ($is_member){
 </div>
 </script>
 
-<script>
+<script data-bc="action">
 (function(){
   backcontroller.Component.init({
     Name : "LeftMenu",
@@ -238,7 +244,7 @@ if ($is_member){
   })
 })()
 </script>
-<script type="text/template" id="LeftMenuLatestList">
+<script type="text/template" id="LeftMenuLatestList" data-bc="template">
   <div class="submenu">
     <div class="group title">
       <div>최근에 본 상품</div>
@@ -257,7 +263,7 @@ if ($is_member){
   </div>
 </script>
 
-<script>
+<script data-bc="action">
 (function(){
   backcontroller.Component.init({
     Name : "LeftMenu",
@@ -272,7 +278,7 @@ if ($is_member){
   })
 })()
 </script>
-<script type="text/template" id="LeftMenuFooter">
+<script type="text/template" id="LeftMenuFooter" data-bc="template">
   <div class="footer" style="padding:15px 0px 15px 0px;background-color: #333333;color:#888888;">
     <div class="group title">
     <div style="display:block;text-align:center;">
@@ -346,11 +352,18 @@ if ($is_member){
 
 <script>
 (function(){
+  var purl;
+  if($("#loginsuccess").length > 0){
+    purl = "/yc/api/model.php?m=get&q=/follow/"+$("#loginsuccess").text();
+  }else{
+    purl = "/yc/api/model.php";
+  }
+
   backcontroller.Component.init({
     Name : "Celeb",
     Data : {
       name : "CelebList",
-      url : "http://0sun.net/pub/intop/yc/api/model.php"
+      url : purl
     },
     templateSelector : '#CelebPage',
     stateProcessor : function(data){
@@ -380,9 +393,8 @@ if ($is_member){
   }
 </style>
   <% var itemlist = obj;%>
-  <% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
+  <% var url = location.href.indexOf("localhost") < 0 ? "." : "."%>
 
-    <% for(i=0;i<10;i++){itemlist.push(obj[Math.round((Math.random()*10)/9)]);}%>
     <div class="horizontal" style="background-color:white;">
       <style>
       </style>
@@ -425,7 +437,7 @@ if ($is_member){
     Name : "Celeb",
     Data : {
       name : "BestCelebList",
-      url : "http://0sun.net/pub/intop/yc/api/model.php"
+      url : "/yc/api/model.php"
     },
     templateSelector : '#BestCelebPage',
     stateProcessor : function(data){
@@ -455,7 +467,7 @@ if ($is_member){
   }
 </style>
   <% var itemlist = obj;%>
-  <% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
+  <% var url = location.href.indexOf("localhost") < 0 ? "." : "."%>
 
     <% for(i=0;i<10;i++){itemlist.push(obj[Math.round((Math.random()*10)/9)]);}%>
     <div class="horizontal" style="background-color:white;">
@@ -507,30 +519,41 @@ if ($is_member){
 })()
 </script>
 <style>
-  div.img{
-    height: auto;box-sizing:border-box;max-height:1000px;
+  div.bigimg{
+    width:100%;height:200px;
+    background-repeat:no-repeat;background-size:contain;background-position:center center;
+  }
+  div.img.more{
+    vertical-align:top;line-height:82px;box-sizing:border-box;width:17%;border:2px solid #252525;display:inline-block;text-align:center;height:76px;padding:0px;margin:0px;margin-top:3px;
+  }
+  .celebgallery{
+    white-space:nowrap;height:82px;
+  }
+  .celebgallery div.img{
+    width:20%;height:82px;
+    box-sizing:border-box;max-height:1000px;
     display:inline-block;margin:0px;padding:0px;
     background-repeat:no-repeat;background-size:contain;background-position:center center;
   }
 </style>
 <script type="text/template" id="HotCelebPage">
-  <div class="img" style="width:100%;height:200px;background-image:url(./img/celeb/b1.png);">
+  <div class="bigimg" style="background-image:url(./img/celeb/b1.png);">
   </div>
-  <div style="white-space:nowrap;height:82px;">
-    <div class="img" style="width:20%;height:82px;background-image:url(./img/celeb/1.png);"></div>
-    <div class="img" style="width:20%;height:82px;background-image:url(./img/celeb/2.png);"></div>
-    <div class="img" style="width:20%;height:82px;background-image:url(./img/celeb/3.png);"></div>
-    <div class="img" style="width:20%;height:82px;background-image:url(./img/celeb/4.png);"></div>
-    <div style="vertical-align:top;line-height:82px;box-sizing:border-box;width:17%;border:2px solid #252525;display:inline-block;text-align:center;height:76px;padding:0px;margin:0px;margin-top:3px;">+</div>
+  <div class="celebgallery">
+    <div class="img" style="background-image:url(./img/celeb/1.png);"></div>
+    <div class="img" style="background-image:url(./img/celeb/2.png);"></div>
+    <div class="img" style="background-image:url(./img/celeb/3.png);"></div>
+    <div class="img" style="background-image:url(./img/celeb/4.png);"></div>
+    <div class="img more">+</div>
   </div>
-  <div class="img" style="width:100%;height:200px;background-image:url(./img/celeb/b2.png);">
+  <div class="bigimg" style="width:100%;height:200px;background-image:url(./img/celeb/b2.png);">
   </div>
-  <div style="white-space:nowrap;height:82px;">
-    <div class="img" style="width:20%;height:82px;background-image:url(./img/celeb/1.png);"></div>
-    <div class="img" style="width:20%;height:82px;background-image:url(./img/celeb/2.png);"></div>
-    <div class="img" style="width:20%;height:82px;background-image:url(./img/celeb/3.png);"></div>
-    <div class="img" style="width:20%;height:82px;background-image:url(./img/celeb/4.png);"></div>
-    <div style="vertical-align:top;line-height:82px;box-sizing:border-box;width:17%;border:2px solid #252525;display:inline-block;text-align:center;height:76px;padding:0px;margin:0px;margin-top:3px;">+</div>
+  <div class="celebgallery">
+    <div class="img" style="background-image:url(./img/celeb/1.png);"></div>
+    <div class="img" style="background-image:url(./img/celeb/2.png);"></div>
+    <div class="img" style="background-image:url(./img/celeb/3.png);"></div>
+    <div class="img" style="background-image:url(./img/celeb/4.png);"></div>
+    <div class="img more">+</div>
   </div>
 </script>
 
@@ -541,7 +564,7 @@ if ($is_member){
   templateSelector : '#AllCelebPage',
   Data : {
     name : "CelebList",
-    url : "http://0sun.net/pub/intop/yc/api/model.php"
+    url : "/yc/api/model.php"
   },
   stateProcessor : function(data){
   },
@@ -552,7 +575,7 @@ if ($is_member){
 </script>
 <script type="text/template" id="AllCelebPage">
   <% var itemlist = obj;%>
-  <% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
+  <% var url = location.href.indexOf("localhost") < 0 ? "." : "."%>
 
     <% for(i=0;i<10;i++){itemlist.push(obj[Math.round((Math.random()*10)/9)]);}%>
     <div class="horizontal" style="background-color:white;">
@@ -572,7 +595,8 @@ if ($is_member){
               <div style="text-align:center;padding:5px;white-space:nowrap;test-align:center;">
                 <span style="font-size:20px;"><%=itemlist[i].name%></span>
                 <div style="margin-left:5px;border-radius:100%;border:2px solid #252525;padding:3px;display:inline-block;">
-                  <i class="material-icons" style="font-size:15px;">add</i>
+                  <i class="material-icons addfollow" style="font-size:15px;">add</i>
+                  <input type="hidden" value="<%=itemlist[i].name%>"></input>
                 </div>
               </div>
               </div>

@@ -23,9 +23,8 @@ define('_SHOP_', true);
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="css/materialize.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="http://0sun.net/pub/intop/yc/theme/basic/css/mobile_shop.css?ver=161020">
-    <link rel="stylesheet" href="http://0sun.net/pub/intop/yc/mobile/skin/member/delibe/style.css?ver=161020">
+    <link rel="stylesheet" href="/yc/theme/basic/css/mobile_shop.css?ver=161020">
+    <link rel="stylesheet" href="/yc/mobile/skin/member/delibe/style.css?ver=161020">
 
 
     <link rel="stylesheet" href="css/swiper.css"/>
@@ -37,7 +36,6 @@ define('_SHOP_', true);
     <script src="js/jquery.lazyload.min.js"></script>
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/backcontroller.min.js"></script>
-    <script src="js/materialize.min.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -48,7 +46,7 @@ define('_SHOP_', true);
 
 </head>
 <body>
-<script>
+<script data-bc="action">
 (function(){
   backcontroller.Component.init({
   Name : "Common",
@@ -63,7 +61,7 @@ define('_SHOP_', true);
 })()
 </script>
 
-<script type="text/template" id="TopMenu">
+<script type="text/template" id="TopMenu" data-bc="template">
 
   <nav class="navbar navbar-default" role="navigation">
       <div class="container">
@@ -76,14 +74,14 @@ define('_SHOP_', true);
               </button>
               <span class="navbar-brand" href="#" onclick="GoMain()">#B</span>
               <a href="search.html"><button type="button" class="navbar-toggle" style="background:transparent;border:none;margin:0px;margin-right:9px;margin-top:9px;margin-bottom:9px;float:right !important;"><img src="./img/main/zoom.png" style="height:20px;"/></button></a>
-              <button type="button" class="navbar-toggle"  style="background:transparent;border:none;margin:0px;margin-top:9px;margin-bottom:9px;float:right !important;"><img src="./img/main/shopping-cart.png" style="height:20px;"/></button>
+              <button type="button" class="navbar-toggle"  style="background:transparent;border:none;margin:0px;margin-top:9px;margin-bottom:9px;float:right !important;"><a href="cart.html"><img src="./img/main/shopping-cart.png" style="height:20px;"/></a></button>
           </div>
       </div>
   </nav>
 
 </script>
 
-<script>
+<script data-bc="action">
 (function(){
   backcontroller.Component.init({
     Name : "LeftMenu",
@@ -98,7 +96,7 @@ define('_SHOP_', true);
   })
 })()
 </script>
-<script type="text/template" id="LeftMenuTopMenuInfo">
+<script type="text/template" id="LeftMenuTopMenuInfo" data-bc="template">
   <div class="logInfo">
     <div class="group title">
       <span>#B</span>
@@ -108,10 +106,10 @@ define('_SHOP_', true);
       <div>안녕하세요, <span style="color:#0e64f2;">인탑</span>님. </div>
       <div>#B에 오신걸 환영합니다.</div>
     </div>
-    <%if(!document.querySelector("#loginsuccess")){%>
+    <%if(document.querySelector("#loginsuccess")){%>
       <div class="group button-group">
         <a href="mypage.html"><div class="yellow">마이페이지</div></a>
-        <a href="#"><div class="black">위시리스트</div></a>
+        <a href="wish.html"><div class="black">위시리스트</div></a>
       </div>
     <%}else{%>
 
@@ -123,13 +121,21 @@ define('_SHOP_', true);
   </div>
 </script>
 
-<script>
+<script data-bc="action">
 (function(){
+  var purl;
+  if($("#loginsuccess").length > 0){
+    purl = "/yc/api/model.php?m=get&q=/follow/"+$("#loginsuccess").text();
+  }else{
+    purl = "/yc/api/model.php";
+  }
+  console.log(purl);
+
   backcontroller.Component.init({
     Name : "LeftMenu",
     Data : {
       name : "LeftFollowList",
-      url : "http://0sun.net/pub/intop/yc/api/model.php"
+      url : purl
     },
     templateSelector : '#LeftMenuFollowList',
     stateProcessor : function(data){
@@ -141,14 +147,14 @@ define('_SHOP_', true);
   })
 })()
 </script>
-<script type="text/template" id="LeftMenuFollowList">
+<script type="text/template" id="LeftMenuFollowList" data-bc="template">
   <% var itemlist = obj;%>
-  <% var url = location.href.indexOf("localhost") < 0 ? "." : "http://0sun.net/pub/intop"%>
+  <% var url = location.href.indexOf("localhost") < 0 ? "." : "."%>
   <div class="submenu">
     <div class="group title">
       <div>Follow<span style="float:right"><img src="img/plus.png"/></span></div>
     </div>
-    <div class="group contents">
+    <div class="group contents" style="white-space:nowrap;overflow-x:scroll;">
     <% for(i=0;i<itemlist.length;i++){%>
       <a href="./store.html#<%=itemlist[i].name%>">
       <div class="horizontalElement follow">
@@ -162,13 +168,13 @@ define('_SHOP_', true);
   </div>
 </script>
 
-<script>
+<script data-bc="action">
 (function(){
   backcontroller.Component.init({
     Name : "LeftMenu",
     Data : {
       name : "LeftMenu",
-      url : "http://0sun.net/pub/intop/yc/api/category.php"
+      url : "/yc/api/category.php"
     },
     templateSelector : '#LeftMenuMenuList',
     stateProcessor : function(data){
@@ -180,7 +186,7 @@ define('_SHOP_', true);
   })
 })()
 </script>
-<script type="text/template" id="LeftMenuMenuList">
+<script type="text/template" id="LeftMenuMenuList" data-bc="template">
   <% var categorylist = obj.sort(function(a,b){return (a.ca_id.toString() > b.ca_id.toString() ? 1 : 0 )});%>
 
   <div class="list">
@@ -214,7 +220,7 @@ define('_SHOP_', true);
 </div>
 </script>
 
-<script>
+<script data-bc="action">
 (function(){
   backcontroller.Component.init({
     Name : "LeftMenu",
@@ -229,7 +235,7 @@ define('_SHOP_', true);
   })
 })()
 </script>
-<script type="text/template" id="LeftMenuLatestList">
+<script type="text/template" id="LeftMenuLatestList" data-bc="template">
   <div class="submenu">
     <div class="group title">
       <div>최근에 본 상품</div>
@@ -248,7 +254,7 @@ define('_SHOP_', true);
   </div>
 </script>
 
-<script>
+<script data-bc="action">
 (function(){
   backcontroller.Component.init({
     Name : "LeftMenu",
@@ -263,7 +269,7 @@ define('_SHOP_', true);
   })
 })()
 </script>
-<script type="text/template" id="LeftMenuFooter">
+<script type="text/template" id="LeftMenuFooter" data-bc="template">
   <div class="footer" style="padding:15px 0px 15px 0px;background-color: #333333;color:#888888;">
     <div class="group title">
     <div style="display:block;text-align:center;">
@@ -305,7 +311,79 @@ define('_SHOP_', true);
               <i class="fa fa-chevron-up"></i>
           </a>
       </div>
+      <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
   </div>
+
+<style>
+  .common.line {color:#474747;padding:10px 20px 10px 20px;white-space: nowrap;overflow:hidden;width:100%;}
+  .common.yellowheader {background-color:#fed664;}
+  .common.line .name2 {display:inline-block;float:left;}
+  .common.line .value2 {display:inline-block;float:right;}
+
+  .line {width:100%;display: block;white-space: nowrap;}
+  .line.grayheader{margin:10px 0px 10px 0px;background-color:#f8f8f8;padding:10px 0px 10px 20px;font-size:11px;color:#292929;}
+  .name {display:inline-block;width:30%;vertical-align: middle;}
+  .value {display:inline-block;width:70%;}
+  .value input{
+    border-radius: 5px;
+  }
+  .value input[type=text]{
+    width:80%;
+  }
+  .value input[type=email]{
+    width:80%;
+  }
+  .value button{
+    border-radius: 5px;
+
+  }
+  .value.captcha{
+    white-space:normal;
+    word-break: break-all;
+  }
+  .name.big{
+    vertical-align: top;
+  }
+  .name.big.address{
+    height: 90px;
+    line-height: 90px;
+  }.name.big.autoregban{
+    height: 95px;
+    line-height: 95px;
+  }
+  .button{
+    background-color: #333 !important;color:white !important;
+    display:inline-block;border:1px #a3a3a3 solid;border-radius: 5px; padding:5px !important;font-size:5px;
+  }
+  .value.captcha button{
+    background-color: #333 !important;color:white !important;
+    height:auto !important;
+    display:inline-block;border:1px #a3a3a3 solid;border-radius: 5px; padding:5px !important;font-size:5px;
+  }
+  #captcha_key{
+    width:70% !important;
+  }
+  .list{display:block;background-color: #ffffff;padding:15px 0px 15px 0px;}
+  .list .line{color:#474747;margin:5px;white-space: nowrap;}
+  .list .line .product {display:inline-block;}
+  .list .line .productinfo {display:inline-block;width:63%;}
+  .list .line .productinfo >span {display:block;}
+  .list .line.isCenter{text-align: center}
+  .list .header {background-color: #f9f9f9;padding:5px 0px 9px 0px;}
+  .list .line .button.isOrder {background-color: red;color:white;border:0px;}
+  .list .line .button {display:inline-block;border:1px #a3a3a3 solid;border-radius: 5px; padding:10px;}
+  .list .line .button {background-color: white;font-size:5px;white-space:nowrap;padding:5px;width:auto;}
+  .button {display:inline-block;border:1px #a3a3a3 solid;border-radius: 5px; padding:5px;font-size:5px;}
+  #daum_juso_pagemb_zip{
+    position: absolute !important;
+    z-index: 9999999;
+  }
+  .line{margin:5px 20px 5px 20px;}
+  .value *{
+    margin-top:5px;
+    margin-bottom:5px;
+  }
+</style>
 
 <script>
 (function(){
@@ -325,7 +403,7 @@ define('_SHOP_', true);
 <script type="text/template" id="JoinPage">
   <div class="subTitle">회원가입</div>
   <?php
-  include_once('./yc/common.php');
+  include_once('./backend/common.php');
   include_once(G5_CAPTCHA_PATH.'/captcha.lib.php');
   include_once(G5_LIB_PATH.'/register.lib.php');
 
@@ -485,172 +563,208 @@ define('_SHOP_', true);
       <input type="hidden" name="mb_nick_default" value="<?php echo get_text($member['mb_nick']) ?>">
       <input type="hidden" name="mb_nick" value="<?php echo get_text($member['mb_nick']) ?>">
       <?php } ?>
+      <div class="line">
+        <div class="name">
+          아이디
+        </div>
+        <div class="value">
+          <input type="text" name="mb_id" value="<?php echo $member['mb_id'] ?>" id="reg_mb_id" class="frm_input <?php echo $required ?> <?php echo $readonly ?>" minlength="3" maxlength="20" <?php echo $readonly ?>>
+        </div>
+      </div>
 
-      <div class="tbl_frm01 tbl_wrap">
-          <table>
-          <caption style="color:#999999;font-size:12px;">- 기본정보를 입력해주세요. (*필수 입력)</caption>
-          <tr>
-              <th scope="row"><label for="reg_mb_id">아이디*</label></th>
-              <td>
-                  <span class="frm_info">영문자, 숫자, _ 만 입력 가능. 최소 3자이상 입력하세요.</span>
-                  <input type="text" name="mb_id" value="<?php echo $member['mb_id'] ?>" id="reg_mb_id" class="frm_input <?php echo $required ?> <?php echo $readonly ?>" minlength="3" maxlength="20" <?php echo $readonly ?>>
-                  <span id="msg_mb_id"></span>
-              </td>
-          </tr>
-          <tr>
-              <th scope="row"><label for="reg_mb_password">비밀번호*</label></th>
-              <td><input type="password" name="mb_password" id="reg_mb_password" class="frm_input" minlength="3" maxlength="20" <?php echo $required ?>></td>
-          </tr>
-          <tr>
-              <th scope="row"><label for="reg_mb_password_re">비밀번호 확인*</label></th>
-              <td><input type="password" name="mb_password_re" id="reg_mb_password_re" class="frm_input" minlength="3" maxlength="20" <?php echo $required ?>></td>
-          </tr>
-          <tr>
-              <th scope="row"><label for="reg_mb_name">이름<strong class="sound_only">필수</strong></label></th>
-              <td>
-                  <?php if ($config['cf_cert_use']) { ?>
-                  <span class="frm_info">아이핀 본인확인 후에는 이름이 자동 입력되고 휴대폰 본인확인 후에는 이름과 휴대폰번호가 자동 입력되어 수동으로 입력할수 없게 됩니다.</span>
-                  <?php } ?>
-                  <input type="text" id="reg_mb_name" name="mb_name" value="<?php echo get_text($member['mb_name']) ?>" <?php echo $required ?> <?php echo $readonly; ?> class="frm_input <?php echo $required ?> <?php echo $readonly ?>">
-                  <?php
-                  if($config['cf_cert_use']) {
-                      if($config['cf_cert_ipin'])
-                          echo '<button type="button" id="win_ipin_cert" class="btn_frmline">아이핀 본인확인</button>'.PHP_EOL;
-                      if($config['cf_cert_hp'] && $config['cf_cert_hp'] != 'lg')
-                          echo '<button type="button" id="win_hp_cert" class="btn_frmline">휴대폰 본인확인</button>'.PHP_EOL;
+      <div class="line">
+        <div class="name">
+          비밀번호
+        </div>
+        <div class="value">
+          <input type="password" name="mb_password" id="reg_mb_password" class="frm_input" minlength="3" maxlength="20" <?php echo $required ?>>
+        </div>
+      </div>
 
-                      echo '<noscript>본인확인을 위해서는 자바스크립트 사용이 가능해야합니다.</noscript>'.PHP_EOL;
-                  }
-                  ?>
-                  <?php
-                  if ($config['cf_cert_use'] && $member['mb_certify']) {
-                      if($member['mb_certify'] == 'ipin')
-                          $mb_cert = '아이핀';
-                      else
-                          $mb_cert = '휴대폰';
-                  ?>
-                  <div id="msg_certify">
-                      <strong><?php echo $mb_cert; ?> 본인확인</strong><?php if ($member['mb_adult']) { ?> 및 <strong>성인인증</strong><?php } ?> 완료
-                  </div>
-                  <?php } ?>
-              </td>
-          </tr>
+      <div class="line">
+        <div class="name">
+          비밀번호 확인
+        </div>
+        <div class="value">
+          <input type="password" name="mb_password_re" id="reg_mb_password_re" class="frm_input" minlength="3" maxlength="20" <?php echo $required ?>>
+        </div>
+      </div>
 
-          <?php if ($req_nick) { ?>
-          <tr>
-              <th scope="row"><label for="reg_mb_nick">닉네임<strong class="sound_only">필수</strong></label></th>
-              <td>
-                  <span class="frm_info">
-                      공백없이 한글,영문,숫자만 입력 가능 (한글2자, 영문4자 이상)<br>
-                      닉네임을 바꾸시면 앞으로 <?php echo (int)$config['cf_nick_modify'] ?>일 이내에는 변경 할 수 없습니다.
-                  </span>
-                  <input type="hidden" name="mb_nick_default" value="<?php echo isset($member['mb_nick'])?get_text($member['mb_nick']):''; ?>">
-                  <input type="text" name="mb_nick" value="<?php echo isset($member['mb_nick'])?get_text($member['mb_nick']):''; ?>" id="reg_mb_nick" required class="frm_input required nospace" maxlength="20">
-                  <span id="msg_mb_nick"></span>
-              </td>
-          </tr>
+      <div class="line">
+        <div class="name">
+          이름
+        </div>
+        <div class="value">
+          <?php if ($config['cf_cert_use']) { ?>
+          <span class="frm_info">아이핀 본인확인 후에는 이름이 자동 입력되고 휴대폰 본인확인 후에는 이름과 휴대폰번호가 자동 입력되어 수동으로 입력할수 없게 됩니다.</span>
           <?php } ?>
+          <input type="text" id="reg_mb_name" name="mb_name" value="<?php echo get_text($member['mb_name']) ?>" <?php echo $required ?> <?php echo $readonly; ?> class="frm_input <?php echo $required ?> <?php echo $readonly ?>">
+          <?php
+          if($config['cf_cert_use']) {
+              if($config['cf_cert_ipin'])
+                  echo '<button type="button" id="win_ipin_cert" class="btn_frmline">아이핀 본인확인</button>'.PHP_EOL;
+              if($config['cf_cert_hp'] && $config['cf_cert_hp'] != 'lg')
+                  echo '<button type="button" id="win_hp_cert" class="btn_frmline">휴대폰 본인확인</button>'.PHP_EOL;
+
+              echo '<noscript>본인확인을 위해서는 자바스크립트 사용이 가능해야합니다.</noscript>'.PHP_EOL;
+          }
+          ?>
+          <?php
+          if ($config['cf_cert_use'] && $member['mb_certify']) {
+              if($member['mb_certify'] == 'ipin')
+                  $mb_cert = '아이핀';
+              else
+                  $mb_cert = '휴대폰';
+          ?>
+          <div id="msg_certify">
+              <strong><?php echo $mb_cert; ?> 본인확인</strong><?php if ($member['mb_adult']) { ?> 및 <strong>성인인증</strong><?php } ?> 완료
+          </div>
+          <?php } ?>
+        </div>
+      </div>
+
+      <?php if ($req_nick) { ?>
+      <div class="line">
+        <div class="name">
+          닉네임
+        </div>
+        <div class="value">
+          <input type="hidden" name="mb_nick_default" value="<?php echo isset($member['mb_nick'])?get_text($member['mb_nick']):''; ?>">
+          <input type="text" name="mb_nick" value="<?php echo isset($member['mb_nick'])?get_text($member['mb_nick']):''; ?>" id="reg_mb_nick" required class="frm_input required nospace" maxlength="20">
+          <span id="msg_mb_nick"></span>
+        </div>
+      </div>
+      <?php } ?>
+
+
+
+
+
+            <div class="line">
+              <div class="name big address">
+                주소
+              </div>
+              <div class="value">
+                <label for="reg_mb_zip" class="sound_only">우편번호<?php echo $config['cf_req_addr']?'<strong class="sound_only"> 필수</strong>':''; ?></label>
+                <input style="width:50%" type="text" name="mb_zip" value="<?php echo $member['mb_zip1'].$member['mb_zip2']; ?>" id="reg_mb_zip" <?php echo $config['cf_req_addr']?"required":""; ?> class="frm_input <?php echo $config['cf_req_addr']?"required":""; ?>" size="5" maxlength="6">
+                <button type="button" class="btn_frmline" onclick="win_zip('fregisterform', 'mb_zip', 'mb_addr1', 'mb_addr2', 'mb_addr3', 'mb_addr_jibeon');">주소 검색</button><br>
+                <label for="reg_mb_addr1" class="sound_only">주소<?php echo $config['cf_req_addr']?'<strong class="sound_only"> 필수</strong>':''; ?></label>
+                <input type="text" name="mb_addr1" value="<?php echo get_text($member['mb_addr1']) ?>" id="reg_mb_addr1" <?php echo $config['cf_req_addr']?"required":""; ?> class="frm_input frm_address <?php echo $config['cf_req_addr']?"required":""; ?>" size="50"><br>
+                <label for="reg_mb_addr2" class="sound_only">상세주소</label>
+                <input type="text" name="mb_addr2" value="<?php echo get_text($member['mb_addr2']) ?>" id="reg_mb_addr2" class="frm_input frm_address" size="50">
+                <br>
+                <label for="reg_mb_addr3" class="sound_only">참고항목</label>
+                <input type="hidden" name="mb_addr3" value="<?php echo get_text($member['mb_addr3']) ?>" id="reg_mb_addr3" class="frm_input frm_address" size="50" readonly="readonly">
+                <input type="hidden" name="mb_addr_jibeon" value="<?php echo get_text($member['mb_addr_jibeon']); ?>">
+                <?php if ($config['cf_req_addr']) { ?><strong class="sound_only">필수</strong><?php } ?>
+              </div>
+            </div>
+
+
           <?php if ($config['cf_use_addr']) { ?>
-          <tr>
-              <th scope="row">
-                  <label>주소</label>
-                  <?php if ($config['cf_req_addr']) { ?><strong class="sound_only">필수</strong><?php } ?>
-              </th>
-              <td>
-                  <label for="reg_mb_zip" class="sound_only">우편번호<?php echo $config['cf_req_addr']?'<strong class="sound_only"> 필수</strong>':''; ?></label>
-                  <input type="text" name="mb_zip" value="<?php echo $member['mb_zip1'].$member['mb_zip2']; ?>" id="reg_mb_zip" <?php echo $config['cf_req_addr']?"required":""; ?> class="frm_input <?php echo $config['cf_req_addr']?"required":""; ?>" size="5" maxlength="6">
-                  <button type="button" class="btn_frmline" onclick="win_zip('fregisterform', 'mb_zip', 'mb_addr1', 'mb_addr2', 'mb_addr3', 'mb_addr_jibeon');">주소 검색</button><br>
-                  <label for="reg_mb_addr1" class="sound_only">주소<?php echo $config['cf_req_addr']?'<strong class="sound_only"> 필수</strong>':''; ?></label>
-                  <input type="text" name="mb_addr1" value="<?php echo get_text($member['mb_addr1']) ?>" id="reg_mb_addr1" <?php echo $config['cf_req_addr']?"required":""; ?> class="frm_input frm_address <?php echo $config['cf_req_addr']?"required":""; ?>" size="50"><br>
-                  <label for="reg_mb_addr2" class="sound_only">상세주소</label>
-                  <input type="text" name="mb_addr2" value="<?php echo get_text($member['mb_addr2']) ?>" id="reg_mb_addr2" class="frm_input frm_address" size="50">
-                  <br>
-                  <label for="reg_mb_addr3" class="sound_only">참고항목</label>
-                  <input type="hidden" name="mb_addr3" value="<?php echo get_text($member['mb_addr3']) ?>" id="reg_mb_addr3" class="frm_input frm_address" size="50" readonly="readonly">
-                  <input type="hidden" name="mb_addr_jibeon" value="<?php echo get_text($member['mb_addr_jibeon']); ?>">
-              </td>
-          </tr>
-          <?php } ?>
+            <?php } ?>
+
 
           <?php if ($config['cf_use_homepage']) { ?>
-          <tr>
-              <th scope="row"><label for="reg_mb_homepage">홈페이지<?php if ($config['cf_req_homepage']){ ?><strong class="sound_only">필수</strong><?php } ?></label></th>
-              <td><input type="url" name="mb_homepage" value="<?php echo get_text($member['mb_homepage']) ?>" id="reg_mb_homepage" class="frm_input <?php echo $config['cf_req_homepage']?"required":""; ?>" maxlength="255" <?php echo $config['cf_req_homepage']?"required":""; ?>></td>
-          </tr>
+            <div class="line">
+              <div class="name">
+                홈페이지
+              </div>
+              <div class="value">
+                  <input type="url" name="mb_homepage" value="<?php echo get_text($member['mb_homepage']) ?>" id="reg_mb_homepage" class="frm_input <?php echo $config['cf_req_homepage']?"required":""; ?>" maxlength="255" <?php echo $config['cf_req_homepage']?"required":""; ?>>
+              </div>
+            </div>
           <?php } ?>
 
           <?php if ($config['cf_use_tel']) { ?>
-          <tr>
-              <th scope="row"><label for="reg_mb_tel">전화번호<?php if ($config['cf_req_tel']) { ?><strong class="sound_only">필수</strong><?php } ?></label></th>
-              <td><input type="text" name="mb_tel" value="<?php echo get_text($member['mb_tel']) ?>" id="reg_mb_tel" class="frm_input <?php echo $config['cf_req_tel']?"required":""; ?>" maxlength="20" <?php echo $config['cf_req_tel']?"required":""; ?>></td>
-          </tr>
+            <div class="line">
+              <div class="name">
+                전화번호
+              </div>
+              <div class="value">
+                <input type="text" name="mb_tel" value="<?php echo get_text($member['mb_tel']) ?>" id="reg_mb_tel" class="frm_input <?php echo $config['cf_req_tel']?"required":""; ?>" maxlength="20" <?php echo $config['cf_req_tel']?"required":""; ?>>
+              </div>
+            </div>
           <?php } ?>
 
           <?php if ($config['cf_use_hp'] || $config['cf_cert_hp']) {  ?>
-          <tr>
-              <th scope="row"><label for="reg_mb_hp">휴대폰번호<?php if ($config['cf_req_hp']) { ?><strong class="sound_only">필수</strong><?php } ?></label></th>
-              <td>
-                  <input type="text" name="mb_hp" value="<?php echo get_text($member['mb_hp']) ?>" id="reg_mb_hp" <?php echo ($config['cf_req_hp'])?"required":""; ?> class="frm_input <?php echo ($config['cf_req_hp'])?"required":""; ?>" maxlength="20">
-                  <?php if ($config['cf_cert_use'] && $config['cf_cert_hp']) { ?>
-                  <input type="hidden" name="old_mb_hp" value="<?php echo get_text($member['mb_hp']) ?>">
-                  <?php } ?>
-              </td>
-          </tr>
+
+            <div class="line">
+              <div class="name">
+                휴대폰번호
+              </div>
+              <div class="value">
+                <input type="text" name="mb_hp" value="<?php echo get_text($member['mb_hp']) ?>" id="reg_mb_hp" <?php echo ($config['cf_req_hp'])?"required":""; ?> class="frm_input <?php echo ($config['cf_req_hp'])?"required":""; ?>" maxlength="20">
+                <?php if ($config['cf_cert_use'] && $config['cf_cert_hp']) { ?>
+                <input type="hidden" name="old_mb_hp" value="<?php echo get_text($member['mb_hp']) ?>">
+                <?php } ?>
+              </div>
+            </div>
 
           <?php } ?>
           <?php if ($config['cf_use_hp']) { ?>
-          <tr>
-              <th scope="row"><label for="reg_mb_sms">SMS 수신여부</label></th>
-              <td>
-                  <input type="checkbox" name="mb_sms" value="1" id="reg_mb_sms" <?php echo ($w=='' || $member['mb_sms'])?'checked':''; ?>>
-                  SMS 수신동의
-              </td>
-          </tr>
+            <div class="line">
+              <div class="name">
+                SMS 수신여부
+              </div>
+              <div class="value">
+                <input type="checkbox" name="mb_sms" value="1" id="reg_mb_sms" <?php echo ($w=='' || $member['mb_sms'])?'checked':''; ?>>
+                SMS 수신동의
+              </div>
+            </div>
           <?php } ?>
 
 
+          <div class="line">
+            <div class="name">
+              이메일
+            </div>
+            <div class="value">
+              <?php if ($config['cf_use_email_certify']) {  ?>
+              <span class="frm_info">
+                  <?php if ($w=='') { echo "E-mail 로 발송된 내용을 확인한 후 인증하셔야 회원가입이 완료됩니다."; }  ?>
+                  <?php if ($w=='u') { echo "E-mail 주소를 변경하시면 다시 인증하셔야 합니다."; }  ?>
+              </span>
+              <?php }  ?>
+              <input type="hidden" name="old_email" value="<?php echo $member['mb_email'] ?>">
+              <input type="email" name="mb_email" value="<?php echo isset($member['mb_email'])?$member['mb_email']:''; ?>" id="reg_mb_email" required class="frm_input email" size="50" maxlength="100">
+            </div>
+          </div>
 
+          <div class="line">
+            <div class="name">
+              이메일 수신여부
+            </div>
+            <div class="value">
+              <input type="checkbox" name="mb_mailling" value="1" id="reg_mb_mailling" <?php echo ($w=='' || $member['mb_mailling'])?'checked':''; ?>>
+              이메일 수신
+            </div>
+          </div>
 
-          <tr>
-              <th scope="row"><label for="reg_mb_email">이메일*<strong class="sound_only">필수</strong></label></th>
-              <td>
-                  <?php if ($config['cf_use_email_certify']) {  ?>
-                  <span class="frm_info">
-                      <?php if ($w=='') { echo "E-mail 로 발송된 내용을 확인한 후 인증하셔야 회원가입이 완료됩니다."; }  ?>
-                      <?php if ($w=='u') { echo "E-mail 주소를 변경하시면 다시 인증하셔야 합니다."; }  ?>
-                  </span>
-                  <?php }  ?>
-                  <input type="hidden" name="old_email" value="<?php echo $member['mb_email'] ?>">
-                  <input type="email" name="mb_email" value="<?php echo isset($member['mb_email'])?$member['mb_email']:''; ?>" id="reg_mb_email" required class="frm_input email" size="50" maxlength="100">
-              </td>
-          </tr>
-
-         <tr>
-              <th scope="row"><label for="reg_mb_mailling">이메일 수신여부</label></th>
-              <td>
-                  <input type="checkbox" name="mb_mailling" value="1" id="reg_mb_mailling" <?php echo ($w=='' || $member['mb_mailling'])?'checked':''; ?>>
-                  이메일 수신
-              </td>
-          </tr>
           <?php if ($w == "" && $config['cf_use_recommend']) { ?>
-          <tr>
-              <th scope="row"><label for="reg_mb_recommend">추천인아이디</label></th>
-              <td><input type="text" name="mb_recommend" id="reg_mb_recommend" class="frm_input"></td>
-          </tr>
+            <div class="line">
+              <div class="name">
+                추천인아이디
+              </div>
+              <div class="value">
+                <input type="text" name="mb_recommend" id="reg_mb_recommend" class="frm_input">
+              </div>
+            </div>
           <?php } ?>
 
-          <tr>
-              <th scope="row"><label>자동등록방지</label></th>
-              <td><?php echo captcha_html(); ?></td>
-          </tr>
-          </table>
+          <div class="line">
+            <div class="name big autoregban">
+              자동등록방지
+            </div>
+            <div class="value captcha" style="white-space:normal;">
+              <?php echo captcha_html(); ?>
+            </div>
+          </div>
       </div>
 
       <div class="tbl_frm01 tbl_wrap" style="display:none;">
           <table>
           <caption>개인정보 입력</caption>
-
-
           </table>
       </div>
 
@@ -721,109 +835,135 @@ define('_SHOP_', true);
 
           </table>
       </div>
-      <div style="background-color:#f8f8f8;padding:10px 0px 10px 20px;font-size:11px;color:#292929;">
+      <div class="line grayheader">
         옵션정보를 입력하시면 추가로 2천원 할인 쿠폰이 제공됩니다.
       </div>
-      <div class="tbl_frm01 tbl_wrap">
-          <table>
-          <tr>
-              <th scope="row"><label for="reg_mb_id">신장</label></th>
-              <td>
-                    <input type="text" name="mb_id" value="<?php echo $member['mb_id'] ?>" id="reg_mb_id" class="frm_input <?php echo $required ?> <?php echo $readonly ?>" minlength="3" maxlength="20" <?php echo $readonly ?>>
-                  <span id="msg_mb_id"></span>
-              </td>
-          </tr>
-          <tr>
-              <th scope="row"><label for="reg_mb_id">몸무게</label></th>
-              <td>
-                    <input type="text" name="mb_id" value="<?php echo $member['mb_id'] ?>" id="reg_mb_id" class="frm_input <?php echo $required ?> <?php echo $readonly ?>" minlength="3" maxlength="20" <?php echo $readonly ?>>
-                  <span id="msg_mb_id"></span>
-              </td>
-          </tr>
-          <tr>
-              <th scope="row"><label for="reg_mb_id">입는사이즈(상)</label></th>
-              <td>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default">XS</button>
-                  <button type="button" class="btn btn-default">S</button>
-                  <button type="button" class="btn btn-default">M</button>
-                  <button type="button" class="btn btn-default">L</button>
-                  <button type="button" class="btn btn-default">XL</button>
-                </div>
-              </td>
-          </tr>
-          <tr>
-              <th scope="row"><label for="reg_mb_id">입는사이즈(하)</label></th>
-              <td>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default">24</button>
-                  <button type="button" class="btn btn-default">25</button>
-                  <button type="button" class="btn btn-default">26</button>
-                  <button type="button" class="btn btn-default">27</button>
-                  <button type="button" class="btn btn-default">28</button>
-                  <button type="button" class="btn btn-default">29</button>
-                  <button type="button" class="btn btn-default">30</button>
-                  <button type="button" class="btn btn-default">31</button>
-                  <button type="button" class="btn btn-default">32</button>
-                </div>
-              </td>
-          </tr>
-          <tr>
-              <th scope="row"><label for="reg_mb_id">선호하는 핏</label></th>
-              <td>
-                <div class="dropdown">
-                  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">선호하는 핏
-                  <span class="caret"></span></button>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">상</a></li>
-                    <li><a href="#">중</a></li>
-                    <li><a href="#">하</a></li>
-                  </ul>
-                </div>
-              </td>
-          </tr>
-          </table>
+
+      <div class="line">
+        <div class="name">
+          신장
+        </div>
+        <div class="value">
+          <input type="text" name="mb_id" value="<?php echo $member['mb_id'] ?>" id="reg_mb_id" class="frm_input <?php echo $required ?> <?php echo $readonly ?>" minlength="3" maxlength="20" <?php echo $readonly ?>>
+        </div>
       </div>
 
-      <div style="margin:0;background-color:#f8f8f8;padding:10px 0px 10px 20px;font-size:13px;color:#292929;">
+      <div class="line">
+        <div class="name">
+          몸무게
+        </div>
+        <div class="value">
+          <input type="text" name="mb_id" value="<?php echo $member['mb_id'] ?>" id="reg_mb_id" class="frm_input <?php echo $required ?> <?php echo $readonly ?>" minlength="3" maxlength="20" <?php echo $readonly ?>>
+        </div>
+      </div>
+
+
+      <div class="line">
+        <div class="name">
+          입는사이즈(상)
+        </div>
+        <div class="value">
+          <div class="btn-group">
+            <button type="button" class="btn btn-default">XS</button>
+            <button type="button" class="btn btn-default">S</button>
+            <button type="button" class="btn btn-default">M</button>
+            <button type="button" class="btn btn-default">L</button>
+            <button type="button" class="btn btn-default">XL</button>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="line">
+        <div class="name">
+          입는사이즈(하)
+        </div>
+        <div class="value">
+          <div class="btn-group">
+            <button type="button" class="btn btn-default">24</button>
+            <button type="button" class="btn btn-default">25</button>
+            <button type="button" class="btn btn-default">26</button>
+            <button type="button" class="btn btn-default">27</button>
+            <button type="button" class="btn btn-default">28</button>
+            <button type="button" class="btn btn-default">29</button>
+            <button type="button" class="btn btn-default">30</button>
+            <button type="button" class="btn btn-default">31</button>
+            <button type="button" class="btn btn-default">32</button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="line">
+        <div class="name">
+          선호하는 핏
+        </div>
+        <div class="value">
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">선호하는 핏
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li><a href="#">상</a></li>
+              <li><a href="#">중</a></li>
+              <li><a href="#">하</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="line grayheader">
         체형
       </div>
-
-      <div class="tbl_frm01 tbl_wrap">
-          <table>
-          <tr>
-              <th scope="row"><label for="reg_mb_id">상의</label></th>
-              <td>
-                <div>
-                  <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
-                  <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
-                  <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
-                  <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
-                  <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
-                  <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
-                  <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
-                  <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
-                </div>
-
-              </td>
-          </tr>
-          <tr>
-              <th scope="row"><label for="reg_mb_id">하의</label></th>
-              <td>
-                <div>
-                  <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
-                  <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
-                  <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
-                  <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
-                  <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
-                  <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
-                  <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
-                  <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
-                </div>
-              </td>
-          </tr>
-          </table>
+      <div class="line">
+        <div class="name">
+          선호하는 핏
+        </div>
+        <div class="value">
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">선호하는 핏
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li><a href="#">상</a></li>
+              <li><a href="#">중</a></li>
+              <li><a href="#">하</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
+
+
+      <div class="line">
+        <div class="name">
+          상의
+        </div>
+        <div class="value">
+          <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
+          <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
+          <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
+          <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
+          <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
+          <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
+          <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
+          <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
+        </div>
+      </div>
+
+      <div class="line">
+        <div class="name">
+          하의
+        </div>
+        <div class="value">
+          <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
+          <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
+          <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
+          <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
+          <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
+          <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
+          <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
+          <button type="button" class="btn" style="width:50px;height:50px;margin:5px;">　</button>
+        </div>
+      </div>
+
       <div class="btn_confirm">
           <input type="submit" value="<?php echo $w==''?'회원가입':'정보수정'; ?>" id="btn_submit" class="btn_submit" accesskey="s">
           <!---<a href="<?php echo G5_URL; ?>/" class="btn_cancel">취소</a>---->

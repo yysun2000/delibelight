@@ -1,7 +1,7 @@
-<script>
+<script data-bc="action">
 (function(){
   backcontroller.Component.init({
-  Name : "Detail",
+  Name : "DetailBottomItems",
   templateSelector : '#DetailBottomItems',
   stateProcessor : function(data){
     //backcontroller.state.FilterList.setList(data);
@@ -16,7 +16,7 @@
   	Data : {
   		name : "DetailBottomItems",
       params : { "listCols": 3 ,"listType":2},
-      url : "http://0sun.net/pub/intop/yc/api/item.php?q=/1500364628/with"
+      url : "/yc/api/item.php?q=/"+location.href.split("?")[1].replace("it_id=","")+"/with"
   	},
   	templateSelector : '#ProductList',
   	stateProcessor : function(data){
@@ -25,12 +25,14 @@
   	afterEvent : function(){
   	}
   	})
+
+
 })()
 
 </script>
-<script type="text/template" id="DetailBottomItems">
+<script type="text/template" id="DetailBottomItems" data-bc="template">
 
-  	<div class="DetailBottomItemsOnList" style="clear:both;">
+  	<div class="DetailBottomItemsOnList" style="clear:both;padding-bottom:45px;">
   	</div>
 
 </script>

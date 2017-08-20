@@ -1,10 +1,10 @@
-<script>
+<script data-bc="action">
 (function(){
   backcontroller.Component.init({
-  Name : "Detail",
+  Name : "DetailContents",
   Data : {
-    name : "Detail",
-    url : "http://0sun.net/pub/intop/yc/api/item.php?q=/"+location.href.split("#")[1]
+    name : "DetailContentsData",
+    url : "/yc/api/item.php?q=/"+location.href.split("?")[1].replace("it_id=","")
   },
   DataURL : "./admin/json/filter.json",
   templateSelector : '#DetailContents',
@@ -13,19 +13,42 @@
   },
   targetSelector : ".DetailContents",
   afterEvent : function(){
+
   }})
+
+  backcontroller.Component.push({
+  	Name : "DetailUse",
+  	Data : {
+  		name : "DetailUseData",
+      params : { "type": "use"},
+      url : "/yc/api/item.php?q=/use/"+location.href.split("?")[1].replace("it_id=","")
+  	},
+  	templateSelector : '#BoardList',
+  	stateProcessor : function(data){
+  	},
+  	targetSelector : ".DetailUseBoard",
+  	afterEvent : function(){
+  	}
+  })
+
+  backcontroller.Component.push({
+    Name : "DetailQna",
+    Data : {
+      name : "DetailQnaData",
+      params : { "type": "qna"},
+      url : "/yc/api/item.php?q=/qna/"+location.href.split("?")[1].replace("it_id=","")
+    },
+    templateSelector : '#BoardList',
+    stateProcessor : function(data){
+    },
+    targetSelector : ".DetailQnaBoard",
+    afterEvent : function(){
+    }
+  })
+
 })()
 </script>
-<script>
-  function showDetail(selector){
-    $('.productdetail').hide();
-    $('.productinfo').hide();
-    $('.productafter').hide();
-    $('.productqna').hide();
-    $(selector).show();
-  }
-</script>
-<script type="text/template" id="DetailContents">
+<script type="text/template" id="DetailContents" data-bc="template">
   <%var itemlist = obj;%>
   <%console.log(obj);window.itemlist = obj;%>
   <div class="filterMenu">
@@ -47,33 +70,24 @@
 
 
   <!--- 임시데이터 ---->
-  <style>
-    .contentt > div{
-      margin:5px 0px 5px 0px;
-    }
-
-
-      .contentt .tablec > div{
-        margin:10px 0px 10px 0px;
-        clear:both;
-      }
-      .tablec > div > div {
-        border:1px #eeeeee solid;
-        padding:10px;
-        text-align:center;
-      }
-      .tablec > div > div:first-child{
-        background-color: #eeeeee;
-      }
-  </style>
   <div class="productdetail contentt col-xs-12" style="margin-top:20px;margin-bottom:20px;">
     <%=itemlist[0].it_basic%>
   </div>
   <div class="productinfo contentt col-xs-12" style="margin-left:0px;margin-right:0px;margin-top:20px;margin-bottom:20px;">
-    <div>소재 : 레이온 100% </div>
-    <div>색상 : 아이보리,블랙 </div>
-    <div>사이즈 : S,M,L </div>
 
+    <%
+      var iteminfo = itemlist[0].it_info_value;
+    %>
+
+    <% if(iteminfo.material){%>
+    <div> 소재 : <%=iteminfo.material%> </div>
+    <%}%>
+    <% if(iteminfo.color){%>
+    <div> 색상 : <%=iteminfo.color%> </div>
+    <%}%>
+    <% if(iteminfo.size){%>
+    <div> 사이즈 : <%=iteminfo.size%> </div>
+    <%}%>
     <div class="tablec" style="display:inline-block;width:100%;">
       <div>
         <div class="col-xs-3">사이즈</div>
@@ -123,15 +137,15 @@
       <div>계절감 : 여름 </div>
       <div>안감 : 없음 </div>
       <div>세탁방법 : 소재에 맞는 드라이크리닝 권장 </div>
-      <div>제조국 : 대한민국 </div>
+
+      <% if(iteminfo.maker){%>
+      <div> 제조국 : <%=iteminfo.maker%> </div>
+      <%}%>
 
       <div style="color:#cccccc;padding:0px;margin-top:20px;margin-bottom:20px;font-size:15px;line-height:10px;">
-      　<div>- 위의 실측사이즈는 '단면의 길이'입니다.</div>
-      　<div>- 사이즈는 측정방법에 따라 1~3cm 정도 오차가 있을 수 있습니다.</div>
-      　<div>- 모니터 해상도에 따라 제품 실제 색상과 다소 차이가 있을 수 있습니다.</div>
-      　<div> - 제품컷의 색상이 실제 제품 색상과 가장 비슷합니다.</div>
-      　<div>- 품질보증기준 : 소비자 분쟁해결</div>
-      　<div> - A/S 책임자 : 럭키페이스 (1522-1631)</div>
+      　<% if(iteminfo.description){%>
+        <div> <%=iteminfo.description%> </div>
+        <%}%>
       </div>
       <div style="background-color:#f8f8f8;margin:20px -20px 20px -20px;padding:10px 10px 10px 10px;font-size:13px;color:#292929;">신축성</div>
       <style>
@@ -152,7 +166,7 @@
         input[type=range][value="3"]::-webkit-slider-thumb { background-repeat: no-repeat;background-size: contain;background-position: center center;background-image: url("./img/test.png"); content: "1"; color: black; }
         input[type=range][value="4"]::-webkit-slider-thumb { background-repeat: no-repeat;background-size: contain;background-position: center center;background-image: url("./img/test.png"); content: "1"; color: black; }
         input[type=range][value="5"]::-webkit-slider-thumb { background-repeat: no-repeat;background-size: contain;background-position: center center;background-image: url("./img/test.png"); content: "1"; color: black; }
-                      </style>
+      </style>
       <form action="#">
           <p class="range-field">
             <input type="range" min="1" max="5" value="4" onchange="this.setAttribute('value', this.value);" />
@@ -162,13 +176,6 @@
         </form>
         <div style="background-color:#f8f8f8;margin:20px -20px 20px -20px;padding:10px 10px 10px 10px;font-size:13px;color:#292929;">세탁방법</div>
         <div style="width:100%;white-space:nowrap">
-          <style>.st{
-            display:inline-block;
-            background-size: contain;
-            background-position: center center;
-            background-repeat: no-repeat;
-            width:25%;height:100px;padding:10px;
-            }</style>
           <div class="st" style="background-image:url('./img/stb/bb.png')"></div>
           <div class="st" style="background-image:url('./img/stb/dc.png')"></div>
           <div class="st" style="background-image:url('./img/stb/sp.png')"></div>
@@ -177,10 +184,10 @@
 
   </div>
   <div class="productafter contentt col-xs-12" style="margin-top:20px;margin-bottom:20px;">
-    상품후기
+    <div class="DetailUseBoard"></div>
   </div>
   <div class="productqna contentt col-xs-12" style="margin-top:20px;margin-bottom:20px;">
-    상품문의
+    <div class="DetailQnaBoard"></div>
   </div>
 
   <script>
